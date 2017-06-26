@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
-import { Table,Segment } from 'semantic-ui-react'
+import { Table,Container,Grid } from 'semantic-ui-react'
+import Titre1 from '../components/Titre1'
 import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'
 
@@ -14,35 +15,44 @@ export default class Formations extends Component {
 
 		return (
 			<div>
-				<Titre2>Formations relative au Developpement Web</Titre2> <br/>
+				<Titre1>Formations</Titre1>
+				<Grid>
+					<Grid.Row>
+						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
+						<Grid.Column mobile={16} tablet={12} computer={10}>
 
-				<Segment>
-					J'ai participé à la formation developpeur web de 6 mois proposée par <a href="http://www.webogreen.fr/">Webogreen</a> et dispensée par <a href="http://simplon.co/">Simplon</a>.
-				</Segment>
-				<Titre3><a href="http://simplon.co/">Simplon</a></Titre3>
+								<Titre2>Relatives au Développement Web</Titre2> <br/>
 
-				<Segment>
-					<a href="http://simplon.co/">Simplon</a> nous proposant une formation à distance nous a appris Le HTML 5, le CSS 3, puis le Js (ecmascript 6) avec des exercices pratiques à difficulté croissante.
-					On a aussi vu l'utilisation de framework tel que Bootstrap. On est ensuite passé par l'utilisation de meteor, de Node Js, puis de React Js, toujours avec des exercices concrets à difficulté croissante.
-					En paralelle, on a aussi decouvert des methodes de versionnement tel que Git, et l'utilisation de Github.
-				</Segment>
+							<Container textAlign="justified">
+								J'ai participé à la formation développeur web de 6 mois proposée par <a href="http://www.webogreen.fr/">WebOgreen</a> et dispensée par <a href="http://simplon.co/">Simplon</a>.
+							</Container>
+							<Titre3><a href="http://simplon.co/">Simplon</a></Titre3>
 
-				<Titre3><a href="http://www.webogreen.fr/">Webogreen</a></Titre3>
-				<Segment>
-					<a href="http://www.webogreen.fr/">Webogreen</a> nous proposait de cadrer notre formation en alternance inversée (1 semaine presentiel, 3 semaines à distance), ce qui nous permettait d'avoir contact avec d'autres apprenants.
-					WeboGreen nous proposa aussi d'autres modules supplementaires, tels que formation Photoshop, Illustrator, ou meme des modules "apprendre à gerer ses emotions", "apprendre à apprendre", "le mind mapping", la methode "Scrum".
-					On nous a aussi présenté des outils tel que "trello", ou la methode de "Gantt".
-				</Segment>
-				<Titre3>Auto-formation</Titre3>
-				<Segment>
-					Lorsque j'étais Technicien de l'environnement, je me suis auto-formé au developpement sur VBA d'Excel afin de creer des outils permettant de faire gagner un temps considerable à mes collegues et à moi.
-					<br/>Suite à cette ouverture dans le developpement, je me suis interessé au javascript, en essayant de creer quelques jeux, puis à Ruby on Rails dans le but de creer le prototype d'un site internet.
-				</Segment>
-				<Titre2>Autres Formations</Titre2> <br/>
-				<Segment>
-					Lors de mon cursus scolaire, aprés un Bac-S, j'ai intégré un DUT Genie Biologique, puis une licence pro Metrologie de la Qualité de l'Air.
-				</Segment>
+							<Container textAlign="justified">
+								<a href="http://simplon.co/">Simplon</a> me proposant une formation à distance m'a a appris le HTML 5, le CSS 3, puis le JS (ecmascript 6) avec des exercices pratiques à difficulté croissante.
+								j'ai aussi vu l'utilisation de framework tel que Bootstrap. Je suis ensuite passé par l'utilisation de météor, de NodeJS, puis de ReactJS, toujours avec des exercices concrets à difficulté croissante.
+								En parallèle, j'ai aussi découvert des méthodes de versionnement tel que Git, et l'utilisation de Github.
+							</Container>
 
+							<Titre3><a href="http://www.webogreen.fr/">WebOgreen</a></Titre3>
+							<Container textAlign="justified">
+								<a href="http://www.webogreen.fr/">WebOgreen</a> m'a proposé de cadrer ma formation en classe inversée (1 en semaine présentiel, 3 semaines à distance par mois), ce qui m'a permis d'avoir contact avec d'autres apprenants.
+								WebOgreen m'a proposé aussi d'autres modules supplémentaires tels que des formations Photoshop, Illustrator, ou même des modules comme "apprendre à gérer ses émotions", "apprendre à apprendre", "le mind mapping", la méthode agile "Scrum".
+								On m'a aussi présenté des outils de gestion de projet tel que "trello", ou le diagramme de "Gantt". Et pour finir, WebOgreen m'a même proposé un projet tutoré en relation avec la croix rouge de Damvillers.
+							</Container>
+							<Titre3>Auto-formation</Titre3>
+							<Container textAlign="justified">
+								Lorsque j'étais technicien de l'environnement, je me suis auto-formé au développement sur VBA d'Excel afin de créer des outils permettant de faire gagner un temps considérable à mes collègues et à moi-même.
+								<br/>Suite à cette ouverture dans le développement, je me suis interessé au javascript en essayant de créer quelques jeux, puis à Ruby on Rails dans le but de créer le prototype d'un site internet.
+							</Container>
+							<Titre2>Autres Formations</Titre2> <br/>
+							<Container textAlign="justified">
+								Lors de mon cursus scolaire, aprés un Bac-Scientifique, j'ai intégré un DUT Génie Biologique, puis une licence pro Métrologie de la Qualité de l'Air.
+							</Container>
+						</Grid.Column>
+						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
+					</Grid.Row>
+				</Grid>
 			</div>
 		);
 	}

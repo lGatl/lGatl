@@ -11,48 +11,33 @@ import {articles} from '../API/articles.js'
 import SystemGrid from '../components/SystemGrid.js'
 import Mosaiq from '../components/Mosaiq.js'
 
+import Titre1 from '../components/Titre1'
+
 import PropTypes from 'prop-types';
 
 class Travau extends Component {
 	constructor(){
 		super()
 		this.state={
-			hf:[],
-			fo:[],
-			vb:[],
-			tr:true
+			loading:true
 		}
 	}
 	componentWillMount(){
 		if(this.props.articles.liste.length>0){
-			this.prepState()
+			this.setState({loading:false})
 		}else{
 			this.props.articles.recup(()=>{
-				this.prepState()
+				this.setState({loading:false})
 			})
 		}
 	}
-	prepState(){
-		var hf=[]
-		var fo=[]
-		var vb=[]
-		this.props.articles.liste.map((article)=>{
-			if(article.categorie=="VBA"){vb.push(article)}
-			if(article.categorie=="DansFormation"){fo.push(article)}
-			if(article.categorie=="HorsFormation"){hf.push(article)}
-		})
-		this.setState({hf:hf})
-		this.setState({fo:fo})
-		this.setState({vb:vb})
-	}
-	checkAdult(age) {
-    	return age >= 18;
-	}
-	mosqoudet(){
+
+
+	mosqoudet(hf,fo,vb){
 		if(this.props.titre){
 
 			var nom= this.props.titre
-			tarticles=this.state.hf.concat(this.state.fo).concat(this.state.vb)
+			tarticles=hf.concat(fo).concat(vb)
 			var larticle=tarticles.find((article)=>{return article.nom==nom})
 
 			return(
@@ -61,34 +46,51 @@ class Travau extends Component {
 		}else{
 
 			return(
-				<Mosaiq hf={this.state.hf} fo={this.state.fo} vb={this.state.vb}></Mosaiq>
+				<Mosaiq hf={hf} fo={fo} vb={vb}></Mosaiq>
 				)
 
 		}
 
 	}
-	afficher(){
-		if(this.props.articles.liste.length>0){
+	afficher(hf,fo,vb){
+
 		return(
 				<Grid>
 					<Grid.Row>
 						<Grid.Column				tablet={3} 	  computer={3} only='tablet computer'>
-							<MenuTravaux titre={this.props.titre} hf={this.state.hf} fo={this.state.fo} vb={this.state.vb}></MenuTravaux>
+							<MenuTravaux titre={this.props.titre} hf={hf} fo={fo} vb={vb}></MenuTravaux>
 						</Grid.Column>
 						<Grid.Column mobile={16} tablet={12} computer={10}>
-						{this.mosqoudet()}
+						{this.mosqoudet(hf,fo,vb)}
 
 						</Grid.Column>
 						<Grid.Column 				tablet={1}   computer={3} only='tablet computer'></Grid.Column>
 					</Grid.Row>
 				</Grid>
 		);
-		}
+
 	}
 	render(){
+
+		var hf=[]
+		var fo=[]
+		var vb=[]
+		this.props.articles.liste.map((article)=>{
+			if(article.categorie=="VBA"){vb.push(article)}
+			if(article.categorie=="DansFormation"){fo.push(article)}
+			if(article.categorie=="HorsFormation"){hf.push(article)}
+		})
+
+
+
+			var resultat = this.props.articles.liste.length > 0 ? this.afficher(hf,fo,vb) : <h1>Pas de data</h1>
 		return(
-	<div>{this.afficher()}</div>
+			<div>
+			<Titre1>Travaux</Titre1>
+				<Segment basic loading={this.state.loading} style={{margin:0,padding:0}}>{resultat}</Segment>
+			</div>
 			)
+
 	}
 }
  export default Travaux= createContainer( ()=>{

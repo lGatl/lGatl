@@ -35,7 +35,7 @@ class Travai extends Component {
 								textAlign:"center",
 								textShadow:" 2px 1px rgba(50,50,50,1)"
 
-							}}>{(this.props.donnees.description.slice(0, 50)+" ...")}</span>
+							}}>{(this.props.donnees.description[0].slice(0, 50)+" ...")}</span>
 						</div>
 					</div>
 				</div>

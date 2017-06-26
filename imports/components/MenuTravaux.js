@@ -41,9 +41,7 @@ class MenuTravau extends Component {
 
 
 	<Menu floated vertical fluid style={{
-		marginTop:(scroll)+"px"
-
-	}}>
+   	transform: `translateY(${scroll}px)` }}>
 				<Menu.Item className="itmenu">
 				<EventListener
 					target="window"
@@ -53,7 +51,7 @@ class MenuTravau extends Component {
 						color:"rgba(181,204,24,1)",
 						fontSize:"1.1em",
 						fontWeight:"bold",
-					}}>Languages du net</Menu.Header>
+					}}>Langages du net</Menu.Header>
 					<Menu.Header style={{
 						color:"rgba(181,204,24,1)",
 						fontSize:"0.9em"

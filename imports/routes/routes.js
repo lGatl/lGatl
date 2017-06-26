@@ -20,55 +20,57 @@
 	 name: 'accueil',
 	 action: function() {
 	 	menu.actif.set('Accueil')
-		 mount(MainLayout, {content: <Accueil titre1="Accueil"/>});
+		 mount(MainLayout, {content: <Accueil/>});
+	 window.scrollTo(0, 0)
+
 	 }
  });
  FlowRouter.route('/Cv', {
 	 name: 'Cv',
 	 action: function() {
 	 	menu.actif.set('Cv')
-		 mount(MainLayout, {content: <Cv titre1="Curriculum vitae"/>});
+		 mount(MainLayout, {content: <Cv />});
+	 window.scrollTo(0, 0)
 	 }
  });
 FlowRouter.route('/Contact', {
 	 name: 'Contact',
 	 action: function() {
 	 	menu.actif.set('Contact')
-		 mount(MainLayout, {content: <Contact titre1="Contact"/>});
+		 mount(MainLayout, {content: <Contact />});
+	 window.scrollTo(0, 0)
 	 }
  });
 FlowRouter.route('/Travaux', {
 	 name: 'Travaux',
 	 action: function() {
 	 	menu.actif.set('Travaux')
-		 mount(MainLayout, {content: <Travaux titre1="Travaux"/>});
+		 mount(MainLayout, {content: <Travaux />});
+	 window.scrollTo(0, 0)
 	 }
  });
 FlowRouter.route('/Formations', {
 	 name: 'Formations',
 	 action: function() {
 	 	menu.actif.set('Formations')
-		 mount(MainLayout, {content: <Formation titre1="Formations"/>});
+		 mount(MainLayout, {content: <Formation />});
+	 window.scrollTo(0, 0)
 	 }
  });
 FlowRouter.route('/Experiences', {
 	 name: 'Experiences',
 	 action: function() {
 	 	menu.actif.set('Experiences')
-		 mount(MainLayout, {content: <Experiences titre1="Experiences"/>});
+		 mount(MainLayout, {content: <Experiences />});
+	 window.scrollTo(0, 0)
 	 }
  });
 FlowRouter.route('/Travaux/:titre', {
 	name: 'Travail',
 	action: function (params) {
 		menu.actif.set('Travaux')
-		mount(MainLayout, { content: <Travaux titre1="Travaux" titre={params.titre} /> });
+		mount(MainLayout, { content: <Travaux titre={params.titre} /> });
+	 window.scrollTo(0, 0)
 	},
 });
-FlowRouter.route('/Experiences/:titre', {
-	name: 'Travail',
-	action: function (params) {
-		menu.actif.set('Travaux')
-		mount(MainLayout, { content: <TravailDetail titre1="Travaux" titre={params.titre} /> });
-	},
-});
+

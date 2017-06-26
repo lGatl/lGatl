@@ -31,7 +31,7 @@ class MenuSS extends Component {
 		if(name=="Contact"){href="/Contact"}
 
 		FlowRouter.go(href)
-			window.scrollTo(0, 0)
+
 	}
 
 	render(){
