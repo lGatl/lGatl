@@ -1,5 +1,5 @@
 /*import './articlesBdd.js'*/
 import fkc from '../components/KonamiCode.js'
-fkc()
+fkc
 import '../routes/routes.js'
 
