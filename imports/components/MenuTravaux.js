@@ -32,17 +32,20 @@ class MenuTravau extends Component {
 
 	render(){
 		const { activeItem } = this.state || {}
-		if(this.props.titre){var scroll= this.state.marg/3}else{
-
-			var scroll= this.state.marg/1.5+100
+		if(this.props.titre){
+			var scroll= this.state.marg/3
+				var marg = 10
+		}else{
+			var marg = 100
+			var scroll= this.state.marg/1.5
 		}
 		return (
 
 
 
-	<Menu floated vertical fluid style={{
+	<Menu floated vertical fluid id="menut" className="menutt" style={{marginTop:marg+"px",
    	transform: `translateY(${scroll}px)` }}>
-				<Menu.Item className="itmenu">
+				<Menu.Item className="itmenu ">
 				<EventListener
 					target="window"
 					onScroll={withOptions(this.handleScroll.bind(this), {passive: true, capture: false})}
@@ -94,7 +97,7 @@ class MenuTravau extends Component {
 					<Menu.Header style={{
 						color:"rgba(181,204,24,1)",
 						fontSize:"1.1em",
-						fontWeight:"bold"
+						fontWeight:"bold",
 					}}>VBA Excel</Menu.Header>
 
 					<Menu.Menu className="itmen">
@@ -118,7 +121,7 @@ class MenuTravau extends Component {
 				style={{
 						color:"rgba(181,204,24,1)",
 						fontSize:"1.1em",
-						fontWeight:"bold"
+						fontWeight:"bold",
 					}}
 				>Mosaique</Menu.Item>
 				</Menu.Item>

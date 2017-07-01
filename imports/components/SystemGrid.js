@@ -8,13 +8,7 @@ export default class SystemGid extends Component {
 
 		return (
 			<Grid stretched	>
-				<Grid.Row style={{
-					backgroundColor:"rgba(24,180,204,0.1)",
-					marginTop:"10px",
-					marginBottom:"10px",
-					borderRadius: "15px"
-
-				}}>
+				<Grid.Row className="cadremosq" >
 					{
 						this.props.donnees.map((donn,i)=>{
 							return(

@@ -10,7 +10,7 @@ class MenuSS extends Component {
 
 		this.listeMenu=[
 				{titre:"Accueil"},
-				{titre:"Experiences"},
+				{titre:"Expériences"},
 				{titre:"Formations"},
 				{titre:"Travaux"},
 				{titre:"Cv"},
@@ -24,7 +24,7 @@ class MenuSS extends Component {
 
 		var href=""
 		if(name=="Accueil"){href="/"}
-		if(name=="Experiences"){href="/Experiences"}
+		if(name=="Expériences"){href="/Experiences"}
 		if(name=="Formations"){href="/Formations"}
 		if(name=="Travaux"){href="/Travaux"}
 		if(name=="Cv"){href="/Cv"}

@@ -29,6 +29,8 @@
     "react-mounter": "^1.2.0",
     "react-rte": "^0.11.0",
     "react-swiper-dy": "^1.1.2",
+    "semantic-ui-icon": "^2.2.10",
+    "semantic-ui-react": "^0.70.0",
     "swiper": "^3.4.2",
     "url": "^0.11.0",
     "yarn": "^0.24.4"

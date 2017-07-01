@@ -32,7 +32,7 @@ contenu(){
 							 <Image src='/images/photomoi.jpg' fluid />
 							</Grid.Column>
 							<Grid.Column mobile={16} tablet={6} computer={6} style={{textAlign:"right"}}>
-								<Container textAlign="justified">Célibataire, 30 ans<br/>
+								<Container textAlign="right">Célibataire, 30 ans<br/>
 								Permis B<br/>
 								<br/>
 								<br/>
@@ -135,7 +135,7 @@ contenu(){
 								</Container>
 							</Grid.Column>
 							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Formation Développeur Web (6 mois) – <a href="http://simplon.co/">Simplon</a> – <a href="http://www.webogreen.fr/">Webogreen</a> – Bras Sur Meuse
+								<Container textAlign="justified">Formation Développeur Web (6 mois) – <a className="acv" href="http://simplon.co/">Simplon</a> – <a className="acv" href="http://www.webogreen.fr/">Webogreen</a> – Bras Sur Meuse
 								</Container>
 							</Grid.Column>
 						</Grid.Row>
@@ -230,17 +230,17 @@ contenu(){
 						<Grid>
 						<Grid.Row className="gridligcv">
 							<Grid.Column mobile={8} tablet={8} computer={8} textAlign="center">
-								<Container textAlign="justified"><Titre3>Langues :</Titre3>
+								<Titre3>Langues :</Titre3><br/>
 									Anglais : niveau d'étude supérieur (bac+2) <br/>
 									Allemand : niveau lycée
-									</Container>
+								
 							</Grid.Column>
 							<Grid.Column mobile={8} tablet={8} computer={8} textAlign="center">
-								<Container textAlign="justified"><Titre3>Loisirs :</Titre3>
+								<Titre3>Loisirs :</Titre3><br/>
 								Guitare (20 ans) <br/>
 								Escalade, VTT <br/>
 								Jardin, nature, pèche <br/>
-								</Container>
+								
 							</Grid.Column>
 						</Grid.Row>
 				</Grid>

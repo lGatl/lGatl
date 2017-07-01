@@ -58,9 +58,9 @@ FlowRouter.route('/Formations', {
 	 }
  });
 FlowRouter.route('/Experiences', {
-	 name: 'Experiences',
+	 name: 'Expériences',
 	 action: function() {
-	 	menu.actif.set('Experiences')
+	 	menu.actif.set('Expériences')
 		 mount(MainLayout, {content: <Experiences />});
 	 window.scrollTo(0, 0)
 	 }

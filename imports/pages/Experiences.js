@@ -39,7 +39,7 @@ class Experienc extends Component {
 		var resultat = Object.keys(this.state.larticle).length>0 ? this.afficher() : <h1>Pas de data</h1>
 		return (
 			<div>
-				<Titre1>Experiences</Titre1>
+				<Titre1>Expériences</Titre1>
 				<Grid>
 					<Grid.Row>
 						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>

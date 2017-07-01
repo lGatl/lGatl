@@ -1,11 +1,14 @@
 
 import React, {Component} from 'react'
- import { Grid,Segment } from 'semantic-ui-react'
+ import { Grid, Segment} from 'semantic-ui-react'
 
 export default class Footer extends Component {
 
-
+	click(){
+		FlowRouter.go("/Contact")
+	}
 	render(){
+
 		return (
 
 
@@ -16,7 +19,7 @@ export default class Footer extends Component {
 
 						<Grid stretched>
 							<Grid.Row style={{
-								 		paddingBottom:"0",
+										padding:"0",
 								 }}>
 
 								<Grid.Column tablet={5} 	  computer={4} only='tablet computer'>
@@ -24,31 +27,36 @@ export default class Footer extends Component {
 								</Grid.Column>
 								<Grid.Column mobile={4} tablet={6} 	  computer={8}>
 									<Segment basic style={{
-								 		textAlign:"center",
-								 		fontSize:"2em",
-								 		color:"white",
-								 		fontWeight:"bold",
-								 		paddingLeft:0,
-								 		paddingRight:0
-								 }}>lGatl</Segment>
+										textAlign:"center",
+										fontSize:"2em",
+										color:"white",
+										fontWeight:"bold",
+										paddingLeft:0,
+										paddingRight:0
+								 }}>lGatl
+
+									
+								 </Segment>
 								</Grid.Column>
 								<Grid.Column mobile={12} tablet={5} 	  computer={4}>
-								<span className="adressfoot" style={{
+								<Segment basic className="adressfoot" style={{
 
-								 		fontSize:"1em",
-								 		color: "white",
-								 		
+										textAlign:"right",
+										fontSize:"2em",
+										color:"white",
+										fontWeight:"bold",
+										paddingLeft:0,
+										paddingRight:0
 								 }}>
-								courriel : <a href="mailto:gat55@live.fr">gat55@live.fr</a><br/>
-								LinkedIn : <a href="https://www.linkedin.com/in/adrien-gatinois-2a54b8136/">Adrien GATINOIS </a><br/>
-								GitHub : <a href="https://github.com/lGatl">https://github.com/lGatl</a><br/>
-
-								</span>
+								<a onClick={this.click.bind(this)}><i className="fa fa-envelope" aria-hidden="true"></i></a><span>   </span>
+								 <a href="https://www.linkedin.com/in/adrien-gatinois-2a54b8136/"><i className="fa fa-linkedin" aria-hidden="true"></i></a><span>   </span>
+								<a href="https://github.com/lGatl"><i className="fa fa-github" aria-hidden="true"></i> </a>
+								</Segment>
 								</Grid.Column>
 							 </Grid.Row>
 						</Grid>
 
-  				</Segment>
+					</Segment>
 			</footer>
 
 		);

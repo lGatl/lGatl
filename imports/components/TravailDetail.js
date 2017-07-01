@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
 
-import {Container,Image,Button} from 'semantic-ui-react'
+import {Container,Image,Button,Segment} from 'semantic-ui-react'
  import MenuTravaux from '../components/MenuTravaux.js'
 import Titre4 from './Titre4.js'
 import Titre3 from './Titre3.js'
@@ -27,11 +27,12 @@ export default class TravailDetail extends Component {
 	afficher(){
 		if(this.props.article){
 			return(
+				<Segment style={{paddingTop:0,marginTop:"10px"}}>
 			<Container textAlign="justified" style={{
 				margin:"20px",
 				paddingTop:0
 			}}>
-				<Titre3>{this.props.article.titre}</Titre3>
+				<Titre3>{this.props.article.titre}</Titre3><br/>
 				{this.props.article.description.map((des,i)=>{
 						if(typeof(des)=='string'){
 							return(
@@ -75,6 +76,7 @@ export default class TravailDetail extends Component {
 			}}>{this.retour()}</div>
 
 			</Container>
+			</Segment>
 				)
 		}
 	}
