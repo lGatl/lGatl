@@ -35,6 +35,11 @@ footer {
 		height:0;
 	}
 }
+.segmen{
+	background-color:rgba(24,180,204,0.07)!important;
+	border-radius:10px!important;
+
+}
 .gridligcv{
 	padding-top:7px !important;
 	padding-bottom:10px !important;
@@ -203,7 +208,7 @@ h3{
 }
 
 h3:hover{
-	transform: translate(-3px);
+	transform: translate(-2px);
 	transition:all 0.6s;
 }
 

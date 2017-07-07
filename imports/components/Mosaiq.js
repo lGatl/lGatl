@@ -17,7 +17,7 @@ export default class Mosaiq extends Component {
 		return(
 			<div>
 				<Titre2>Languages du net</Titre2><br/>
-				<Segment basic className="cp1">
+				<Segment basic>
 				<Titre3>Hors formation </Titre3>
 				<SystemGrid  mobile={16} tablet={5} computer={5}
 					donnees={this.props.hf}
@@ -30,7 +30,7 @@ export default class Mosaiq extends Component {
 			</Segment>
 			
 			<Titre2>VBA EXCEL :</Titre2>
-			<Segment basic className="cp1">
+			<Segment basic>
 			<SystemGrid mobile={16} tablet={5} computer={5}
 				donnees={this.props.vb}
 			/>

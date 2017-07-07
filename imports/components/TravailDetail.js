@@ -27,12 +27,15 @@ export default class TravailDetail extends Component {
 	afficher(){
 		if(this.props.article){
 			return(
-				<Segment style={{paddingTop:0,marginTop:"10px"}}>
+				<div>
+				<Titre3>{this.props.article.titre}</Titre3>
+				<Segment className="segmen" style={{paddingTop:0,marginTop:"10px"}} basic>
+				<br/>
 			<Container textAlign="justified" style={{
-				margin:"20px",
+				margin:"10px",
 				paddingTop:0
 			}}>
-				<Titre3>{this.props.article.titre}</Titre3><br/>
+				
 				{this.props.article.description.map((des,i)=>{
 						if(typeof(des)=='string'){
 							return(
@@ -77,6 +80,7 @@ export default class TravailDetail extends Component {
 
 			</Container>
 			</Segment>
+			</div>
 				)
 		}
 	}
