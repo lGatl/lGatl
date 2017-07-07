@@ -35,7 +35,7 @@ class Accuei extends Component {
 						<Grid.Column mobile={16} tablet={12} computer={10}>
 							<Titre2>Bonjour et bienvenue !</Titre2>
 							<br/>
-							<Segment>
+							<Segment style={{backgroundColor:"rgba(24,180,204,0.07)",borderRadius:"10px"}} basic>
 							<Container textAlign="justified">
 							 	Je suis Développeur Web spécialisé Back-End et je lance mon entreprise de développement. <br/>
 							 	Je suis aussi adhérent chez Coopetic, ce qui me donne, entre autre, accès à de nombreuses compétences dans le domaine de la communication,

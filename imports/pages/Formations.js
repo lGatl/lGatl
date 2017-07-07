@@ -23,14 +23,14 @@ export default class Formations extends Component {
 
 								<Titre2>Relatives au Développement Web</Titre2> <br/>
 
-							<Segment>
+							<Segment style={{backgroundColor:"rgba(24,180,204,0.07)",borderRadius:"10px"}} basic>
 								<Container textAlign="justified">
 									J'ai participé à la formation développeur web de 6 mois proposée par <a href="http://www.webogreen.fr/">WebOgreen</a> et dispensée par <a href="http://simplon.co/">Simplon</a>.
 								</Container>
 							</Segment>
 							<Titre3><a href="http://simplon.co/">Simplon</a></Titre3>
 
-							<Segment>
+							<Segment style={{backgroundColor:"rgba(24,180,204,0.07)",borderRadius:"10px"}} basic>
 								<Container textAlign="justified">
 									<a href="http://simplon.co/">Simplon</a> me proposant une formation à distance m'a appris le HTML 5, le CSS 3, puis le JS (ecmascript 6) avec des exercices pratiques à difficulté croissante.
 									j'ai aussi vu l'utilisation de framework tel que Bootstrap. Je suis ensuite passé par l'utilisation de météor, de NodeJS, puis de ReactJS, toujours avec des exercices concrets à difficulté croissante.
@@ -39,7 +39,7 @@ export default class Formations extends Component {
 							</Segment>
 
 							<Titre3><a href="http://www.webogreen.fr/">WebOgreen</a></Titre3>
-							<Segment>
+							<Segment style={{backgroundColor:"rgba(24,180,204,0.07)",borderRadius:"10px"}} basic>
 								<Container textAlign="justified">
 									<a href="http://www.webogreen.fr/">WebOgreen</a> m'a proposé de cadrer ma formation en classe inversée (1 en semaine en présentiel, 3 semaines à distance par mois), ce qui m'a permis d'avoir contact avec d'autres apprenants.
 									WebOgreen m'a proposé aussi d'autres modules supplémentaires tels que des formations Photoshop, Illustrator, ou même des modules comme "apprendre à gérer ses émotions", "apprendre à apprendre", "le mind mapping", la méthode agile "Scrum".
@@ -47,14 +47,14 @@ export default class Formations extends Component {
 								</Container>
 							</Segment>
 							<Titre3>Auto-formation</Titre3>
-							<Segment>
+							<Segment style={{backgroundColor:"rgba(24,180,204,0.07)",borderRadius:"10px"}} basic>
 								<Container textAlign="justified">
 									Lorsque j'étais technicien de l'environnement, je me suis auto-formé au développement sur VBA d'Excel afin de créer des outils permettant de faire gagner un temps considérable à mes collègues et à moi-même.
 									<br/>Suite à cette ouverture dans le développement, je me suis interessé au javascript en essayant de créer quelques jeux, puis à Ruby on Rails dans le but de créer le prototype d'un site internet.
 								</Container>
 							</Segment>
 							<Titre2>Autres Formations</Titre2> <br/>
-							<Segment>
+							<Segment style={{backgroundColor:"rgba(24,180,204,0.07)",borderRadius:"10px"}} basic>
 								<Container textAlign="justified">
 									Lors de mon cursus scolaire, aprés un Bac-Scientifique, j'ai intégré un DUT Génie Biologique, puis une licence pro Métrologie de la Qualité de l'Air.
 								</Container>

@@ -46,7 +46,9 @@ class Travau extends Component {
 		}else{
 
 			return(
+				
 				<Mosaiq hf={hf} fo={fo} vb={vb}></Mosaiq>
+				
 				)
 
 		}
@@ -56,6 +58,7 @@ class Travau extends Component {
 
 		return(
 				<Grid>
+
 					<Grid.Row>
 						<Grid.Column				tablet={3} 	  computer={3} only='tablet computer'>
 							<MenuTravaux titre={this.props.titre} hf={hf} fo={fo} vb={vb}></MenuTravaux>
@@ -87,6 +90,7 @@ class Travau extends Component {
 		return(
 			<div>
 			<Titre1>Travaux</Titre1>
+			
 				<Segment basic loading={this.state.loading} style={{margin:0,padding:0}}>{resultat}</Segment>
 			</div>
 			)

@@ -86,8 +86,6 @@ export default class Contact extends Component {
 						<Titre2>Formulaire</Titre2>
 							<Form id="contact">
 
-
-
 									<Form.Input
 											label="Nom"
 											name="nom"
