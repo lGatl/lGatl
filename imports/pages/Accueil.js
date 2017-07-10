@@ -33,10 +33,12 @@ class Accuei extends Component {
 					<Grid.Row>
 						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
 						<Grid.Column mobile={16} tablet={12} computer={10}>
-							<Titre2>Bonjour et bienvenue !</Titre2>
+							<Titre2>Développeur Web</Titre2>
 							<br/>
+							<Titre3>Bonjour et bienvenue !</Titre3><br/>
 							<Segment className="segmen" basic>
 							<Container textAlign="justified">
+
 							 	Je suis Développeur Web spécialisé Back-End et je lance mon entreprise de développement. <br/>
 							 	Je suis aussi adhérent chez Coopetic, ce qui me donne, entre autre, accès à de nombreuses compétences dans le domaine de la communication,
 							 	me permettant de me présenter en tant qu'expert en communication chez Coopetic. <br/>
@@ -44,7 +46,7 @@ class Accuei extends Component {
 							 	Cette application web est principalement une démonstration de mes aptitudes, elle utilise le HTML5, le CSS3, le JavaScript (ecmascript 6), Node Js, React Js, et une base de données (MongoDB).
 								J'attire votre attention sur la capacité qu'a ce site à s'adapter à tous types d'écrans (responsive). <br/>
 								Vous trouverez sur ce site internet, le détail de mes <span className="contacc"
-							 	 		onClick={this.travaux.bind(this)}>travaux </span>, <span className="contacc"
+							 	 		onClick={this.travaux.bind(this)}>travaux</span>, <span className="contacc"
 							 	 		onClick={this.formations.bind(this)}>formations </span>et <span className="contacc"
 							 	 		onClick={this.experiences.bind(this)}>expériences </span> dans le domaine de la programmation,
 								 ainsi que mon <span className="contacc" onClick={this.cv.bind(this)}>cv </span> et le moyen de me <span className="contacc" onClick={this.contact.bind(this)}>contacter </span>. <br/>

@@ -21,7 +21,7 @@ export default class Formations extends Component {
 						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
 						<Grid.Column mobile={16} tablet={12} computer={10}>
 
-								<Titre2>Relatives au Développement Web</Titre2> <br/>
+								<Titre2>Développement Web</Titre2> <br/>
 
 							<Segment className="segmen" basic>
 								<Container textAlign="justified">

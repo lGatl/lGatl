@@ -6,8 +6,8 @@ export default class Titre2 extends Component {
 
 	render(){
 		return (
-					<h2  className="titre2"
-					>{this.props.children}</h2>
+					<h1  className="titre2"
+					>{this.props.children}</h1>
 
 		);
 	}

@@ -29,7 +29,7 @@ export default class Mosaiq extends Component {
 			/>
 			</Segment>
 			
-			<Titre2>VBA EXCEL :</Titre2>
+			<Titre2>VBA Excel :</Titre2>
 			<Segment basic>
 			<SystemGrid mobile={16} tablet={5} computer={5}
 				donnees={this.props.vb}

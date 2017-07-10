@@ -6,7 +6,7 @@ export default class Titre3 extends Component {
 
 	render(){
 		return (
-					<h3 >{this.props.children}</h3>
+					<h2 >{this.props.children}</h2>
 
 		);
 	}
