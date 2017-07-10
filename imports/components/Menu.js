@@ -10,9 +10,9 @@ class MenuSS extends Component {
 
 		this.listeMenu=[
 				{titre:"Accueil"},
-				{titre:"Expériences"},
 				{titre:"Formations"},
 				{titre:"Travaux"},
+				{titre:"Expériences"},
 				{titre:"Cv"},
 				{titre:"Contact"}
 		]

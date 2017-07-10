@@ -54,10 +54,12 @@ class MenuTravau extends Component {
 						color:"rgba(181,204,24,1)",
 						fontSize:"1.1em",
 						fontWeight:"bold",
+						cursor: "default",
 					}}>Langages du net</Menu.Header>
 					<Menu.Header style={{
 						color:"rgba(181,204,24,1)",
-						fontSize:"0.9em"
+						fontSize:"0.9em",
+						cursor: "default",
 					}}>Hors formation</Menu.Header>
 
 					<Menu.Menu className="itmen">
@@ -76,7 +78,7 @@ class MenuTravau extends Component {
 					<Menu.Header style={{
 						color:"rgba(181,204,24,1)",
 						fontSize:"0.9em",
-
+						cursor: "default",
 					}}>Dans le cadre de la formation Simplon</Menu.Header>
 
 					<Menu.Menu className="itmen">
@@ -98,6 +100,7 @@ class MenuTravau extends Component {
 						color:"rgba(181,204,24,1)",
 						fontSize:"1.1em",
 						fontWeight:"bold",
+						cursor: "default",
 					}}>VBA Excel</Menu.Header>
 
 					<Menu.Menu className="itmen">

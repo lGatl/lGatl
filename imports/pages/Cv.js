@@ -29,7 +29,7 @@ contenu(){
 							</Grid.Column>
 
 							<Grid.Column mobile={16} tablet={4} computer={4}>
-							 <Image src='/images/photomoi.jpg' fluid />
+							 <Image alt={"AdrienGATINOIS"} src='/images/photomoi.jpg' fluid />
 							</Grid.Column>
 							<Grid.Column mobile={16} tablet={6} computer={6} style={{textAlign:"right"}}>
 								<Container textAlign="right">Célibataire, 30 ans<br/>
@@ -249,8 +249,8 @@ contenu(){
 }
 	render(){
 		return(
-			<div>
-				<Titre1>Curicculum Vitae</Titre1>
+			<section>
+				<Titre1><h1>Curicculum Vitae</h1></Titre1>
 				<Grid>
 					<Grid.Row>
 						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
@@ -260,7 +260,7 @@ contenu(){
 						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
 					</Grid.Row>
 				</Grid>
-			</div>
+			</section>
 		)
 	}
 }

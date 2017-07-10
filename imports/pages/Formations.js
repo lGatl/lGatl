@@ -20,7 +20,7 @@ export default class Formations extends Component {
 					<Grid.Row>
 						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
 						<Grid.Column mobile={16} tablet={12} computer={10}>
-
+							<section>
 								<Titre2>Développement Web</Titre2> <br/>
 
 							<Segment className="segmen" basic>
@@ -53,12 +53,15 @@ export default class Formations extends Component {
 									<br/>Suite à cette ouverture dans le développement, je me suis interessé au javascript en essayant de créer quelques jeux, puis à Ruby on Rails dans le but de créer le prototype d'un site internet.
 								</Container>
 							</Segment>
+							</section>
+							<section>
 							<Titre2>Autres Formations</Titre2> <br/>
 							<Segment className="segmen" basic>
 								<Container textAlign="justified">
 									Lors de mon cursus scolaire, aprés un Bac-Scientifique, j'ai intégré un DUT Génie Biologique, puis une licence pro Métrologie de la Qualité de l'Air.
 								</Container>
 							</Segment>
+							</section>
 						</Grid.Column>
 						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
 					</Grid.Row>

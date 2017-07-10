@@ -28,9 +28,9 @@ export default class TravailDetail extends Component {
 		if(this.props.article){
 			return(
 				<div>
-				<Titre3>{this.props.article.titre}</Titre3>
+				
 				<Segment className="segmen" style={{paddingTop:0,marginTop:"10px"}} basic>
-				<br/>
+				<Titre4>{this.props.article.titre} :</Titre4>
 			<Container textAlign="justified" style={{
 				margin:"10px",
 				paddingTop:0
@@ -71,7 +71,7 @@ export default class TravailDetail extends Component {
 						}
 				})}
 				<br/>
-				<Image src={this.props.article.image}></Image>
+				<Image alt={this.props.article.titre}src={this.props.article.image}></Image>
 				<br/>
 				<div style={{
 					width:"100%",

@@ -77,7 +77,7 @@ export default class Contact extends Component {
 
 	render(){
 		return(
-			<div>
+			<section>
 				<Titre1>Contact</Titre1>
 				<Grid>
 					<Grid.Row>
@@ -130,7 +130,7 @@ export default class Contact extends Component {
 						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
 					</Grid.Row>
 				</Grid>
-			</div>
+			</section>
 
 
 			)

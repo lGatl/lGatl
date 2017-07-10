@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
 
 import {Segment,Image} from 'semantic-ui-react'
-import Titre4 from './Titre4.js'
+import TitreTravail from './TitreTravail.js'
 import Titre3 from './Titre3.js'
 
 import PropTypes from 'prop-types';
@@ -28,7 +28,7 @@ class Travai extends Component {
 							width:"100%",
 							transform:"translateY(-50%)",
 						}}>
-							<Titre4>{this.props.donnees.titre}</Titre4>
+							<TitreTravail>{this.props.donnees.titre}</TitreTravail>
 							<span style={{
 								fontWeight:"bold",
 								color:"rgba(250,250,250,1)",

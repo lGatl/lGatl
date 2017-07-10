@@ -12,6 +12,8 @@ import SystemGrid from '../components/SystemGrid.js'
 import Mosaiq from '../components/Mosaiq.js'
 
 import Titre1 from '../components/Titre1'
+import Titre2 from '../components/Titre2'
+import Titre3 from '../components/Titre3'
 
 import PropTypes from 'prop-types';
 
@@ -25,11 +27,14 @@ class Travau extends Component {
 	componentWillMount(){
 		if(this.props.articles.liste.length>0){
 			this.setState({loading:false})
+
 		}else{
+			
 			this.props.articles.recup(()=>{
 				this.setState({loading:false})
 			})
 		}
+		
 	}
 
 
@@ -39,9 +44,24 @@ class Travau extends Component {
 			var nom= this.props.titre
 			tarticles=hf.concat(fo).concat(vb)
 			var larticle=tarticles.find((article)=>{return article.nom==nom})
+			if(larticle.categorie=="HorsFormation"){
+				var categorie=<Titre2>Language du net</Titre2>
+				var categorie2=<Titre3>Hors Formation</Titre3>
+			}else if(larticle.categorie=="DansFormation"){
+				var categorie=<Titre2>Language du net</Titre2>
+				var categorie2=<Titre3>Dans le cadre de la formation Simplon</Titre3>
+			}else if(larticle.categorie=="VBA"){
+				var categorie=<Titre2>VBA Excel</Titre2>
+				var categorie2=""
+			}
 
 			return(
+				<section>
+				{categorie}<br/>
+				{categorie2}
 					<TravailDetail tr article={larticle}></TravailDetail>
+				</section>
+					
 				)
 		}else{
 
@@ -74,7 +94,6 @@ class Travau extends Component {
 
 	}
 	render(){
-
 		var hf=[]
 		var fo=[]
 		var vb=[]
