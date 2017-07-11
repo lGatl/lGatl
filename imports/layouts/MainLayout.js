@@ -17,7 +17,11 @@
 
 
 			<div className="bodyLay">
-			<Menu></Menu>
+			<header>
+				
+				<Menu></Menu>
+			</header>
+
 				<div id="ssmennu"></div>
 
 
