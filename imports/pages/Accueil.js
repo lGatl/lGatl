@@ -49,11 +49,11 @@ class Accuei extends Component {
 							 	 		onClick={this.travaux.bind(this)}>travaux</span>, <span className="contacc"
 							 	 		onClick={this.formations.bind(this)}>formations </span>et <span className="contacc"
 							 	 		onClick={this.experiences.bind(this)}>expériences </span> dans le domaine de la programmation,
-								 ainsi que mon <span className="contacc" onClick={this.cv.bind(this)}>cv </span> et le moyen de me <span className="contacc" onClick={this.contact.bind(this)}>contacter </span>. <br/>
+								 ainsi que mon <span className="contacc" onClick={this.cv.bind(this)}>cv </span> et le moyen de me <span className="contacc" onClick={this.contact.bind(this)}>contacter</span>. <br/>
 							 					 	Si vous avez besoin d'un site internet, d'une formation, d'un soutien en développement web, d'autres services dans le domaine de la communication,
 							 	 ou même simplement d'informations pour votre projet ou toutes autres questions,
 							 	 n'hésitez pas à me <span className="contacc"
-							 	 		onClick={this.contact.bind(this)}>contacter </span>, je vous répondrai rapidement. <br/>
+							 	 		onClick={this.contact.bind(this)}>contacter</span>, je vous répondrai rapidement. <br/>
 
 							Merci et bonne visite! <br/>
 							<br/>

@@ -8,30 +8,19 @@
 
  export const MainLayout = ({ content }) => {
 
+	return(
 
-
-
-		return(
-
-			<div className="main-layout">
-
+		<div className="main-layout">
 
 			<div className="bodyLay">
-			<header>
-				
+				<header>
 				<Menu></Menu>
-			</header>
-
+				</header>
 				<div id="ssmennu"></div>
-
-
-						{content}
-
-
-			</div>
-		    	 <Footer></Footer>
-
-		   </div>
+					{content}
+				</div>
+			<Footer></Footer>
+		</div>
 
 		 );
 }
