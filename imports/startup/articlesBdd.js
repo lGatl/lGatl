@@ -5,7 +5,7 @@ Articles = [
 		titre: "Convertisseur TVA",
 		categorie:"DansFormation",
 		image: '/images/convertisseur.png',
-		description:[ "Cette appli web est un outil qui permet de convertir un prix TTC en prix HT et vice versa. Cet exercice m'a permis d'experimenter le JavaScript, ainsi que Bootstrap. Ce site est biensur responsive.",{br:""}]
+		description:[ "Cette appli web est un outil qui permet de convertir un prix TTC en prix HT et vice versa. Cet exercice m'a permis d'experimenter le JavaScript, ainsi que Bootstrap. Ce site est bien sûr responsive.",{br:""}]
 	},
 	{
 		nom: "CookieClicker",
@@ -19,7 +19,7 @@ Articles = [
 		titre: "Cv",
 		categorie:"DansFormation",
 		image: '/images/cv.png',
-		description:[ "Ce Cv n'utilise aucun framework, responsive, il est ecrit en HTML5, CSS3, et contient du JavaScript. Le javaScript sert ici à afficher dynamiquement les elements du menu, mais aussi les differentes parties qui le compose.",{br:""}]
+		description:[ "Ce Cv n'utilise aucun framework, responsive, il est ecrit en HTML5, CSS3, et contient du JavaScript. Le javaScript sert ici à afficher dynamiquement les elements du menu, mais aussi les différentes parties qui le composent.",{br:""}]
 
 	},
 	{
@@ -27,7 +27,7 @@ Articles = [
 		titre: "PlusOuMoins",
 		categorie:"DansFormation",
 		image: '/images/plusoumoin.png',
-		description:[ "Voici un petit jeu qui utilise le javascript pour generer un nombre aléatoir et proposer à l'utilisateur d'essayer de le deviner en indiquant plus ou moins.",{br:""}]
+		description:[ "Voici un petit jeu qui utilise le javascript pour générer un nombre aléatoire et proposer à l'utilisateur d'essayer de le deviner en indiquant plus ou moins.",{br:""}]
 	},
 	{
 		nom: "LandingPage",
@@ -48,14 +48,14 @@ Articles = [
 		titre: "Portfolio",
 		categorie:"DansFormation",
 		image:'/images/portfolio.png',
-		description:["Voici un site simulant celui d'un photographe qui presente ses réalisation. Ce site responsive utilise Bootstrap.",{br:""}]
+		description:["Voici un site simulant celui d'un photographe qui présente ses réalisations. Ce site responsive utilise Bootstrap.",{br:""}]
 	},
 	{
 		nom: "TabGen",
-		titre: "Generateur de Tableau",
+		titre: "Générateur de Tableau",
 		categorie:"DansFormation",
 		image:'/images/tabgen.png',
-		description:["Cette application genere un tableau Au nombre de lignes et de colonnes entré par l'utilisateur. Chaque cases contient une case à cocher qui, au clique, indique sa position.",{br:""}]
+		description:["Cette application génère un tableau au nombre de lignes et de colonnes entré par l'utilisateur. Chaque case contient une case à cocher qui, au clique, indique sa position.",{br:""}]
 	},
 	{
 		nom: "ProjetSel",
@@ -79,11 +79,11 @@ Articles = [
 		description:["Voici un jeu de puissance 4, rudimentaire mais il fonctionne. il utilise jQuery.",{br:""}]
 	},
 	{
-		nom: "Pocker",
-		titre: "Pocker",
+		nom: "Poker",
+		titre: "Poker",
 		categorie:"HorsFormation",
 		image:'/images/pocker.png',
-		description:["Entant que deuxieme essaie JavaScript, j'ai réalisé un jeu de Pocker. Pour le moment, l'ordinateur suit tous le temps. Il lui manques donc pour le moment soit une IA, soit  une possibilité de jouer en reseau.",{br:""}]
+		description:["Entant que deuxième essai JavaScript, j'ai réalisé un jeu de Poker. Pour le moment, l'ordinateur suit tout le temps. Il lui manque donc pour le moment soit une IA, soit  une possibilité de jouer en réseau.",{br:""}]
 	},
 	{
 		nom: "Pendu",
@@ -97,7 +97,7 @@ Articles = [
 		titre: "GatJs",
 		categorie:"HorsFormation",
 		image:'/images/gatjs.png',
-		description:["Durant la formation, le formateur, nous expliquant qu'il falait qu'on apprenne à utiliser le JavaScript avant tout autres framework associé, nous a donné des exercices à faire sans utiliser jQuery. Il a ajouté \"jQuery, vous pourriez trés bien le faire, ce sont des fonctions associées à un caractère ($)\"...",{br:""}," Dans le but de gagner du temps, et de ne pas coder plusieurs fois la même chose, j'ai créé mon mini jQuery, GatJs.js, fichier dans lequel j'associe des fonctions à la lettre \"G\". ",{br:""},"",{br:""},"Ce fichier propose seulement quelques fonctionnalitées:",{ul:["un systeme de querry selector comparable à celui de jQuery permettant de selectionner facilement un ou des elements du DOM.","une fonction \"vider()\" qui permet de vider l'élément du DOM selectionné.","la fonction la plus utile est la fonction \"elthtml()\" qui permet de créer dans un ou des éléments du DOM un élément."]},"La fonction \"elthtml()\" prends en argument un objet qui peut prendre 4 parametres differents:",{ul:["\"tag:\" permet de préciser quelle balise html on veut ajouter.","\"contenu:\" sert à préciser le contenu entre nos balises."," \"prop:\" peut prendre comme valeur un tableau, un objet ou meme une string et permet d'ajouter une ou des proprietées à notre élément (des id, des class ou nymporte quel autre proprietée).","\"duree:\" permet de décider d'une durée de vie pour notre élément."]}]
+		description:["Durant la formation, le formateur, nous expliquant qu'il fallait qu'on apprenne à utiliser le JavaScript avant tout autre framework associé, nous a donné des exercices à faire sans utiliser jQuery. Il a ajouté \"jQuery, vous pourriez très bien le faire, ce sont des fonctions associées à un caractère ($)\"...",{br:""}," Dans le but de gagner du temps, et de ne pas coder plusieurs fois la même chose, j'ai créé mon mini jQuery, GatJs.js, fichier dans lequel j'associe des fonctions à la lettre \"G\". ",{br:""},"",{br:""},"Ce fichier propose seulement quelques fonctionnalités:",{ul:["un systeme de query selector comparable à celui de jQuery permettant de selectionner facilement un ou des elements du DOM.","une fonction \"vider()\" qui permet de vider l'élément du DOM selectionné.","la fonction la plus utile est la fonction \"elthtml()\" qui permet de créer un élément dans un ou plusieurs éléments du DOM."]},"La fonction \"elthtml()\" prend en argument un objet qui peut prendre 4 paramètres différents:",{ul:["\"tag:\" permet de préciser quelle balise html on veut ajouter.","\"contenu:\" sert à préciser le contenu entre nos balises."," \"prop:\" peut prendre comme valeur un tableau, un objet ou meme une string et permet d'ajouter une ou des proprietés à notre élément (des id, des class ou nimporte quel autre proprieté).","\"duree:\" permet de décider d'une durée de vie pour notre élément."]}]
 	},
 	/*{
 		nom: "Aspi",
@@ -132,14 +132,14 @@ Articles = [
 		titre: "FicheLabo",
 		categorie:"VBA",
 		image:'/images/Flauto.png',
-		description:["Voici une base de données crée automatique dans un seul tableau Excel (concernant des informations sur des prélèvements…), l'utilisateur dispose ensuite de :",{ul:[" une interface de listes dynamique en fonction de 3 critères pour sélectionner une série de prélèvements.","un pré-remplissage dans un userform des informations sur la série sélectionnée."," une possibilité de sauvegarde/modifications.","une sortie des informations dans un autre classeur Excel des informations sur la série sélectionnée.","une création automatique par copie sur Word de la lettre de commande associée aux analyses à appliquer aux prélèvements.","une création des étiquettes nécessaires à l'étiquetage des échantillons."]}]
+		description:["Voici une base de données crée dans un seul tableau Excel (concernant des informations sur des prélèvements…), l'utilisateur dispose ensuite de :",{ul:[" une interface de listes dynamique en fonction de 3 critères pour sélectionner une série de prélèvements.","un pré-remplissage dans un userform des informations sur la série sélectionnée."," une possibilité de sauvegarde/modifications.","une sortie dans un autre classeur Excel des informations sur la série sélectionnée.","une création automatique par copie sur Word de la lettre de commande associée aux analyses à appliquer aux prélèvements.","une création des étiquettes nécessaires à l'étiquetage des échantillons."]}]
 	},
 	{
 		nom:"GgeGeoP",
 		titre: "Marqueurs GoogleEarth, Geoportail",
 		categorie:"VBA",
 		image:'/images/gge.png',
-		description:["Création d’un programme permettant de convertir un grand nombre de coordonnées GPS en un langage compréhensible par Google-Earth et Géoportail afin d’y injecter un marqueur par pair de coordonnées.",{br:""}]
+		description:["Création d’un programme permettant de convertir un grand nombre de coordonnées GPS en un langage compréhensible par Google-Earth et Géoportail afin d’y injecter un marqueur par paires de coordonnées.",{br:""}]
 	},
 	{
 		nom:"OutilDeSaisie",

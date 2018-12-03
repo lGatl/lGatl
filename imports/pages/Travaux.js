@@ -40,15 +40,14 @@ class Travau extends Component {
 
 	mosqoudet(hf,fo,vb){
 		if(this.props.titre){
-
 			var nom= this.props.titre
 			tarticles=hf.concat(fo).concat(vb)
 			var larticle=tarticles.find((article)=>{return article.nom==nom})
 			if(larticle.categorie=="HorsFormation"){
-				var categorie=<Titre2>Language du net</Titre2>
+				var categorie=<Titre2>Langage du net</Titre2>
 				var categorie2=<Titre3>Hors Formation</Titre3>
 			}else if(larticle.categorie=="DansFormation"){
-				var categorie=<Titre2>Language du net</Titre2>
+				var categorie=<Titre2>Langage du net</Titre2>
 				var categorie2=<Titre3>Dans le cadre de la formation Simplon</Titre3>
 			}else if(larticle.categorie=="VBA"){
 				var categorie=<Titre2>VBA Excel</Titre2>

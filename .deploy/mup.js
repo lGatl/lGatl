@@ -12,7 +12,7 @@ module.exports = {
 
   meteor: {
     // TODO: change app name and path
-    name: 'lGatl',
+    name: 'lgatl',
     path: '../',
 
     servers: {

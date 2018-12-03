@@ -17,7 +17,7 @@ export default class Mosaiq extends Component {
 		return(
 			<div>
 			<section>
-				<Titre2>Languages du net</Titre2><br/>
+				<Titre2>Langages du net</Titre2><br/>
 				<Segment basic>
 				<Titre3>Hors formation </Titre3>
 				<SystemGrid  mobile={16} tablet={5} computer={5}

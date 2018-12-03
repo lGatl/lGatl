@@ -17,13 +17,13 @@ contenu(){
 						<Grid.Row >
 							<Grid.Column mobile={16} tablet={6} computer={6}>
 								<Container textAlign="justified">GATINOIS Adrien <br/>
-								<span style={{color:"rgba(181,204,24,1)",fontWeight:"bold"}}>Développeur Web</span> <br/><br/>
+								<span style={{color:"rgba(181,204,24,1)",fontWeight:"bold"}}>Développeur full stack JS</span> <br/><br/>
 								5 grande rue <br/>
 								55500 Saint Amand sur Ornain<br/>
 								<a href="mailto:gat55@live.fr">gat55@live.fr</a><br/>
 								06/82/47/31/19<br/>
 								<br/>
-								LinkedIn:Adrien GATINOIS <br/>
+								LinkedIn: Adrien GATINOIS <br/>
 								GitHub : <a href="https://github.com/lGatl">https://github.com/lGatl</a>
 							</Container>
 							</Grid.Column>
@@ -32,7 +32,7 @@ contenu(){
 							 <Image alt={"AdrienGATINOIS"} src='/images/photomoi.jpg' fluid />
 							</Grid.Column>
 							<Grid.Column mobile={16} tablet={6} computer={6} style={{textAlign:"right"}}>
-								<Container textAlign="right">Célibataire, 30 ans<br/>
+								<Container textAlign="right">Célibataire, 31 ans<br/>
 								Permis B<br/>
 								<br/>
 								<br/>
@@ -48,11 +48,31 @@ contenu(){
 				<Grid >
 						<Grid.Row className="gridligcv">
 							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">Depuis 2017
+								<Container textAlign="justified">Depuis 2018
 								</Container>
 							</Grid.Column>
 							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Adhésion à Coopetic et Création d'une entreprise de <b>Développeur Web</b>
+								<Container textAlign="justified">Création d'une entreprise Individuelle de <b>Développeur full stack JS</b>
+								</Container>
+							</Grid.Column>
+						</Grid.Row>
+						<Grid.Row className="gridligcv">
+							<Grid.Column mobile={3} tablet={3} computer={3}>
+								<Container textAlign="justified">2017 à 2018
+								</Container>
+							</Grid.Column>
+							<Grid.Column mobile={13} tablet={13} computer={13}>
+								<Container textAlign="justified">Mission de 9 mois, <b>Développeur full stack JS</b> au sein d'une grande équipe Agile pour l'élaboration d'une plate-forme d'apprentissage
+								</Container>
+							</Grid.Column>
+						</Grid.Row>
+						<Grid.Row className="gridligcv">
+							<Grid.Column mobile={3} tablet={3} computer={3}>
+								<Container textAlign="justified">2017 à 2018
+								</Container>
+							</Grid.Column>
+							<Grid.Column mobile={13} tablet={13} computer={13}>
+								<Container textAlign="justified">Adhésion à Coopetic en tant que <b>Développeur full stack JS</b>
 								</Container>
 							</Grid.Column>
 						</Grid.Row>
@@ -63,16 +83,16 @@ contenu(){
 							</Grid.Column>
 							<Grid.Column mobile={13} tablet={13} computer={13}>
 							<Container textAlign="justified">Technicien Environnement - Société BioMonitor
-							<ul>
-								<li>Responsable de la serre </li>
-								<li>Mise en culture des végétaux utilisés pour les mesures </li>
-								<li>Prélèvements (sol, eau, bryophytes, légumes, graminées, lait, œuf) </li>
-								<li>Métrologie par tubes passifs </li>
-								<li>Rédaction de rapports </li>
-								<li>Exploitation de lourds fichiers Excel (ex: données météo, AASQA) </li>
-								<li>Relations avec les clients </li>
-								<li>Responsable informatique </li>
-								<li>CDD renouvelés plusieurs fois concrétisé en CDI</li>
+							<ul style = {{fontSize:10,}}>
+								<li style = {{lineHeight:1.3}}>Responsable de la serre </li>
+								<li style = {{lineHeight:1.3}}>Mise en culture des végétaux utilisés pour les mesures </li>
+								<li style = {{lineHeight:1.3}}>Prélèvements (sol, eau, bryophytes, légumes, graminées, lait, œuf) </li>
+								<li style = {{lineHeight:1.3}}>Métrologie par tubes passifs </li>
+								<li style = {{lineHeight:1.3}}>Rédaction de rapports </li>
+								<li style = {{lineHeight:1.3}}>Exploitation de lourds fichiers Excel (ex: données météo, AASQA) </li>
+								<li style = {{lineHeight:1.3}}>Relations avec les clients </li>
+								<li style = {{lineHeight:1.3}}>Responsable informatique </li>
+								<li style = {{lineHeight:1.3}}>CDD renouvelés plusieurs fois concrétisé en CDI</li>
 							</ul>
 							</Container>
 							</Grid.Column>
@@ -271,4 +291,7 @@ contenu(){
 		prenom:"salut"}
 
  } , C );
+
+
+
 

@@ -39,9 +39,7 @@ class Accuei extends Component {
 							<Segment className="segmen" basic>
 							<Container textAlign="justified">
 
-							 	Je suis Développeur Web spécialisé Back-End et je lance mon entreprise de développement. <br/>
-							 	Je suis aussi adhérent chez Coopetic, ce qui me donne, entre autre, accès à de nombreuses compétences dans le domaine de la communication,
-							 	me permettant de me présenter en tant qu'expert en communication chez Coopetic. <br/>
+							 	Je suis Développeur FullStack spécialisé Front-End et je lance mon entreprise de développement. <br/>
 							 	Très pédagogue et formé formateur par Coopetic, je me présente aussi en tant que formateur en développement web. <br/><br/>
 							 	Cette application web est principalement une démonstration de mes aptitudes, elle utilise le HTML5, le CSS3, le JavaScript (ecmascript 6), Node Js, React Js, et une base de données (MongoDB).
 								J'attire votre attention sur la capacité qu'a ce site à s'adapter à tous types d'écrans (responsive). <br/>
