@@ -10,25 +10,24 @@ export default class CalendarComponent extends Component {
 	constructor(){
 		super()
 		this.state = {
-			date:Date.now(),
-			sample:""
+			test_calendar:new Date(Date.now())
 		}
 	}
 	
 	//Controle
-	change(e,{ value, name }){
-		this.setState({ [name]:value });
+	change(e,{ date, name }){
+		this.setState({ [name]:date });
 	}
 	
 	render(){
 		
-		let	{ date, sample } = this.state;
+		let	{ test_calendar } = this.state;
 		
 
 		return (
 			<div>
 			<Titre2>Calendar</Titre2><br/>
-				Display a date and if you click on, a simple calendar appears to permise the user to choose an other date. <br/>
+				Display a test_calendar and if you click on, a simple calendar appears to permise the user to choose an other test_calendar. <br/>
 				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
@@ -40,37 +39,38 @@ export default class CalendarExample extends Component {
   constructor(){
     super()
     this.state = {
-      date:Date.now(),
+      test_calendar:new Date(Date.now())
     }
   }
   //Controle
-  change(e,{ value, name }){
-  this.setState({ [name]:value });
+  change(e,{ date, name }){
+  this.setState({ [name]:date });
   }
 
   render(){
-    let { date } = this.state;
+    let { test_calendar } = this.state;
 
     return <Calendar
       label = 'Date : '
-      name = 'date'
+      name = 'test_calendar'
       onChange = {this.change.bind(this)}
-      date = {date}
+      date = {test_calendar}
     />
-  }}
+  }
 }`}
 					</PCode>
 					<Calendar
 						label = 'Date : '
-						name = 'date'
+						name = 'test_calendar'
 						onChange = {this.change.bind(this)}
-						date = {date}
+						date = {test_calendar}
 					/>
 				</ExampleFrame>
+				<Code>this.state.test_calendar =</Code> { test_calendar.toString() } <br/>
 				<Titre3>Parameters : </Titre3><br/>
 				<Code>label</Code> : string - Write a text before the date. <br/>
 				<Code>name</Code> : string - Identify your Calendar. <br/>
-				<Code>onChange</Code> : function - Controle your calendar with this parameter. A callback return here the name and the value to controle easily this component. <br/>
+				<Code>onChange</Code> : function - Controle your calendar with this parameter. she return the name and the value to controle easily this component. <br/>
 				<Code>date</Code> : date - Put here the controled value
 </div>
 		);

@@ -24,7 +24,7 @@ export default class GatUiReact extends Component {
 	render(){
 		
 		return (
-				<div>
+				<div style={{display:"flex",flexDirection:"column"}}>
 					<Titre1>gat-ui-react</Titre1>
 					<div style={{display:"flex"}}>
 						<div style={{flex:1}}>

@@ -10,7 +10,7 @@ export default class PCode extends Component {
 	render(){
 		let { scode } = this.style();
 		return (
-			<pre><code style={{...scode}}>
+			<pre><code style={{...scode, ...this.props.style}}>
 				{this.props.children}
 			</code></pre>
 		);

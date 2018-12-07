@@ -354,7 +354,7 @@ contenu(){
 }
 	render(){
 		return(
-			<section>
+			<section style={{display:"flex",flexDirection:"column"}}>
 				<Titre1><h1 style = {{margin:0,fontSize:"1em"}}>Curicculum Vitae</h1></Titre1>
 							<div style={{display:"flex",justifyContent:"center"}}>
 								<div style={{display:"flex",flex:1, maxWidth:1000}}>

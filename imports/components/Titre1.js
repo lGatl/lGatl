@@ -6,7 +6,7 @@ const style={
 	display:"inline-block",
 	textAlign:"center",
 	backgroundColor:"rgba(24,180,204,0.2)",
-	width:"100%",
+	flex:1,
 	borderRadius:"5px",
 	display:"inline-block",
 	padding:20,

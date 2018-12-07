@@ -101,7 +101,7 @@ class Travau extends Component {
 
 			var resultat = this.props.articles.liste.length > 0 ? this.afficher(hf,fo,vb) : <h1>Pas de data</h1>
 		return(
-			<div>
+			<div style={{display:"flex",flexDirection:"column"}}>
 			<Titre1>Travaux</Titre1>
 			
 				<div style={{margin:0,padding:0}}>{resultat}</div>

@@ -34,7 +34,7 @@ export default class CarrouselComponent extends Component {
 {`import React, {Component} from "react";
 import { Carrousel,Button } from 'gat-ui-react'
 
-export default class CarrouselComponent extends Component {
+export default class CarrouselExample extends Component {
   style(){
     return{
       component:{

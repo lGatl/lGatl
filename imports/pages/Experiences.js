@@ -40,7 +40,7 @@ class Experienc extends Component {
 	render(){
 		var resultat = Object.keys(this.state.larticle).length>0 ? this.afficher() : <h1>Pas de data</h1>
 		return (
-			<div>
+			<div style={{display:"flex",flexDirection:"column"}}>
 				<Titre1>Expériences</Titre1>
 					<div style={{display:"flex", flex:1,justifyContent:"center",alignItems:"center", flexDirection:"column"}}>
 						<div style={{maxWidth:1000, flex:1}}>	

@@ -48,7 +48,11 @@ class MenuSS extends Component {
 		}
 	}
 	menu(){return[
-
+				{
+					title:"Home",
+					display:true,
+					url:"/gat-ui-react/Home"
+				},
 				{
 					title:"A",
 					display:true,
@@ -88,6 +92,11 @@ class MenuSS extends Component {
 					title:"Form",
 					display:true,
 					url:"/gat-ui-react/Form"
+				},
+				{
+					title:"Input",
+					display:true,
+					url:"/gat-ui-react/Input"
 				},
 				{
 					title:"Item",
@@ -170,13 +179,10 @@ class MenuSS extends Component {
 	render(){
 		const { item } = this.style();
 		const { activeItem, hover } = this.state || {}
-		if(this.props.titre){
-			var scroll = this.state.marg/3
-				var marg = 10
-		}else{
+		
 			var marg = 10
-			var scroll= this.state.marg/1.5
-		}
+			var scroll= 0//this.state.marg/1.5
+		
 		let {hf,fo,vb} = this.props
 		return (
 

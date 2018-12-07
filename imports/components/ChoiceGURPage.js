@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import Home from '../pages/GURComponents/Home';
 import A from '../pages/GURComponents/A';
 import Button from '../pages/GURComponents/Button';
 import Calendar from '../pages/GURComponents/Calendar';
@@ -83,7 +84,7 @@ export default class ChoiceGURPage extends Component {
 				return <Titre1/>
 				break;
 		  default:
-		  	return <div>uiheiufhiefzh</div>
+		  	return <Home/>
 		}
 	}
 	hover(param){

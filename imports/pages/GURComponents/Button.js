@@ -10,7 +10,7 @@ import Code from '../../components/Code';
 export default class ButtonComponent extends Component {
 	
 	onClick(){
-		console.log('clicked')
+		alert('clicked')
 	}
 
 	render(){
@@ -27,7 +27,7 @@ import { Button } from 'gat-ui-react';
 export default class ButtonExample extends Component {
 	
   onClick(){
-    console.log('clicked')
+    alert('clicked')
   }
   render(){
     return (

@@ -18,7 +18,7 @@ export default class Formations extends Component {
 	render(){
 
 		return (
-			<div>
+			<div style={{display:"flex",flexDirection:"column"}}>
 				<Titre1>Formations</Titre1>
 				<div style={{display:"flex", flexDirection:"Column"}}>
 					<div style={{display:"flex", flex:1,justifyContent:"center"}}>
