@@ -1,7 +1,6 @@
 
 import React, {Component} from 'react'
- import { Grid, Segment} from 'semantic-ui-react'
-
+ import A from './A'
 export default class Footer extends Component {
 
 	click(){
@@ -10,53 +9,46 @@ export default class Footer extends Component {
 	render(){
 
 		return (
-
-
 			<footer style={{
-				marginTop:"10px"
+				height:100,
+				display:'flex',
+				marginTop:"10px",
+				backgroundColor:"rgba(181,204,24,1)",
+				color:'white'
 			}}>
-				 <Segment inverted color='olive' basic  >
+				 
+				<div style={{flex:1}}></div>
+				<div style={{
+					minWidth:150,
+					display:'flex',
+					flex:1, 
+					alignItems:"center",
+					justifyContent:"center"
+				}}>
+					<div style={{
+						fontSize:"2em",
+						color:"white",
+						fontWeight:"bold",
+					}}>
+						lGatl			
+					</div>
+				</div>
+						<div style={{
+							minWidth:150,
+							display:"flex",
+							alignItems:"center",
+							justifyContent:"flex-end",
+							flex:1,
+							fontSize:"2em",
+							color:"white",
+							fontWeight:"bold",
+						}}>
+							<A onClick={this.click.bind(this)}><i className="fa fa-envelope" aria-hidden="true"></i></A><span>   </span>
+							<A href="https://www.linkedin.com/in/adrien-gatinois-2a54b8136/"><i className="fa fa-linkedin" aria-hidden="true"></i></A><span>   </span>
+							<A href="https://github.com/lGatl"><i className="fa fa-github" aria-hidden="true"></i> </A>
+						</div>
 
-						<Grid stretched>
-							<Grid.Row style={{
-										padding:"0",
-								 }}>
-
-								<Grid.Column tablet={5} 	  computer={4} only='tablet computer'>
-
-								</Grid.Column>
-								<Grid.Column mobile={4} tablet={6} 	  computer={8}>
-									<Segment basic style={{
-										textAlign:"center",
-										fontSize:"2em",
-										color:"white",
-										fontWeight:"bold",
-										paddingLeft:0,
-										paddingRight:0
-								 }}>lGatl
-
-									
-								 </Segment>
-								</Grid.Column>
-								<Grid.Column mobile={12} tablet={5} 	  computer={4}>
-								<Segment basic className="adressfoot" style={{
-
-										textAlign:"right",
-										fontSize:"2em",
-										color:"white",
-										fontWeight:"bold",
-										paddingLeft:0,
-										paddingRight:0
-								 }}>
-								<a onClick={this.click.bind(this)}><i className="fa fa-envelope" aria-hidden="true"></i></a><span>   </span>
-								 <a href="https://www.linkedin.com/in/adrien-gatinois-2a54b8136/"><i className="fa fa-linkedin" aria-hidden="true"></i></a><span>   </span>
-								<a href="https://github.com/lGatl"><i className="fa fa-github" aria-hidden="true"></i> </a>
-								</Segment>
-								</Grid.Column>
-							 </Grid.Row>
-						</Grid>
-
-					</Segment>
+					
 			</footer>
 
 		);

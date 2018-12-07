@@ -1,7 +1,6 @@
  import React from 'react';
- import Menu from "../components/Menu.js"
+ import SmartMenu from "../containers/SmartMenu.js"
   import Footer from "../components/Footer.js"
-  import { Grid,Segment } from 'semantic-ui-react'
   import Titre1 from '../components/Titre1.js'
 
 
@@ -14,9 +13,8 @@
 
 			<div className="bodyLay">
 				<header>
-				<Menu></Menu>
+				<SmartMenu/>
 				</header>
-				<div id="ssmennu"></div>
 					{content}
 				</div>
 			<Footer></Footer>

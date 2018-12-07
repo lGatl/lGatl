@@ -1,22 +1,20 @@
 import React, {Component} from 'react'
 
-export default class Titre2 extends Component {
+export default class MyName extends Component {
 
 	constructor(){
 		super()
 		this.state={hover:false}
 	}
 		style(){ return{
-			backgroundColor:"rgba(181,204,24,1)",
-			color:'white',
+			textAlign: 'right',
+			color:'rgba(181,204,24,1)',
+			fontSize:'1.3em',
+			fontWeight: 'bold',
 			borderRadius:5,
-			display:'inline-block',
-			padding:'20px',
-			margin:'10px',
-			animationName:'dep',
-			animationDuration:'1s',
+			display:'block',
 			transition:this.state.hover?'all 1s':"all 0.6s",
-			transform: this.state.hover?"translateY(-3px)":"translateY(0px)"
+			transform: this.state.hover?"translate(-2px)":"translate(0)"
 		}}
 	
 	hover(param){
@@ -25,10 +23,11 @@ export default class Titre2 extends Component {
 	render(){
 		
 		return (
-					<h1 style={{...this.style()}} 
+					<span 
+						style={{...this.style()}} 
 						onMouseEnter={this.hover.bind(this,true)}
           	onMouseLeave={this.hover.bind(this,false)}
-					>{this.props.children}</h1>
+          >Adrien GATINOIS</span>
 
 		);
 	}

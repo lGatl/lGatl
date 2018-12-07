@@ -3,8 +3,7 @@ import {createContainer} from 'meteor/react-meteor-data';
 
 import {menu} from '../API/menu.js'
 import {articles} from '../API/articles.js'
- import { Grid,Segment } from 'semantic-ui-react'
- import MenuTravaux from '../components/MenuTravaux.js'
+ import SmartMenuTravaux from '../containers/SmartMenuTravaux.js'
   import TravailDetail from '../components/TravailDetail.js'
 
 
@@ -76,19 +75,15 @@ class Travau extends Component {
 	afficher(hf,fo,vb){
 
 		return(
-				<Grid>
-
-					<Grid.Row>
-						<Grid.Column				tablet={3} 	  computer={3} only='tablet computer'>
-							<MenuTravaux titre={this.props.titre} hf={hf} fo={fo} vb={vb}></MenuTravaux>
-						</Grid.Column>
-						<Grid.Column mobile={16} tablet={12} computer={10}>
+					<div style={{display:"flex"}}>
+						<div style={{flex:1}}>
+							<SmartMenuTravaux titre={this.props.titre} hf={hf} fo={fo} vb={vb}></SmartMenuTravaux>
+						</div>
+						<div style={{flex:5}}>
 						{this.mosqoudet(hf,fo,vb)}
-
-						</Grid.Column>
-						<Grid.Column 				tablet={1}   computer={3} only='tablet computer'></Grid.Column>
-					</Grid.Row>
-				</Grid>
+						</div>
+						<div style={{flex:1}}></div>
+				</div>
 		);
 
 	}
@@ -109,7 +104,7 @@ class Travau extends Component {
 			<div>
 			<Titre1>Travaux</Titre1>
 			
-				<Segment basic loading={this.state.loading} style={{margin:0,padding:0}}>{resultat}</Segment>
+				<div style={{margin:0,padding:0}}>{resultat}</div>
 			</div>
 			)
 

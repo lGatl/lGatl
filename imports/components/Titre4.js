@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { Segment } from 'semantic-ui-react'
 
 export default class Titre4 extends Component {
 

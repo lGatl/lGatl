@@ -1,12 +1,8 @@
 import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
-import { Table,Grid } from 'semantic-ui-react'
 import Titre1 from '../components/Titre1'
 import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'
-
-import {Segment} from 'semantic-ui-react'
-
 
 import {articles} from '../API/articles.js'
 import TravailDetail from '../components/TravailDetail.js';
@@ -14,12 +10,18 @@ import TravailDetail from '../components/TravailDetail.js';
 import PropTypes from 'prop-types';
 
 class Experienc extends Component {
+	
 	constructor(){
 		super()
 		this.state={
 			larticle:{},
 			loading:true
 		}
+	}
+
+	style(){ 
+			
+		
 	}
 	componentWillMount(){
 		this.props.articles.recup1("ProjetSel",(article)=>{
@@ -40,18 +42,14 @@ class Experienc extends Component {
 		return (
 			<div>
 				<Titre1>Expériences</Titre1>
-				<Grid>
-					<Grid.Row>
-						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
-						<Grid.Column mobile={16} tablet={12} computer={10}>
+					<div style={{display:"flex", flex:1,justifyContent:"center",alignItems:"center", flexDirection:"column"}}>
+						<div style={{maxWidth:800, flex:1}}>	
 							<Titre2>Projet tutoré WebOgreen</Titre2>
-							<Segment basic loading={this.state.loading} style={{margin:0,padding:0}}>
+							<div style={{...this.style(),margin:0,padding:0}}>
 							{resultat}
-							</Segment>
-						</Grid.Column>
-						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
-					</Grid.Row>
-				</Grid>
+							</div>	
+					</div>	
+				</div>
 			</div>
 		);
 	}

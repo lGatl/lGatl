@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
-import {Container,Grid,Segment} from 'semantic-ui-react'
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
 import Titre3 from '../components/Titre3.js'
+import MyName from '../components/MyName.js'
+
 
 import PropTypes from 'prop-types';
 
@@ -27,20 +28,18 @@ class Accuei extends Component {
 
 	render(){
 		return (
-			<section>
+			<section style={{display:"flex", flexDirection:"Column"}}>
 				<Titre1>Accueil</Titre1>
-				<Grid>
-					<Grid.Row>
-						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
-						<Grid.Column mobile={16} tablet={12} computer={10}>
+				<div style={{display:"flex", flex:1,justifyContent:"center"}}>
+					<div style={{maxWidth:800, flex:1}}>
 							<Titre2>Développeur Web</Titre2>
 							<br/>
 							<Titre3>Bonjour et bienvenue !</Titre3><br/>
-							<Segment className="segmen" basic>
-							<Container textAlign="justified">
+							<div className="segmen">
+							<div style={{textAlign:"justify"}}>
 
 							 	Je suis Développeur FullStack spécialisé Front-End et je lance mon entreprise de développement. <br/>
-							 	Très pédagogue et formé formateur par Coopetic, je me présente aussi en tant que formateur en développement web. <br/><br/>
+							 	Très pédagogue et formé formateur par Coopetic, je me présente aussi en tant que consultant formateur en développement web. <br/><br/>
 							 	Cette application web est principalement une démonstration de mes aptitudes, elle utilise le HTML5, le CSS3, le JavaScript (ecmascript 6), Node Js, React Js, et une base de données (MongoDB).
 								J'attire votre attention sur la capacité qu'a ce site à s'adapter à tous types d'écrans (responsive). <br/>
 								Vous trouverez sur ce site internet, le détail de mes <span className="contacc"
@@ -55,13 +54,11 @@ class Accuei extends Component {
 
 							Merci et bonne visite! <br/>
 							<br/>
-						<span className="monnom">Adrien GATINOIS</span>
-						</Container>
-						</Segment>
-						</Grid.Column>
-						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
-					</Grid.Row>
-				</Grid>
+							<MyName/>
+						</div>
+						</div>
+					</div>	
+				</div>	
 			</section>
 		);
 	}

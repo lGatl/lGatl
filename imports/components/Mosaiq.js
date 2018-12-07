@@ -4,21 +4,17 @@ import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'
 
 import SystemGrid from '../components/SystemGrid.js'
-import { Segment } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 
 
 export default class Mosaiq extends Component {
 
-	componentDidMount(){
-
-	}
 	render(){
 		return(
-			<div>
+			<div style={{display:"flex",flexDirection:"column",flex:1}}>
 			<section>
 				<Titre2>Langages du net</Titre2><br/>
-				<Segment basic>
+				<div>
 				<Titre3>Hors formation </Titre3>
 				<SystemGrid  mobile={16} tablet={5} computer={5}
 					donnees={this.props.hf} style={{margin:0}}
@@ -28,16 +24,16 @@ export default class Mosaiq extends Component {
 			<SystemGrid mobile={16} tablet={5} computer={5}
 				donnees={this.props.fo}
 			/>
-			</Segment>
+			</div>
 			</section>
 			<section>
 			<Titre2>VBA Excel :</Titre2>
-			<Segment basic>
+			<div>
 			<SystemGrid mobile={16} tablet={5} computer={5}
 				donnees={this.props.vb}
 			/>
 
-			</Segment>
+			</div>
 			</section>
 			</div>
 		);

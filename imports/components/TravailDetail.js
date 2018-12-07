@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
 
-import {Container,Image,Button,Segment} from 'semantic-ui-react'
- import MenuTravaux from '../components/MenuTravaux.js'
+import {Button} from 'gat-ui-react'
 import Titre4 from './Titre4.js'
 import Titre3 from './Titre3.js'
 
@@ -10,7 +9,20 @@ import PropTypes from 'prop-types';
 
 
 export default class TravailDetail extends Component {
-
+	style(){ 
+			
+		return{
+			backgroundColor:"rgba(24,180,204,0.1)",
+			textAlign:"justify",
+			margin:"10px",
+			paddingTop:0,
+			marginBottom:10 ,
+			padding:20,
+			borderRadius: 15 ,
+			zIndex: 10,
+			borderRadius:"15px 15px 15px 15px"
+		}
+	}
 	clic1(){
 		FlowRouter.go("/Travaux/")
 	}
@@ -29,12 +41,9 @@ export default class TravailDetail extends Component {
 			return(
 				<div>
 				
-				<Segment className="segmen" style={{paddingTop:0,marginTop:"10px"}} basic>
+				<div style={{paddingTop:0,marginTop:"10px"}}>
 				<Titre4>{this.props.article.titre} :</Titre4>
-			<Container textAlign="justified" style={{
-				margin:"10px",
-				paddingTop:0
-			}}>
+			<div style={{...this.style()}}>
 				
 				{this.props.article.description.map((des,i)=>{
 						if(typeof(des)=='string'){
@@ -71,15 +80,15 @@ export default class TravailDetail extends Component {
 						}
 				})}
 				<br/>
-				<Image alt={this.props.article.titre}src={this.props.article.image}></Image>
+				<img alt={this.props.article.titre}src={this.props.article.image}></img>
 				<br/>
 				<div style={{
 					width:"100%",
 					textAlign:"center"
 			}}>{this.retour()}</div>
 
-			</Container>
-			</Segment>
+			</div>
+			</div>
 			</div>
 				)
 		}

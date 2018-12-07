@@ -1,285 +1,366 @@
 import React, {Component} from 'react'
 import {createContainer} from 'meteor/react-meteor-data';
-import {Grid,Image,Container } from 'semantic-ui-react'
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
-import Titre3 from '../components/Titre3.js'
+import CVTitleFrame from '../components/CVTitleFrame.js'
+import CVFrame from '../components/CVFrame.js'
+import CVRow from '../components/CVRow.js'
+import CVRowXP from '../components/CVRowXP.js'
+import CVColumn from '../components/CVColumn.js'
+
+//<img 
+//alt={"Adrien GATINOIS"} 
+//style={{width: "100%",height: "auto"}} 
+//src='/images/photomoi.jpg'
+//>
+
 
 import PropTypes from 'prop-types';
 
 class C extends Component {
-
+style(){
+	return{
+		green:{
+			color:"rgba(181,204,24,1)",
+			fontWeight:"bold",
+		}
+	}
+}
 contenu(){
+	let {green} = this.style()
 	return (
-			<div>
-				<br/>
-				<Grid width={16}  >
-						<Grid.Row >
-							<Grid.Column mobile={16} tablet={6} computer={6}>
-								<Container textAlign="justified">GATINOIS Adrien <br/>
-								<span style={{color:"rgba(181,204,24,1)",fontWeight:"bold"}}>Développeur full stack JS</span> <br/><br/>
-								5 grande rue <br/>
-								55500 Saint Amand sur Ornain<br/>
-								<a href="mailto:gat55@live.fr">gat55@live.fr</a><br/>
-								06/82/47/31/19<br/>
-								<br/>
-								LinkedIn: Adrien GATINOIS <br/>
-								GitHub : <a href="https://github.com/lGatl">https://github.com/lGatl</a>
-							</Container>
-							</Grid.Column>
+			<div style={{display:"flex", flexDirection:"column"}}>
+			<CVFrame style={{borderTop:"none",marginTop:50}}>
+				<CVRow>
+					<CVColumn flex={1} style={{minWidth:200}}>
+							<br/>
+							GATINOIS Adrien <br/>
+							5 grande rue <br/>
+							55500 Saint Amand sur Ornain<br/>
+							<a href="mailto:gat55@live.fr">gat55@live.fr</a>
+							06/82/47/31/19<br/>
+							<br/>
+							LinkedIn: Adrien GATINOIS <br/>
+							<span>GitHub : <a href="https://github.com/lGatl">https://github.com/lGatl</a></span>
+					</CVColumn>
+					<CVColumn flex={1} style={{alignItems:"center", textAlign:"center", minWidth:200 }}>
+							<br/>
+							<br/>
+							<span style={{
+								color:"rgba(181,204,24,1)",
+								fontWeight:"bold", 
+								fontSize:"1.7em"
+							}}>Développeur full stack JS</span> 
 
-							<Grid.Column mobile={16} tablet={4} computer={4}>
-							 <Image alt={"AdrienGATINOIS"} src='/images/photomoi.jpg' fluid />
-							</Grid.Column>
-							<Grid.Column mobile={16} tablet={6} computer={6} style={{textAlign:"right"}}>
-								<Container textAlign="right">Célibataire, 31 ans<br/>
-								Permis B<br/>
-								<br/>
-								<br/>
-								<br/>
-								<br/>
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
+					</CVColumn>			
+					<CVColumn flex={1} style={{textAlign:"right", minWidth:200}}>				
+						<div>
+							<br/>
+							<br/>
+							Célibataire, 31 ans<br/>
+							Permis B
+							<br/>
+							<br/>
+						</div>
+					</CVColumn>				
+				</CVRow>
+			</CVFrame>
+							<CVFrame style={{
+					backgroundColor:"rgba(24,180,204,0.1)",
+					padding:0,
+					paddingBottom:10,
+					
+					fontWeight:"bold"
+				}}>
+					
+						<CVTitleFrame>Competences :</CVTitleFrame>
+						<CVRow >
+						<CVColumn flex={1} style={{minWidth:200}}>
+							Technologies :
+						</CVColumn>
+						<CVColumn flex={1} style={{minWidth:200}}>
+							React Js, Redux <br/>
+							Node Js, Meteor <br/>
+							MongoDB <br/>
+							HTML5, CSS3, Js <br/>
+							RUBY on Rails <br/>
+							VBA<br/>
 
-				</Grid>
-				<hr/>
-					<Titre3>Expériences Professionnelles :</Titre3>
-				<Grid >
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">Depuis 2018
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Création d'une entreprise Individuelle de <b>Développeur full stack JS</b>
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2017 à 2018
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Mission de 9 mois, <b>Développeur full stack JS</b> au sein d'une grande équipe Agile pour l'élaboration d'une plate-forme d'apprentissage
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2017 à 2018
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Adhésion à Coopetic en tant que <b>Développeur full stack JS</b>
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">De 2010 à 2016
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-							<Container textAlign="justified">Technicien Environnement - Société BioMonitor
-							<ul style = {{fontSize:10,}}>
-								<li style = {{lineHeight:1.3}}>Responsable de la serre </li>
-								<li style = {{lineHeight:1.3}}>Mise en culture des végétaux utilisés pour les mesures </li>
-								<li style = {{lineHeight:1.3}}>Prélèvements (sol, eau, bryophytes, légumes, graminées, lait, œuf) </li>
-								<li style = {{lineHeight:1.3}}>Métrologie par tubes passifs </li>
-								<li style = {{lineHeight:1.3}}>Rédaction de rapports </li>
-								<li style = {{lineHeight:1.3}}>Exploitation de lourds fichiers Excel (ex: données météo, AASQA) </li>
-								<li style = {{lineHeight:1.3}}>Relations avec les clients </li>
-								<li style = {{lineHeight:1.3}}>Responsable informatique </li>
-								<li style = {{lineHeight:1.3}}>CDD renouvelés plusieurs fois concrétisé en CDI</li>
-							</ul>
-							</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2010
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Stage Technicien - Société BioMonitor
-								Sujet : Mise en place et suivi de différentes techniques de mesures de la qualité de l’air,
-								des sols et des végétaux
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2007
+						</CVColumn>
+						</CVRow>
+						<CVRow>
+						<CVColumn flex={1} style={{minWidth:200}}>
+							Infographie :
+						</CVColumn>
+						<CVColumn flex={1} style={{minWidth:200}}>
+							Photoshop, Gimp, Illustrator, Inskape
+						</CVColumn>
+						</CVRow>
+						<CVRow>
+						<CVColumn flex={1} style={{minWidth:200}}>
+							Bureautique :
+						</CVColumn>
+						<CVColumn flex={1} style={{minWidth:200}}>
+							MicrosoftOffice, LibreOffice
+						</CVColumn>
+						</CVRow>
+					
+				</CVFrame>
+			<CVFrame>
+				<CVTitleFrame>Expériences Professionnelles :</CVTitleFrame>
+				<CVRowXP>
+					<span>
+						Depuis 2018
+					</span>
 
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Stage technicien (11 semaines) - Parc municipal de Jarny
-								Sujet : inventaire botanique ainsi que proposition de sentier botanique et autres travaux divers
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
+					<span>
+						Création d'une entreprise Individuelle de <b>Développeur full stack JS</b>
+					</span>
+				</CVRowXP>
+				<CVRowXP>
+					<span>
+						2017 à 2018
+					</span>
+					<span>
+						Mission pour SimplonProd de 10 mois, pour l'élaboration d'une plate-forme d'apprentissage <br/>
+						<span style={{...green}}> Rôle :</span> Développeur full stack JS au sein d'une équipe Agile méthode SCRUM. <br/> 
+						<span style={{...green}}>Technologies :</span> Mongo DB, Meteor, React, Redux, HTML5, CSS3, Flexbox, Git, Gitlab <br/> 
+						<span style={{...green}}>Taches:</span>
+						<ul style={{fontSize:12}}>
+							<li>Système de login</li>
+							<li>Système de role</li>
+							<li>Possibilité de poster des articles</li>
+							<li>Drag & Drop pour lister des articles</li>
+							<li>Système de pagination respectant filtres et pertinence des articles </li>
+							<li>Système de correction, d’évaluation et évaluation par les pairs</li>
+							<li>Système de like et partages</li>
+							<li>Système de notification</li>
+							<li>Intégration</li>
+							<li>Système d’administration</li>
+							<li>Responsive</li>
+							<li>Autres taches confidentielles</li>
+							<li>Responsive</li>
+						</ul>
+					</span>
+				</CVRowXP>
+				<CVRowXP>
+					<span>
+						2017 à 2018
+					</span>
+					<span>
+						Travail en cours sur la réalisation d'un système d’échange local pour la Croix Rouge <br/>
+						<span style={{...green}}>Technologies :</span> Mongo DB, Meteor, React, Redux, HTML5, CSS3, Flexbox, Git, Gitlab, mailgun <br/>
+						<span style={{...green}}>Taches :</span>
+						<ul style={{fontSize:12}}>
+							<li>Système de login</li>
+							<li>Système de role</li>
+							<li>Possibilité pour un utilisateur de poster des annonces</li>
+							<li>Possibilité de faire une proposition en réponse aux annonces</li>
+							<li>Possibilité pour l’annonceur d’accepter une proposition</li>
+							<li>Mise en place d’un échange d’argent fictif</li>
+							<li>Système d’administration et de modération</li>
+							<li>Système scroll infini respectant les filtres</li>
+							<li>Haute intégration responsive</li>
+							<li>Système d’envoi de courriel direct depuis le site sans passer par le client messagerie utilisant mailgun</li>
+							<li>Responsive</li>
+						</ul>
+					</span>
+				</CVRowXP>
+				
+				</CVFrame>
+				<CVFrame>
+					<CVTitleFrame>Projets Personnels :</CVTitleFrame>
+						<CVRowXP>
+							<span>
+								2018
+							</span>
+							<span>
+								Projet en cours de création d’une application mobile pour aider l’organisation d’événements (festivals)<br/>
+								<span style={{...green}}>Technologies:</span> Firebase, React Native, Redux, HTML5, CSS3, Flexbox<br/>
+								<span style={{...green}}>Taches:</span>
+								<ul style={{fontSize:12}}>
+									<li>Système de login</li>
+									<li>Système de rôle</li>
+									<li>Synchronisation des taches</li>
+									<li>Distribution des taches</li>
+									<li>Autres taches a venir</li>
+									<li>Responsive</li>
+								</ul>
+							</span>
+						</CVRowXP>
+						<CVRowXP>
+							<span>
+								2018
+							</span>
+							<span>
+								Projet en cours qui sera proposé à la communauté pour simplifier et accélérer la création d’une application web pour un fullstack<br/>
+								<span style={{...green}}>Technologies:</span> MongoDB, Meteor, React, Redux<br/>
+								<span style={{...green}}>Taches:</span>
+								<ul style={{fontSize:12}}>
+									<li>Automatisation des liens Meteor React Redux</li>
+									<li>Documentation</li>
+									<li>Responsive</li>
+								</ul>
 
-				</Grid>
-
-				<hr/>
-				<Titre3>Autres expériences :</Titre3>
-
-				<Grid  >
-
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">Emplois saisonnier
-
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Ouvrier agricole – Conduite d’engins agricole, vendanges <br/>
-								Courtes missions intérimaires <br/>
-								Animateur dans un centre aéré
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-
-				</Grid>
-				<hr/>
-				<Titre3>Formations :</Titre3>
-
-				<Grid  >
-
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2016-2017
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Formation Développeur Web (6 mois) – <a className="acv" href="http://simplon.co/">Simplon</a> – <a className="acv" href="http://www.webogreen.fr/">Webogreen</a> – Bras Sur Meuse
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2010
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Licence Professionnelle Métrologie de la Qualité de l’Air
+							</span>
+						</CVRowXP>
+						<CVRowXP>
+							<span>
+								2018
+							</span>
+							<span>
+								Projet en cours qui sera proposé à la communauté offrant une liste de composants React pour l’intégration<br/>
+								paquet npm gat-ui-react <br/>
+								<span style={{...green}}>Technologies:</span> MongoDB, React, Redux, HTML5, CSS3, Flexbox<br/>
+								<span style={{...green}}>Taches:</span>
+								<ul style={{fontSize:12}}>
+									<li>Intégration de composants React laissant libre accès aux modifications CSS </li>
+									<li>Documentation</li>
+									<li>Responsive</li>
+								</ul>
+							</span>
+						</CVRowXP>
+						<CVRowXP>
+							<span>
+								2017
+							</span>
+							<span>
+								Site De présentation http://lGatl.fr<br/>
+									<span style={{...green}}>Technologies:</span> Mongo DB, Meteor, React, HTML5, CSS3, Semantic ui<br/>
+									<span style={{...green}}>Taches:</span>
+									<ul style={{fontSize:12}}>
+									<li>Système d’envoi de courriel direct depuis le site sans passer par le client messagerie utilisant mailgun</li>
+									<li>Interface en mosaïque pour présenter mes travaux</li>
+									<li>Responsive</li>
+									</ul>
+							</span>
+						</CVRowXP>
+					
+				</CVFrame>
+				<CVFrame>
+					<CVTitleFrame>Autres expériences :</CVTitleFrame>
+						<CVRowXP>
+						<span>
+							De 2010 à 2016
+						</span>
+						<span>
+							Technicien Environnement - Société BioMonitor
+								<ul style = {{fontSize:10}}>
+									<li style = {{lineHeight:1.3}}>Responsable de la serre </li>
+									<li style = {{lineHeight:1.3}}>Mise en culture des végétaux utilisés pour les mesures </li>
+									<li style = {{lineHeight:1.3}}>Prélèvements (sol, eau, bryophytes, légumes, graminées, lait, œuf) </li>
+									<li style = {{lineHeight:1.3}}>Métrologie par tubes passifs </li>
+									<li style = {{lineHeight:1.3}}>Rédaction de rapports </li>
+									<li style = {{lineHeight:1.3}}>Exploitation de lourds fichiers Excel (ex: données météo, AASQA) </li>
+									<li style = {{lineHeight:1.3}}>Relations avec les clients </li>
+									<li style = {{lineHeight:1.3}}>Responsable informatique </li>
+									<li style = {{lineHeight:1.3}}>CDD renouvelés plusieurs fois concrétisé en CDI</li>
+								</ul>			
+						</span>
+					</CVRowXP>
+					<CVRowXP>
+						<span>
+							2010
+						</span>
+						<span>
+							Stage Technicien - Société BioMonitor
+									Sujet : Mise en place et suivi de différentes techniques de mesures de la qualité de l’air,
+									des sols et des végétaux		
+						</span>
+					</CVRowXP>
+					<CVRowXP>
+						<span>
+							2007
+						</span>
+						<span>
+							Stage technicien (11 semaines) - Parc municipal de Jarny
+							Sujet : inventaire botanique ainsi que proposition de sentier botanique et autres travaux divers
+						</span>
+					</CVRowXP>
+					<CVRowXP>
+						<span>
+							Emplois saisonnier
+						</span>
+						<span>
+							Ouvrier agricole – Conduite d’engins agricole, vendanges <br/>
+							Courtes missions intérimaires <br/>
+							Animateur dans un centre aéré
+						</span>
+					</CVRowXP>
+				</CVFrame>
+				<CVFrame>
+					<CVTitleFrame>Formations :</CVTitleFrame>
+					<CVRowXP>
+						<span>
+							2016-2017
+						</span>
+						<span>
+							Formation Développeur Web (6 mois) – <a href="http://simplon.co/">Simplon</a> – <a href="http://www.webogreen.fr/">Webogreen</a> – Bras Sur Meuse
+						</span>
+					</CVRowXP>
+					<CVRowXP>
+						<span>
+							2010
+						</span>
+						<span>
+							Licence Professionnelle Métrologie de la Qualité de l’Air
 								- Université Paul Verlaine, IUT de Thionville – Yutz
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2008
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">Reçu aux épreuves écrites du concours de Technicien supérieur de l’industrie et des mines
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2007
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								<Container textAlign="justified">DUT génie biologique option environnent - Université Paul Verlaine, IUT de Thionville - Yutz
-								</Container>
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={3} tablet={3} computer={3}>
-								<Container textAlign="justified">2006
-								</Container>
-							</Grid.Column>
-							<Grid.Column mobile={13} tablet={13} computer={13}>
-								 <Container textAlign="justified">Baccalauréat scientifique option biologie - Lycée Saint Louis de Bar le Duc
-								 </Container>
-							</Grid.Column>
-						</Grid.Row>
-
-				</Grid>
-					<hr/>
-
-					<Grid >
-
-						<Grid.Row>
-							<Grid.Column only="computer tablet" tablet={3} computer={3}></Grid.Column>
-							<Grid.Column mobile={16} tablet={10} computer={10} style={{
-								paddingBottom:"10px",
-								backgroundColor:"rgba(24,180,204,0.1)",
-								fontWeight:"bold",
-							}}>
-
-
-									<Titre3>Connaissances informatiques :</Titre3>
-								<Grid>
-									<Grid.Row >
-										<Grid.Column mobile={7} tablet={6} computer={6}>
-										<Container textAlign="justified">Technologies : <br/>
-										<br/>
-										<br/>
-										<br/>
-										<br/>
-										<br/>
-										Infographie : <br/>
-										Bureautique :
-										</Container>
-										</Grid.Column>
-										<Grid.Column mobile={9} tablet={10} computer={10}>
-											<Container textAlign="justified">VBA,<br/>
-											HTML, CSS, Js <br/>
-											RUBY on Rails <br/>
-											Meteor <br/>
-											Node Js, React Js <br/>
-											<br/>
-											Photoshop, Gimp, Illustrator, Inskape <br/>
-											MicrosoftOffice, LibreOffice
-											</Container>
-										</Grid.Column>
-									</Grid.Row>
-								</Grid>
-							</Grid.Column>
-							<Grid.Column only="computer tablet" tablet={3} computer={3}></Grid.Column>
-						</Grid.Row>
-						</Grid>
-						<hr/>
-						<Grid>
-						<Grid.Row className="gridligcv">
-							<Grid.Column mobile={8} tablet={8} computer={8} textAlign="center">
-								<Titre3>Langues :</Titre3><br/>
-									Anglais : niveau d'étude supérieur (bac+2) <br/>
-									Allemand : niveau lycée
-								
-							</Grid.Column>
-							<Grid.Column mobile={8} tablet={8} computer={8} textAlign="center">
-								<Titre3>Loisirs :</Titre3><br/>
-								Guitare (20 ans) <br/>
-								Escalade, VTT <br/>
-								Jardin, nature, pèche <br/>
-								
-							</Grid.Column>
-						</Grid.Row>
-				</Grid>
+						</span>
+					</CVRowXP>
+					<CVRowXP>
+						<span>
+							2008
+						</span>
+						<span>
+							Reçu aux épreuves écrites du concours de Technicien supérieur de l’industrie et des mines
+						</span>
+					</CVRowXP>
+					<CVRowXP>
+						<span>
+							2007
+						</span>
+						<span>
+							DUT génie biologique option environnent - Université Paul Verlaine, IUT de Thionville - Yutz
+						</span>
+					</CVRowXP>
+					<CVRowXP>
+						<span>
+							2006
+						</span>
+						<span>
+							Baccalauréat scientifique option biologie - Lycée Saint Louis de Bar le Duc
+						</span>
+					</CVRowXP>
+				</CVFrame>
+				<CVFrame>
+					<CVRow>
+					<CVColumn flex={1} style={{minWidth:200, alignItems:"center", textAlign:"center"}}>
+						<CVTitleFrame>Langues :</CVTitleFrame>
+						Anglais : niveau d'étude supérieur (bac+2) <br/>
+						Allemand : niveau lycée
+					</CVColumn>
+					<CVColumn flex={1} style={{minWidth:200, alignItems:"center", textAlign:"center"}}>
+						<CVTitleFrame>Loisirs :</CVTitleFrame>
+						Guitare (20 ans) <br/>
+						Cuisine,
+						Escalade, VTT <br/>
+						Jardin, nature, pèche <br/>
+					</CVColumn>
+					</CVRow>
+				</CVFrame>
 			</div>
+
 		);
 }
 	render(){
 		return(
 			<section>
-				<Titre1><h1>Curicculum Vitae</h1></Titre1>
-				<Grid>
-					<Grid.Row>
-						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
-						<Grid.Column mobile={16} tablet={12} computer={10}>
-							{this.contenu()}
-						</Grid.Column>
-						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
-					</Grid.Row>
-				</Grid>
+				<Titre1><h1 style = {{margin:0,fontSize:"1em"}}>Curicculum Vitae</h1></Titre1>
+							<div style={{display:"flex",justifyContent:"center"}}>
+								<div style={{display:"flex",flex:1, maxWidth:800}}>
+									{this.contenu()}
+								</div>
+							</div>
 			</section>
 		)
 	}

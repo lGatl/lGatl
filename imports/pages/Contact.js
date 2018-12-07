@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button, Form,Grid } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea } from 'gat-ui-react'
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
 import Titre3 from '../components/Titre3.js'
@@ -77,37 +77,35 @@ export default class Contact extends Component {
 
 	render(){
 		return(
-			<section>
+			<section style={{display:"flex", flexDirection:"Column"}}>
 				<Titre1>Contact</Titre1>
-				<Grid>
-					<Grid.Row>
-						<Grid.Column				tablet={2} 	  computer={3} only='tablet computer'></Grid.Column>
-						<Grid.Column mobile={16} tablet={12} computer={10}>
+				<div style={{display:"flex", flex:1,justifyContent:"center"}}>
+					<div style={{maxWidth:800,flex:1}}>
 						<Titre2>Formulaire</Titre2>
 							<Form id="contact">
 
-									<Form.Input
+									<Input
 											label="Nom"
 											name="nom"
 											placeholder='Nom'
 											onChange={this.change.bind(this)}
 											value={this.state.nom}
 									/>
-									<Form.Input
+									<Input
 											label="Prénom"
 											name="prenom"
 											placeholder='Prénom'
 											onChange={this.change.bind(this)}
 											value={this.state.prenom}
 									/>
-									<Form.Input
+									<Input
 											label="Email"
 											name="mail"
 											placeholder='exemple@exemple.com'
 											onChange={this.change.bind(this)}
 											value={this.state.mail}
 									/>
-									<Form.TextArea
+									<TextArea
 											name='sujet'
 											label='Objet de votre message'
 											placeholder='Objet de votre message'
@@ -115,7 +113,7 @@ export default class Contact extends Component {
 											onChange={this.change.bind(this)}
 											value={this.state.sujet}
 									/>
-									<Form.TextArea
+									<TextArea
 											name='message'
 											label='Votre message'
 											placeholder='Votre message'
@@ -126,15 +124,13 @@ export default class Contact extends Component {
 									<Button type='buton' onClick={this.envoie.bind(this)}
 									>Envoyer</Button>
 							</Form>
-						</Grid.Column>
-						<Grid.Column 				tablet={2}   computer={3} only='tablet computer'></Grid.Column>
-					</Grid.Row>
-				</Grid>
+						</div>	
+					</div>
 			</section>
 
 
 			)
 	}
 }
-
+//VOIR ROWS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

@@ -11,6 +11,7 @@
 	import Travaux from '../pages/Travaux.js';
 	import Formation from '../pages/Formations.js';
 	import Experiences from '../pages/Experiences.js';
+	import GatUiReact from '../pages/GatUiReact.js';
 	import TravailDetail from '../components/TravailDetail.js';
 
 
@@ -49,6 +50,14 @@ FlowRouter.route('/Travaux', {
 	 window.scrollTo(0, 0)
 	 }
  });
+FlowRouter.route('/Travaux/:titre', {
+	name: 'Travail',
+	action: function (params) {
+		menu.actif.set('Travaux')
+		mount(MainLayout, { content: <Travaux titre={params.titre} /> });
+	 window.scrollTo(0, 0)
+	},
+});
 FlowRouter.route('/Formations', {
 	 name: 'Formations',
 	 action: function() {
@@ -65,11 +74,19 @@ FlowRouter.route('/Experiences', {
 	 window.scrollTo(0, 0)
 	 }
  });
-FlowRouter.route('/Travaux/:titre', {
+FlowRouter.route('/gat-ui-react', {
+	 name: 'GatUiReact',
+	 action: function() {
+	 	menu.actif.set('gat-ui-react')
+		 mount(MainLayout, {content: <GatUiReact />});
+	 window.scrollTo(0, 0)
+	 }
+ });
+FlowRouter.route('/gat-ui-react/:titre', {
 	name: 'Travail',
 	action: function (params) {
-		menu.actif.set('Travaux')
-		mount(MainLayout, { content: <Travaux titre={params.titre} /> });
+		menu.actif.set('gat-ui-react')
+		mount(MainLayout, { content: <GatUiReact titre={params.titre} /> });
 	 window.scrollTo(0, 0)
 	},
 });
