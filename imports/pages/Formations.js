@@ -22,7 +22,7 @@ export default class Formations extends Component {
 				<Titre1>Formations</Titre1>
 				<div style={{display:"flex", flexDirection:"Column"}}>
 					<div style={{display:"flex", flex:1,justifyContent:"center"}}>
-						<div style={{maxWidth:800}} >
+						<div style={{maxWidth:1000}} >
 							<section >
 								<Titre2>Développement Web</Titre2> <br/>
 

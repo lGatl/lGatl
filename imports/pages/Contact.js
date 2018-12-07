@@ -80,7 +80,7 @@ export default class Contact extends Component {
 			<section style={{display:"flex", flexDirection:"Column"}}>
 				<Titre1>Contact</Titre1>
 				<div style={{display:"flex", flex:1,justifyContent:"center"}}>
-					<div style={{maxWidth:800,flex:1}}>
+					<div style={{maxWidth:1000,flex:1}}>
 						<Titre2>Formulaire</Titre2>
 							<Form id="contact">
 

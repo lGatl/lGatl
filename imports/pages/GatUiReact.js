@@ -30,7 +30,7 @@ export default class GatUiReact extends Component {
 						<div style={{flex:1}}>
 							<SmartMenuGatUiReact/>						
 						</div>
-						<div style={{flex:5}}>
+						<div style={{flex:5, maxWidth:1000}}>
 						
 						<ChoiceGURPage titre={this.props.titre}/>
 						</div>

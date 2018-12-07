@@ -31,12 +31,16 @@ class Accuei extends Component {
 			<section style={{display:"flex", flexDirection:"Column"}}>
 				<Titre1>Accueil</Titre1>
 				<div style={{display:"flex", flex:1,justifyContent:"center"}}>
-					<div style={{maxWidth:800, flex:1}}>
+					<div style={{maxWidth:1000, flex:1}}>
 							<Titre2>Développeur Web</Titre2>
 							<br/>
 							<Titre3>Bonjour et bienvenue !</Titre3><br/>
-							<div className="segmen">
-							<div style={{textAlign:"justify"}}>
+
+							<div style={{textAlign:"justify",
+								backgroundColor:'rgba(24,180,204,0.1)',
+								borderRadius:("15px 15px 15px 15px"),
+								padding:20,
+								margin:20,}}>
 
 							 	Je suis Développeur FullStack spécialisé Front-End et je lance mon entreprise de développement. <br/>
 							 	Très pédagogue et formé formateur par Coopetic, je me présente aussi en tant que consultant formateur en développement web. <br/><br/>
@@ -55,7 +59,6 @@ class Accuei extends Component {
 							Merci et bonne visite! <br/>
 							<br/>
 							<MyName/>
-						</div>
 						</div>
 					</div>	
 				</div>	

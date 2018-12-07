@@ -43,7 +43,7 @@ class Experienc extends Component {
 			<div>
 				<Titre1>Expériences</Titre1>
 					<div style={{display:"flex", flex:1,justifyContent:"center",alignItems:"center", flexDirection:"column"}}>
-						<div style={{maxWidth:800, flex:1}}>	
+						<div style={{maxWidth:1000, flex:1}}>	
 							<Titre2>Projet tutoré WebOgreen</Titre2>
 							<div style={{...this.style(),margin:0,padding:0}}>
 							{resultat}
