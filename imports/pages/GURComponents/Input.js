@@ -68,13 +68,14 @@ export default class InputExample extends Component {
 						onChange = { this.change.bind( this ) }
 					/>
 				</ExampleFrame>
-				<Code>this.state.test_input =</Code> { test_input.toString() } <br/>
+				<Code>this.state.test_input =</Code> { '"'+test_input+'"' } <br/>
 				<Titre3>Parameters : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the Input. <br/>
 				<Code>name</Code>: string - Identify your Input. <br/>
-				<Code>placeholder</Code>: string - Precise a placeholder <br/>
 				<Code>onChange</Code> : function - Controle your Input with this parameter. She return the name and the value to controle easily this component. <br/>
-				<Code>value</Code> : string - Put here the controled value.
+				<Code>value</Code> : string - Put here the controled value. <br/>
+				<Titre3>Optional Parameters : </Titre3><br/>
+				<Code>label</Code> : string - Write a text before the Input. <br/>
+				<Code>placeholder</Code>: string - Precise a placeholder. <br/>
 </div>
 		);
 	}

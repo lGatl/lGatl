@@ -35,7 +35,7 @@ export default class CheckboxComponent extends Component {
 import React, { Component } from "react";
 import { Checkbox } from "gat-ui-react";
 
-export default class CheckboxComponent extends Component {
+export default class CheckboxExample extends Component {
   constructor(){
     super();
     this.state = {
@@ -70,10 +70,11 @@ export default class CheckboxComponent extends Component {
 				</ExampleFrame>
 				<Code>this.state.test_checkbox =</Code> { test_checkbox.toString() } <br/>
 				<Titre3>Parameters : </Titre3><br/>
-				<Code>label</Code> : string - Write a text near the checkbox. <br/>
-				<Code>name :</Code> string - Identify your checkbox. <br/>
+				<Code>name</Code> : string - Identify your checkbox. <br/>
 				<Code>onChange</Code> : function - Controle your checkbox with this parameter. She return the name and the checked value to controle easily this component. <br/>
-				<Code>checked</Code> : boolean - Put here the controled value.
+				<Code>checked</Code> : boolean - Put here the controled value. <br/>
+				<Titre3>Optional Parameter : </Titre3><br/>
+				<Code>label</Code> : string - Write a text before the date. <br/>
 </div>
 		);
 	}

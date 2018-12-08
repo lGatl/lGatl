@@ -10,7 +10,7 @@ export default class A extends Component {
 			margin:5,
 			cursor:"pointer",
 	  	textDecoration:'none',
-	  	color:this.state.hover?'rgba(24,180,204,0.9)':'rgba(181,204,24,1)',
+	  	color:this.state.hover?'rgba(24,180,204,0.9)':'white',
 	  	fontWeight:"bold"
 		}}
 	

@@ -58,14 +58,6 @@ hr{
 	background-color:rgba(24,180,204,0.2)!important;
 	cursor:pointer;
 }
-.contacc{
-			font-weight:bold!important;
-		 cursor:pointer!important;
-		 color:rgba(181,204,24,1) !important;
-}
-.contacc:hover{
-	color:rgba(24,180,204,0.9) !important;
-}
 
 @keyframes dev {
 		from {padding:0px;}

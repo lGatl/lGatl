@@ -7,7 +7,6 @@ import Calendar from '../pages/GURComponents/Calendar';
 import Carrousel from '../pages/GURComponents/Carrousel';
 import Checkbox from '../pages/GURComponents/Checkbox';
 import Dropdown from '../pages/GURComponents/Dropdown';
-import Footer from '../pages/GURComponents/Footer';
 import Form from '../pages/GURComponents/Form';
 import Input from '../pages/GURComponents/Input';
 import Item from '../pages/GURComponents/Item';
@@ -43,9 +42,6 @@ export default class ChoiceGURPage extends Component {
 				break;
 			case 'Dropdown':
 				return <Dropdown/>
-				break;
-			case 'Footer':
-				return <Footer/>
 				break;
 			case 'Form':
 				return <Form/>

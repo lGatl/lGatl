@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
- import A from './A'
+ import AIcon from './AIcon'
 export default class Footer extends Component {
 
 	click(){
@@ -43,9 +43,9 @@ export default class Footer extends Component {
 							color:"white",
 							fontWeight:"bold",
 						}}>
-							<A onClick={this.click.bind(this)}><i className="fa fa-envelope" aria-hidden="true"></i></A><span>   </span>
-							<A href="https://www.linkedin.com/in/adrien-gatinois-2a54b8136/"><i className="fa fa-linkedin" aria-hidden="true"></i></A><span>   </span>
-							<A href="https://github.com/lGatl"><i className="fa fa-github" aria-hidden="true"></i> </A>
+							<AIcon onClick={this.click.bind(this)}><i className="fa fa-envelope" aria-hidden="true"></i></AIcon><span>   </span>
+							<AIcon href="https://www.linkedin.com/in/adrien-gatinois-2a54b8136/"><i className="fa fa-linkedin" aria-hidden="true"></i></AIcon><span>   </span>
+							<AIcon href="https://github.com/lGatl"><i className="fa fa-github" aria-hidden="true"></i> </AIcon>
 						</div>
 
 					

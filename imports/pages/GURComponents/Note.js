@@ -67,9 +67,7 @@ export default class NoteExemple extends Component {
 				</ExampleFrame>
 				<Code>this.state.test_note =</Code> { test_note } <br/>
 				<Titre3>Parameters : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the Note. <br/>
 				<Code>name</Code>: string - Identify your Note. <br/>
-				<Code>placeholder</Code>: string - Precise a placeholder <br/>
 				<Code>onChange</Code> : function - Controle your Note with this parameter. She return the name and the note to controle easily this component. <br/>
 				<Code>note</Code> : number - Put here the controled note.
 </div>

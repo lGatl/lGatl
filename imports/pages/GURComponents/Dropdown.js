@@ -86,15 +86,18 @@ export default class DropdownExample extends Component {
 						value = { test_dropdown }
 					/>
 				</ExampleFrame>
-				<Code>this.state.test_dropdown =</Code> { test_dropdown } <br/>
+				<Code>this.state.test_dropdown =</Code> { '"'+test_dropdown+'"' } <br/>
 
 				<Titre3>Parameters : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the Dropdown. <br/>
 				<Code>name</Code>: string - Identify your Dropdown. <br/>
-				<Code>placeholder</Code>: string - Precise a placeholder <br/>
 				<Code>options</Code>: array - Give the possible values like this : {'{ value: "value1", text: "choice1" }'} <br/>
 				<Code>onChange</Code> : function - Controle your Dropdown with this parameter. She return the name and the value to controle easily this component. <br/>
-				<Code>value</Code> : string - Put here the controled value.
+				<Code>value</Code> : string - Put here the controled value. <br/>
+				<Titre3>Optional Parameters : </Titre3><br/>
+				<Code>label</Code> : string - Write a text before the Dropdown. <br/>
+				<Code>placeholder</Code>: string - Precise a placeholder <br/>
+
+
 </div>
 		);
 	}

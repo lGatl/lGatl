@@ -10,7 +10,7 @@ export default class PCode extends Component {
 	render(){
 		let { scode } = this.style();
 		return (
-			<pre><code style={{...scode, ...this.props.style}}>
+			<pre style={{maxHeight:500,overflow:"scroll",...scode, ...this.props.style}}><code >
 				{this.props.children}
 			</code></pre>
 		);

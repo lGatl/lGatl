@@ -7,6 +7,7 @@ import CVFrame from '../components/CVFrame.js'
 import CVRow from '../components/CVRow.js'
 import CVRowXP from '../components/CVRowXP.js'
 import CVColumn from '../components/CVColumn.js'
+import A from '../components/A.js'
 
 //<img 
 //alt={"Adrien GATINOIS"} 
@@ -37,11 +38,11 @@ contenu(){
 							GATINOIS Adrien <br/>
 							5 grande rue <br/>
 							55500 Saint Amand sur Ornain<br/>
-							<a href="mailto:gat55@live.fr">gat55@live.fr</a>
+							<A href="mailto:gat55@live.fr">gat55@live.fr</A>
 							06/82/47/31/19<br/>
 							<br/>
 							LinkedIn: Adrien GATINOIS <br/>
-							<span>GitHub : <a href="https://github.com/lGatl">https://github.com/lGatl</a></span>
+							<span>GitHub : <A href="https://github.com/lGatl">https://github.com/lGatl</A></span>
 					</CVColumn>
 					<CVColumn flex={1} style={{alignItems:"center", textAlign:"center", minWidth:200 }}>
 							<br/>
@@ -225,7 +226,7 @@ contenu(){
 								2017
 							</span>
 							<span>
-								Site De présentation http://lGatl.fr<br/>
+								Site De présentation <A>http://lGatl.fr</A><br/>
 									<span style={{...green}}>Technologies:</span> Mongo DB, Meteor, React, HTML5, CSS3, Semantic ui<br/>
 									<span style={{...green}}>Taches:</span>
 									<ul style={{fontSize:12}}>
@@ -246,15 +247,11 @@ contenu(){
 						<span>
 							Technicien Environnement - Société BioMonitor
 								<ul style = {{fontSize:10}}>
-									<li style = {{lineHeight:1.3}}>Responsable de la serre </li>
-									<li style = {{lineHeight:1.3}}>Mise en culture des végétaux utilisés pour les mesures </li>
-									<li style = {{lineHeight:1.3}}>Prélèvements (sol, eau, bryophytes, légumes, graminées, lait, œuf) </li>
-									<li style = {{lineHeight:1.3}}>Métrologie par tubes passifs </li>
-									<li style = {{lineHeight:1.3}}>Rédaction de rapports </li>
-									<li style = {{lineHeight:1.3}}>Exploitation de lourds fichiers Excel (ex: données météo, AASQA) </li>
-									<li style = {{lineHeight:1.3}}>Relations avec les clients </li>
-									<li style = {{lineHeight:1.3}}>Responsable informatique </li>
-									<li style = {{lineHeight:1.3}}>CDD renouvelés plusieurs fois concrétisé en CDI</li>
+									<li style = {{lineHeight:1.3}}>Exploitation de lourds fichiers Excel données météo tri horaires sur 10 ans </li>
+									<li style = {{lineHeight:1.3}}>Création d’outils de saisie en VBA sur d’Excels </li>
+									<li style = {{lineHeight:1.3}}>Création d’un outil de conversion de coordonnées GPS en VBA sur Excel </li>
+									<li style = {{lineHeight:1.3}}>Création d’autres outils en VBA sur Excel pour mes collègues et moi-même </li>
+									<li style = {{lineHeight:1.3}}>Autres travaux relatifs à la mesure environnementale </li>
 								</ul>			
 						</span>
 					</CVRowXP>
@@ -295,7 +292,7 @@ contenu(){
 							2016-2017
 						</span>
 						<span>
-							Formation Développeur Web (6 mois) – <a href="http://simplon.co/">Simplon</a> – <a href="http://www.webogreen.fr/">Webogreen</a> – Bras Sur Meuse
+							Formation Développeur Web (6 mois) – <A href="http://simplon.co/">Simplon</A> – <A href="http://www.webogreen.fr/">Webogreen</A> – Bras Sur Meuse
 						</span>
 					</CVRowXP>
 					<CVRowXP>

@@ -84,11 +84,6 @@ class MenuSS extends Component {
 					url:"/gat-ui-react/Dropdown"
 				},
 				{
-					title:"Footer",
-					display:true,
-					url:"/gat-ui-react/Footer"
-				},
-				{
 					title:"Form",
 					display:true,
 					url:"/gat-ui-react/Form"
