@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
 
-import {menu} from '../API/menu.js'
-import {articles} from '../API/articles.js'
  import SmartMenuTravaux from '../containers/SmartMenuTravaux.js'
   import TravailDetail from '../components/TravailDetail.js'
-
 
 import SystemGrid from '../components/SystemGrid.js'
 import Mosaiq from '../components/Mosaiq.js'
@@ -16,7 +12,7 @@ import Titre3 from '../components/Titre3'
 
 import PropTypes from 'prop-types';
 
-class Travau extends Component {
+export default class Travau extends Component {
 	constructor(){
 		super()
 		this.state={
@@ -24,15 +20,7 @@ class Travau extends Component {
 		}
 	}
 	componentWillMount(){
-		if(this.props.articles.liste.length>0){
-			this.setState({loading:false})
-
-		}else{
-			
-			this.props.articles.recup(()=>{
-				this.setState({loading:false})
-			})
-		}
+	
 		
 	}
 
@@ -53,23 +41,13 @@ class Travau extends Component {
 				var categorie2=""
 			}
 
-			return(
-				<section>
+			return <section>
 				{categorie}<br/>
 				{categorie2}
-					<TravailDetail tr article={larticle}></TravailDetail>
-				</section>
-					
-				)
-		}else{
+				<TravailDetail tr article={larticle}></TravailDetail>
+			</section>
 
-			return(
-				
-				<Mosaiq hf={hf} fo={fo} vb={vb}></Mosaiq>
-				
-				)
-
-		}
+		}else{ return <Mosaiq hf={hf} fo={fo} vb={vb}></Mosaiq> }
 
 	}
 	afficher(hf,fo,vb){
@@ -91,33 +69,18 @@ class Travau extends Component {
 		var hf=[]
 		var fo=[]
 		var vb=[]
-		this.props.articles.liste.map((article)=>{
-			if(article.categorie=="VBA"){vb.push(article)}
-			if(article.categorie=="DansFormation"){fo.push(article)}
-			if(article.categorie=="HorsFormation"){hf.push(article)}
-		})
+		// this.props.articles.liste.map((article)=>{
+		// 	if(article.categorie=="VBA"){vb.push(article)}
+		// 	if(article.categorie=="DansFormation"){fo.push(article)}
+		// 	if(article.categorie=="HorsFormation"){hf.push(article)}
+		// })
 
-
-
-			var resultat = this.props.articles.liste.length > 0 ? this.afficher(hf,fo,vb) : <h1>Pas de data</h1>
+			// var resultat = this.props.articles.liste.length > 0 ? this.afficher(hf,fo,vb) : <h1>Pas de data</h1>
 		return(
 			<div style={{display:"flex",flexDirection:"column"}}>
 			<Titre1>Travaux</Titre1>
-			
-				<div style={{margin:0,padding:0}}>{resultat}</div>
+				<div style={{margin:0,padding:0}}>{}</div>
 			</div>
-			)
-
+		)
 	}
 }
- export default Travaux= createContainer( ()=>{
-
- 	return{
-		articles:{
-			recup:articles.recup,
-			liste:articles.liste.get()
-		}
-
-	}
-
- } , Travau );

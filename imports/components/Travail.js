@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
 
 import TitreTravail from './TitreTravail.js'
 import Titre3 from './Titre3.js'
 
 import PropTypes from 'prop-types';
-import {menu} from '../API/menu.js'
 
 class Travai extends Component {
 
@@ -88,10 +86,4 @@ class Travai extends Component {
 		);
 	}
 }
- export default Travail= createContainer( ()=>{
 
- 	return{
-
-	}
-
- } , Travai );

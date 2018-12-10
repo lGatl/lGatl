@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
 import Titre1 from '../components/Titre1'
 import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'

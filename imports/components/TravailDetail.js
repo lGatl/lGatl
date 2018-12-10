@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
-
 import {Button} from 'gat-ui-react'
 import Titre4 from './Titre4.js'
 import Titre3 from './Titre3.js'

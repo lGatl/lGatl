@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
 import CVTitleFrame from '../components/CVTitleFrame.js'
@@ -15,10 +14,7 @@ import A from '../components/A.js'
 //src='/images/photomoi.jpg'
 //>
 
-
-import PropTypes from 'prop-types';
-
-class C extends Component {
+export default class CV extends Component {
 style(){
 	return{
 		green:{
@@ -362,14 +358,4 @@ contenu(){
 		)
 	}
 }
-
- export default Cv = createContainer( ()=>{
-
-	return{
-		prenom:"salut"}
-
- } , C );
-
-
-
 

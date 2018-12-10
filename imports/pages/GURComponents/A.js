@@ -15,14 +15,7 @@ export default class AComponent extends Component {
 				<Titre3>Exemple :</Titre3>
 				<ExampleFrame>
 					<PCode>
-{`import React, { Component } from "react";
-import { A } from 'gat-ui-react'
-
-export default class AComponent extends Component {
-  render(){
-    return <A href = "http://www.lgatl.fr"> a link</A>
-  }
-}`}	
+						{EXEMPLE}	
 					</PCode>
 					<A href = "http://www.lgatl.fr"> a link</A>
 				</ExampleFrame>
@@ -40,7 +33,14 @@ export default class AComponent extends Component {
 	}
 }
 
+const EXEMPLE = `import React, { Component } from "react";
+import { A } from 'gat-ui-react'
 
+export default class AComponent extends Component {
+  render(){
+    return <A href = "http://www.lgatl.fr"> a link</A>
+  }
+}`
 
 
 

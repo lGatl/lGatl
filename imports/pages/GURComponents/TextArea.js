@@ -30,7 +30,29 @@ export default class TextAreaComponent extends Component {
 				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
-{`
+						{EXEMPLE}
+					</PCode>
+					<TextArea
+						label = "test textarea"
+						name = "test_textarea"
+						placeholder="placeholder"
+						value = { test_textarea }
+						onChange = { this.change.bind( this ) }
+					/>
+				</ExampleFrame>
+				<Code>this.state.test_textarea =</Code> { '"'+test_textarea+'"' } <br/>
+				<Titre3>Parameters : </Titre3><br/>
+				<Code>name</Code>: string - Identify your TextArea. <br/>
+				<Code>onChange</Code> : function - Controle your TextArea with this parameter. She return the name and the value to controle easily this component. <br/>
+				<Code>value</Code> : string - Put here the controled value.<br/>
+				<Titre3>Optional Parameters : </Titre3><br/>
+				<Code>label</Code> : string - Write a text before the TextArea. <br/>
+				<Code>placeholder</Code>: string - Precise a placeholder <br/>
+</div>
+		);
+	}
+}
+const EXEMPLE = `
 import React, {Component} from "react";
 import { TextArea } from "gat-ui-react";
 
@@ -58,27 +80,4 @@ export default class TextAreaExample extends Component {
     );
   }
 }
-`}
-
-					</PCode>
-					<TextArea
-						label = "test textarea"
-						name = "test_textarea"
-						placeholder="placeholder"
-						value = { test_textarea }
-						onChange = { this.change.bind( this ) }
-					/>
-				</ExampleFrame>
-				<Code>this.state.test_textarea =</Code> { '"'+test_textarea+'"' } <br/>
-				<Titre3>Parameters : </Titre3><br/>
-				<Code>name</Code>: string - Identify your TextArea. <br/>
-				<Code>onChange</Code> : function - Controle your TextArea with this parameter. She return the name and the value to controle easily this component. <br/>
-				<Code>value</Code> : string - Put here the controled value.<br/>
-				<Titre3>Optional Parameters : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the TextArea. <br/>
-				<Code>placeholder</Code>: string - Precise a placeholder <br/>
-</div>
-		);
-	}
-}
-
+`

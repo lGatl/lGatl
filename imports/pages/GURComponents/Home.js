@@ -11,8 +11,8 @@ export default class Home extends Component {
 		return (
 			<div>
 				<Titre2>Home</Titre2><br/>
-				React Components for flexbox users. <br/>
-				If you know CSS and Flexbox, you may prefer to keep track of it.<br/>
+				gat_ui_react is a npm package of React Components for flexbox users. <br/>
+				If you know CSS and Flexbox, you may prefer to keep control on it.<br/>
 
 				<Titre3>Contribute : </Titre3> <br/>
 				If you want to contribute, welcome, you can fork this project on <A href="https://github.com/lGatl/gat-ui-react">https://github.com/lGatl/gat-ui-react</A>. <br/>

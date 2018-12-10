@@ -21,25 +21,7 @@ export default class ButtonComponent extends Component {
 				<Titre3>Example : </Titre3>
 				<ExampleFrame>
 					<PCode>
-{`import React, { Component } from "react";
-import { Button } from 'gat-ui-react';
-
-export default class ButtonExample extends Component {
-	
-  onClick(){
-    alert('clicked')
-  }
-  render(){
-    return (
-      <Button
-          onClick = { this.onClick.bind(this) }
-          style = {{backgroundColor:"rgba(150,150,250,1)"}}
-      >
-        Click
-      </Button>
-    );
-  }
-}`}
+						{EXEMPLE}
 					</PCode>
 					<Button
 						onClick = { this.onClick.bind(this) }
@@ -61,4 +43,22 @@ export default class ButtonExample extends Component {
 	}
 }
 
+const EXEMPLE = `import React, { Component } from "react";
+import { Button } from 'gat-ui-react';
 
+export default class ButtonExample extends Component {
+	
+  onClick(){
+    alert('clicked')
+  }
+  render(){
+    return (
+      <Button
+          onClick = { this.onClick.bind(this) }
+          style = {{backgroundColor:"rgba(150,150,250,1)"}}
+      >
+        Click
+      </Button>
+    );
+  }
+}`

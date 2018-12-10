@@ -30,7 +30,27 @@ export default class CalendarComponent extends Component {
 				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
-{`import React, { Component } from 'react';
+						{EXEMPLE}
+					</PCode>
+					<Calendar
+						label = 'Date : '
+						name = 'test_calendar'
+						onChange = {this.change.bind(this)}
+						date = {test_calendar}
+					/>
+				</ExampleFrame>
+				<Code>this.state.test_calendar =</Code> { test_calendar.toString() } <br/>
+				<Titre3>Parameters : </Titre3><br/>
+				<Code>name</Code> : string - Identify your Calendar. <br/>
+				<Code>onChange</Code> : function - Controle your calendar with this parameter. she return the name and the value to controle easily this component. <br/>
+				<Code>date</Code> : date - Put here the controled value<br/>
+				<Titre3>Optional Parameter : </Titre3><br/>
+				<Code>label</Code> : string - Write a text before the date. <br/>
+</div>
+		);
+	}
+}
+const EXEMPLE = `import React, { Component } from 'react';
 import { Calendar } from 'gat-ui-react';
 
 export default class CalendarExample extends Component {
@@ -56,23 +76,4 @@ export default class CalendarExample extends Component {
       date = {test_calendar}
     />
   }
-}`}
-					</PCode>
-					<Calendar
-						label = 'Date : '
-						name = 'test_calendar'
-						onChange = {this.change.bind(this)}
-						date = {test_calendar}
-					/>
-				</ExampleFrame>
-				<Code>this.state.test_calendar =</Code> { test_calendar.toString() } <br/>
-				<Titre3>Parameters : </Titre3><br/>
-				<Code>name</Code> : string - Identify your Calendar. <br/>
-				<Code>onChange</Code> : function - Controle your calendar with this parameter. she return the name and the value to controle easily this component. <br/>
-				<Code>date</Code> : date - Put here the controled value<br/>
-				<Titre3>Optional Parameter : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the date. <br/>
-</div>
-		);
-	}
-}
+}`

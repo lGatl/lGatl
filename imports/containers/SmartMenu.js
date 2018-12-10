@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Item } from 'gat-ui-react'
-import {createContainer} from 'meteor/react-meteor-data';
-import {menu} from '../API/menu.js'
 
-class MenuSS extends Component {
+export default class MenuS extends Component {
 
 	constructor(){
 		super()
@@ -53,7 +51,7 @@ class MenuSS extends Component {
 		if(title == "Logout"){
 			this.props.logOut(()=>{FlowRouter.go("/");});
 		}else if (url){
-			menu.setActif(title);
+			// menu.setActif(title);
 			FlowRouter.go(url);
 		}
 	}
@@ -63,7 +61,7 @@ class MenuSS extends Component {
 				return	<Item
 					img = {img?img:""}
 					src = {src?src:""}
-					active={this.props.menu.actif == title }
+					active={false }
 					onClick={this.activeMenu.bind(this,title,url)}
 					key = { i }
 					style = {style?style:""}>
@@ -81,7 +79,11 @@ class MenuSS extends Component {
 				justifyContent:"flex-start"
 				, ...this.props.style 
 			}}>
-				<Item style={{fontWeight: "bold", height:50}}>
+				<Item 
+				style={{fontWeight: "bold", height:50,cursor:"default"}}
+				hover_style={{}}
+				>
+
 					lGatl
 				</Item>
 				{ 
@@ -91,15 +93,3 @@ class MenuSS extends Component {
 		);
 	}
 }
- var MenuS = createContainer( ()=>{
-
-	 return {
-
-		menu:{
-			actif:menu.actif.get()
-		}
-	 };
-
- } , MenuSS );
-
- export default MenuS;

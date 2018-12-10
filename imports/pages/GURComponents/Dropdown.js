@@ -37,7 +37,34 @@ export default class DropdownComponent extends Component {
 				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
-{`
+            {EXEMPLE}
+					</PCode>
+					<Dropdown
+						label = "test dropdown"
+						placeholder = "placeholder"
+						name = "test_dropdown"
+						onChange = { this.change.bind ( this ) } 
+						options = { this.options() }
+						value = { test_dropdown }
+					/>
+				</ExampleFrame>
+				<Code>this.state.test_dropdown =</Code> { '"'+test_dropdown+'"' } <br/>
+
+				<Titre3>Parameters : </Titre3><br/>
+				<Code>name</Code>: string - Identify your Dropdown. <br/>
+				<Code>options</Code>: array - Give the possible values like this : {'{ value: "value1", text: "choice1" }'} <br/>
+				<Code>onChange</Code> : function - Controle your Dropdown with this parameter. She return the name and the value to controle easily this component. <br/>
+				<Code>value</Code> : string - Put here the controled value. <br/>
+				<Titre3>Optional Parameters : </Titre3><br/>
+				<Code>label</Code> : string - Write a text before the Dropdown. <br/>
+				<Code>placeholder</Code>: string - Precise a placeholder <br/>
+
+
+</div>
+		);
+	}
+}
+const EXEMPLE = `
 import React, { Component } from "react";
 import { Dropdown } from "gat-ui-react";
 
@@ -75,31 +102,4 @@ export default class DropdownExample extends Component {
     );
   }
 }
-`}
-					</PCode>
-					<Dropdown
-						label = "test dropdown"
-						placeholder = "placeholder"
-						name = "test_dropdown"
-						onChange = { this.change.bind ( this ) } 
-						options = { this.options() }
-						value = { test_dropdown }
-					/>
-				</ExampleFrame>
-				<Code>this.state.test_dropdown =</Code> { '"'+test_dropdown+'"' } <br/>
-
-				<Titre3>Parameters : </Titre3><br/>
-				<Code>name</Code>: string - Identify your Dropdown. <br/>
-				<Code>options</Code>: array - Give the possible values like this : {'{ value: "value1", text: "choice1" }'} <br/>
-				<Code>onChange</Code> : function - Controle your Dropdown with this parameter. She return the name and the value to controle easily this component. <br/>
-				<Code>value</Code> : string - Put here the controled value. <br/>
-				<Titre3>Optional Parameters : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the Dropdown. <br/>
-				<Code>placeholder</Code>: string - Precise a placeholder <br/>
-
-
-</div>
-		);
-	}
-}
-
+`

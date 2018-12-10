@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { Menu, Item } from 'gat-ui-react'
-import {articles} from '../API/articles.js'
-import {createContainer} from 'meteor/react-meteor-data';
-import {menu} from '../API/menu.js'
 
  import SmartMenuGatUiReact from '../containers/SmartMenuGatUiReact.js'
 
@@ -50,97 +47,74 @@ class MenuSS extends Component {
 	menu(){return[
 				{
 					title:"Home",
-					display:true,
 					url:"/gat-ui-react/Home"
 				},
 				{
 					title:"A",
-					display:true,
 					url:"/gat-ui-react/A"
 				},
 				{
 					title:"Button",
-					display:true,
 					url:"/gat-ui-react/Button"
 				},
 				{
 					title:"Calendar",
-					display:true,
 					url:"/gat-ui-react/Calendar"
 				},
 				{
 					title:"Carrousel",
-					display:true,
 					url:"/gat-ui-react/Carrousel"
 				},
 				{
 					title:"Checkbox",
-					display:true,
 					url:"/gat-ui-react/Checkbox"
 				},
 				{
 					title:"Dropdown",
-					display:true,
 					url:"/gat-ui-react/Dropdown"
 				},
 				{
 					title:"Form",
-					display:true,
 					url:"/gat-ui-react/Form"
 				},
 				{
 					title:"Input",
-					display:true,
 					url:"/gat-ui-react/Input"
 				},
 				{
-					title:"Item",
-					display:true,
-					url:"/gat-ui-react/Item"
-				},
-				{
 					title:"Menu",
-					display:true,
 					url:"/gat-ui-react/Menu"
 				},
 				{
-					title:"Note",
-					display:true,
-					url:"/gat-ui-react/Note"
-				},
-				{
 					title:"Notification",
-					display:true,
 					url:"/gat-ui-react/Notification"
 				},
 				{
 					title:"Popup",
-					display:true,
 					url:"/gat-ui-react/Popup"
 				},
 				{
+					title:"Rating",
+					url:"/gat-ui-react/Rating"
+				},
+				{
 					title:"Segment",
-					display:true,
 					url:"/gat-ui-react/Segment"
 				},
 				{
 					title:"Table",
-					display:true,
 					url:"/gat-ui-react/Table"
 				},
 				{
 					title:"TextArea",
-					display:true,
 					url:"/gat-ui-react/TextArea"
 				},
 				{
 					title:"Titre",
-					display:true,
 					url:"/gat-ui-react/Titre"
 				},
 				{
 					title:"Titre1",
-					display:true,
 					url:"/gat-ui-react/Titre1"
 				},
 		]
@@ -157,7 +131,7 @@ class MenuSS extends Component {
 	items(tab){
 
 		return tab.map(({title, text, url, display, img, src, action, style}, i)=> {
-			if(display){
+			if(display!=undefined?display:true){
 				return	<Item
 					img = {img?img:""}
 					src = {src?src:""}
@@ -204,15 +178,15 @@ class MenuSS extends Component {
 		);
 	}
 }
- var MenuS = createContainer( ()=>{
+ // var MenuS = createContainer( ()=>{
 
-	 return {
+	//  return {
 
-		articles:{
-			recup1:articles.recup1,
-		}
-	 };
+	// 	articles:{
+	// 		recup1:articles.recup1,
+	// 	}
+	//  };
 
- } , MenuSS );
+ // } , MenuSS );
 
- export default MenuS;
+ // export default MenuS;

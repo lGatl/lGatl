@@ -1,24 +1,36 @@
- import React from 'react';
+import React from "react";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } 	from "redux";
+import ReduxPromise from "redux-promise";
+
+import reducers from "../7_reducers";
+
  import SmartMenu from "../containers/SmartMenu.js"
   import Footer from "../components/Footer.js"
-  import Titre1 from '../components/Titre1.js'
 
+var store={};
 
+const composeEnhancers = composeWithDevTools({});
+
+store = createStore(reducers,composeEnhancers(
+	applyMiddleware(ReduxPromise)
+));
 
  export const MainLayout = ({ content }) => {
 
 	return(
-
-		<div className="main-layout">
-
-			<div className="bodyLay">
-				<header>
-				<SmartMenu/>
-				</header>
-					{content}
-				</div>
-			<Footer></Footer>
-		</div>
+		<Provider store={store}>	
+			<div className="main-layout">
+				<div className="bodyLay">
+					<header>
+					<SmartMenu/>
+					</header>
+						{content}
+					</div>
+				<Footer></Footer>
+			</div>
+		</Provider>
 
 		 );
 }

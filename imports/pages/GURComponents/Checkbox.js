@@ -30,8 +30,27 @@ export default class CheckboxComponent extends Component {
 				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
-{
-`
+						{EXEMPLE}
+					</PCode>
+					<Checkbox
+						label = "test checkbox"
+						name = "test_checkbox"
+						checked = { test_checkbox }
+						onChange = { this.change.bind( this ) }
+					/>
+				</ExampleFrame>
+				<Code>this.state.test_checkbox =</Code> { test_checkbox.toString() } <br/>
+				<Titre3>Parameters : </Titre3><br/>
+				<Code>name</Code> : string - Identify your checkbox. <br/>
+				<Code>onChange</Code> : function - Controle your checkbox with this parameter. She return the name and the checked value to controle easily this component. <br/>
+				<Code>checked</Code> : boolean - Put here the controled value. <br/>
+				<Titre3>Optional Parameter : </Titre3><br/>
+				<Code>label</Code> : string - Write a text before the date. <br/>
+</div>
+		);
+	}
+}
+const EXEMPLE = `
 import React, { Component } from "react";
 import { Checkbox } from "gat-ui-react";
 
@@ -59,23 +78,3 @@ export default class CheckboxExample extends Component {
   }
 }
 `
-}
-					</PCode>
-					<Checkbox
-						label = "test checkbox"
-						name = "test_checkbox"
-						checked = { test_checkbox }
-						onChange = { this.change.bind( this ) }
-					/>
-				</ExampleFrame>
-				<Code>this.state.test_checkbox =</Code> { test_checkbox.toString() } <br/>
-				<Titre3>Parameters : </Titre3><br/>
-				<Code>name</Code> : string - Identify your checkbox. <br/>
-				<Code>onChange</Code> : function - Controle your checkbox with this parameter. She return the name and the checked value to controle easily this component. <br/>
-				<Code>checked</Code> : boolean - Put here the controled value. <br/>
-				<Titre3>Optional Parameter : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the date. <br/>
-</div>
-		);
-	}
-}

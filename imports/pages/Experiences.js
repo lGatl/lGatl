@@ -1,15 +1,13 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
 import Titre1 from '../components/Titre1'
 import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'
 
-import {articles} from '../API/articles.js'
 import TravailDetail from '../components/TravailDetail.js';
 
 import PropTypes from 'prop-types';
 
-class Experienc extends Component {
+export default class Experienc extends Component {
 	
 	constructor(){
 		super()
@@ -24,12 +22,12 @@ class Experienc extends Component {
 		
 	}
 	componentWillMount(){
-		this.props.articles.recup1("ProjetSel",(article)=>{
+		// this.props.articles.recup1("ProjetSel",(article)=>{
 
-			this.setState({larticle:article})
-			this.setState({loading:false})
+		// 	this.setState({larticle:article})
+		// 	this.setState({loading:false})
 			
-		})
+		// })
 
 	}
 	afficher(){
@@ -38,7 +36,7 @@ class Experienc extends Component {
 		)
 	}
 	render(){
-		var resultat = Object.keys(this.state.larticle).length>0 ? this.afficher() : <h1>Pas de data</h1>
+		// var resultat = Object.keys(this.state.larticle).length>0 ? this.afficher() : <h1>Pas de data</h1>
 		return (
 			<div style={{display:"flex",flexDirection:"column"}}>
 				<Titre1>Expériences</Titre1>
@@ -46,7 +44,7 @@ class Experienc extends Component {
 						<div style={{maxWidth:1000, flex:1}}>	
 							<Titre2>Projet tutoré WebOgreen</Titre2>
 							<div style={{...this.style(),margin:0,padding:0}}>
-							{resultat}
+							{}
 							</div>	
 					</div>	
 				</div>
@@ -54,12 +52,4 @@ class Experienc extends Component {
 		);
 	}
 }
- export default Experience= createContainer( ()=>{
 
- 	return{
-		articles:{
-			recup1:articles.recup1
-		}
-	}
-
- } , Experienc );

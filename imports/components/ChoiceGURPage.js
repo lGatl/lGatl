@@ -9,9 +9,8 @@ import Checkbox from '../pages/GURComponents/Checkbox';
 import Dropdown from '../pages/GURComponents/Dropdown';
 import Form from '../pages/GURComponents/Form';
 import Input from '../pages/GURComponents/Input';
-import Item from '../pages/GURComponents/Item';
 import Menu from '../pages/GURComponents/Menu';
-import Note from '../pages/GURComponents/Note';
+import Rating from '../pages/GURComponents/Rating';
 import Notification from '../pages/GURComponents/Notification';
 import Popup from '../pages/GURComponents/Popup';
 import Segment from '../pages/GURComponents/Segment';
@@ -49,14 +48,11 @@ export default class ChoiceGURPage extends Component {
 			case 'Input':
 				return <Input/>
 				break;
-			case 'Item':
-				return <Item/>
-				break;
 			case 'Menu':
 				return <Menu/>
 				break;
-			case 'Note':
-				return <Note/>
+			case 'Rating':
+				return <Rating/>
 				break;
 			case 'Notification':
 				return <Notification/>

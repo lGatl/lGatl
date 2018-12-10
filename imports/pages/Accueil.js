@@ -1,15 +1,11 @@
 import React, {Component} from 'react'
-import {createContainer} from 'meteor/react-meteor-data';
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
 import Titre3 from '../components/Titre3.js'
 import MyName from '../components/MyName.js'
 import A from '../components/A.js'
 
-
-import PropTypes from 'prop-types';
-
-class Accuei extends Component {
+export default class Accueil extends Component {
 	style(){
 
 	}
@@ -66,11 +62,3 @@ class Accuei extends Component {
 		);
 	}
 }
-
- export default Accueil = createContainer( ()=>{
-
- 	return{
- 		prenom:"salut"}
-
- } , Accuei );
-

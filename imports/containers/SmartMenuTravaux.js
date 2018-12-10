@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { Menu, Item } from 'gat-ui-react'
-import {articles} from '../API/articles.js'
-import {createContainer} from 'meteor/react-meteor-data';
-import {menu} from '../API/menu.js'
 
 class MenuSS extends Component {
 
@@ -159,15 +156,3 @@ class MenuSS extends Component {
 		);
 	}
 }
- var MenuS = createContainer( ()=>{
-
-	 return {
-
-		articles:{
-			recup1:articles.recup1,
-		}
-	 };
-
- } , MenuSS );
-
- export default MenuS;

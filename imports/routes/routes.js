@@ -1,6 +1,6 @@
 
 	import React from 'react';
-	import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
+	import {FlowRouter} from 'meteor/kadira:flow-router';
 	import {mount} from 'react-mounter';
 
 	import {MainLayout} from '../layouts/MainLayout.js';
@@ -14,13 +14,9 @@
 	import GatUiReact from '../pages/GatUiReact.js';
 	import TravailDetail from '../components/TravailDetail.js';
 
-
-	import {menu} from '../API/menu.js'
-
  FlowRouter.route('/', {
 	 name: 'accueil',
 	 action: function() {
-	 	menu.actif.set('Accueil')
 		 mount(MainLayout, {content: <Accueil/>});
 	 window.scrollTo(0, 0)
 
@@ -29,7 +25,6 @@
  FlowRouter.route('/Cv', {
 	 name: 'Cv',
 	 action: function() {
-	 	menu.actif.set('Cv')
 		 mount(MainLayout, {content: <Cv />});
 	 window.scrollTo(0, 0)
 	 }
@@ -37,7 +32,6 @@
 FlowRouter.route('/Contact', {
 	 name: 'Contact',
 	 action: function() {
-	 	menu.actif.set('Contact')
 		 mount(MainLayout, {content: <Contact />});
 	 window.scrollTo(0, 0)
 	 }
@@ -45,7 +39,6 @@ FlowRouter.route('/Contact', {
 FlowRouter.route('/Travaux', {
 	 name: 'Travaux',
 	 action: function() {
-	 	menu.actif.set('Travaux')
 		 mount(MainLayout, {content: <Travaux />});
 	 window.scrollTo(0, 0)
 	 }
@@ -53,7 +46,6 @@ FlowRouter.route('/Travaux', {
 FlowRouter.route('/Travaux/:titre', {
 	name: 'Travail',
 	action: function (params) {
-		menu.actif.set('Travaux')
 		mount(MainLayout, { content: <Travaux titre={params.titre} /> });
 	 window.scrollTo(0, 0)
 	},
@@ -61,7 +53,6 @@ FlowRouter.route('/Travaux/:titre', {
 FlowRouter.route('/Formations', {
 	 name: 'Formations',
 	 action: function() {
-	 	menu.actif.set('Formations')
 		 mount(MainLayout, {content: <Formation />});
 	 window.scrollTo(0, 0)
 	 }
@@ -69,7 +60,6 @@ FlowRouter.route('/Formations', {
 FlowRouter.route('/Experiences', {
 	 name: 'Expériences',
 	 action: function() {
-	 	menu.actif.set('Expériences')
 		 mount(MainLayout, {content: <Experiences />});
 	 window.scrollTo(0, 0)
 	 }
@@ -77,7 +67,6 @@ FlowRouter.route('/Experiences', {
 FlowRouter.route('/gat-ui-react', {
 	 name: 'GatUiReact',
 	 action: function() {
-	 	menu.actif.set('gat-ui-react')
 		 mount(MainLayout, {content: <GatUiReact />});
 	 window.scrollTo(0, 0)
 	 }
@@ -85,7 +74,6 @@ FlowRouter.route('/gat-ui-react', {
 FlowRouter.route('/gat-ui-react/:titre', {
 	name: 'Travail',
 	action: function (params) {
-		menu.actif.set('gat-ui-react')
 		mount(MainLayout, { content: <GatUiReact titre={params.titre} /> });
 	 window.scrollTo(0, 0)
 	},

@@ -31,7 +31,18 @@ export default class CarrouselComponent extends Component {
 				<Titre3>Exemple :</Titre3>
 				<ExampleFrame>
 					<PCode>
-{`import React, {Component} from "react";
+						{EXEMPLE}
+					</PCode>
+					<Carrousel tableau={this.annonces()}/>
+				</ExampleFrame>
+				<Titre3>Parameter : </Titre3><br/>
+				<Code>tableau</Code> : Array - One array of the three components to display <br/>
+			</div>	
+			
+		);
+	}
+}
+const EXEMPLE = `import React, {Component} from "react";
 import { Carrousel,Button } from 'gat-ui-react'
 
 export default class CarrouselExample extends Component {
@@ -56,16 +67,5 @@ export default class CarrouselExample extends Component {
       <Carrousel tableau={this.annonces()}/>
     );
   }
-}`}
-					</PCode>
-					<Carrousel tableau={this.annonces()}/>
-				</ExampleFrame>
-				<Titre3>Parameter : </Titre3><br/>
-				<Code>tableau</Code> : Array - One array of the three components to display <br/>
-			</div>	
-			
-		);
-	}
-}
-
+}`
 
