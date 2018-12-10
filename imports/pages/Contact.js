@@ -22,7 +22,7 @@ export default class Contact extends Component {
 		this.setState({[e.target.name]:e.target.value});
 	};
 	envoie(e){
-		message=
+		let message =
 		"<p>" +
 		this.state.nom + " " +
 		this.state.prenom +"</p>"
@@ -31,7 +31,6 @@ export default class Contact extends Component {
 		  +"<p>" +
 		 this.state.message+"</p>"
 
-		e.preventDefault()
 		// Client: Asynchronously send an email.
 		if(this.state.nom&&this.state.prenom&&this.state.mail&&this.state.sujet&&this.state.message){
 			Bert.alert({

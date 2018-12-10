@@ -9,6 +9,7 @@
     "bcrypt": "^3.0.2",
     "gat-ui-react": "0.0.7",
     "meteor-node-stubs": "^0.4.1",
+    "node-mailjet": "^3.3.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-mounter": "^1.2.0",
