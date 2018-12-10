@@ -4,7 +4,7 @@ import { Menu, Item } from 'gat-ui-react'
  import SmartMenuGatUiReact from '../containers/SmartMenuGatUiReact.js'
 
 
-class MenuSS extends Component {
+export default class MenuSS extends Component {
 
 	constructor(){
 		super()
