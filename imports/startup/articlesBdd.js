@@ -57,11 +57,45 @@ Articles = [
 		description:["Cette application génère un tableau au nombre de lignes et de colonnes entré par l'utilisateur. Chaque case contient une case à cocher qui, au clique, indique sa position.",{br:""}]
 	},
 	{
+		nom: "Simplonline",
+		titre: "Simplonline",
+		categorie:"HorsFormation",
+		image:'',
+		description:[" 4 mois en régie suivi de 6 mois en remote, j'ai intégré une équipe agile methode SCRUM entant que développeur permanent, pour le développement d'une plateforme d'apprentissage innovante pour Simplon, Simplonline.co",{br:""},"J'ai eu l'occasion de m'impliquer from scratch à tous les niveaux du code et de conception du projet.",{br:""},
+		"Ce projets m'a permis de voir entre autres :",{br:""},
+		{ul:["Système de login",
+		"Système de role",
+		"Possibilité de poster des articles",
+		"Drag & Drop pour lister des articles",
+		"Système de pagination respectant filtres et pertinence des articles",
+		"Système de correction, d’évaluation et évaluation par les pairs",
+		"Système de like et partages",
+		"Système de notification",
+		"Intégration",
+		"Système d’administration",
+		"Responsive",
+		'Autres taches confidentielles'
+		]},
+		{br:""}]
+	},
+	{
 		nom: "ProjetSel",
 		titre: "Projet SEL",
 		categorie:"HorsFormation",
 		image:'/images/projetsel.png',
-		description:["Voici mon projet tutoré déniché et proposé par l'animatrice de WebOgreen, le projet SEL est une plateforme demandée par la Croix Rouge de Damvillers.",{br:""},"Elle utilise:",{ul:[" un mécanisme de connexion","une bonne utilisation des bases de données","beaucoup d'interactions entre les différentes parties du site"]},"Elle est bien entendu responsive pour permettre ses fonctionnalités à tous types de supports.",{br:""}," Ce site est en cours de développement, il sera bientôt publié.",{br:""}]
+		description:["Voici mon projet tutoré déniché et proposé par l'animatrice de WebOgreen, le projet SEL est une plateforme demandée par la Croix Rouge de Damvillers.",{br:""},
+		"Le but étant de créer une solution pour insiter les gens à se rendre service :",{br:""},
+		{ul:["Système de login",
+		"Système de role",
+		"Possibilité pour un utilisateur de poster des annonces",
+		"Possibilité de faire une proposition en réponse aux annonces",
+		"Possibilité pour l’annonceur d’accepter une proposition",
+		"Mise en place d’un échange d’argent fictif",
+		"Système d’administration et de modération",
+		"Système scroll infini respectant les filtres",
+		"Haute intégration responsive",
+		"Système d’envoi de courriel direct depuis le site sans passer par le client messagerie utilisant mailgun",
+		"Responsive"]},{br:""}]
 	},
 	{
 		nom: "BookWeb",

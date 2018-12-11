@@ -79,7 +79,7 @@ export default class TravailDetail extends Component {
 						}
 				})}
 				<br/>
-				<img alt={this.props.article.titre}src={this.props.article.image}></img>
+				{this.props.article.image?<img alt={this.props.article.titre}src={this.props.article.image}></img>:""}
 				<br/>
 				<div style={{
 					width:"100%",
