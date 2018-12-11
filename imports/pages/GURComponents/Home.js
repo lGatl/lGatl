@@ -19,8 +19,7 @@ export default class Home extends Component {
 				<Titre3>How to use : </Titre3><br/>
 				<Code>npm install --save gat-ui-react</Code> <br/>
 				<Titre3>Dependencies : </Titre3><br/>
-					<Code>react: 15.5.4</Code><br/>
-    			<Code>webpack: ^2.6.1</Code><br/>
+					This package need React <br/>
     			<Titre3>Author : </Titre3><br/>
 						Adrien GATINOIS <br/>
     				gat55@live.fr

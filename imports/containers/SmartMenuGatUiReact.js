@@ -86,10 +86,6 @@ class SmartMenuGatUiReact extends Component {
 					url:"/gat-ui-react/Menu"
 				},
 				{
-					title:"Notification",
-					url:"/gat-ui-react/Notification"
-				},
-				{
 					title:"Popup",
 					url:"/gat-ui-react/Popup"
 				},
