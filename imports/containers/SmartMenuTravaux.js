@@ -95,15 +95,16 @@ class SmartMenuTravaux extends Component {
 	render(){
 		const { item } = this.style();
 		const { activeItem, hover } = this.state || {}
+		let mobile = this.props.resize.windowwidth<600
 		if(this.props.titre){
 			var scroll = this.state.marg/3
 				var marg = 10
 		}else{
-			var marg = 100
-			var scroll= this.state.marg/1.5
+			var marg = mobile?0:100
+			var scroll= mobile?0:this.state.marg/1.5;
 		}
 		let {hf,fo,vb} = this.props
-		let mobile = this.props.resize.windowwidth<600
+		
 		return (
 
 				<Menu mobile={mobile}
@@ -119,6 +120,7 @@ class SmartMenuTravaux extends Component {
 						transition: 'margin 0.9s, border-radius 0.7s, left 0.5s',
 						borderRadius: hover?'5px 40px 5px 5px':'5px 5px 5px 5px',
 						margin:10,
+						top:mobile?100:"auto",
 						marginTop:marg+"px",
 	   				transform: `translateY(${scroll}px)` 
 					}}>
