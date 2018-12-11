@@ -43,6 +43,7 @@ export default class SystemGid extends Component {
 										<div
 											key={i}
 											style={{
+												overflow:"hidden",
 												height:"150px",
 												margin:10,
 												flex:1,

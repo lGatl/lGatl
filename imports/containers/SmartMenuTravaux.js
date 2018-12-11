@@ -103,9 +103,16 @@ class SmartMenuTravaux extends Component {
 			var scroll= this.state.marg/1.5
 		}
 		let {hf,fo,vb} = this.props
+		let mobile = this.props.resize.windowwidth<600
 		return (
 
-				<Menu mobile={this.props.resize.windowwidth<600}
+				<Menu mobile={mobile}
+					style_box={{
+						position:"fixed", 
+						zIndex:9998,
+						backgroundColor:"white",
+						top:100 
+					}}
 					style = {{
 						backgroundColor:"white",
 						animation:'menurond 0.5s linear',

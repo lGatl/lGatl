@@ -1,6 +1,9 @@
-import React, {Component} from "react";
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
 
-export default class ExampleFrame extends Component {
+
+class ExampleFrame extends Component {
 	render(){
 		return(
 				<div style={{display:"flex",flexWrap:"wrap", flex:1}}>
@@ -9,7 +12,8 @@ export default class ExampleFrame extends Component {
 						backgroundColor:"rgba(230,230,230,1)",
 						padding:10,
 						margin:"10px 0px 10px 0px",
-						borderRadius:"20px"
+						borderRadius:"20px",
+						maxWidth:this.props.windowwidth-50
 					}}>
 						{this.props.children[0]}
 				</div>
@@ -20,3 +24,18 @@ export default class ExampleFrame extends Component {
 		)
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+			windowwidth:state.controle.resize.windowwidth
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( ExampleFrame );

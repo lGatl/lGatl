@@ -60,13 +60,13 @@ class Travaux extends Component {
 
 		return(
 					<div style={{display:"flex"}}>
-						<div style={{flex:1}}>
+						<div style={{flex:this.props.mobile?0:1}}>
 							<SmartMenuTravaux titre={this.props.titre} hf={hf} fo={fo} vb={vb}></SmartMenuTravaux>
 						</div>
 						<div style={{flex:5}}>
 						{this.mosqoudet(hf,fo,vb)}
 						</div>
-						<div style={{flex:1}}></div>
+						<div style={{flex:this.props.mobile?0:1}}></div>
 				</div>
 		);
 
@@ -97,6 +97,7 @@ class Travaux extends Component {
 function mapStateToProps(state){
 	return (
 		{
+			mobile:state.controle.resize.windowwidth<600,
 			articles:state.article.all
 		}
 	);
