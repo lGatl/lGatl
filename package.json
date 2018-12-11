@@ -7,7 +7,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "bcrypt": "^3.0.2",
-    "gat-ui-react": "0.0.29",
+    "gat-ui-react": "0.0.30",
     "meteor-node-stubs": "^0.4.1",
     "node-mailjet": "^3.3.1",
     "react": "^16.6.3",

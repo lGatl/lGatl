@@ -97,8 +97,8 @@ class SmartMenuTravaux extends Component {
 		const { activeItem, hover } = this.state || {}
 		let mobile = this.props.resize.windowwidth<600
 		if(this.props.titre){
-			var scroll = this.state.marg/3
-				var marg = 10
+			var scroll = mobile?0:this.state.marg/3
+				var marg = mobile?0:10
 		}else{
 			var marg = mobile?0:100
 			var scroll= mobile?0:this.state.marg/1.5;
