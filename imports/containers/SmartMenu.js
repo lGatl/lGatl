@@ -1,7 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
+import { ACTIONS } from "../6_actions/actions";
+
 import { Menu, Item } from 'gat-ui-react'
 
-export default class MenuS extends Component {
+class SmartMenu extends Component {
 
 	constructor(){
 		super()
@@ -51,7 +56,6 @@ export default class MenuS extends Component {
 		if(title == "Logout"){
 			this.props.logOut(()=>{FlowRouter.go("/");});
 		}else if (url){
-			// menu.setActif(title);
 			FlowRouter.go(url);
 		}
 	}
@@ -61,7 +65,7 @@ export default class MenuS extends Component {
 				return	<Item
 					img = {img?img:""}
 					src = {src?src:""}
-					active={false }
+					active={this.props.generalMenu == title }
 					onClick={this.activeMenu.bind(this,title,url)}
 					key = { i }
 					style = {style?style:""}>
@@ -93,3 +97,17 @@ export default class MenuS extends Component {
 		);
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+			generalMenu:state.controle.generalMenu
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( SmartMenu );

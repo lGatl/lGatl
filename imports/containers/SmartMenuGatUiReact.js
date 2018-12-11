@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
 import { Menu, Item } from 'gat-ui-react'
 
- import SmartMenuGatUiReact from '../containers/SmartMenuGatUiReact.js'
-
-
-export default class MenuSS extends Component {
+class SmartMenuGatUiReact extends Component {
 
 	constructor(){
 		super()
@@ -37,10 +37,10 @@ export default class MenuSS extends Component {
 				justifyContent:"center",
 				border:"none",
 				boxShadow:"none",
-				color:"rgba(181,204,24,1)",
 				cursor: "default",
 				padding:0,
-				minHeight:0
+				minHeight:0,
+				marginTop:5
 			}
 		}
 	}
@@ -133,12 +133,14 @@ export default class MenuSS extends Component {
 		return tab.map(({title, text, url, display, img, src, action, style}, i)=> {
 			if(display!=undefined?display:true){
 				return	<Item
+					hover_style ={{color:'rgba(100,100,100,1)',fontWeight:"bold"}}
+					active_style={{fontWeight:"bold"}}
 					img = {img?img:""}
 					src = {src?src:""}
-					active={this.state.activeItem === title }
+					active={this.props.GURMenu === title }
 					onClick={this.activeMenu.bind(this,title,url)}
 					key = { i }
-					style = {style?style:""}>
+					style = {this.style().item}>
 					{ text?text:title }
 				</Item>;
 			}
@@ -148,6 +150,7 @@ export default class MenuSS extends Component {
 	render(){
 		const { item } = this.style();
 		const { activeItem, hover } = this.state || {}
+		let mobile = this.props.resize.windowwidth<600;
 		
 			var marg = 10
 			var scroll= 0//this.state.marg/1.5
@@ -155,11 +158,20 @@ export default class MenuSS extends Component {
 		let {hf,fo,vb} = this.props
 		return (
 
-				<Menu 
+				<Menu mobile={mobile}
+				style_box={{
+					position:"fixed", 
+					zIndex:9998,
+					backgroundColor:"white",
+					top:100 }}
 					style = {{
+						padding:10,
+						backgroundColor:"white",
 						animation:'menurond 0.5s linear',
-						transition: 'margin 0.9s, border-radius 0.4s',
+						transition: 'margin 0.9s, border-radius 0.4s, left:0.5S',
 						borderRadius: hover?'5px 40px 5px 5px':'5px 5px 5px 5px',
+						top:mobile?0:"auto",
+						overflow:"scroll",
 						margin:10,
 						marginTop:marg+"px",
 	   				transform: `translateY(${scroll}px)` 
@@ -178,15 +190,19 @@ export default class MenuSS extends Component {
 		);
 	}
 }
- // var MenuS = createContainer( ()=>{
+ function mapStateToProps(state){
+	return (
+		{
+			resize:state.controle.resize,
+			GURMenu:state.controle.GURMenu
+		}
+	);
+}
 
-	//  return {
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		
+	}, dispatch );
+}
 
-	// 	articles:{
-	// 		recup1:articles.recup1,
-	// 	}
-	//  };
-
- // } , MenuSS );
-
- // export default MenuS;
+export default connect( mapStateToProps, mapDispatchToProps )( SmartMenuGatUiReact );

@@ -1,6 +1,7 @@
-import React, {Component} from "react";
+import React, { Component }	from "react";
 
-export default class Titre1 extends Component {
+
+export default class Titre1Component extends Component {
 	
 	render(){
 		return (

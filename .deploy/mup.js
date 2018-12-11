@@ -41,7 +41,7 @@ module.exports = {
 
     docker: {
       // change to 'kadirahq/meteord' if your app is not using Meteor 1.4abernix/meteord:base
-      image: 'abernix/meteord:base',
+      image: "zodern/meteor:root",
       // imagePort: 80, // (default: 80, some images EXPOSE different ports)
     },
 

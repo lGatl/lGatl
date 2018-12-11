@@ -8,6 +8,8 @@ import reducers from "../7_reducers";
 
  import SmartMenu from "../containers/SmartMenu.js"
   import Footer from "../components/Footer.js"
+  import Resize from "../containers/Resize";
+
 
 var store={};
 
@@ -21,16 +23,17 @@ store = createStore(reducers,composeEnhancers(
 
 	return(
 		<Provider store={store}>	
+			
 			<div className="main-layout">
 				<div className="bodyLay">
 					<header>
 					<SmartMenu/>
+					<Resize/>
 					</header>
 						{content}
 					</div>
 				<Footer></Footer>
 			</div>
 		</Provider>
-
 		 );
 }

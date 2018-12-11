@@ -1,4 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
+import { ACTIONS } from "../6_actions/actions";
 
  import SmartMenuTravaux from '../containers/SmartMenuTravaux.js'
   import TravailDetail from '../components/TravailDetail.js'
@@ -12,7 +16,7 @@ import Titre3 from '../components/Titre3'
 
 import PropTypes from 'prop-types';
 
-export default class Travau extends Component {
+class Travaux extends Component {
 	constructor(){
 		super()
 		this.state={
@@ -20,15 +24,17 @@ export default class Travau extends Component {
 		}
 	}
 	componentWillMount(){
-	
+		this.props.setControle({generalMenu:'Travaux'})
+		this.props.getArticles()
 		
 	}
 
 
 	mosqoudet(hf,fo,vb){
 		if(this.props.titre){
+			this.props.setControle({travauxMenu:this.props.titre})
 			var nom= this.props.titre
-			tarticles=hf.concat(fo).concat(vb)
+			var tarticles=hf.concat(fo).concat(vb)
 			var larticle=tarticles.find((article)=>{return article.nom==nom})
 			if(larticle.categorie=="HorsFormation"){
 				var categorie=<Titre2>Langage du net</Titre2>
@@ -69,18 +75,38 @@ export default class Travau extends Component {
 		var hf=[]
 		var fo=[]
 		var vb=[]
-		// this.props.articles.liste.map((article)=>{
-		// 	if(article.categorie=="VBA"){vb.push(article)}
-		// 	if(article.categorie=="DansFormation"){fo.push(article)}
-		// 	if(article.categorie=="HorsFormation"){hf.push(article)}
-		// })
 
-			// var resultat = this.props.articles.liste.length > 0 ? this.afficher(hf,fo,vb) : <h1>Pas de data</h1>
+		if(this.props.articles){
+			this.props.articles.forEach((article)=>{
+			if(article.categorie=="VBA"){vb.push(article)}
+			if(article.categorie=="DansFormation"){fo.push(article)}
+			if(article.categorie=="HorsFormation"){hf.push(article)}
+		})
+		}
+			var resultat = this.props.articles&&this.props.articles.length>0 ? this.afficher(hf,fo,vb) : <h1>Pas de data</h1>
+
 		return(
 			<div style={{display:"flex",flexDirection:"column"}}>
 			<Titre1>Travaux</Titre1>
-				<div style={{margin:0,padding:0}}>{}</div>
+				<div style={{margin:0,padding:0}}>{resultat}</div>
 			</div>
 		)
 	}
 }
+
+function mapStateToProps(state){
+	return (
+		{
+			articles:state.article.all
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		getArticles: ACTIONS.Article.get,
+		setControle: ACTIONS.Controle.set
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Travaux );

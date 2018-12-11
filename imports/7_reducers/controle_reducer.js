@@ -16,7 +16,9 @@ export default function (  state = DEFAULTS, action ) {
 	case CONSTANTES.Controle.CHANGE_PAGE:
 		return { ...state, page: {...state.page, ...action.payload}  };
 		break;	
-	
+	case CONSTANTES.Controle.SET:
+	return { ...state,  ...action.payload };
+		break;	
 	
 	}
 	return state;

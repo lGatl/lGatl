@@ -1,4 +1,3 @@
-import {articles} from '../API/articles.js'
 Articles = [
 	{
 		nom: "ConvertisseurTVA",
@@ -149,9 +148,21 @@ Articles = [
 		description:["Interface (userform) pour la création d’un outil de saisie qui était proposé à nos clients afin de leur faciliter la saisie des réponses du sondage interne que nous leur demandions pour la réalisation d'un Bilan Carbone. Ce programme permettait d'éviter les erreurs car la feuille est protégée à l'écriture et le seul moyen de saisie est l'utilisation de l'interface.",{br:""}]
 	},
 ]
-articles.supprimetout()
-Articles.map((art)=>{
-	articles.ajout(art)
+
+// 	Meteor.call("rmArticle", {} ,(err,res)=>{
+// 		console.log('runed')
+// 		if(err){
+// 			console.log(err)
+// 		}else{console.log( "BOOOOOONCE")}
+// 	});
+// Articles.map(article=>{
+// 	Meteor.call("addArticle", article ,(err,res)=>{
+// 		console.log('runed')
+// 		if(err){
+// 			console.log(err)
+// 		}
+// 	});
+
+// })
 
 
-})

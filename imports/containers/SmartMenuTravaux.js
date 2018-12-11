@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
 import { Menu, Item } from 'gat-ui-react'
 
-class MenuSS extends Component {
+class SmartMenuTravaux extends Component {
 
 	constructor(){
 		super()
@@ -47,6 +50,7 @@ class MenuSS extends Component {
 			return {
 				title:don.titre,
 				display:true,
+				nom:don.nom,
 				url:"/Travaux/"+don.nom,
 				style:{
 					textAlign:"center",
@@ -71,12 +75,14 @@ class MenuSS extends Component {
 
 	items(tab){
 
-		return tab.map(({title, text, url, display, img, src, action, style}, i)=> {
+		return tab.map(({title, text, url, display, img, src, action, style, nom}, i)=> {
 			if(display){
 				return	<Item
+					hover_style ={{color:'rgba(100,100,100,1)',fontWeight:"bold"}}
+					active_style={{fontWeight:"bold"}}
 					img = {img?img:""}
 					src = {src?src:""}
-					active={this.state.activeItem === title }
+					active = {this.props.travauxMenu === nom }
 					onClick={this.activeMenu.bind(this,title,url)}
 					key = { i }
 					style = {style?style:""}>
@@ -99,10 +105,11 @@ class MenuSS extends Component {
 		let {hf,fo,vb} = this.props
 		return (
 
-				<Menu 
+				<Menu mobile={this.props.resize.windowwidth<600}
 					style = {{
+						backgroundColor:"white",
 						animation:'menurond 0.5s linear',
-						transition: 'margin 0.9s, border-radius 0.4s',
+						transition: 'margin 0.9s, border-radius 0.7s, left 0.5s',
 						borderRadius: hover?'5px 40px 5px 5px':'5px 5px 5px 5px',
 						margin:10,
 						marginTop:marg+"px",
@@ -138,7 +145,7 @@ class MenuSS extends Component {
 					}}>VBA Excel</Item>
 					{this.items(this.menu(vb))}
 					<Item
-					active={this.state.activeItem === 'Mosaique' }
+					active={this.props.travauxMenu === '' }
 					onClick={this.activeMenu.bind(this,"Mosaique",'Travaux')}
 					style={{
 							...item,
@@ -150,9 +157,23 @@ class MenuSS extends Component {
 				>Mosaique</Item>
 				</div>
 				</Menu>
-
-
-
 		);
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+			resize:state.controle.resize,
+			travauxMenu:state.controle.travauxMenu
+
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( SmartMenuTravaux );

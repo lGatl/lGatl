@@ -1,11 +1,19 @@
-import React, {Component} from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
+import { ACTIONS } from "../6_actions/actions";
+
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
 import Titre3 from '../components/Titre3.js'
 import MyName from '../components/MyName.js'
 import A from '../components/A.js'
 
-export default class Accueil extends Component {
+class Accueil extends Component {
+	componentWillMount(){
+		this.props.setControle({generalMenu:'Accueil'})
+	}
 	style(){
 
 	}
@@ -62,3 +70,17 @@ export default class Accueil extends Component {
 		);
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		setControle: ACTIONS.Controle.set
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Accueil );

@@ -3,9 +3,7 @@ import React, {Component} from 'react'
 import TitreTravail from './TitreTravail.js'
 import Titre3 from './Titre3.js'
 
-import PropTypes from 'prop-types';
-
-class Travai extends Component {
+export default class Travail extends Component {
 
 	constructor(){
 		super()

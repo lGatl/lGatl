@@ -4,7 +4,6 @@ import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'
 
 import SystemGrid from '../components/SystemGrid.js'
-import PropTypes from 'prop-types';
 
 
 export default class Mosaiq extends Component {

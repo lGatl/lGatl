@@ -8,7 +8,7 @@ export default class ExampleFrame extends Component {
 						flex:1,
 						backgroundColor:"rgba(230,230,230,1)",
 						padding:10,
-						margin:10,
+						margin:"10px 0px 10px 0px",
 						borderRadius:"20px"
 					}}>
 						{this.props.children[0]}

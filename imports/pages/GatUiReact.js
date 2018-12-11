@@ -1,4 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
+import { ACTIONS } from "../6_actions/actions";
+
 //import { Menu, Item } from 'gat-ui-react';
 import SmartMenuGatUiReact from '../containers/SmartMenuGatUiReact.js';
 
@@ -6,17 +11,20 @@ import ChoiceGURPage from '../components/ChoiceGURPage';
 import Titre1 from '../components/Titre1'
 
 
-export default class GatUiReact extends Component {
+class GatUiReact extends Component {
 
 	constructor(){
 		super()
 		this.state={ hover: false }
 	}
-		style(){
-			let { hover } = this.state;
-			return{	
-			}
+	componentWillMount(){
+		this.props.setControle({generalMenu:'gat-ui-react'})
+	}
+	style(){
+		let { hover } = this.state;
+		return{	
 		}
+	}
 
 	hover(param){
 		this.setState({hover:param})
@@ -40,3 +48,17 @@ export default class GatUiReact extends Component {
 		);
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		setControle: ACTIONS.Controle.set
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( GatUiReact );

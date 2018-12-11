@@ -1,10 +1,15 @@
-import React, {Component} from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
+import { ACTIONS } from "../6_actions/actions";
+
 import { Button, Form, Input, TextArea } from 'gat-ui-react'
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
 import Titre3 from '../components/Titre3.js'
 
-export default class Contact extends Component {
+class Contact extends Component {
 
 	constructor(){
 		super()
@@ -16,7 +21,9 @@ export default class Contact extends Component {
 			message:""
 		}
 	}
-
+	componentWillMount(){
+		this.props.setControle({generalMenu:'Contact'})
+	}
 	change(e){
 		e.preventDefault();
 		this.setState({[e.target.name]:e.target.value});
@@ -132,4 +139,17 @@ export default class Contact extends Component {
 	}
 }
 //VOIR ROWS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function mapStateToProps(state){
+	return (
+		{
+		}
+	);
+}
 
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		setControle: ACTIONS.Controle.set
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Contact );

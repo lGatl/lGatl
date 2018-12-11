@@ -1,4 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+import { ACTIONS } from "../6_actions/actions";
 
 import Home from '../pages/GURComponents/Home';
 import A from '../pages/GURComponents/A';
@@ -20,9 +23,11 @@ import Titre from '../pages/GURComponents/Titre';
 import Titre1 from '../pages/GURComponents/Titre1';
 
 
-export default class ChoiceGURPage extends Component {
+class ChoiceGURPage extends Component {
 
 	page(){
+		let {setControle} = this.props;
+		setControle({GURMenu:this.props.titre})
 		switch (this.props.titre) {
 			case 'A':
 				return <A/>
@@ -87,3 +92,17 @@ export default class ChoiceGURPage extends Component {
 		return this.page()
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		setControle: ACTIONS.Controle.set
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( ChoiceGURPage );

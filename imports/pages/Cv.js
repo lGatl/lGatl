@@ -1,4 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
+import { ACTIONS } from "../6_actions/actions";
+
 import Titre1 from '../components/Titre1.js'
 import Titre2 from '../components/Titre2.js'
 import CVTitleFrame from '../components/CVTitleFrame.js'
@@ -14,7 +19,11 @@ import A from '../components/A.js'
 //src='/images/photomoi.jpg'
 //>
 
-export default class CV extends Component {
+class CV extends Component {
+
+	componentWillMount(){
+		this.props.setControle({generalMenu:'Cv'})
+	}
 style(){
 	return{
 		green:{
@@ -358,4 +367,17 @@ contenu(){
 		)
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+		}
+	);
+}
 
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		setControle: ACTIONS.Controle.set
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( CV );

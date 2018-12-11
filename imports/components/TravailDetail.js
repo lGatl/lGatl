@@ -36,6 +36,7 @@ export default class TravailDetail extends Component {
 	}
 	afficher(){
 		if(this.props.article){
+			
 			return(
 				<div>
 				

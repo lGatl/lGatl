@@ -1,4 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
+
+import { ACTIONS } from "../6_actions/actions";
+
 import Titre1 from '../components/Titre1'
 import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'
@@ -6,8 +11,11 @@ import AH2 from '../components/AH2'
 
 import PropTypes from 'prop-types';
 
-export default class Formations extends Component {
+class Formations extends Component {
 
+	componentWillMount(){
+		this.props.setControle({generalMenu:'Formations'})
+	}
 	style(){ return{
 		backgroundColor:'rgba(24,180,204,0.07)',
 		padding:20,
@@ -71,3 +79,17 @@ export default class Formations extends Component {
 		);
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		setControle: ACTIONS.Controle.set
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Formations );
