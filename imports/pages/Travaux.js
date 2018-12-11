@@ -7,7 +7,6 @@ import { ACTIONS } from "../6_actions/actions";
  import SmartMenuTravaux from '../containers/SmartMenuTravaux.js'
   import TravailDetail from '../components/TravailDetail.js'
 
-import SystemGrid from '../components/SystemGrid.js'
 import Mosaiq from '../components/Mosaiq.js'
 
 import Titre1 from '../components/Titre1'
@@ -57,16 +56,17 @@ class Travaux extends Component {
 
 	}
 	afficher(hf,fo,vb){
+		let mobile = this.props.windowwidth<600
 
 		return(
 					<div style={{display:"flex"}}>
-						<div style={{flex:this.props.mobile?0:1}}>
+						<div style={{flex:mobile?0:1}}>
 							<SmartMenuTravaux titre={this.props.titre} hf={hf} fo={fo} vb={vb}></SmartMenuTravaux>
 						</div>
-						<div style={{flex:5}}>
+						<div style={{flex:5,maxWidth:mobile?this.props.windowwidth:'auto'}}>
 						{this.mosqoudet(hf,fo,vb)}
 						</div>
-						<div style={{flex:this.props.mobile?0:1}}></div>
+						<div style={{flex:mobile?0:1}}></div>
 				</div>
 		);
 
@@ -97,7 +97,7 @@ class Travaux extends Component {
 function mapStateToProps(state){
 	return (
 		{
-			mobile:state.controle.resize.windowwidth<600,
+			windowwidth:state.controle.resize.windowwidth,
 			articles:state.article.all
 		}
 	);
