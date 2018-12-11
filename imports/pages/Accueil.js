@@ -14,6 +14,7 @@ class Accueil extends Component {
 	componentWillMount(){
 		this.props.setControle({generalMenu:'Accueil'})
 	}
+	
 	style(){
 
 	}
