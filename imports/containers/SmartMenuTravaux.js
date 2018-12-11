@@ -2,7 +2,9 @@ import React, { Component }	from "react";
 import { bindActionCreators }	from "redux";
 import { connect } 				from "react-redux";
 
-import { Menu, Item } from 'gat-ui-react'
+import { Menu, Item } from 'gat-ui-react';
+
+import { throttle } from "../8_libs/throttle";
 
 class SmartMenuTravaux extends Component {
 
@@ -13,7 +15,7 @@ class SmartMenuTravaux extends Component {
 			marg:0,
 			lastTo:0,
 		}
-		this.handleScroll = this.handleScroll.bind(this)
+		this.handleScroll = throttle(this.handleScroll.bind(this),20)
 	}
 	componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
@@ -120,7 +122,7 @@ class SmartMenuTravaux extends Component {
 						transition: 'margin 0.9s, border-radius 0.7s, left 0.5s',
 						borderRadius: hover?'5px 40px 5px 5px':'5px 5px 5px 5px',
 						margin:10,
-						top:mobile?100:"auto",
+						top:mobile?0:"auto",
 						marginTop:marg+"px",
 	   				transform: `translateY(${scroll}px)` 
 					}}>
