@@ -17,7 +17,10 @@ export default class ImgComponent extends Component {
 					<PCode>
 						{EXEMPLE}	
 					</PCode>
-					<Img alt ='image' src='/images/image.png'>
+					<Img 
+						alt ='image' src='/images/image.png' 
+						im_style={{minWidth:50}}
+					>
 						<div>salut</div>
 					</Img>
 				</ExampleFrame>
@@ -40,7 +43,10 @@ import { Img } from 'gat-ui-react'
 
 export default class ImgExemple extends Component {
   render(){
-  return <Img alt ='image' src='/images/image.png'>
+  return <Img 
+            alt ='image' src='/images/image.png' 
+            im_style={{minWidth:50}}
+          >
             <div>salut</div>
           </Img>
   }
