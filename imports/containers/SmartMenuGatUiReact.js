@@ -78,6 +78,10 @@ class SmartMenuGatUiReact extends Component {
 					url:"/gat-ui-react/Form"
 				},
 				{
+					title:"Img",
+					url:"/gat-ui-react/Img"
+				},
+				{
 					title:"Input",
 					url:"/gat-ui-react/Input"
 				},
@@ -104,14 +108,6 @@ class SmartMenuGatUiReact extends Component {
 				{
 					title:"TextArea",
 					url:"/gat-ui-react/TextArea"
-				},
-				{
-					title:"Titre",
-					url:"/gat-ui-react/Titre"
-				},
-				{
-					title:"Titre1",
-					url:"/gat-ui-react/Titre1"
 				},
 		]
 	}

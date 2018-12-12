@@ -15,13 +15,12 @@ import Input from '../pages/GURComponents/Input';
 import Menu from '../pages/GURComponents/Menu';
 import Rating from '../pages/GURComponents/Rating';
 import Notification from '../pages/GURComponents/Notification';
+import Img from '../pages/GURComponents/Img';
 import Popup from '../pages/GURComponents/Popup';
 import Segment from '../pages/GURComponents/Segment';
 import Table from '../pages/GURComponents/Table';
 import TextArea from '../pages/GURComponents/TextArea';
-import Titre from '../pages/GURComponents/Titre';
-import Titre1 from '../pages/GURComponents/Titre1';
-
+import Titles from '../pages/GURComponents/Titles';
 
 class ChoiceGURPage extends Component {
 
@@ -62,6 +61,9 @@ class ChoiceGURPage extends Component {
 			case 'Notification':
 				return <Notification/>
 				break;
+			case 'Img':
+				return <Img/>
+				break;
 			case 'Popup':
 				return <Popup/>
 				break;
@@ -74,11 +76,8 @@ class ChoiceGURPage extends Component {
 			case 'TextArea':
 				return <TextArea/>
 				break;
-			case 'Titre':
-				return <Titre/>
-				break;
-			case 'Titre1':
-				return <Titre1/>
+			case 'Titles':
+				return <Titles/>
 				break;
 		  default:
 		  	return <Home/>
