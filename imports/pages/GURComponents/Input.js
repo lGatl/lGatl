@@ -48,6 +48,7 @@ export default class InputComponent extends Component {
 				<Titre3>Optional Parameters : </Titre3><br/>
 				<Code>label</Code> : string - Write a text before the Input. <br/>
 				<Code>placeholder</Code>: string - Precise a placeholder. <br/>
+				<Code>style</Code> : object - Change the style of input's container.<br/>
 </div>
 		);
 	}

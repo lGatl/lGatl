@@ -35,7 +35,7 @@ export default class ButtonComponent extends Component {
 				<Titre3>Parameter : </Titre3><br/>
 				<Code>onClick</Code> : function - Put here the function who will be run on the click. <br/>
 				<Titre3>Optional Parameter : </Titre3><br/>
-				<Code>style</Code> : js - Change the style of this Button, it will crush the default. <br/>
+				<Code>style</Code> : object - Change the style of this Button, it will crush the default. <br/>
 
 			</div>
 			

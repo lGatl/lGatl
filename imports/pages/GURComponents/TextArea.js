@@ -48,6 +48,7 @@ export default class TextAreaComponent extends Component {
 				<Titre3>Optional Parameters : </Titre3><br/>
 				<Code>label</Code> : string - Write a text before the TextArea. <br/>
 				<Code>placeholder</Code>: string - Precise a placeholder <br/>
+				<Code>style</Code> : object - Change the style of the textArea and textArea's container.<br/>
 </div>
 		);
 	}

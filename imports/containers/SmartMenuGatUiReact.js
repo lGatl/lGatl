@@ -155,16 +155,15 @@ class SmartMenuGatUiReact extends Component {
 		return (
 
 				<Menu mobile={mobile}
-				style_box={{
-					position:"fixed", 
-					zIndex:9998,
-					backgroundColor:"white",
-					top:100 }}
+					style_box={{
+						position:"fixed", 
+						zIndex:9998,
+						backgroundColor:"white",
+						top:100 }}
 					style = {{
-						padding:10,
 						backgroundColor:"white",
 						animation:'menurond 0.5s linear',
-						transition: 'margin 0.9s, border-radius 0.4s, left:0.5S',
+						transition: 'margin 0.9s, border-radius 0.7s, left 0.5s',
 						borderRadius: hover?'5px 40px 5px 5px':'5px 5px 5px 5px',
 						top:mobile?0:"auto",
 						overflow:"scroll",
@@ -172,7 +171,7 @@ class SmartMenuGatUiReact extends Component {
 						marginTop:marg+"px",
 	   				transform: `translateY(${scroll}px)` 
 					}}>
-					<div 
+					<div style={{flex:1,padding:10}}
 					onMouseEnter={this.hover.bind(this,true)}
           onMouseLeave={this.hover.bind(this,false)}>
 				

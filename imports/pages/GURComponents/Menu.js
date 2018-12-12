@@ -110,16 +110,51 @@ export default class MenuComponent extends Component {
 								this.item(this.itemsPrepare())
 							}
 						</Menu>
+						With parameters mobile and right :
+						<Menu mobile right style = {{
+							top:0,
+							flex:1,
+							color:"white", 
+							backgroundColor:"rgba(24, 100, 250, 1)", 
+							flexWrap: "wrap", 
+							justifyContent:"flex-start",
+							 ...this.props.style 
+						}}>
+							<Item 
+								hover_style={{cursor:"default"}} 
+								style = {{fontWeight: "bold", height:50}}
+							>
+								Not Used
+							</Item>
+							{ 
+								this.item(this.itemsPrepare())
+							}
+						</Menu>
+
 					</div>
 				</ExampleFrame>
 				<Code>this.state.active =</Code> { '"'+this.state.active+'"' } <br/>
-				<Titre3>Parameters : </Titre3><br/>
-				<Code>name</Code>: string - Identify your Menu. <br/>
-				<Code>onChange</Code> : function - Controle your Menu with this parameter. She return the name and the value to controle easily this component. <br/>
-				<Code>value</Code> : string - Put here the controled value. <br/>
-				<Titre3>Optional Parameters : </Titre3><br/>
-				<Code>label</Code> : string - Write a text before the Menu. <br/>
-				<Code>placeholder</Code>: string - Precise a placeholder. <br/>
+				<Titre3>Menu Children : </Titre3><br/>
+					Give Items components (or others) to complete your Menu.
+				<Titre3>Menu Optional Parameters : </Titre3><br/>
+					<Code>row</Code> : boolean - To display this menue as row. Column without this parameter. <br/>
+					<Code>mobile</Code> : boolean - To display a box and hide the menu. The menu is shown on the box click.<br/>
+					<Code>right</Code> : boolean - Menu come from right else left (only if mobile parameter is present).<br/>
+					<Code>style</Code> : object - Change the style of the menu.<br/>
+					<Code>style_box</Code> : object - Change the style of the box.<br/>
+					<Code>className</Code> : string - To give a className.<br/>
+
+				<Titre3>Item Children : </Titre3><br/>
+					Displayed if no image by the parameter img.<br/>
+				<Titre3>Item Optional Parameters : </Titre3><br/>
+				<Code>style </Code> : object - To specify the style of the Item.<br/>
+				<Code>href</Code> : string - Items arent a link, if you want you can use the href of this link. <br/>
+				<Code>onClick</Code> : function - If you want to controle what happend on click.<br/>
+				<Code>img</Code> : string - To display a Image give src here.<br/>
+				<Code>hover_style</Code> : object - To change the style of hovers Item. <br/>
+				<Code>active</Code> : boolean - To know if this Item is active. <br/>
+				<Code>active_style</Code> : object - To change the style of actives Item. <br/>
+				
 		</div>
 		);
 	}

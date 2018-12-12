@@ -46,6 +46,7 @@ export default class CheckboxComponent extends Component {
 				<Code>checked</Code> : boolean - Put here the controled value. <br/>
 				<Titre3>Optional Parameter : </Titre3><br/>
 				<Code>label</Code> : string - Write a text before the date. <br/>
+				<Code>style</Code> : object - Change the style of checkbox's container.<br/>
 </div>
 		);
 	}

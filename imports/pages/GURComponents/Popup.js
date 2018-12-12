@@ -54,7 +54,7 @@ export default class AComponent extends Component {
 				<Titre3>Parameter : </Titre3><br/>
 				<Code>open</Code> : Boolean - Control if the Popup must appears  <br/>
 				<Titre3>Optional Parameter : </Titre3><br/>
-				<Code>style</Code> : js - Change the style of this Popup, it will crush the default. <br/>
+				<Code>style</Code> : object - Change the style of this Popup, it will crush the default. <br/>
 			</div>	
 		)
 		

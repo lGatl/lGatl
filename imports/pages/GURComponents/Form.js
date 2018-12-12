@@ -102,7 +102,7 @@ export default class FormExample extends Component {
 				<Titre3>Children :</Titre3><br/>
 					Children are returned displayed flex to column direction. <br/>
 				<Titre3>Optional Parameters : </Titre3><br/>
-				<Code>style</Code> : js - Change the style of this Form, it will crush the default. <br/>
+				<Code>style</Code> : object - Change the style of this Form, it will crush the default. <br/>
 				<Code>onSubmit</Code> : string - Run a function if a input in this form is submit <br/>
 			</div>
 		)

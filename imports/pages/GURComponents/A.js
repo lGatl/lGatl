@@ -22,7 +22,7 @@ export default class AComponent extends Component {
 				<Titre3>Parameter : </Titre3><br/>
 				<Code>href</Code> : string - target adresse of this link.  <br/>
 				<Titre3>Optional Parameter : </Titre3><br/>
-				<Code>style</Code> : js - Change the style of this Link, it will crush the default. <br/>
+				<Code>style</Code> : object - Change the style of this Link, it will crush the default. <br/>
 				<Code>draggable</Code> : boolean - precise the draggable propertie of the link.
 				
 			</div>	

@@ -126,7 +126,7 @@ class SmartMenuTravaux extends Component {
 						marginTop:marg+"px",
 	   				transform: `translateY(${scroll}px)` 
 					}}>
-					<div 
+					<div
 					onMouseEnter={this.hover.bind(this,true)}
           onMouseLeave={this.hover.bind(this,false)}>
 					<Item style={{
