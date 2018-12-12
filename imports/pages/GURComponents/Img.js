@@ -22,7 +22,7 @@ export default class ImgComponent extends Component {
 					</Img>
 				</ExampleFrame>
 				<Titre3>Children: </Titre3><br/>
-				If you put children into Img, it will appears on the image
+				If you put children into Img, it will appears on the image<br/>
 				<Titre3>Parameter : </Titre3><br/>
 				<Code>src</Code> : string - src of the image  <br/>
 				<Code>alt</Code> : string - alt of the image  <br/>
