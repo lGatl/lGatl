@@ -78,7 +78,7 @@ class SmartMenuTravaux extends Component {
 	items(tab){
 
 		return tab.map(({title, text, url, display, img, src, action, style, nom}, i)=> {
-			if(display){
+			if(display!=undefined?display:true){
 				return	<Item
 					hover_style ={{color:'rgba(100,100,100,1)',fontWeight:"bold"}}
 					active_style={{fontWeight:"bold"}}
@@ -97,7 +97,7 @@ class SmartMenuTravaux extends Component {
 	render(){
 		const { item } = this.style();
 		const { activeItem, hover } = this.state || {}
-		let mobile = this.props.resize.windowwidth<600
+		let mobile = this.props.resize.windowwidth<700
 		if(this.props.titre){
 			var scroll = mobile?0:this.state.marg/3
 				var marg = mobile?0:10

@@ -40,11 +40,11 @@ export default class CalendarComponent extends Component {
 					/>
 				</ExampleFrame>
 				<Code>this.state.test_calendar =</Code> { test_calendar.toString() } <br/>
-				<Titre3>Parameters : </Titre3><br/>
+				<Titre3>Parameters</Titre3><br/>
 				<Code>name</Code> : string - Identify your Calendar. <br/>
 				<Code>onChange</Code> : function - Controle your calendar with this parameter. she return the name and the value to controle easily this component. <br/>
 				<Code>date</Code> : date - Put here the controled value<br/>
-				<Titre3>Optional Parameter : </Titre3><br/>
+				<Titre3>Optional Parameter</Titre3><br/>
 				<Code>label</Code> : string - Write a text before the date. <br/>
 </div>
 		);

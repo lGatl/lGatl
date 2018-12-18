@@ -28,14 +28,14 @@ export default class CarrouselComponent extends Component {
 			<div>
 				<Titre2>Carrousel</Titre2><br/>
 				A flex component to display three  flex components in a same space <br/>
-				<Titre3>Exemple :</Titre3>
+				<Titre3>Exemple</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}
 					</PCode>
 					<Carrousel tableau={this.annonces()}/>
 				</ExampleFrame>
-				<Titre3>Parameter : </Titre3><br/>
+				<Titre3>Parameter</Titre3><br/>
 				<Code>tableau</Code> : Array - One array of the three components to display <br/>
 			</div>	
 			

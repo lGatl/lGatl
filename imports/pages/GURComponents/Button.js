@@ -18,7 +18,7 @@ export default class ButtonComponent extends Component {
 			<div>
 				<Titre2>Button</Titre2><br/>
 				Use a simple pretty Button <br/>
-				<Titre3>Example : </Titre3>
+				<Titre3>Example</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}
@@ -30,11 +30,11 @@ export default class ButtonComponent extends Component {
 						Click
 					</Button>
 				</ExampleFrame>
-				<Titre3>Children :</Titre3><br/>
+				<Titre3>Children</Titre3><br/>
 					Children of Button give the name of this Button. <br/>
-				<Titre3>Parameter : </Titre3><br/>
+				<Titre3>Parameter</Titre3><br/>
 				<Code>onClick</Code> : function - Put here the function who will be run on the click. <br/>
-				<Titre3>Optional Parameter : </Titre3><br/>
+				<Titre3>Optional Parameter</Titre3><br/>
 				<Code>style</Code> : object - Change the style of this Button, it will crush the default. <br/>
 
 			</div>

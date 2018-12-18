@@ -27,7 +27,7 @@ export default class InputComponent extends Component {
 			<div>
 			<Titre2>Input</Titre2><br/>
 				A simple Input easy to controle. <br/>
-				<Titre3>Example :</Titre3>
+				<Titre3>Example </Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}
@@ -41,11 +41,11 @@ export default class InputComponent extends Component {
 					/>
 				</ExampleFrame>
 				<Code>this.state.test_input =</Code> { '"'+test_input+'"' } <br/>
-				<Titre3>Parameters : </Titre3><br/>
+				<Titre3>Parameters </Titre3><br/>
 				<Code>name</Code>: string - Identify your Input. <br/>
 				<Code>onChange</Code> : function - Controle your Input with this parameter. She return the name and the value to controle easily this component. <br/>
 				<Code>value</Code> : string - Put here the controled value. <br/>
-				<Titre3>Optional Parameters : </Titre3><br/>
+				<Titre3>Optional Parameters </Titre3><br/>
 				<Code>label</Code> : string - Write a text before the Input. <br/>
 				<Code>placeholder</Code>: string - Precise a placeholder. <br/>
 				<Code>style</Code> : object - Change the style of input's container.<br/>

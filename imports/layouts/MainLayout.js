@@ -6,9 +6,10 @@ import ReduxPromise from "redux-promise";
 
 import reducers from "../7_reducers";
 
- import SmartMenu from "../containers/SmartMenu.js"
-  import Footer from "../components/Footer.js"
-  import Resize from "../containers/Resize";
+import SmartMenu from "../containers/SmartMenu.js"
+import Footer from "../components/Footer.js"
+import Resize from "../containers/Resize";
+import InitState from '../containers/InitState';
 
 
 var store={};
@@ -27,6 +28,7 @@ store = createStore(reducers,composeEnhancers(
 			<div className="main-layout">
 				<div className="bodyLay">
 					<header>
+					<InitState/>
 					<SmartMenu/>
 					<Resize/>
 					</header>

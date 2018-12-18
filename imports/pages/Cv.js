@@ -79,7 +79,7 @@ contenu(){
 					fontWeight:"bold"
 				}}>
 					
-						<CVTitleFrame>Competences :</CVTitleFrame>
+						<CVTitleFrame>Competences</CVTitleFrame>
 						<CVRow >
 						<CVColumn flex={1} style={{minWidth:200}}>
 							Technologies :
@@ -113,7 +113,7 @@ contenu(){
 					
 				</CVFrame>
 			<CVFrame>
-				<CVTitleFrame>Expériences Professionnelles :</CVTitleFrame>
+				<CVTitleFrame>Expériences Professionnelles</CVTitleFrame>
 				<CVRowXP>
 					<span>
 						Depuis 2018
@@ -175,7 +175,7 @@ contenu(){
 				
 				</CVFrame>
 				<CVFrame>
-					<CVTitleFrame>Projets Personnels :</CVTitleFrame>
+					<CVTitleFrame>Projets Personnels</CVTitleFrame>
 						<CVRowXP>
 							<span>
 								2018
@@ -244,7 +244,7 @@ contenu(){
 					
 				</CVFrame>
 				<CVFrame>
-					<CVTitleFrame>Autres expériences :</CVTitleFrame>
+					<CVTitleFrame>Autres expériences</CVTitleFrame>
 						<CVRowXP>
 						<span>
 							De 2010 à 2016
@@ -291,7 +291,7 @@ contenu(){
 					</CVRowXP>
 				</CVFrame>
 				<CVFrame>
-					<CVTitleFrame>Formations :</CVTitleFrame>
+					<CVTitleFrame>Formations</CVTitleFrame>
 					<CVRowXP>
 						<span>
 							2016-2017
@@ -337,12 +337,12 @@ contenu(){
 				<CVFrame>
 					<CVRow>
 					<CVColumn flex={1} style={{minWidth:200, alignItems:"center", textAlign:"center"}}>
-						<CVTitleFrame>Langues :</CVTitleFrame>
+						<CVTitleFrame>Langues</CVTitleFrame>
 						Anglais : niveau d'étude supérieur (bac+2) <br/>
 						Allemand : niveau lycée
 					</CVColumn>
 					<CVColumn flex={1} style={{minWidth:200, alignItems:"center", textAlign:"center"}}>
-						<CVTitleFrame>Loisirs :</CVTitleFrame>
+						<CVTitleFrame>Loisirs</CVTitleFrame>
 						Guitare (20 ans) <br/>
 						Cuisine,
 						Escalade, VTT <br/>

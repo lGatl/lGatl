@@ -41,7 +41,7 @@ export default class TravailDetail extends Component {
 				<div>
 				
 				<div style={{paddingTop:0,marginTop:"10px"}}>
-				<Titre4>{this.props.article.titre} :</Titre4>
+				<Titre4>{this.props.article.titre}</Titre4>
 			<div style={{...this.style()}}>
 				
 				{this.props.article.description.map((des,i)=>{

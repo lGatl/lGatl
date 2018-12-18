@@ -12,7 +12,7 @@ class Resize extends Component {
 		this.resize = throttle(this.resize.bind(this),40);
 	}
 	componentWillMount(){
-		this.props.resize({windowwidth:window.innerWidth});		
+		this.props.controleSet({resize:{windowwidth:window.innerWidth}});		
 	}
 	componentDidMount() {
 		window.addEventListener("resize", this.resize);
@@ -23,7 +23,7 @@ class Resize extends Component {
 	}
 	//==============CONTROLE====================
 	resize(){
-		this.props.resize({windowwidth:window.innerWidth});
+		this.props.controleSet({resize:{windowwidth:window.innerWidth}});
 	}
 	
 	//========================Preparation du rendu========================
@@ -44,19 +44,10 @@ class Resize extends Component {
 	}
 }
 
-function mapStateToProps( state ){
-	return (
-		{
-			resize: state.controle.resize,
-		}
-	);
-}
-
 function mapDispatchToProps( dispatch ){
 	return bindActionCreators({
-		resize: ACTIONS.Controle.resize,
-
+		controleSet: ACTIONS.Controle.set,
 	}, dispatch );
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( Resize );
+export default connect( null, mapDispatchToProps )( Resize );

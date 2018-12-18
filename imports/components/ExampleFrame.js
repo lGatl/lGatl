@@ -5,6 +5,7 @@ import { connect } 				from "react-redux";
 
 class ExampleFrame extends Component {
 	render(){
+				let width = this.props.windowwidth >= 700 ?this.props.windowwidth-200:this.props.windowwidth-50
 		return(
 				<div style={{display:"flex",flexWrap:"wrap", flex:1}}>
 					<div style = {{
@@ -13,7 +14,7 @@ class ExampleFrame extends Component {
 						padding:10,
 						margin:"10px 0px 10px 0px",
 						borderRadius:"20px",
-						maxWidth:this.props.windowwidth-50
+						maxWidth:width
 					}}>
 						{this.props.children[0]}
 				</div>

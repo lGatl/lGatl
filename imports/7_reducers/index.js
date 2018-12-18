@@ -5,7 +5,7 @@ import { REDUCERS } from "./reducer";
 import  MenuREDUCER from "./menu_reducer";
 import  TitreREDUCER from "./titre_reducer";
 import  ControleREDUCER from "./controle_reducer";
-
+import  ErrorREDUCER from "./error_reducer";
 
 const ROOT_REDUCER = combineReducers({
 	...REDUCERS,
@@ -13,5 +13,6 @@ const ROOT_REDUCER = combineReducers({
 	menu: MenuREDUCER,
 	controle: ControleREDUCER,
 	titre: TitreREDUCER,
+	error: ErrorREDUCER
 });
 export default ROOT_REDUCER;

@@ -48,6 +48,11 @@ class SmartMenu extends Component {
 					title:"gat-ui-react",
 					display:true,
 					url:"/gat-ui-react"
+				},
+				{
+					title:"chain-meteor-react-redux",
+					display:true,
+					url:"/chain-meteor-react-redux"
 				}
 		]
 	}

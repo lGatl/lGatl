@@ -25,10 +25,10 @@ export default class Titre2 extends Component {
 	render(){
 		
 		return (
-					<h1 style={{...this.style()}} 
+					<div><h1 style={{...this.style()}} 
 						onMouseEnter={this.hover.bind(this,true)}
           	onMouseLeave={this.hover.bind(this,false)}
-					>{this.props.children}</h1>
+					>{this.props.children}</h1></div>
 
 		);
 	}

@@ -24,12 +24,12 @@ export default class ImgComponent extends Component {
 						<div>salut</div>
 					</Img>
 				</ExampleFrame>
-				<Titre3>Children: </Titre3><br/>
+				<Titre3>Children</Titre3><br/>
 				If you put children into Img, it will appears on the image<br/>
-				<Titre3>Parameter : </Titre3><br/>
+				<Titre3>Parameter </Titre3><br/>
 				<Code>src</Code> : string - src of the image  <br/>
 				<Code>alt</Code> : string - alt of the image  <br/>
-				<Titre3>Optional Parameter : </Titre3><br/>
+				<Titre3>Optional Parameter </Titre3><br/>
 				<Code>style</Code> : object - Change the style of the container of Img with children <br/>
 				<Code>im_style</Code> : object - Change the style of the image of Img <br/>
 			</div>	

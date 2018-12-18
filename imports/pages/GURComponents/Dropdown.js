@@ -34,7 +34,7 @@ export default class DropdownComponent extends Component {
 			<div>
 			<Titre2>Dropdown</Titre2><br/>
 				A simple Dropdown easy to controle. <br/>
-				<Titre3>Example :</Titre3>
+				<Titre3>Example</Titre3>
 				<ExampleFrame>
 					<PCode>
             {EXEMPLE}
@@ -50,12 +50,12 @@ export default class DropdownComponent extends Component {
 				</ExampleFrame>
 				<Code>this.state.test_dropdown =</Code> { '"'+test_dropdown+'"' } <br/>
 
-				<Titre3>Parameters : </Titre3><br/>
+				<Titre3>Parameters</Titre3><br/>
 				<Code>name</Code>: string - Identify your Dropdown. <br/>
 				<Code>options</Code>: array - Give the possible values like this : {'{ value: "value1", text: "choice1" }'} <br/>
 				<Code>onChange</Code> : function - Controle your Dropdown with this parameter. She return the name and the value to controle easily this component. <br/>
 				<Code>value</Code> : string - Put here the controled value. <br/>
-				<Titre3>Optional Parameters : </Titre3><br/>
+				<Titre3>Optional Parameters</Titre3><br/>
 				<Code>label</Code> : string - Write a text before the Dropdown. <br/>
 				<Code>placeholder</Code>: string - Precise a placeholder <br/>
 

@@ -1,10 +1,10 @@
-export const CONSTANTE_Titre = { 
+export const CONSTANT_Titre = { 
 	TITRE_PAGE: "Titre_TITRE_PAGE",
 };
 
 function titrePage(val){
 	return {
-		type: CONSTANTE_Titre.TITRE_PAGE,
+		type: CONSTANT_Titre.TITRE_PAGE,
 		payload: val
 	};
 }

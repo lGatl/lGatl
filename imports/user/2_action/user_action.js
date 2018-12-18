@@ -4,7 +4,7 @@ import {
 
 import { Meteor } from 'meteor/meteor'
 
-export const CONSTANTE_Users = { 
+export const CONSTANT_Users = { 
 	CREE_COMPTE: "User_CREE_COMPTE",
 	GET_ACTIVE_USER: "User_GET_ACTIVE_USER",
 	LOG_IN: "Users_LOG_IN",
@@ -21,7 +21,7 @@ function creeCompte(user, cbk = ()=>{}){
 		});
 	});
 	return {
-		type: 		CONSTANTE_Users.CREE_COMPTE,
+		type: 		CONSTANT_Users.CREE_COMPTE,
 		payload: 	p
 	};
 }
@@ -35,7 +35,7 @@ function logIn(user, password, cbk = ()=>{}){
 		});
 	});
 	return {
-		type: 		CONSTANTE_Users.LOG_IN,
+		type: 		CONSTANT_Users.LOG_IN,
 		payload: 	p
 	};
 }
@@ -49,7 +49,7 @@ function logOut( cbk = ()=>{}){
 		});
 	});
 	return {
-		type: 		CONSTANTE_Users.LOG_OUT,
+		type: 		CONSTANT_Users.LOG_OUT,
 		payload: 	p
 	};
 }
@@ -73,7 +73,7 @@ export function getActiveUser( cbk = ()=>{} ){ /*on recupere des infos sur l'use
 		);
 	});
 	return {
-		type: 		CONSTANTE_Users.GET_ACTIVE_USER,
+		type: 		CONSTANT_Users.GET_ACTIVE_USER,
 		payload: 	p
 	};
 }

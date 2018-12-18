@@ -65,7 +65,7 @@ export default class MenuComponent extends Component {
 				<div>
 			<Titre2>Menu</Titre2><br/>
 				A simple Menu easy to controle. <br/>
-				<Titre3>Example :</Titre3>
+				<Titre3>Example </Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}

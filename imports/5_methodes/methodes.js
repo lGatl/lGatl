@@ -1,5 +1,5 @@
 import SimpleSchema from "simpl-schema";
-export const COLLECTIONS = ["Users","Article"];
+export const COLLECTIONS = ["Users","Article","Test"];
 
 const SCHEMA ={
 	// Test : new SimpleSchema({
@@ -16,7 +16,7 @@ COLLECTIONS.forEach((COLLECTION) =>{
 		[ "add" + COLLECTION ]:(obj)=>{ 
 			return BD[COLLECTION].insert(obj); // retourne l'id du nouvel objet
 		},
-		[ "get" + COLLECTION+"s" ]:(obj={},ssl)=>{
+		[ "get" + COLLECTION ]:(obj={},ssl)=>{
 			ssl = typeof (ssl) == 'object' && ssl !=null && Object.keys(ssl).length > 0 ?ssl:false
 			if(ssl){
 				return BD[COLLECTION].find(obj, ssl).fetch();
@@ -29,7 +29,7 @@ COLLECTIONS.forEach((COLLECTION) =>{
 
 			return BD[COLLECTION].findOne(obj); // retourne l'objet trouvé
 		},
-		[ "count" + COLLECTION+"s" ]:(obj)=>{
+		[ "count" + COLLECTION ]:(obj)=>{
 			return BD[COLLECTION].find(obj).count(); // retourne le compte d'éléments qui correspond à la condition de find
 		},
 		[ "rm" + COLLECTION ]:(obj)=>{

@@ -12,6 +12,9 @@
 	import Formation from '../pages/Formations.js';
 	import Experiences from '../pages/Experiences.js';
 	import GatUiReact from '../pages/GatUiReact.js';
+	import ChainMeteorReactRedux from '../pages/ChainMeteorReactRedux.js';
+	import InfiniteScroll from '../pages/CMRRComponents/InfiniteScroll.js';
+
 	import TravailDetail from '../components/TravailDetail.js';
 
  FlowRouter.route('/', {
@@ -72,10 +75,30 @@ FlowRouter.route('/gat-ui-react', {
 	 }
  });
 FlowRouter.route('/gat-ui-react/:titre', {
-	name: 'Travail',
+	name: 'GatUiReact',
 	action: function (params) {
 		mount(MainLayout, { content: <GatUiReact titre={params.titre} /> });
 	 window.scrollTo(0, 0)
 	},
 });
-
+FlowRouter.route('/chain-meteor-react-redux', {
+	 name: 'ChainMeteorReactRedux',
+	 action: function() {
+		 mount(MainLayout, {content: <ChainMeteorReactRedux />});
+	 window.scrollTo(0, 0)
+	 }
+ });
+FlowRouter.route('/chain-meteor-react-redux/:titre/', {
+	name: 'ChainMeteorReactRedux',
+	action: function (params) {
+		mount(MainLayout, { content: <ChainMeteorReactRedux titre={params.titre}/> });
+	 window.scrollTo(0, 0)
+	},
+});
+FlowRouter.route('/chain-meteor-react-redux/:titre/:param', {
+	name: 'ChainMeteorReactRedux',
+	action: function (params) {
+		mount(MainLayout, { content: <ChainMeteorReactRedux titre={params.titre} param={params.param}/> });
+	 window.scrollTo(0, 0)
+	},
+});

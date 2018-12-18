@@ -21,9 +21,9 @@ export default class SegmentComponent extends Component {
 						style = {{padding:10, flex:1}}
 					> a Segment </Segment>
 				</ExampleFrame>
-					<Titre3>Menu Children : </Titre3><br/>
+					<Titre3>Menu Children</Titre3><br/>
 					Give strings or components to complete your Segment.<br/>
-				<Titre3>Optional Parameter : </Titre3><br/>
+				<Titre3>Optional Parameter</Titre3><br/>
 				<Code>style</Code> : object - Change the style of this Segment, it will crush the default. <br/>
 				<Code>row</Code> : boolean - Set the flex direction to row. <br/>
 				<Code>onClick</Code> : function - Give what to do when click on the Segment <br/>

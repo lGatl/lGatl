@@ -44,7 +44,7 @@ export default class FormExample extends Component {
 			<div>
 			<Titre2>Form</Titre2><br/>
 				A simple Form display:flex & flexDirection column by default. <br/>
-				<Titre3>Example :</Titre3><br/>
+				<Titre3>Example</Titre3><br/>
 				Form with all types of components who need a control. They are here controled by only one method.
 				<ExampleFrame>
 					<PCode>
@@ -99,9 +99,9 @@ export default class FormExample extends Component {
 				<Code>this.state.test_dropdown =</Code> { '"'+test_dropdown+'"' } <br/>
 				<Code>this.state.test_calendar =</Code> { test_calendar.toString() } <br/>
 				<Code>this.state.test_rating =</Code> { test_rating.toString() } <br/>
-				<Titre3>Children :</Titre3><br/>
+				<Titre3>Children</Titre3><br/>
 					Children are returned displayed flex to column direction. <br/>
-				<Titre3>Optional Parameters : </Titre3><br/>
+				<Titre3>Optional Parameters</Titre3><br/>
 				<Code>style</Code> : object - Change the style of this Form, it will crush the default. <br/>
 				<Code>onSubmit</Code> : string - Run a function if a input in this form is submit <br/>
 			</div>

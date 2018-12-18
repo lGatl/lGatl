@@ -39,7 +39,7 @@ export default class RatingComponent extends Component {
 		      />
 				</ExampleFrame>
 				<Code>this.state.test_rating =</Code> { test_rating } <br/>
-				<Titre3>Parameters : </Titre3><br/>
+				<Titre3>Parameters</Titre3><br/>
 				<Code>name</Code>: string - Identify your Rating. <br/>
 				<Code>onChange</Code> : function - Controle your Rating with this parameter. She return the name and the rating to controle easily this component. <br/>
 				<Code>rating</Code> : number - Put here the controled rating.

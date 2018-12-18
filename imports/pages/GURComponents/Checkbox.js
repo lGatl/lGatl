@@ -27,7 +27,7 @@ export default class CheckboxComponent extends Component {
 			<div>
 			<Titre2>Checkbox</Titre2><br/>
 				A simple Checkbox easy to controle <br/>
-				<Titre3>Example :</Titre3>
+				<Titre3>Example</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}
@@ -40,11 +40,11 @@ export default class CheckboxComponent extends Component {
 					/>
 				</ExampleFrame>
 				<Code>this.state.test_checkbox =</Code> { test_checkbox.toString() } <br/>
-				<Titre3>Parameters : </Titre3><br/>
+				<Titre3>Parameters</Titre3><br/>
 				<Code>name</Code> : string - Identify your checkbox. <br/>
 				<Code>onChange</Code> : function - Controle your checkbox with this parameter. She return the name and the checked value to controle easily this component. <br/>
 				<Code>checked</Code> : boolean - Put here the controled value. <br/>
-				<Titre3>Optional Parameter : </Titre3><br/>
+				<Titre3>Optional Parameter</Titre3><br/>
 				<Code>label</Code> : string - Write a text before the date. <br/>
 				<Code>style</Code> : object - Change the style of checkbox's container.<br/>
 </div>

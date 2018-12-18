@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { ACTIONS } from "../../6_actions/actions";
 
-import { Input, TextArea, Button } from "../../_common/4_dumbComponent/_gat_ui_react";
+import { Input, TextArea, Button } from "gat-ui-react";
 
 class FormulaireConnexion extends Component {
 	//Initialisation
@@ -30,7 +30,6 @@ class FormulaireConnexion extends Component {
 		this.props.usersLogIn( email, password, ()=>{
 			this.props.usersGetActiveUser();
 			this.props.usersControle(this.init());
-			FlowRouter.go("/");
 		} );
 		
 		

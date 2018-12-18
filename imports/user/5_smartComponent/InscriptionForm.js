@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { ACTIONS } from "../../6_actions/actions";
 
-import { Input, TextArea, Button, Checkbox, Segment } from "../../_common/4_dumbComponent/_gat_ui_react";
+import { Input, TextArea, Button, Checkbox, Segment } from "gat-ui-react";
 
 import { debounce } from "../../8_libs/debounce";
 
@@ -49,7 +49,6 @@ class FormulaireDInscription extends Component {
 		}, ()=>{
 			this.props.getActiveUser()
 			this.props.usersControle(this.init());
-			FlowRouter.go("/");
 		});
 		
 	}

@@ -4,7 +4,7 @@ import { connect } 				from "react-redux";
 
 import { Menu, Item } from 'gat-ui-react'
 
-class SmartMenuGatUiReact extends Component {
+class SmartMenuCMRR extends Component {
 
 	constructor(){
 		super()
@@ -45,77 +45,46 @@ class SmartMenuGatUiReact extends Component {
 		}
 	}
 	menu(){return[
-				{
-					title:"Home",
-					url:"/gat-ui-react/Home"
-				},
-				{
-					title:"A",
-					url:"/gat-ui-react/A"
-				},
-				{
-					title:"Button",
-					url:"/gat-ui-react/Button"
-				},
-				{
-					title:"Calendar",
-					url:"/gat-ui-react/Calendar"
-				},
-				{
-					title:"Carrousel",
-					url:"/gat-ui-react/Carrousel"
-				},
-				{
-					title:"Checkbox",
-					url:"/gat-ui-react/Checkbox"
-				},
-				{
-					title:"Dropdown",
-					url:"/gat-ui-react/Dropdown"
-				},
-				{
-					title:"Form",
-					url:"/gat-ui-react/Form"
-				},
-				{
-					title:"Img",
-					url:"/gat-ui-react/Img"
-				},
-				{
-					title:"Input",
-					url:"/gat-ui-react/Input"
-				},
-				{
-					title:"Menu",
-					url:"/gat-ui-react/Menu"
-				},
-				{
-					title:"Popup",
-					url:"/gat-ui-react/Popup"
-				},
-				{
-					title:"Rating",
-					url:"/gat-ui-react/Rating"
-				},
-				{
-					title:"Segment",
-					url:"/gat-ui-react/Segment"
-				},
-				{
-					title:"Table",
-					url:"/gat-ui-react/Table"
-				},
-				{
-					title:"TextArea",
-					url:"/gat-ui-react/TextArea"
-				},
+			{
+				title:"Home",
+				url:"/chain-meteor-react-redux/Home"
+			},
+			{
+				title:"Usage",
+				url:"/chain-meteor-react-redux/Usage"
+			},
+			// {
+			// 	title:"Methods",
+			// 	url:"/chain-meteor-react-redux/Methods"
+			// },
+			// {
+			// 	title:"Reducers",
+			// 	url:"/chain-meteor-react-redux/Reducers"
+			// },
+			// {
+			// 	title:"SmartComponents",
+			// 	url:"/chain-meteor-react-redux/SmartComponents"
+			// },
+			{
+				title:"Resize",
+				url:"/chain-meteor-react-redux/Resize"
+			},
+			{
+				title:"InfiniteScroll",
+				url:"/chain-meteor-react-redux/InfiniteScroll"
+			},
+			{
+				title:"Login",
+				url:"/chain-meteor-react-redux/Login"
+			},
+
 		]
 	}
 
 	activeMenu( title, url, e ){
 		e.preventDefault();
 		if (url){
-			this.setState({ activeItem: "gat-ui-react" })
+			this.setState({ activeItem: "chain-meteor-react-redux" })
 			FlowRouter.go(url);
 		}
 	}
@@ -129,7 +98,7 @@ class SmartMenuGatUiReact extends Component {
 					active_style={{fontWeight:"bold"}}
 					img = {img?img:""}
 					src = {src?src:""}
-					active={this.props.GURMenu === title }
+					active={this.props.CMRRMenu === title }
 					onClick={this.activeMenu.bind(this,title,url)}
 					key = { i }
 					style = {this.style().item}>
@@ -185,7 +154,7 @@ class SmartMenuGatUiReact extends Component {
 	return (
 		{
 			resize:state.controle.resize,
-			GURMenu:state.controle.GURMenu
+			CMRRMenu:state.controle.CMRRMenu
 		}
 	);
 }
@@ -196,4 +165,4 @@ function mapDispatchToProps( dispatch ){
 	}, dispatch );
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( SmartMenuGatUiReact );
+export default connect( mapStateToProps, mapDispatchToProps )( SmartMenuCMRR );

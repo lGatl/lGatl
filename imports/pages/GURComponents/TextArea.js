@@ -41,11 +41,11 @@ export default class TextAreaComponent extends Component {
 					/>
 				</ExampleFrame>
 				<Code>this.state.test_textarea =</Code> { '"'+test_textarea+'"' } <br/>
-				<Titre3>Parameters : </Titre3><br/>
+				<Titre3>Parameters</Titre3><br/>
 				<Code>name</Code>: string - Identify your TextArea. <br/>
 				<Code>onChange</Code> : function - Controle your TextArea with this parameter. She return the name and the value to controle easily this component. <br/>
 				<Code>value</Code> : string - Put here the controled value.<br/>
-				<Titre3>Optional Parameters : </Titre3><br/>
+				<Titre3>Optional Parameters</Titre3><br/>
 				<Code>label</Code> : string - Write a text before the TextArea. <br/>
 				<Code>placeholder</Code>: string - Precise a placeholder <br/>
 				<Code>style</Code> : object - Change the style of the textArea and textArea's container.<br/>

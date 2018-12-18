@@ -44,13 +44,13 @@ export default class TableComponent extends Component {
 						]}
 					/>
 				</ExampleFrame>
-				<Titre3>Parameter : </Titre3><br/>
+				<Titre3>Parameter</Titre3><br/>
 				<Code>donnees</Code> : array of objects with the key thead or tbody <br/>
 				<ul>
 					<li><Code>thead</Code> : 2 dimensions array -  Each array in the first is a row and each elements in this row is the content of the cell.(it can be string or component)</li>
 					<li><Code>tbody</Code> : 2 dimensions array -  Each array in the first is a row and each elements in this row is the content of the cell.(it can be string or component)</li>
 				</ul>
-				<Titre3>Optional Parameter : </Titre3><br/>
+				<Titre3>Optional Parameter</Titre3><br/>
 				<Code>style</Code> : object - Change the style of this Table, it will crush the default. <br/>
 				<Code>ligne1sur2</Code> : boolean - grew on background of one in two rows <br/>
 				<Code>border_line</Code> : boolean - display rows border.<br/>
