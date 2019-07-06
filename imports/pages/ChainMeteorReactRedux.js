@@ -35,14 +35,14 @@ class ChainMeteorReactRedux extends Component {
 				<div style={{display:"flex",flexDirection:"column"}}>
 					<Titre1>chain-meteor-react-redux</Titre1>
 					<div style={{display:"flex"}}>
-						<div style={{flex:1}}>
-							<SmartMenuCMRR/>						
-						</div>
+						{this.props.windowwidth>700?<div style={{flex:1}}>
+								<SmartMenuCMRR/>						
+							</div>:<SmartMenuCMRR/>	}
 						<div style={{flex:5, maxWidth:1000}}>
 						
 						<ChoiceCMRRPage titre={this.props.titre} param={this.props.param}/>
 						</div>
-						<div style={{flex:1}}></div>
+						{this.props.windowwidth>700?<div style={{flex:1}}></div>:""}
 					</div>
 				</div>
 		);

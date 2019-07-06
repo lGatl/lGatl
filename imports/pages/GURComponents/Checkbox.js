@@ -27,7 +27,6 @@ export default class CheckboxComponent extends Component {
 			<div>
 			<Titre2>Checkbox</Titre2><br/>
 				A simple Checkbox easy to controle <br/>
-				<Titre3>Example</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}

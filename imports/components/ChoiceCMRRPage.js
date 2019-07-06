@@ -16,7 +16,7 @@ class ChoiceCMRRPage extends Component {
 
 	page(){
 		let {setControle} = this.props;
-		setControle({CMRRMenu:this.props.titre})
+		setControle({CMRRMenu:this.props.titre||'Home'})
 		switch (this.props.titre) {
 			case 'Login':
 				return <Login/>

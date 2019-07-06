@@ -162,7 +162,6 @@ class SmartMenuGatUiReact extends Component {
 						transition: 'margin 0.9s, border-radius 0.7s, left 0.5s',
 						borderRadius: hover?'5px 40px 5px 5px':'5px 5px 5px 5px',
 						top:mobile?0:"auto",
-						overflow:"scroll",
 						margin:10,
 						marginTop:marg+"px",
 	   				transform: `translateY(${scroll}px)` 

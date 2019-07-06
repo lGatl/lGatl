@@ -24,10 +24,10 @@ export default class CVRowXP extends Component {
 		
 		return (
 			<CVRow>
-				<CVColumn flex={1} style={{minWidth:100}}>
+				<CVColumn flex={1} style={{minWidth:60}}>
 							{this.props.children[0]}
 				</CVColumn>
-				<CVColumn flex={3} style={{ textAlign:"justify"}}>
+				<CVColumn flex={5} style={{ textAlign:"justify"}}>
 							{this.props.children[1]}
 				</CVColumn>
 				

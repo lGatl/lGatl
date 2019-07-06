@@ -27,7 +27,6 @@ export default class RatingComponent extends Component {
 			<div>
 			<Titre2>Rating</Titre2><br/>
 				A simple Rating easy to controle. <br/>
-				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}

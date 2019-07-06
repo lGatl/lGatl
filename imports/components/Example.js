@@ -20,7 +20,7 @@ class Example extends Component {
 		this.setState({hover:param})
 	}
 	render(){
-		let width = this.props.windowwidth >= 700 ?this.props.windowwidth-200:this.props.windowwidth-50
+		let width = this.props.windowwidth >= 700 ?this.props.windowwidth-200:this.props.windowwidth-20
 		return (
 					<div>
 						<div style={{

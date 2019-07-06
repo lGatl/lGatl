@@ -43,7 +43,7 @@ class Experience extends Component {
 						<div style={{maxWidth:1000, flex:1}}>	
 							<Titre2>Simplonline</Titre2>
 							{resultats[0]}
-							<Titre2>Projet tutoré WebOgreen</Titre2>
+							<Titre2>Projet SEL</Titre2>
 							<div style={{...this.style(),margin:0,padding:0}}>
 							{resultats[1]}
 							</div>	

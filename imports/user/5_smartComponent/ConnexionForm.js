@@ -49,11 +49,13 @@ class FormulaireConnexion extends Component {
 					onChange = { this.change.bind( this ) } 
 				/>
 				<Input
-					label = 'Mot de passe'
-					name = 'password'
-					value = { password||"" }
-					onChange = { this.change.bind( this ) }
-				/>
+						label = "Password"
+						name = "password"
+						type = "password"
+						autoComplete=""
+						value = { password || "" }
+						onChange = { this.change.bind( this ) }
+					/>
 				<Button
 					onClick = { this.usersLogIn.bind( this ) }
 				>

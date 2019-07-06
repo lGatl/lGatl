@@ -26,7 +26,7 @@ class ChoiceGURPage extends Component {
 
 	page(){
 		let {setControle} = this.props;
-		setControle({GURMenu:this.props.titre})
+		setControle({GURMenu:this.props.titre||'Home'})
 		switch (this.props.titre) {
 			case 'A':
 				return <A/>

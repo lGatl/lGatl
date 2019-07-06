@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component }	from "react";
+import { bindActionCreators }	from "redux";
+import { connect } 				from "react-redux";
 
-export default class Titre2 extends Component {
-
-	constructor(){
+class Titre2 extends Component {
+constructor(){
 		super()
 		this.state={hover:false}
 	}
@@ -16,7 +17,6 @@ export default class Titre2 extends Component {
 			animationName:'dep',
 			animationDuration:'1s',
 			transition:this.state.hover?'all 1s':"all 0.6s",
-			transform: this.state.hover?"translateY(-3px)":"translateY(0px)"
 		}}
 	
 	hover(param){
@@ -25,7 +25,7 @@ export default class Titre2 extends Component {
 	render(){
 		
 		return (
-					<div><h1 style={{...this.style()}} 
+					<div><h1 style={{...this.style(),...this.props.style}} 
 						onMouseEnter={this.hover.bind(this,true)}
           	onMouseLeave={this.hover.bind(this,false)}
 					>{this.props.children}</h1></div>
@@ -33,3 +33,19 @@ export default class Titre2 extends Component {
 		);
 	}
 }
+function mapStateToProps(state){
+	return (
+		{
+			windowwidth:state.controle.resize.windowwidth
+		}
+	);
+}
+
+function mapDispatchToProps( dispatch ){
+	return bindActionCreators({
+		
+	}, dispatch );
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Titre2 );
+

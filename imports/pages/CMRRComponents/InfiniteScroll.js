@@ -42,15 +42,12 @@ class InfiniteScroll extends Component {
 		
 		return (
 				<div style={{display:"flex",flexDirection:"column"}}>
-
-							<ShortMenu 
-							items={["Explanation","Test"]} 
-							controle={this.controleMenu.bind(this)} 
-							active={this.props.short_menu}
-							/>						
-						
-						{this.props.short_menu=="Test"?<ISTest/>: <ISExplanation/>}
-						
+					<ShortMenu 
+					items={["Explanation","Test"]} 
+					controle={this.controleMenu.bind(this)} 
+					active={this.props.short_menu}
+					/>						
+					{this.props.short_menu=="Test"?<ISTest/>: <ISExplanation/>}	
 				</div>
 		);
 	}

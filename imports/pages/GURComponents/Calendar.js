@@ -27,7 +27,6 @@ export default class CalendarComponent extends Component {
 			<div>
 			<Titre2>Calendar</Titre2><br/>
 				Display a test_calendar and if you click on, a simple calendar appears to permise the user to choose an other test_calendar. <br/>
-				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}

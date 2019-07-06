@@ -65,7 +65,6 @@ export default class MenuComponent extends Component {
 				<div>
 			<Titre2>Menu</Titre2><br/>
 				A simple Menu easy to controle. <br/>
-				<Titre3>Example </Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}
@@ -134,9 +133,9 @@ export default class MenuComponent extends Component {
 					</div>
 				</ExampleFrame>
 				<Code>this.state.active =</Code> { '"'+this.state.active+'"' } <br/>
-				<Titre3>Menu Children : </Titre3><br/>
+				<Titre3>Menu Children</Titre3><br/>
 					Give Items components (or others) to complete your Menu.
-				<Titre3>Menu Optional Parameters : </Titre3><br/>
+				<Titre3>Menu Optional Parameters</Titre3><br/>
 					<Code>row</Code> : boolean - To display this menue as row. Column without this parameter. <br/>
 					<Code>mobile</Code> : boolean - To display a box and hide the menu. The menu is shown on the box click.<br/>
 					<Code>right</Code> : boolean - Menu come from right else left (only if mobile parameter is present).<br/>
@@ -144,9 +143,9 @@ export default class MenuComponent extends Component {
 					<Code>style_box</Code> : object - Change the style of the box.<br/>
 					<Code>className</Code> : string - To give a className.<br/>
 
-				<Titre3>Item Children : </Titre3><br/>
+				<Titre3>Item Children</Titre3><br/>
 					Displayed if no image by the parameter img.<br/>
-				<Titre3>Item Optional Parameters : </Titre3><br/>
+				<Titre3>Item Optional Parameters</Titre3><br/>
 				<Code>style </Code> : object - To specify the style of the Item.<br/>
 				<Code>href</Code> : string - Items arent a link, if you want you can use the href of this link. <br/>
 				<Code>onClick</Code> : function - If you want to controle what happend on click.<br/>

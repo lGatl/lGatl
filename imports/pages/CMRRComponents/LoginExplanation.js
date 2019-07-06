@@ -11,7 +11,7 @@ export default class LoginExplanation extends Component {
 		return (
 			<div>
 				<Titre2>LoginExplanation</Titre2><br/>
-			
+					In progress but you can already test !
 				
 			</div>	
 		)

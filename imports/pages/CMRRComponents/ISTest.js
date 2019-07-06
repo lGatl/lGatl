@@ -87,6 +87,8 @@ class ISTest extends Component {
 					initFnt = {this.props.testGetSSL.bind(this)}
 					addFnt = {this.props.testGetAddSSL.bind(this)}
 					countFnt = {this.props.testCount.bind(this)}
+					changePage = { this.props.setControle.bind(this)}
+					page = {this.props.page}
 				>
 					{
 						tests.map((test,i)=>{
@@ -113,6 +115,7 @@ function mapStateToProps( state ){
 			tests: state.test.all,
 			nb_tests: state.test.count,
 			test_controle: state.test.controle,
+			page: state.controle.page,
 
 		}
 	);

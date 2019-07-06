@@ -18,7 +18,6 @@ export default class ButtonComponent extends Component {
 			<div>
 				<Titre2>Button</Titre2><br/>
 				Use a simple pretty Button <br/>
-				<Titre3>Example</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}

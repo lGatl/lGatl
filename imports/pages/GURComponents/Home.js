@@ -25,7 +25,6 @@ export default class Home extends Component {
     				gat55@live.fr
 			</div>	
 		)
-		
 	}
 }
 

@@ -32,8 +32,8 @@ img{
 }
 
 @keyframes dep {
-		from {transform: translate(40px);}
-		to {transform: translate(0px)}
+		from {transform: translate(20px,-3px);margin:0px;}
+		to {transform: translate(0px,0px);margin:10px;}
 }
 
 @keyframes menurond {

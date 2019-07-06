@@ -8,6 +8,8 @@ import Example from '../../components/Example';
 import PCode from '../../components/PCode';
 import Code from '../../components/Code';
 import {A} from 'gat-ui-react'
+import Ul from '../../components/Ul';
+import Ol from '../../components/Ol';
 
 export default class Usage extends Component {
 	render(){
@@ -15,7 +17,7 @@ export default class Usage extends Component {
 			<div>
 				<Titre2>Usage</Titre2><br/>
 				
-				For each collection in database you will need, put his name (first letter capitalized) in the <Code>"imports/5_methodes/methodes"</Code> <Code>COLLECTIONS</Code> array. 
+				For each collection of the database you will need, put his name (first letter capitalized) in the <Code>"imports/5_methodes/methodes"</Code> <Code>COLLECTIONS</Code> array. 
 				You will automitically dispose of methods, actions and reducers.
 				
 				<Titre3>Principle</Titre3>
@@ -66,20 +68,20 @@ export default class Usage extends Component {
 						If <Code>object</Code> you store at <Code> state.[COLLECTION].key.value</Code> 
 						<Example>
 							If you use <Code>ACTIONS.Article.get_SSL_cstate</Code> and you pass :
-							<ol>
+							<Ol>
 								<li><Code>{"{published:true}"}</Code></li>
 								<li><Code>{"{sort:-1,limit:10}"}</Code></li>
 								<li><Code>{"tenlast"}</Code></li>
 								<li><Code>{"(val)=>{console.log(val)}"}</Code></li>
-							</ol>
+							</Ol>
 							 The ten last published articles will be store at <Code>state.article.tenlast</Code> and been console.logged by the callback.
 						</Example>
 					<Titre4>add</Titre4>
 						To inster an object in a collection.
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>obj</Code> : object - object to add</li>
-						</ul>
+						</Ul>
 						Impact on state : <br/>
 						<Code>state[COLLECTION].all</Code> : array of objects <br/>
 						<Code>state[COLLECTION].count</Code> : integer <br/>
@@ -88,9 +90,9 @@ export default class Usage extends Component {
 					<Titre4>get</Titre4>
 						To find objects in a collection.
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>obj</Code> : object - parameters to filter</li>
-						</ul>
+						</Ul>
 						Impact on state : <br/>
 						<Code>state[COLLECTION].all</Code> : array - array of objects <br/>
 						Possible suffixes: <br/>
@@ -99,9 +101,9 @@ export default class Usage extends Component {
 					<Titre4>getAdd</Titre4>
 						To find objects in a collection and add result at existing results.
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>obj</Code> : object - parameters to filter</li>
-						</ul>
+						</Ul>
 						Impact on state : <br/>
 						<Code>state[COLLECTION].all</Code> : array - array of objects <br/>
 						Possible suffixes: <br/>
@@ -110,9 +112,9 @@ export default class Usage extends Component {
 					<Titre4>get1</Titre4>
 						To find an object in a collection.
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>obj</Code> : object - parameters to filter</li>
-						</ul>
+						</Ul>
 						Impact on state : <br/>
 						<Code>state[COLLECTION].one</Code> : object <br/>
 						Possible suffixes: <br/>
@@ -121,9 +123,9 @@ export default class Usage extends Component {
 					<Titre4>count</Titre4>
 						To count objects in a collection.
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>obj</Code> : object - parameters to filter</li>
-						</ul>
+						</Ul>
 						Impact on state : <br/>
 						<Code>state[COLLECTION].count</Code> : integer <br/>
 						Possible suffixes: <br/>
@@ -131,9 +133,9 @@ export default class Usage extends Component {
 					<Titre4>rm</Titre4>
 						To remove an object from a collection.
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>obj</Code> : object - parameters to filter the object to remove</li>
-						</ul>
+						</Ul>
 						Impact on state : <br/>
 						<Code>state[COLLECTION].all</Code> : array <br/>
 						Possible suffixe: <br/>
@@ -142,10 +144,10 @@ export default class Usage extends Component {
 					<Titre4>up</Titre4>
 						To update an object in a Collection.
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>reco</Code> : object - parameters to filter the object to update</li>
 							<li><Code>modif</Code> : object - contains the modifications to update</li>
-						</ul>
+						</Ul>
 						Impact on state : <br/>
 						<Code>state[COLLECTION].all</Code> : array <br/>
 						<Code>state[COLLECTION].one</Code> : object <br/>
@@ -155,9 +157,9 @@ export default class Usage extends Component {
 					<Titre4>controle</Titre4>
 						To controle components that have a link with this collection. (for example in a form)
 						<br/>Parameters:
-						<ul style={{marginTop:5,marginBottom:5}}>
+						<Ul style={{marginTop:5,marginBottom:5}}>
 							<li><Code>obj</Code> : object - same behavior as React setState, to controle React component</li>
-						</ul>
+						</Ul>
 						<Code>Return</Code> : string - id of the new object
 				<Titre3>Controle</Titre3>
 				One action controle is created by database collection but <Code>ACTIONS</Code> has one key <Code>Controle</Code> too.

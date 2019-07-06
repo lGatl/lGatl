@@ -34,7 +34,6 @@ export default class DropdownComponent extends Component {
 			<div>
 			<Titre2>Dropdown</Titre2><br/>
 				A simple Dropdown easy to controle. <br/>
-				<Titre3>Example</Titre3>
 				<ExampleFrame>
 					<PCode>
             {EXEMPLE}

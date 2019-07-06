@@ -8,6 +8,8 @@ import Titre1 from '../components/Titre1'
 import Titre2 from '../components/Titre2'
 import Titre3 from '../components/Titre3'
 import AH2 from '../components/AH2'
+import A from '../components/A'
+
 
 import PropTypes from 'prop-types';
 
@@ -35,14 +37,14 @@ class Formations extends Component {
 
 							<div style={{...this.style()}}>
 								<div style={{textAlign:"justify"}}>
-									J'ai participé à la formation développeur web de 6 mois proposée par <a href="http://www.webogreen.fr/">WebOgreen</a> et dispensée par <a href="http://simplon.co/">Simplon</a>.
+									J'ai participé à la formation développeur web de 6 mois proposée par <A href="http://www.webogreen.fr/">WebOgreen</A> et dispensée par <A href="http://simplon.co/">Simplon</A>.
 								</div>
 							</div>
 							<Titre3><AH2 href="http://simplon.co/">Simplon</AH2></Titre3>
 
 							<div style={{...this.style()}}>
 								<div style={{textAlign:"justify"}}>
-									<a href="http://simplon.co/">Simplon</a> me proposant une formation à distance m'a appris le HTML 5, le CSS 3, puis le JS (ecmascript 6) avec des exercices pratiques à difficulté croissante.
+									<A href="http://simplon.co/">Simplon</A> me proposant une formation à distance m'a appris le HTML 5, le CSS 3, puis le JS (ecmascript 6) avec des exercices pratiques à difficulté croissante.
 									j'ai aussi vu l'utilisation de framework tel que Bootstrap. Je suis ensuite passé par l'utilisation de météor, de NodeJS, puis de ReactJS, toujours avec des exercices concrets à difficulté croissante.
 									En parallèle, j'ai aussi découvert des méthodes de versionnement tel que Git, et l'utilisation de Github.
 								</div>
@@ -51,7 +53,7 @@ class Formations extends Component {
 							<Titre3><AH2 href="http://www.webogreen.fr/">WebOgreen</AH2></Titre3>
 							<div style={{...this.style()}}>
 								<div style={{textAlign:"justify"}}>
-									<a href="http://www.webogreen.fr/">WebOgreen</a> m'a proposé de cadrer ma formation en classe inversée (1 en semaine en présentiel, 3 semaines à distance par mois), ce qui m'a permis d'avoir contact avec d'autres apprenants.
+									<A href="http://www.webogreen.fr/">WebOgreen</A> m'a proposé de cadrer ma formation en classe inversée (1 en semaine en présentiel, 3 semaines à distance par mois), ce qui m'a permis d'avoir contact avec d'autres apprenants.
 									WebOgreen m'a proposé aussi d'autres modules supplémentaires tels que des formations Photoshop, Illustrator, ou même des modules comme "apprendre à gérer ses émotions", "apprendre à apprendre", "le mind mapping", la méthode agile "Scrum".
 									On m'a aussi présenté des outils de gestion de projet tel que "trello", ou le diagramme de "Gantt". Et pour finir, WebOgreen m'a même proposé un projet tutoré en relation avec la croix rouge de Damvillers.
 								</div>

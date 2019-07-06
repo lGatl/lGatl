@@ -44,9 +44,9 @@ export default class FormExample extends Component {
 			<div>
 			<Titre2>Form</Titre2><br/>
 				A simple Form display:flex & flexDirection column by default. <br/>
-				<Titre3>Example</Titre3><br/>
-				Form with all types of components who need a control. They are here controled by only one method.
-				<ExampleFrame>
+
+				
+				<ExampleFrame intro="Form with all types of components who need a control. They are here controled by only one method.">
 					<PCode>
             {EXEMPLE}
 					</PCode>

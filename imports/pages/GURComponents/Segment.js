@@ -12,7 +12,6 @@ export default class SegmentComponent extends Component {
 			<div>
 				<Titre2>Segment</Titre2><br/>
 				A Segment simple to beautify <br/>
-				<Titre3>Exemple :</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}	

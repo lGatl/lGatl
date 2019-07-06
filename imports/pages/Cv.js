@@ -67,6 +67,8 @@ contenu(){
 							Permis B
 							<br/>
 							<br/>
+							<br/>
+							<A href="http://lGatl.fr">lGatl.fr</A>
 						</div>
 					</CVColumn>				
 				</CVRow>
@@ -128,7 +130,8 @@ contenu(){
 						2017 à 2018
 					</span>
 					<span>
-						Mission pour SimplonProd de 10 mois, pour l'élaboration d'une plate-forme d'apprentissage <br/>
+						
+						Elaboration d'une plate-forme d'apprentissage. Mission pour SimplonProd de 10 mois. <br/>
 						<span style={{...green}}> Rôle :</span> Développeur full stack JS au sein d'une équipe Agile méthode SCRUM. <br/> 
 						<span style={{...green}}>Technologies :</span> Mongo DB, Meteor, React, Redux, HTML5, CSS3, Flexbox, Git, Gitlab <br/> 
 						<span style={{...green}}>Taches:</span>
@@ -154,8 +157,8 @@ contenu(){
 						2017 à 2018
 					</span>
 					<span>
-						Travail en cours sur la réalisation d'un système d’échange local pour la Croix Rouge <br/>
-						<span style={{...green}}>Technologies :</span> Mongo DB, Meteor, React, Redux, HTML5, CSS3, Flexbox, Git, Gitlab, mailgun <br/>
+						Réalisation d'un système d’échange local pour la Croix Rouge <br/>
+						<span style={{...green}}>Technologies :</span> Mongo DB, Meteor, React, Redux, HTML5, CSS3, Flexbox, Git, mailgun <br/>
 						<span style={{...green}}>Taches :</span>
 						<ul style={{fontSize:12}}>
 							<li>Système de login</li>
@@ -178,11 +181,27 @@ contenu(){
 					<CVTitleFrame>Projets Personnels</CVTitleFrame>
 						<CVRowXP>
 							<span>
+								2017
+							</span>
+							<span>
+								Site de présentation <A href="http://lGatl.fr">lGatl.fr</A><br/>
+									<span style={{...green}}>Technologies:</span> Mongo DB, Meteor, React, HTML5, CSS3, Git<br/>
+									<span style={{...green}}>Taches:</span>
+									<ul style={{fontSize:12}}>
+									<li>Système d’envoi de courriel direct depuis le site sans passer par le client messagerie utilisant mailgun</li>
+									<li>Interface en mosaïque pour présenter mes travaux</li>
+									<li>Documentation de mes projets open source avec des exemples</li>
+									<li>Responsive</li>
+									</ul>
+							</span>
+						</CVRowXP>
+						<CVRowXP>
+							<span>
 								2018
 							</span>
 							<span>
-								Projet en cours de création d’une application mobile pour aider l’organisation d’événements (festivals)<br/>
-								<span style={{...green}}>Technologies:</span> Firebase, React Native, Redux, HTML5, CSS3, Flexbox<br/>
+								Application mobile pour aider l’organisation d’événements (festivals). Projet en cours<br/>
+								<span style={{...green}}>Technologies:</span> Firebase, React Native, Redux, Git <br/>
 								<span style={{...green}}>Taches:</span>
 								<ul style={{fontSize:12}}>
 									<li>Système de login</li>
@@ -199,8 +218,9 @@ contenu(){
 								2018
 							</span>
 							<span>
-								Projet en cours qui sera proposé à la communauté pour simplifier et accélérer la création d’une application web pour un fullstack<br/>
-								<span style={{...green}}>Technologies:</span> MongoDB, Meteor, React, Redux<br/>
+								 Simplifier et accélérer la création d’une application web pour un fullstack. Projet en cours proposé à la communauté. <br/>
+								nom du projet: chain-meteor-react-redux<br/>
+								<span style={{...green}}>Technologies:</span> MongoDB, Meteor, React, Redux, Git, Github<br/>
 								<span style={{...green}}>Taches:</span>
 								<ul style={{fontSize:12}}>
 									<li>Automatisation des liens Meteor React Redux</li>
@@ -215,9 +235,9 @@ contenu(){
 								2018
 							</span>
 							<span>
-								Projet en cours qui sera proposé à la communauté offrant une liste de composants React pour l’intégration<br/>
+								Composants React pour l’intégration. Projet en cours proposé à la communauté.<br/>
 								paquet npm gat-ui-react <br/>
-								<span style={{...green}}>Technologies:</span> MongoDB, React, Redux, HTML5, CSS3, Flexbox<br/>
+								<span style={{...green}}>Technologies:</span> React, HTML5, CSS3, Flexbox, Git, Github<br/>
 								<span style={{...green}}>Taches:</span>
 								<ul style={{fontSize:12}}>
 									<li>Intégration de composants React laissant libre accès aux modifications CSS </li>
@@ -226,22 +246,6 @@ contenu(){
 								</ul>
 							</span>
 						</CVRowXP>
-						<CVRowXP>
-							<span>
-								2017
-							</span>
-							<span>
-								Site De présentation <A>http://lGatl.fr</A><br/>
-									<span style={{...green}}>Technologies:</span> Mongo DB, Meteor, React, HTML5, CSS3, Semantic ui<br/>
-									<span style={{...green}}>Taches:</span>
-									<ul style={{fontSize:12}}>
-									<li>Système d’envoi de courriel direct depuis le site sans passer par le client messagerie utilisant mailgun</li>
-									<li>Interface en mosaïque pour présenter mes travaux</li>
-									<li>Responsive</li>
-									</ul>
-							</span>
-						</CVRowXP>
-					
 				</CVFrame>
 				<CVFrame>
 					<CVTitleFrame>Autres expériences</CVTitleFrame>
@@ -281,7 +285,7 @@ contenu(){
 					</CVRowXP>
 					<CVRowXP>
 						<span>
-							Emplois saisonnier
+							Emplois saison
 						</span>
 						<span>
 							Ouvrier agricole – Conduite d’engins agricole, vendanges <br/>

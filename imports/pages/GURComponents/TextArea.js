@@ -27,7 +27,6 @@ export default class TextAreaComponent extends Component {
 			<div>
 			<Titre2>TextArea</Titre2><br/>
 				A simple TextArea easy to controle. <br/>
-				<Titre3>Example :</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}

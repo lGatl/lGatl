@@ -28,7 +28,6 @@ export default class CarrouselComponent extends Component {
 			<div>
 				<Titre2>Carrousel</Titre2><br/>
 				A flex component to display three  flex components in a same space <br/>
-				<Titre3>Exemple</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}

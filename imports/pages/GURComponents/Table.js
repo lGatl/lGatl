@@ -13,7 +13,6 @@ export default class TableComponent extends Component {
 			<div>
 				<Titre2>Table</Titre2><br/>
 				Compact Table easy to generate and change style. <br/>
-				<Titre3>Exemple :</Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}	
@@ -94,7 +93,7 @@ export default class TableExemple extends Component {
             ["Row 1 Col 1","Row 1 Col 2","Row 1 Col 3"],
             ["Row 2 Col 1","Row 2 Col 2","Row 2 Col 3"],
             ["Row 3 Col 1","Row 3 Col 2","Row 3 Col 3"],
-            [<div>Row 4 Col 1</div>,"Row 4 Col 2","Row 4 Col 3"]
+            [<div>Row 4 Col 1 in div</div>,"Row 4 Col 2","Row 4 Col 3"]
             ]
           }
         ]}

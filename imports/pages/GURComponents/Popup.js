@@ -25,7 +25,6 @@ export default class AComponent extends Component {
 			<div>
 				<Titre2>Popup</Titre2><br/>
 				A Popup displayed flex <br/>
-				<Titre3>Exemple </Titre3>
 				<ExampleFrame>
 					<PCode>
 						{EXEMPLE}	
