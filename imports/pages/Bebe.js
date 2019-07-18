@@ -106,7 +106,7 @@ class Bebe extends Component {
 			case 7:
 				return "juillet"
 			case 8:
-				return "aout"
+				return "août"
 			case 9:
 				return "septembre"
 			case 10:
@@ -114,7 +114,7 @@ class Bebe extends Component {
 			case 11:
 				return "novembre"
 			case 12:
-				return "decembre"
+				return "décembre"
 			default:
 			return "erreur jour"
 		}
@@ -125,15 +125,16 @@ class Bebe extends Component {
 		let date_string = this.jour(date.getDay())+" "+ date.getDate()+" "+this.mois(date.getMonth()+1)+" "+date.getFullYear()+ " à "+date.getHours()+ "h"+date.getHours()
 
 		return <div style = {{
+			textAlign:"justify",
     	display: "flex", 
     	alignItems:"center", 
     	flexDirection:"column"
     }}>
-      <span style ={{margin:10}}>Attention, vous avez cliqué sur le boutton pour <br/>supprimer une ligne de la liste des cadeaux offerts</span>
-      <span style ={{margin:10}}>Voulez vous vraiment supprimer cette ligne :</span>
-      <span style ={{margin:10}}>{fl&&fl.titre?fl.titre:"non"}</span>
-      <span style ={{margin:10}}> enregistrée le </span>
-      <span style ={{margin:10}}>{date_string}</span>
+      <span style ={{margin:10, textAlign:"justify", maxWidth:380}}>Attention, vous avez cliqué sur le boutton pour supprimer une ligne de la liste des cadeaux offerts.</span>
+      <span style ={{margin:10, textAlign:"justify", maxWidth:380}}>Voulez-vous vraiment supprimer cette ligne :</span>
+      <span style ={{margin:10, textAlign:"justify", maxWidth:380}}>{fl&&fl.titre?fl.titre:"non"}</span>
+      <span style ={{margin:10, textAlign:"justify", maxWidth:380}}> enregistrée le </span>
+      <span style ={{margin:10, textAlign:"justify", maxWidth:380}}>{date_string}</span>
       <div style = {{width:"100%", display:"flex", justifyContent:"space-around"}}>
       <div 	
       	onMouseEnter = { this.mouseEnterp.bind(this,1) } 
@@ -178,7 +179,7 @@ class Bebe extends Component {
 								onMouseLeave = { this.mouseLeave.bind(this) } >
 						<Button
 			          onClick = { this.onClick.bind(this) }
-			          style = {{backgroundColor:this.state.hover==="A"?"rgba(150,150,250,0.6)":"rgba(150,150,250,0.4)"}}
+			          style = {{backgroundColor:this.state.hover==="A"?"rgba(237, 220, 82,1)":"rgba(237, 220, 82,0.8)"}}
 			      >
 			        Ajouter
 			      </Button>
@@ -190,7 +191,7 @@ class Bebe extends Component {
 						free_list.map((fl,i)=>{
 							let date = new Date(fl.date)
 							let date_string = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()
-							let hour_string = "à "+date.getHours()+ "h"+date.getHours()
+							let hour_string = date.getHours()+ "h"+date.getHours()
 
 							return <li key={i} style={{display:'flex', flex:1, marginBottom:20,alignItems:"center"}}>
 							
@@ -201,9 +202,9 @@ class Bebe extends Component {
 									borderRadius:"50%", 
 									backgroundColor:"black",
 								}}></div>
-							<div style={{display:"flex", flexDirection:"column", alignItems:"center", backgroundColor:"rgba(200,250,200,1)",padding:3, marginRight:5}}>
-								<span style={{ color:"grey", fontSize:10,fontWeight:"bold"}}>{ "le "+date_string}</span>
-								<span style={{ color:"grey", fontSize:10,fontWeight:"bold"}}>{ hour_string}</span>
+							<div style={{display:"flex", flexDirection:"column", alignItems:"center", backgroundColor:"rgb(237, 220, 82)",padding:3, marginRight:5}}>
+								<span style={{ color:"rgba(0, 173, 193,1)", fontSize:10,fontWeight:"bold"}}>{ date_string}</span>
+								<span style={{ color:"rgba(0, 173, 193,1)", fontSize:10,fontWeight:"bold"}}>{ hour_string}</span>
 							</div>
 							<span style={{flex: 1,paddingRight:15}}>{ fl.titre}</span>
 							<div 
@@ -211,7 +212,7 @@ class Bebe extends Component {
 								onMouseLeave = { this.mouseLeave.bind(this) } >
 								<Button
 				          onClick = { this.openPoppup.bind(this,fl) }
-				          style = {{backgroundColor:this.state.hover===i?"rgba(250,0,0,0.6)":"rgba(250,0,0,0.4)"}}
+				          style = {{backgroundColor:this.state.hover===i?"rgba(198, 0, 57,1)":"rgba(198, 0, 57,0.8)"}}
 						      >
 						        X
 				      	</Button>
@@ -272,9 +273,12 @@ class Bebe extends Component {
 								<div >
 									
 								<Titre3 style={{color:"black"}}>Pour ceux qui veulent faire simple</Titre3>
-								Participer au 
-									financement des achats 
-									que nous avons effectué pour l'arrivée du bébé. 
+								<div style={{textAlign:"justify",
+									padding:10,
+									}}>
+									Participer au financement des achats que nous avons effectué pour l'arrivée du bébé. 
+								</div>
+
 								</div>
 							</Bandeau>
 							<Bandeau style={{color:"white"}}>
@@ -289,7 +293,12 @@ class Bebe extends Component {
 							<Bandeau style={{backgroundColor:'white',paddingTop:20,paddingBottom:20}}>
 								<div>
 								<Titre3 style={{color:"black"}}>Suggestions</Titre3>
-								Quelques idées de cadeaux dont on pourrait avoir besoin.
+								<div style={{textAlign:"justify",
+									padding:10,
+									}}>
+									Quelques idées de cadeaux dont on pourrait avoir besoin.
+								</div>
+								
 								</div>
 							</Bandeau>
 							<Bandeau style={{color:"white"}}>
