@@ -119,10 +119,13 @@ class Bebe extends Component {
 			return "erreur jour"
 		}
 	}
+	hourmin(hm){
+		return hm < 10? "0"+hm:hm
+	}
 	contentPopup(fl){
 		
 		let date = new Date(fl.date)
-		let date_string = this.jour(date.getDay())+" "+ date.getDate()+" "+this.mois(date.getMonth()+1)+" "+date.getFullYear()+ " à "+date.getHours()+ "h"+date.getHours()
+		let date_string = this.jour(date.getDay())+" "+ date.getDate()+" "+this.mois(date.getMonth()+1)+" "+date.getFullYear()+ " à "+date.getHours()+ "h"+this.hourmin(date.getMinutes())
 
 		return <div style = {{
 			textAlign:"justify",
@@ -191,7 +194,7 @@ class Bebe extends Component {
 						free_list.map((fl,i)=>{
 							let date = new Date(fl.date)
 							let date_string = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()
-							let hour_string = date.getHours()+ "h"+date.getHours()
+							let hour_string = this.hourmin(date.getHours())+ "h"+this.hourmin(date.getMinutes())
 
 							return <li key={i} style={{display:'flex', flex:1, marginBottom:20,alignItems:"center"}}>
 							
