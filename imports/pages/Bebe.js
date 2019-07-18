@@ -174,7 +174,7 @@ class Bebe extends Component {
 					style={{flex: 1}}
 					label = ""
 					name = "input"
-					placeholder="placeholder"
+					placeholder="Ex : 2 doudous, une turbulette ..."
 					value = { input||"" }
 					onChange = { this.change.bind( this ) }
 					/> 
