@@ -160,10 +160,12 @@ class Bebe extends Component {
 	freeList(){
 		let{ input, free_list } = this.props; 
 		let{ open, fl } = this.state; 
-		return	<div style={{textAlign:"justify",
-				padding:10,
+		return	<div style={{
+				textAlign:"justify",
+				padding:10, 
+				flex:1
 				}}>
-				<div style={{display:'flex', marginBottom:5, marginTop:15, alignItems:"center"}}>
+				<div style={{display:'flex', flex:1, marginBottom:5, marginTop:15, alignItems:"center"}}>
 				<Input
 					style={{flex: 1}}
 					label = ""
@@ -190,14 +192,14 @@ class Bebe extends Component {
 							let date_string = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()
 							let hour_string = "à "+date.getHours()+ "h"+date.getHours()
 
-							return <li key={i} style={{display:'flex', marginBottom:20,alignItems:"center"}}>
+							return <li key={i} style={{display:'flex', flex:1, marginBottom:20,alignItems:"center"}}>
 							
 								<div style={{
 									height:5,
 									width:5, 
 									marginRight:10, 
 									borderRadius:"50%", 
-									backgroundColor:"black"
+									backgroundColor:"black",
 								}}></div>
 							<div style={{display:"flex", flexDirection:"column", alignItems:"center", backgroundColor:"rgba(200,250,200,1)",padding:3, marginRight:5}}>
 								<span style={{ color:"grey", fontSize:10,fontWeight:"bold"}}>{ "le "+date_string}</span>
@@ -249,7 +251,7 @@ class Bebe extends Component {
 								fontSize:20
 								}}>
 				
-								Bonjour et bienvenue, dans quelques semaines notre petit bout 
+								Bonjour et bienvenue. Dans quelques semaines notre petit bout 
 								de chou tant attendu va pointer le bout de son nez et venir bouleverser notre vie.
 								Si vous êtes ici, c'est parce que vous nous avez demandé ce que vous pourriez nous
 								offrir à l'occasion de la naissance de notre bébé.
@@ -260,7 +262,7 @@ class Bebe extends Component {
 					flex:1,
 					justifyContent:"center", 
 					flexDirection:"column",
-					backgroundColor:'rgba(106,206,211,1)'
+					backgroundColor:'rgba(0, 173, 193,1)'
 			}}>
 		
 
@@ -272,7 +274,7 @@ class Bebe extends Component {
 								<Titre3 style={{color:"black"}}>Pour ceux qui veulent faire simple</Titre3>
 								Participer au 
 									financement des achats 
-									que nous avons effectués pour l'arrivée du bébé. 
+									que nous avons effectué pour l'arrivée du bébé. 
 								</div>
 							</Bandeau>
 							<Bandeau style={{color:"white"}}>
@@ -280,14 +282,14 @@ class Bebe extends Component {
 									padding:10,
 									}}>
 					
-									Il sagit de notre siège auto trés sécurisé, de notre sac à langer hyper pratique, du cododo, de la poussette trio, d'un siège de table , d'un stock de couches lavable...
+									Il s'agit de notre siège auto très sécurisé, de notre sac à langer hyper pratique, du cododo, de la poussette trio, d'un siège de table, d'un stock de couches lavable...
 								</div>
 							</Bandeau>
 							
 							<Bandeau style={{backgroundColor:'white',paddingTop:20,paddingBottom:20}}>
 								<div>
 								<Titre3 style={{color:"black"}}>Suggestions</Titre3>
-								Quelques idées de cadeaux dont on pourrait avoir besoin :
+								Quelques idées de cadeaux dont on pourrait avoir besoin.
 								</div>
 							</Bandeau>
 							<Bandeau style={{color:"white"}}>
@@ -317,7 +319,7 @@ class Bebe extends Component {
 									}}>
 									Une liste dans laquelle vous pouvez indiquer 
 									ce que vous nous offrez (et pourquoi pas le nombre) pour éviter que d'autres aient la même idée que vous 
-									(c'est vrai, c'est quand même vous qui l'avez eu en premier ! ;) )
+									(c'est vrai, c'est quand même vous qui l'avez eu en premier ! ;) ).
 							</div>
 						</div>
 						</Bandeau>
