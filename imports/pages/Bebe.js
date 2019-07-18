@@ -196,7 +196,7 @@ class Bebe extends Component {
 							let date_string = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()
 							let hour_string = this.hourmin(date.getHours())+ "h"+this.hourmin(date.getMinutes())
 
-							return <li key={i} style={{display:'flex', flex:1, marginBottom:20,alignItems:"center"}}>
+							return <li key={i} style={{display:'flex', flex:1, marginBottom:20,alignItems:"center", flexDirection:"row"}}>
 							
 								<div style={{
 									height:5,
