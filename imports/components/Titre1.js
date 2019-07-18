@@ -19,7 +19,7 @@ export default class Titre1 extends Component {
 
 	render(){
 		return (
-			<span style={{...style}}>{this.props.children}</span>
+			<span style={{...style,...this.props.style}}>{this.props.children}</span>
 		);
 	}
 }

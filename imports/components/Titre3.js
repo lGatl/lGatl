@@ -27,7 +27,7 @@ export default class Titre3 extends Component {
 		
 		return (
 					<div>
-						<h2 style={{...this.style()}} 
+						<h2 style={{...this.style(),...this.props.style}} 
 							onMouseEnter={this.hover.bind(this,true)}
 	          	onMouseLeave={this.hover.bind(this,false)}
 						>{this.props.children} :</h2>

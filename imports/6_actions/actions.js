@@ -44,6 +44,7 @@ COLLECTIONS.forEach((COLLECTION)=>{
 		};
 	}
 	function add_state(obj,state, cbk=()=>{}){
+		
 		let p = new Promise( ( resolve, reject ) => {
 			Meteor.call('add' + COLLECTION, obj ,(err,res)=>{
 				if(err){
@@ -359,7 +360,7 @@ COLLECTIONS.forEach((COLLECTION)=>{
 						reject(err);
 					}else{
 						cbk(obj);
-						resolve( { val:obj, state:null} );
+						resolve( { val:obj, state} );
 					}
 				});
 			});

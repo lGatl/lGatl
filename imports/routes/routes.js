@@ -4,6 +4,7 @@
 	import {mount} from 'react-mounter';
 
 	import {MainLayout} from '../layouts/MainLayout.js';
+	import {MainLayoutB} from '../layouts/MainLayoutB.js';
 
 	import Accueil from '../pages/Accueil.js';
 	import Cv from '../pages/Cv.js';
@@ -12,6 +13,7 @@
 	import Formation from '../pages/Formations.js';
 	import Experiences from '../pages/Experiences.js';
 	import GatUiReact from '../pages/GatUiReact.js';
+	import Bebe from '../pages/Bebe.js';
 	import ChainMeteorReactRedux from '../pages/ChainMeteorReactRedux.js';
 	import InfiniteScroll from '../pages/CMRRComponents/InfiniteScroll.js';
 
@@ -102,3 +104,10 @@ FlowRouter.route('/chain-meteor-react-redux/:titre/:param', {
 	 window.scrollTo(0, 0)
 	},
 });
+FlowRouter.route('/listeNaissance', {
+	 name: 'GatUiReact',
+	 action: function() {
+		 mount(MainLayoutB, {content: <Bebe />});
+	 window.scrollTo(0, 0)
+	 }
+ });

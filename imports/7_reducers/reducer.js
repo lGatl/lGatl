@@ -19,6 +19,7 @@ COLLECTIONS.forEach((COLLECTION)=>{
 		var up;
 		switch ( action.type ) {	
 		case  CONSTANTS[COLLECTION].ADD:
+
 			if(typeof action.payload.state=='string'){
 				return { ...state, [action.payload.state]:[action.payload.val,...state[action.payload.state]]};
 			}else if((typeof action.payload.state=='object' ) && (action.payload.state != null)){
