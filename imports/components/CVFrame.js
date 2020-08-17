@@ -23,9 +23,10 @@ export default class CVFrame extends Component {
 					<div style={{
 						display:"flex", 
 						padding:5,
-						borderTop:"solid 1px black", 
+						borderBottom:"solid 1px black", 
 						flexDirection:"column", 
-						paddingBottom:20,
+						paddingBottom:10,
+						width:"100%",
 						...this.props.style
 					}}>
 						{this.props.children}

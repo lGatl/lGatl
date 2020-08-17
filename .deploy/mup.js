@@ -26,7 +26,7 @@ module.exports = {
     env: {
       // TODO: Change to your app's url
       // If you are using ssl, it needs to start with https://
-      ROOT_URL: 'http://lGatl.fr',
+      ROOT_URL: 'https://lGatl.fr',
       MONGO_URL: 'mongodb://localhost/meteor',
     },
 
@@ -61,6 +61,19 @@ module.exports = {
     version: '3.4.1',
     servers: {
       one: {}
+    }
+  },
+   proxy: {
+    // comma-separated list of domains your website
+    // will be accessed at.
+    // You will need to configure your DNS for each one.
+    domains: 'lgatl.fr,www.lgatl.fr',
+    ssl: {
+      // Enable let's encrypt to create free certificates.
+      // The email is used by Let's Encrypt to notify you when the
+      // certificates are close to expiring.
+      letsEncryptEmail: 'adrien.gatinois@lgatl.fr',
+      forceSSL: true
     }
   }
 };

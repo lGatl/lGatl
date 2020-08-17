@@ -9,6 +9,8 @@ import reducers from "../7_reducers";
 import Footer from "../components/Footer.js"
 import Resize from "../containers/Resize";
 import InitState from '../containers/InitState';
+import Kon from '../containers/Kon';
+
 
 
 var store={};
@@ -28,6 +30,7 @@ store = createStore(reducers,composeEnhancers(
 				<div className="bodyLay">
 					<header>
 					<InitState/>
+					<Kon/>
 					<Resize/>
 					</header>
 						{content}

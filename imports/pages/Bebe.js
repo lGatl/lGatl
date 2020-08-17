@@ -161,74 +161,7 @@ class Bebe extends Component {
       </div>
     </div>
 	}
-	freeList(){
-		let{ input, free_list } = this.props; 
-		let{ open, fl } = this.state; 
-		return	<div style={{
-				textAlign:"justify",
-				padding:10, 
-				flex:1
-				}}>
-				<div style={{display:'flex', flex:1, marginBottom:5, marginTop:15, alignItems:"center"}}>
-				<Input
-					style={{flex: 1}}
-					label = ""
-					name = "input"
-					placeholder="Ex : 2 doudous, une turbulette ..."
-					value = { input||"" }
-					onChange = { this.change.bind( this ) }
-					/> 
-					<div onMouseEnter = { this.mouseEnter.bind(this,"A") } 
-								onMouseLeave = { this.mouseLeave.bind(this) } >
-						<Button
-			          onClick = { this.onClick.bind(this) }
-			          style = {{backgroundColor:this.state.hover==="A"?"rgba(237, 220, 82,1)":"rgba(237, 220, 82,0.8)"}}
-			      >
-			        Ajouter
-			      </Button>
-					</div>
-				</div>
-				<ul style={{paddingInlineStart:0}}>
-					{
-						typeof free_list === "object" && free_list instanceof Array && free_list.length>0?
-						free_list.map((fl,i)=>{
-							let date = new Date(fl.date)
-							let date_string = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()
-							let hour_string = this.hourmin(date.getHours())+ "h"+this.hourmin(date.getMinutes())
 
-							return <li key={i} style={{display:'flex', flex:1, marginBottom:20,alignItems:"center", flexDirection:"row"}}>
-							
-								<div style={{
-									height:5,
-									width:5, 
-									marginRight:10, 
-									borderRadius:"50%", 
-									backgroundColor:"black",
-								}}></div>
-							<div style={{display:"flex", flexDirection:"column", alignItems:"center", backgroundColor:"rgb(237, 220, 82)",padding:3, marginRight:5}}>
-								<span style={{ color:"rgba(0, 173, 193,1)", fontSize:10,fontWeight:"bold"}}>{ date_string}</span>
-								<span style={{ color:"rgba(0, 173, 193,1)", fontSize:10,fontWeight:"bold"}}>{ hour_string}</span>
-							</div>
-							<span style={{flex: 1,paddingRight:15}}>{ fl.titre}</span>
-							<div 
-								onMouseEnter = { this.mouseEnter.bind(this,i) } 
-								onMouseLeave = { this.mouseLeave.bind(this) } >
-								<Button
-				          onClick = { this.openPoppup.bind(this,fl) }
-				          style = {{backgroundColor:this.state.hover===i?"rgba(198, 0, 57,1)":"rgba(198, 0, 57,0.8)"}}
-						      >
-						        X
-				      	</Button>
-							</div>
-
-						</li>})
-						:""
-					}
-				</ul>
-				
-
-		</div>
-	}
 	render(){
 		let{ input, free_list } = this.props; 
 		let{ open, fl } = this.state; 
@@ -254,11 +187,9 @@ class Bebe extends Component {
 								padding:10,
 								fontSize:20
 								}}>
-				
-								Bonjour et bienvenue. Dans quelques semaines notre petit bout 
-								de chou tant attendu va pointer le bout de son nez et venir bouleverser notre vie.
-								Si vous êtes ici, c'est parce que vous nous avez demandé ce que vous pourriez nous
-								offrir à l'occasion de la naissance de notre bébé.
+				{/*Dans quelques semaines notre petit bout 
+								de chou tant attendu va pointer le bout de son nez et venir bouleverser notre vie.*/}
+								Bonjour et bienvenue. Lila est arrivée ce 15 août à 6h37 du haut de ses 50 cm pour 4,170 kg. Elle et sa maman sont en très bonne santé, nous sommes très heureux. Si vous êtes ici, c'est parce que vous nous avez demandé ce que vous pourriez nous offrir à l'occasion de la naissance de notre bébé.
 						</div>
         </div>
 				<div style={{
@@ -310,12 +241,13 @@ class Bebe extends Component {
 									}}>
 									
 									<ul>
-										<li>Transat</li>
+										<li>transat</li>
 										<li>doudous</li>
 										<li>turbulette</li>
 										<li>sophie la girafe</li>
 										<li>jeux de bain anti moisissure</li>
 										<li>lit parapluie</li>
+										<li>tapis d'éveil</li>
 										<li>...</li>
 
 
@@ -336,13 +268,85 @@ class Bebe extends Component {
 						</div>
 						</Bandeau>
 						<Bandeau style={{color:"white"}}>
-								{this.freeList()}
+								<div style={{
+				display:"flex",
+				flexDirection:"column",
+				textAlign:"justify",
+				padding:10, 
+				flex:1
+				}}>
+				<div style={{display:'flex', flex:1, marginBottom:5, marginTop:15, alignItems:"center", flexDirection:"row"}}>
+				<Input
+					style={{flex: 1}}
+					label = ""
+					name = "input"
+					placeholder="Ex : 2 doudous, une turbulette ..."
+					value = { input||"" }
+					onChange = { this.change.bind( this ) }
+					/> 
+					<div onMouseEnter = { this.mouseEnter.bind(this,"A") } 
+								onMouseLeave = { this.mouseLeave.bind(this) } >
+						<Button
+			          onClick = { this.onClick.bind(this) }
+			          style = {{backgroundColor:this.state.hover==="A"?"rgba(237, 220, 82,1)":"rgba(237, 220, 82,0.8)"}}
+			      >
+			        Ajouter
+			      </Button>
+					</div>
+				</div>
+				<ul style={{paddingInlineStart:0, display:"flex",flexDirection:"column"}}>
+					{
+						typeof free_list === "object" && free_list instanceof Array && free_list.length>0?
+						free_list.map((fl,i)=>{
+							let date = new Date(fl.date)
+							let date_string = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()
+							let hour_string = this.hourmin(date.getHours())+ "h"+this.hourmin(date.getMinutes())
+
+							return <li key={i} style={{
+								display:'flex', 
+								flex:1, 
+								marginBottom:20,
+								alignItems:"center", 
+								flexDirection:"row",
+								listStyle: "none"
+							}}>
+							
+								<div style={{
+									height:6,
+									width:6, 
+									marginRight:10, 
+									borderRadius:"50%", 
+									backgroundColor:"white",
+								}}></div>
+							<div style={{display:"flex", flexDirection:"column", alignItems:"center", backgroundColor:"rgb(237, 220, 82)",padding:3, marginRight:5}}>
+								<span style={{ color:"rgba(0, 173, 193,1)", fontSize:10,fontWeight:"bold"}}>{ date_string}</span>
+								<span style={{ color:"rgba(0, 173, 193,1)", fontSize:10,fontWeight:"bold"}}>{ hour_string}</span>
+							</div>
+							<span style={{flex: 1,paddingRight:15}}>{ fl.titre}</span>
+							<div 
+								onMouseEnter = { this.mouseEnter.bind(this,i) } 
+								onMouseLeave = { this.mouseLeave.bind(this) } >
+								<Button
+				          onClick = { this.openPoppup.bind(this,fl) }
+				          style = {{backgroundColor:this.state.hover===i?"rgba(198, 0, 57,1)":"rgba(198, 0, 57,0.8)"}}
+						      >
+						        X
+				      	</Button>
+							</div>
+
+						</li>})
+						:""
+					}
+				</ul>
+				
+
+		</div>
 						</Bandeau>
 						<Bandeau style={{backgroundColor:'white',paddingTop:20,paddingBottom:20}}>
 							<div style={{flex:1}}></div>
 							<div style={{color:"black"}}>
 							<span style={{ fontSize:40}}>Merci !</span><br/>
-							<span style={{ fontSize:30}}>Marie-Cécile & Adrien</span>
+							<span style={{ fontSize:30, marginRight:5}}>Marie-Cécile & Adrien</span>
 							</div>
 						</Bandeau>
 

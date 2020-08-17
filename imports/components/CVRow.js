@@ -21,7 +21,7 @@ export default class CVRow extends Component {
 	render(){
 		
 		return (
-			<div style={{display:"flex", flexWrap:"wrap", padding:5}}>
+			<div style={{display:"flex", flexWrap:"wrap", padding:5, ...this.props.style}}>
 				{this.props.children}
 			</div>
 						

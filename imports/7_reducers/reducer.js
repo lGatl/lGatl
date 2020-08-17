@@ -32,12 +32,12 @@ COLLECTIONS.forEach((COLLECTION)=>{
 		case CONSTANTS[COLLECTION].GET:
 
 			if(typeof action.payload.state=='string'){
-				return { ...state, [action.payload.state]:action.payload.val};
+				return { ...state, [action.payload.state]:action.payload.val.reverse()};
 			}else if((typeof action.payload.state=='object' ) && (action.payload.state != null)){
 				let obj = Object.keys(action.payload.state)[0];
-				return { ...state, [obj]:{...state[obj],[action.payload.state[obj]]:action.payload.val}};
+				return { ...state, [obj]:{...state[obj],[action.payload.state[obj]]:action.payload.val.reverse()}};
 			}else if(action.payload.state == null||action.payload.state == undefined){
-				return { ...state, all: action.payload.val };
+				return { ...state, all: action.payload.val.reverse() };
 			}			
 			break;
 		case CONSTANTS[COLLECTION].GETADD:

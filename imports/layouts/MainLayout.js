@@ -10,6 +10,7 @@ import SmartMenu from "../containers/SmartMenu.js"
 import Footer from "../components/Footer.js"
 import Resize from "../containers/Resize";
 import InitState from '../containers/InitState';
+import Kon from '../containers/Kon';
 
 
 var store={};
@@ -30,6 +31,7 @@ store = createStore(reducers,composeEnhancers(
 					<header>
 					<InitState/>
 					<SmartMenu/>
+					<Kon/>
 					<Resize/>
 					</header>
 						{content}

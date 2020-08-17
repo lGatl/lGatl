@@ -57,6 +57,45 @@ Articles = [
 		description:["Cette application génère un tableau au nombre de lignes et de colonnes entré par l'utilisateur. Chaque case contient une case à cocher qui, au clique, indique sa position.",{br:""}]
 	},
 	{
+		nom: "Devinamique.com",
+		titre: "Devinamique.com",
+		categorie:"HorsFormation",
+		image:'/images/devinamique.png',
+		description:[" Voici la version test de Devinamique.com, un outil qui permet de créer des devis dinamiques",{br:""},"Ce projet est un projet personnel.",{br:""},
+		"Ce projets m'a permis de voir entre autres :",{br:""},
+		{ul:["Système de login",
+		"Système de role",
+		"Possibilité de créer et d'interpreter des logiques",
+		"Drag & Drop",
+		"Exportation d'un élément en pdf",
+		"Système d’administration",
+		"Responsive",
+		]},
+		{br:""}]
+	},
+	{
+		nom: "Myqualityboard",
+		titre: "Myqualityboard",
+		categorie:"HorsFormation",
+		image:'',
+		description:["Durant une mission de 8 mois j'ai intégré l'équipe Data to act de Décathlon France entant que développeur fullstack, pour l'élaboration d'une application permettant la restitution ainsi que l'exploitation de leurs données.",{br:""},"J'ai eu l'occasion de participer à l'organisation de la base de donnée SQL, mais aussi à l'élaboration des Api en Java Springboot. ",{br:""},
+			"J'ai pris en charge le front en React dont la mise en place complete de l'architecture Redux permettant la gestion asynchrone des retours de requetes Fetch.",{br:""},
+		"J'ai participé à la mise en place du déploiement avec Jenkins, Docker, Rancher.",{br:""},
+		"Ce projets m'a permis de voir entre autres :",{br:""},
+		{ul:["Elaboration d'Api en Java (Springboot) pour interagir avec la base de donnée SQL",
+							"Mise en place d'une architecture Redux sur le front",
+							"Gestion asynchrone des reponses de l'interrogation des Api par la methode Fetch",
+							"Mise en place d'un scroll infini",
+							"Mise en place d'un drag and drop",
+							"Mise en place et gestion d'un grand nombre de filtres de différentes formes qui interagissent",
+							"Utilisantion de l'Api GoogleSheet pour ordonner la création d'une page GoogleSheet et y exporter des données",
+							"Intégration",
+							"Autres taches confidentielles",
+							"Responsive",
+		]},
+		{br:""}]
+	},
+	{
 		nom: "Simplonline",
 		titre: "Simplonline",
 		categorie:"HorsFormation",
@@ -84,7 +123,8 @@ Articles = [
 		categorie:"HorsFormation",
 		image:'/images/projetsel.png',
 		description:["Voici mon projet tutoré déniché et proposé par l'animatrice de WebOgreen, le projet SEL est une plateforme demandée par la Croix Rouge de Damvillers.",{br:""},
-		"Le but étant de créer une solution pour insiter les gens à se rendre service :",{br:""},
+		"Le but étant de créer une solution pour insiter les gens à se rendre service.",{br:""},
+		"Ce projets m'a permis de voir entre autres :",{br:""},
 		{ul:["Système de login",
 		"Système de role",
 		"Possibilité pour un utilisateur de poster des annonces",
@@ -183,20 +223,21 @@ Articles = [
 	},
 ]
 
-// 	Meteor.call("rmArticle", {} ,(err,res)=>{
-// 		console.log('runed')
-// 		if(err){
-// 			console.log(err)
-// 		}else{console.log( "BOOOOOONCE")}
-// 	});
-// Articles.map(article=>{
-// 	Meteor.call("addArticle", article ,(err,res)=>{
-// 		console.log('runed')
-// 		if(err){
-// 			console.log(err)
-// 		}
-// 	});
+	Meteor.call("rmArticle", {} ,(err,res)=>{
+		console.log('runed')
+		if(err){
+			console.log(err)
+		}else{console.log( "BOOOOOONCE")}
+	});
+Articles.map(article=>{
+	Meteor.call("addArticle", article ,(err,res)=>{
+		console.log('runed')
+		if(err){
+			console.log(err)
+		}
+	});
 
-// })
+})
+
 
 

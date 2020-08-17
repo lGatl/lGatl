@@ -43,3 +43,21 @@ img{
 
 
 
+/* The element to apply the animation to */
+
+@keyframes ankon {
+    0% {
+        transform: translate3d(-50px,-40px,-1000px);
+    }
+    60% {
+        transform: translate3d(-10px,-250px,-200px);
+    }
+    100% {
+        transform: translate3d(0px,50px,0px);
+    }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
