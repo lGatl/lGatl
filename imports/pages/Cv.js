@@ -45,7 +45,7 @@ class CV extends Component {
     if(inputs!==null){
  			let count=inputs.length;
  			let total=count;
- 			const pdf = new jsPDF();
+ 			const pdf = new jsPDF({compress: true});
  			let img_datas={}
 
  			for (let i = 1;i<=inputs.length;i++){
@@ -55,7 +55,7 @@ class CV extends Component {
 
 	        if(img_datas!==undefined&&typeof img_datas==="object"&&Object.keys(img_datas).length===total){
 	        	Object.keys(img_datas).forEach((img,j)=>{
-	        		pdf.addImage(img_datas[img], 'JPEG', 0, 0,210,297);
+	        		pdf.addImage(img_datas[img], 'JPEG', 0, 0,210,297, undefined, 'FAST');
 	        		if(j<(total-1)){
 	        			pdf.addPage()
 	        		}else{
