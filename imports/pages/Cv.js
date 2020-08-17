@@ -37,41 +37,37 @@ class CV extends Component {
 		}
 	}
 
-	recurshtml2can(pdf,inputs,count){
-		let {controleSet,devis} = this.props
-		html2canvas(inputs[inputs.length-count])
-	      .then((canvas) => {
-	        const imgData = canvas.toDataURL('image/png');
-	        
-	        pdf.addImage(imgData, 'JPEG', 0, 0,210,297);
-	       count=count-1
-	       	if(count>0){
-	       		pdf.addPage()
-						this.recurshtml2can(pdf,inputs,count)
-	       	}else{
-	       		pdf.save("CV_Adrien_GATINOIS_Developpeur_Web.pdf");
-	        	this.setState({pdf:false})
-	       	}
-	        
-	      })
-	}
 	_printDocument() {
 		let {controleSet,devis} = this.props
 		let inputs = document.getElementsByClassName("divToPrint")
 
 			
     if(inputs!==null){
- 			var count=inputs.length;
+ 			let count=inputs.length;
+ 			let total=count;
  			const pdf = new jsPDF();
+ 			let img_datas={}
 
  			for (let i = 1;i<=inputs.length;i++){
- 				
- 			}
+ 				html2canvas(inputs[inputs.length-count])
+	      .then((canvas) => {
+	        img_datas = {...img_datas,[i]:canvas.toDataURL('image/png')};	
 
-
- 			//this.recurshtml2can(pdf,inputs,count,devis)
-	    
-    }
+	        if(img_datas!==undefined&&typeof img_datas==="object"&&Object.keys(img_datas).length===total){
+	        	Object.keys(img_datas).forEach((img,j)=>{
+	        		pdf.addImage(img_datas[img], 'JPEG', 0, 0,210,297);
+	        		if(j<(total-1)){
+	        			pdf.addPage()
+	        		}else{
+	        			pdf.save("CV_Adrien_GATINOIS_Developpeur_Web.pdf");
+	        			this.setState({pdf:false})
+	        		}
+	        	})
+	        }
+				})
+	       count--
+	    }
+ 		} 
   }
 	render(){
 		return(
