@@ -3,9 +3,9 @@ module.exports = {
     one: {
       // TODO: set host address, username, and authentication method
       host: '149.202.54.115',
-      username: 'root',
+      username: 'debian',//'root',
       // pem: './path/to/pem'
-      password: 'WpDv9TPd'
+      password: 'pZvEJmuHZGyR'//'WpDv9TPd'
       // or neither for authenticate from ssh-agent
     }
   },

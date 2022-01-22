@@ -14,6 +14,7 @@
 	import Experiences from '../pages/Experiences.js';
 	import GatUiReact from '../pages/GatUiReact.js';
 	import Bebe from '../pages/Bebe.js';
+	import Paques from '../pages/Paques.js';
 	import ChainMeteorReactRedux from '../pages/ChainMeteorReactRedux.js';
 	import InfiniteScroll from '../pages/CMRRComponents/InfiniteScroll.js';
 
@@ -31,6 +32,13 @@
 	 name: 'Cv',
 	 action: function() {
 		 mount(MainLayout, {content: <Cv />});
+	 window.scrollTo(0, 0)
+	 }
+ });
+ FlowRouter.route('/Cvtest', {
+	 name: 'Cvtest',
+	 action: function() {
+		 mount(MainLayout, {content: <Cv test={true} />});
 	 window.scrollTo(0, 0)
 	 }
  });
@@ -108,6 +116,13 @@ FlowRouter.route('/listeNaissance', {
 	 name: 'GatUiReact',
 	 action: function() {
 		 mount(MainLayoutB, {content: <Bebe />});
+	 window.scrollTo(0, 0)
+	 }
+ });
+FlowRouter.route('/Paques', {
+	 name: 'GatUiReact',
+	 action: function() {
+		 mount(MainLayoutB, {content: <Paques />});
 	 window.scrollTo(0, 0)
 	 }
  });

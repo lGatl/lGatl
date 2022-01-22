@@ -5,29 +5,14 @@ import CVRow from '../components/CVRow.js'
 
 export default class CVRowXP extends Component {
 
-	constructor(){
-		super()
-		this.state={hover:false}
-	}
-		style(){ return{
-			margin:5,
-			cursor:"pointer",
-	  	textDecoration:'none',
-	  	color:this.state.hover?'rgba(24,180,204,0.9)':'white',
-	  	fontWeight:this.state.hover?'400':'200'
-		}}
-	
-	hover(param){
-		this.setState({hover:param})
-	}
 	render(){
 		
 		return (
-			<CVRow>
-				<CVColumn flex={1} style={{minWidth:60}}>
+			<CVRow style={{marginBottom:10}}>
+				<CVColumn style={{minWidth:60, flex:1}}>
 							{this.props.children[0]}
 				</CVColumn>
-				<CVColumn flex={5} style={{ textAlign:"justify"}}>
+				<CVColumn  style={{minWidth:60, flex:5}}>
 							{this.props.children[1]}
 				</CVColumn>
 				

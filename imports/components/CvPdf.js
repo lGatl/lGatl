@@ -24,39 +24,33 @@ class CvPdf extends Component {
 	render(){
 		return(
 			
-			<div style={{
+			<div  style={{
 				transition:"0.5s",
-				boxShadow: "-1px 2px 10px 3px rgba(0, 0, 0, 0.3) inset",
-				display:"flex", 
-				flexDirection:"column", 
+				boxShadow: "-1px 2px 10px 3px rgba(0, 0, 0, 0.3) inset", 
 				width:"100%",
-				top:140,
-				bottom:100,
+				height:"100%",
 				backgroundColor:"rgb(220,220,220)",
 				alignItems:"center",
 				justifyContent:"center",
-				overflow:"scroll",
-				position: "fixed",
-				zIndex:50,
-				left:0,
+				overflowY:"scroll",
+				zIndex:99,
+
 
 				...this.props.style
 			}}
 			>    
 			<div  style={{
-
-				transform:"translateY("+0*34+"cm)",
+				
 				transition:"0.5s",
 				width:"100%",
 				display:"flex",
 				justifyContent:"center",
+				flexDirection:"column",
 				alignItems:"center",
-			  minHeight:"36cm",
+			  height:"72cm",
 			  minWidth:"30cm",
-			  position: "absolute",
-			 	left:0,
-			  top:0,
-			  zIndex:60
+
+			  zIndex:999
 			}}>
 
 			<div className="divToPrint" ref={this.props.refPages} style={{
@@ -64,17 +58,16 @@ class CvPdf extends Component {
 			        flexDirection:"column",
 			        width:"21cm",
 			        height:"29.7cm",
-			        position: "absolute",
-			        zIndex:80,
+			        zIndex:9999,
 			        padding:"2cm 2cm 2cm 2cm",
 			        backgroundColor:"white",
-			        fontSize:12
+			        fontVariant: "normal",
+			        fontFamily: "sans-serif"
 						}}>
 					<Page1/>
 				</div>
-				<div  style={{
+			<div  style={{
 
-				transform:"translateY("+1*34+"cm)",
 				transition:"0.5s",
 				width:"100%",
 				display:"flex",
@@ -82,9 +75,7 @@ class CvPdf extends Component {
 				alignItems:"center",
 			  minHeight:"36cm",
 			  minWidth:"30cm",
-			  position: "absolute",
-			 	left:0,
-			  top:0,
+
 			  zIndex:60
 			}}>
 
@@ -93,11 +84,12 @@ class CvPdf extends Component {
 			        flexDirection:"column",
 			        width:"21cm",
 			        height:"29.7cm",
-			        position: "absolute",
-			        zIndex:80,
+			        zIndex:9999,
 			        padding:"2cm 2cm 2cm 2cm",
 			        backgroundColor:"white",
-			        fontSize:12
+			        fontVariant: "normal",
+			        fontFamily: "sans-serif"
+			        
 						}}>
 				<Page2/>
 				</div>

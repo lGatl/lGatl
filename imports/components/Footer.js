@@ -10,9 +10,7 @@ export default class Footer extends Component {
 
 		return (
 			<footer style={{
-				height:100,
 				display:'flex',
-				marginTop:"10px",
 				backgroundColor:"rgba(181,204,24,1)",
 				color:'white'
 			}}>

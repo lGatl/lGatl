@@ -1,21 +1,24 @@
 
 html, body,#react-root{
-height: 100%!important;
+height: 100%;
 font-family: sans-serif;
 margin:0;
 padding:0;
 }
 .main-layout{
-	display: flex !important;
-	min-height: 100vh!important;
-	flex-direction: column!important;
+	display: flex;
+  min-height: 100%;
+	flex-direction: column;
 }
 
-footer {
-	flex: none;
-}
 .bodyLay{
-	flex: 1!important;
+	flex: 1 1 auto;
+  display: flex ;
+  flex-direction: column;
+}
+
+footer{
+  height:100px;
 }
 
 img{
@@ -60,4 +63,22 @@ img{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+div, span {
+  font-size: inherit;
+} 
+h1{
+  font-size: 36px;
+}
+.CVColumn{
+  display:flex; 
+  flex-direction:column;
+}
+.CVRow{
+  display:flex; 
+  flex-wrap:wrap;
+  padding:5;
+}
+.fixed {
+  -webkit-backface-visibility: hidden;
 }

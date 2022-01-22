@@ -20,37 +20,38 @@ export default class Page1 extends Component {
 	}
 	render(){
 			let {green} = this.style()
-			let size = this.props.paspdf?15:11
+			let size = this.props.paspdf?"15px":"13px"
+			let size2 = this.props.paspdf?"14px":"11px"
 		return (
-			<div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+			<div style={{display:"flex", flexDirection:"column", alignItems:"center",fontSize:size}}>
 				<CVFrame>
 					<CVTitleFrame>Projets Personnels</CVTitleFrame>
 					<CVRowXP>
 							<span>
 								2020
 							</span>
-							<span>
-								Lancement de la version test de <A href="devinamique.com">devinamique.com</A> qui permet la creation de devis dynamiques. (Projet en cours)<br/>
-								<span style={{...green}}>Technologies:</span> MongoDB, Meteor, React, Redux, Git, Github <br/>
+							<div style={{display:"flex", flexDirection:"column"}}>
+							<div>	Lancement de la version test de <A href="devinamique.com">devinamique.com</A> qui permet la creation de devis dynamiques. (Projet en cours)</div>
+								<div><span style={{...green}}>Technologies:</span> <span style={{fontWeight:"bold"}}>MongoDB, Meteor, React, Redux, Git, Github</span> </div>
 								<span style={{...green}}>Taches:</span>
-								<ul style={{size,margin:0}}>
+								<ul style={{fontSize:size2,margin:0}}>
 									<li>Système de login</li>
 									<li>Système de rôle</li>
 									<li>export d'éléments en pdf</li>
-									<li>système de drad & drop</li>
+									<li>système de drag & drop</li>
 									<li>Permet l'utilisation de logiques</li>
 								</ul>
-							</span>
+							</div>
 						</CVRowXP>
 						<CVRowXP>
 							<span>
 								2018
 							</span>
-							<span>
-								Application mobile pour aider l’organisation d’événements (festivals). Projet en cours<br/>
-								<span style={{...green}}>Technologies:</span> Firebase, React Native, Redux, Git <br/>
+							<div style={{display:"flex", flexDirection:"column"}}>
+								<span>Application mobile pour aider l’organisation d’événements (festivals). Projet en cours</span>
+								<div><span style={{...green}}>Technologies:</span> <span style={{fontWeight:"bold"}}>Firebase, React Native, Redux, Git</span> </div>
 								<span style={{...green}}>Taches:</span>
-								<ul style={{size,margin:0}}>
+								<ul style={{fontSize:size2,margin:0}}>
 									<li>Système de login</li>
 									<li>Système de rôle</li>
 									<li>Synchronisation des taches</li>
@@ -58,57 +59,56 @@ export default class Page1 extends Component {
 									<li>Autres taches a venir</li>
 									<li>Responsive</li>
 								</ul>
-							</span>
+							</div>
 						</CVRowXP>
 						<CVRowXP>
 							<span>
 								2018
 							</span>
-							<span>
-								 Simplifier et accélérer la création d’une application web pour un fullstack. Projet en cours proposé à la communauté. <br/>
-								nom du projet: chain-meteor-react-redux<br/>
-								<span style={{...green}}>Technologies:</span> MongoDB, Meteor, React, Redux, Git, Github<br/>
+							<div style={{display:"flex", flexDirection:"column"}}>
+								 <span>Simplifier et accélérer la création d’une application web pour un fullstack. Projet en cours proposé à la communauté.</span>
+								<span>nom du projet: chain-meteor-react-redux</span>
+								<div><span style={{...green}}>Technologies:</span> <span style={{fontWeight:"bold"}}>MongoDB, Meteor, React, Redux, Git, Github</span></div>
 								<span style={{...green}}>Taches:</span>
-								<ul style={{size,margin:0}}>
+								<ul style={{fontSize:size2,margin:0}}>
 									<li>Automatisation des liens Meteor React Redux</li>
 									<li>Documentation</li>
 									<li>Responsive</li>
 								</ul>
-
-							</span>
+							</div>
 						</CVRowXP>
 						<CVRowXP>
 							<span>
 								2018
 							</span>
-							<span>
-								Composants React pour l’intégration. Projet en cours proposé à la communauté.<br/>
-								paquet npm gat-ui-react <br/>
-								<span style={{...green}}>Technologies:</span> React, HTML5, CSS3, Flexbox, Git, Github<br/>
+							<div style={{display:"flex", flexDirection:"column"}}>
+								<span>Composants React pour l’intégration. Projet en cours proposé à la communauté.</span>
+								<span>paquet npm gat-ui-react </span>
+								<div><span style={{...green}}>Technologies:</span> <span style={{fontWeight:"bold"}}> React, HTML5, CSS3, Flexbox, Git, Github </span> </div>
 								<span style={{...green}}>Taches:</span>
-								<ul style={{size,margin:0}}>
+								<ul style={{fontSize:size2,margin:0}}>
 									<li>Intégration de composants React laissant libre accès aux modifications CSS </li>
 									<li>Documentation</li>
 									<li>Responsive</li>
 								</ul>
-							</span>
+							</div>
 						</CVRowXP>
 						<CVRowXP>
 							<span>
 								2017
 							</span>
-							<span>
-								Site de présentation <A href="http://lGatl.fr">lGatl.fr</A><br/>
-									<span style={{...green}}>Technologies:</span> Mongo DB, Meteor, React, HTML5, CSS3, Git<br/>
+							<div style={{display:"flex", flexDirection:"column"}}>
+								<div>Site de présentation <A href="http://lGatl.fr">lGatl.fr</A></div>
+									<div><span style={{...green}}>Technologies:</span> <span style={{fontWeight:"bold"}}>Mongo DB, Meteor, React, HTML5, CSS3, Git</span></div>
 									<span style={{...green}}>Taches:</span>
-									<ul style={{size,margin:0}}>
+									<ul style={{fontSize:size2,margin:0}}>
 									<li>Système d’envoi de courriel direct depuis le site sans passer par le client messagerie utilisant mailgun</li>
 									<li>Interface en mosaïque pour présenter mes travaux</li>
 									<li>Documentation de mes projets open source avec des exemples</li>
 									<li>export d'éléments en pdf</li>
 									<li>Responsive</li>
 									</ul>
-							</span>
+							</div>
 						</CVRowXP>
 				</CVFrame>
 				<CVFrame>
@@ -117,16 +117,16 @@ export default class Page1 extends Component {
 						<span>
 							De 2010 à 2016
 						</span>
-						<span>
-							Technicien Environnement - Société BioMonitor
-								<ul style = {{size,margin:0}}>
+						<div style={{display:"flex", flexDirection:"column"}}>
+							<span>Technicien Environnement - Société BioMonitor</span>
+								<ul style = {{fontSize:size2,margin:0}}>
 									<li style = {{}}>Exploitation de lourds fichiers Excel données météo tri horaires sur 10 ans </li>
 									<li style = {{}}>Création d’outils de saisie en VBA sur d’Excels </li>
 									<li style = {{}}>Création d’un outil de conversion de coordonnées GPS en VBA sur Excel </li>
 									<li style = {{}}>Création d’autres outils en VBA sur Excel pour mes collègues et moi-même </li>
 									<li style = {{}}>Autres travaux relatifs à la mesure environnementale </li>
 								</ul>			
-						</span>
+						</div>
 					</CVRowXP>
 					<CVRowXP>
 						<span>
@@ -166,9 +166,9 @@ export default class Page1 extends Component {
 						<span>
 							2016-2017
 						</span>
-						<span>
+						<div>
 							Formation Développeur Web (6 mois) – <A href="http://simplon.co/">Simplon</A> – <A href="http://www.webogreen.fr/">Webogreen</A> – Bras Sur Meuse
-						</span>
+						</div>
 					</CVRowXP>
 					<CVRowXP>
 						<span>
@@ -206,26 +206,25 @@ export default class Page1 extends Component {
 				</CVFrame>
 				<CVFrame style={{border:"none",margin:0,padding:0}}>
 					<CVRow style={{margin:0,padding:0}}>
-					
-					<CVRow style={{margin:0,flex:1}}>
-					<CVColumn  style={{ alignItems:"center", textAlign:"center"}}>
+					<CVRow style={{margin:0,flex:"1 1 auto"}}>
+					<CVColumn  style={{ alignItems:"center"}}>
 						<CVTitleFrame>Langues</CVTitleFrame>
 					</CVColumn>
-					<CVColumn flex={1} style={{ alignItems:"center", textAlign:"center"}}>
+					<CVColumn style={{ flex:"1 1 auto", alignItems:"center",marginTop:5}}>
 						
 						<span>Anglais : niveau d'étude supérieur (bac+2) </span>
 						<span>Allemand : niveau lycée  </span>
 					</CVColumn>
 					</CVRow>
-					<CVRow style={{margin:0,flex:1}}>
-					<CVColumn style={{ alignItems:"center", textAlign:"center"}}>
+					<CVRow style={{margin:0,flex:"1 1 auto"}}>
+					<CVColumn style={{ alignItems:"center"}}>
 						<CVTitleFrame>Loisirs</CVTitleFrame>
 					</CVColumn>
-					<CVColumn flex={1} style={{ alignItems:"center", textAlign:"center"}}>
+					<CVColumn style={{ flex:"1 1 auto", alignItems:"center",marginTop:5}}>
 				
-						Guitare (20 ans), clarinette, cuisine,
-						Escalade, VTT, Jardin, nature, pèche,
-						Echecs, jeu de Go 
+						<span>Guitare (20 ans), clarinette, cuisine,</span>
+						<span>escalade, VTT, jardin, nature, pèche,</span>
+						<span>echecs, jeu de Go </span>
 					</CVColumn>
 					</CVRow>
 					</CVRow>

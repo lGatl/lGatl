@@ -8,7 +8,7 @@ export default class Titre3 extends Component {
 	}
 		style(){ return{
 			color:"rgba(181,204,24,1)",
-			fontSize:"1.3em",
+			fontSize:"22px",
 			borderRadius:5,
 			display:"inline-block",
 			paddingTop:5,

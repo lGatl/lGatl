@@ -74,6 +74,13 @@ Articles = [
 		{br:""}]
 	},
 	{
+		nom: "AssetSagacity",
+		titre: "AssetSagacity",
+		categorie:"HorsFormation",
+		image:'',
+		description:["Intégré à une petite équipe de développement, je prends en charge la création de différentes features et debug riches et variés du back-end au front-end pour l'élaboration d'une application qui compile et traite des données (notamment ESG) pour des gestionnaires de fond."],
+	},
+	{
 		nom: "Myqualityboard",
 		titre: "Myqualityboard",
 		categorie:"HorsFormation",

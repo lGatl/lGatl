@@ -28,7 +28,7 @@ class Experience extends Component {
 	}
 	componentWillMount(){
 		this.props.setControle({generalMenu:'Expériences'})
-		this.props.getStateArticles({$or:[{nom:"ProjetSel"},{nom:"Simplonline"},{nom:"Myqualityboard"}]},"experiences",(articles)=>{
+		this.props.getStateArticles({$or:[{nom:"ProjetSel"},{nom:"Simplonline"},{nom:"Myqualityboard"},{nom:"AssetSagacity"}]},"experiences",(articles)=>{
 			// this.setState({loading:false})	
 		})
 
