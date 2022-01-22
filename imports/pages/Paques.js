@@ -333,9 +333,9 @@ class Paque extends Component {
 						>
 							<Titre3 style={{ color: "black" }}>Actu </Titre3>
 							On pourra mettre ici toutes informations à relayer ( dates
-							butoires, choses urgentes, infos contexte sanitaire ). N'hesitez pas
-							à me transmettre les infos qui vous semblent interessantes de mettre
-							dans cet encart.
+							butoires, choses urgentes, infos contexte sanitaire ). N'hésitez
+							pas à me transmettre les infos qui vous semblent intéressantes de
+							mettre dans cet encart.
 						</div>
 					</Bandeau>
 					<Bandeau
@@ -345,9 +345,9 @@ class Paque extends Component {
 						}}
 					>
 						<div>
-							Bien conscient du contexte sanitaire, nous seront peut-être forcé
+							Bien conscient du contexte sanitaire, nous serons peut-être forcés
 							de nous adapter selon l'évolution de la situation. Au{" "}
-							<strong>PIRE</strong> des cas tout serait pret pour l'an prochain
+							<strong>PIRE</strong> des cas tout serait prêt pour l'an prochain
 							!
 						</div>
 					</Bandeau>
@@ -366,9 +366,9 @@ class Paque extends Component {
 						<div>
 							<Titre3 style={{ color: "black" }}>Ce site </Titre3>
 							<div style={{ textAlign: "justify", padding: 10 }}>
-								Cette page internet vas évoluer prochainement, elle a pour le
+								Cette page internet va évoluer prochainement, elle a pour le
 								moment vocation à informer, expliquer. Puis un <b>tchat</b> va
-								bientot arriver pour pouvoir s'exprimer, communiquer,{" "}
+								bientôt arriver pour pouvoir s'exprimer, communiquer,{" "}
 								<b>donner son avis</b>. L'idée étant de :
 								<ul>
 									<li> Centraliser l'information </li>
@@ -385,25 +385,25 @@ class Paque extends Component {
 									</li>
 									<li>Permettre à tous de s'exprimer</li>
 								</ul>
-								Puis si tous le monde est partant, differentes listes vont voir
+								Puis si tous le monde est partant, différentes listes vont voir
 								le jour, chacun pourra alors :
 								<ul>
 									<li>
 										indiquer sa présence ( pour compter le nombre de couverts )
 									</li>
 									<li>
-										agrementer les listes de choses à penser, a faire ou a
+										agrémenter les listes de choses à penser, à faire ou à
 										préparer
 									</li>
 									<li>
 										s'assigner sur les choses qu'on a envie de faire en
-										preparation ou pour aider le jour j
+										préparation ou pour aider le jour j
 									</li>
 								</ul>
-								Tous le monde verra qui vient ou encore ce qui est déja prévu par
-								certains évitant ainsi les doublons.
+								Tout le monde verra qui vient ou encore ce qui est déjà prévu
+								par certains évitant ainsi les doublons.
 								<span style={{ fontSize: 15 }}>
-									( Par exemple si vous voyez qu'il y a déja 7 personnes qui ont
+									( Par exemple si vous voyez qu'il y a déjà 7 personnes qui ont
 									prévu de venir avec une entrée, ... )
 								</span>
 							</div>
@@ -413,7 +413,7 @@ class Paque extends Component {
 						<div style={{ textAlign: "justify", padding: 30 }}>
 							Ceci est un outil et certainement pas une contrainte, je suis
 							ouvert à toutes propositions de contenu (infos à relayer) ou de
-							fonctionalité. Il doit nous être utile, n'hésitez pas à être
+							fonctionnalité. Il doit nous être utile, n'hésitez pas à être
 							imaginatif.
 						</div>
 					</Bandeau>
@@ -433,14 +433,14 @@ class Paque extends Component {
 								un bon moyen de préparer une grande quantité de viande sans
 								avoir à cuisiner pendant une ou deux semaines ( on est nombreux
 								mais pas à la retraite, ... il faut bien l'dire ^^ ), on s'est
-								dit que ca pourrait être vraiment bien pour notre réunion
+								dit que ça pourrait être vraiment bien pour notre réunion
 								familliale tout en conservant la tradition ovine de Pâques.
 							</div>
 						</div>
 					</Bandeau>
 					<Bandeau style={{ color: "white" }}>
 						<div style={{ textAlign: "justify", padding: 30 }}>
-							A très bientôt ici oû vous trouverez le tchat pour{" "}
+							A très bientôt ici où vous trouverez le tchat pour{" "}
 							<b>donner votre avis</b>. C'est en cours de construction.
 						</div>
 					</Bandeau>
