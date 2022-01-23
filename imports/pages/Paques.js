@@ -20,6 +20,7 @@ class Paque extends Component {
 			fl: false,
 			hover: false,
 			hoverp: false,
+			hoverMechoui: false,
 			open: false,
 		};
 	}
@@ -45,6 +46,12 @@ class Paque extends Component {
 	annule() {
 		this.closePoppup();
 		this.setState({ fl: false });
+	}
+	hoverMechoui(){
+		this.setState({ hoverMechoui: true });
+	}
+	unhoverMechoui(){
+		this.setState({ hoverMechoui: false });
 	}
 	mouseEnter(index) {
 		this.setState({ hover: index });
@@ -212,7 +219,7 @@ class Paque extends Component {
 
 	render() {
 		let { mamie, papi, input, free_list } = this.props;
-		let { open, fl } = this.state;
+		let { open, fl, hoverMechoui } = this.state;
 		return mamie !== "Simone" || papi !== "Maurice" ? (
 			<section
 				style={{
@@ -223,6 +230,7 @@ class Paque extends Component {
 					flexDirection: "column",
 				}}
 			>
+			Les prenoms de mamie et papi la première lettre en majuscule
 				<Input
 					style={{ flex: 1 }}
 					label="Mamie"
@@ -437,6 +445,14 @@ class Paque extends Component {
 								familliale tout en conservant la tradition ovine de Pâques.
 							</div>
 						</div>
+						<img 
+						alt="image" 
+						src={hoverMechoui?"/images/mechouiB.png":"/images/mechouiC.png"} 
+						onMouseOver={this.hoverMechoui.bind(this)} 
+						onMouseOut={this.unhoverMechoui.bind(this)}
+						onTouchStart={this.hoverMechoui.bind(this)}
+						onTouchEnd={this.unhoverMechoui.bind(this)}
+						></img>
 					</Bandeau>
 					<Bandeau style={{ color: "white" }}>
 						<div style={{ textAlign: "justify", padding: 30 }}>
