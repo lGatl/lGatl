@@ -32,44 +32,11 @@ class Paque extends Component {
 		let { controlePaque } = this.props;
 		controlePaque({ [name]: value || rating });
 	}
-	onClick() {
-		let { controlePaque } = this.props;
-		this._addStatePaque();
-		controlePaque({ input: "" });
-	}
-	onSuppr(_id) {
-		let { rmStatePaque } = this.props;
-		this.closePoppup();
-		this.setState({ fl: false });
-		rmStatePaque({ _id }, "free_list");
-	}
-	annule() {
-		this.closePoppup();
-		this.setState({ fl: false });
-	}
-	hoverMechoui(){
+	hoverMechoui() {
 		this.setState({ hoverMechoui: true });
 	}
-	unhoverMechoui(){
+	unhoverMechoui() {
 		this.setState({ hoverMechoui: false });
-	}
-	mouseEnter(index) {
-		this.setState({ hover: index });
-	}
-	mouseLeave() {
-		this.setState({ hover: false });
-	}
-	mouseEnterp(index) {
-		this.setState({ hoverp: index });
-	}
-	mouseLeavep() {
-		this.setState({ hoverp: false });
-	}
-	openPoppup(fl) {
-		this.setState({ open: true, fl });
-	}
-	closePoppup() {
-		this.setState({ open: false });
 	}
 	_addStatePaque() {
 		let { input, addStatePaque } = this.props;
@@ -77,6 +44,10 @@ class Paque extends Component {
 			{ titre: input, date: Date.now(), suggestion: false },
 			"free_list"
 		);
+	}
+	loginSocket(){
+				let { username, logInSocket } = this.props;
+				logInSocket({username})
 	}
 	jour(j) {
 		switch (j) {
@@ -218,9 +189,9 @@ class Paque extends Component {
 	}
 
 	render() {
-		let { mamie, papi, input, free_list } = this.props;
+		let { mamie, papi, input, free_list, username } = this.props;
 		let { open, fl, hoverMechoui } = this.state;
-		return mamie !== "Simone" || papi !== "Maurice" ? (
+		return mamie == "Simone" || papi == "Maurice" ? (
 			<section
 				style={{
 					height: "100%",
@@ -230,7 +201,7 @@ class Paque extends Component {
 					flexDirection: "column",
 				}}
 			>
-			Les prenoms de mamie et papi la première lettre en majuscule
+				Les prenoms de mamie et papi la première lettre en majuscule
 				<Input
 					style={{ flex: 1 }}
 					label="Mamie"
@@ -445,19 +416,33 @@ class Paque extends Component {
 								familliale tout en conservant la tradition ovine de Pâques.
 							</div>
 						</div>
-						<img 
-						alt="image" 
-						src={hoverMechoui?"/images/mechouiB.png":"/images/mechouiC.png"} 
-						onMouseOver={this.hoverMechoui.bind(this)} 
-						onMouseOut={this.unhoverMechoui.bind(this)}
-						onTouchStart={this.hoverMechoui.bind(this)}
-						onTouchEnd={this.unhoverMechoui.bind(this)}
+						<img
+							alt="image"
+							src={
+								hoverMechoui ? "/images/mechouiB.png" : "/images/mechouiC.png"
+							}
+							onMouseOver={this.hoverMechoui.bind(this)}
+							onMouseOut={this.unhoverMechoui.bind(this)}
+							onTouchStart={this.hoverMechoui.bind(this)}
+							onTouchEnd={this.unhoverMechoui.bind(this)}
 						></img>
 					</Bandeau>
 					<Bandeau style={{ color: "white" }}>
 						<div style={{ textAlign: "justify", padding: 30 }}>
 							A très bientôt ici où vous trouverez le tchat pour{" "}
 							<b>donner votre avis</b>. C'est en cours de construction.
+							<Input
+									style={{ flex: 1 }}
+									label=""
+									name="username"
+									placeholder=""
+									value={username || ""}
+									onChange={this.change.bind(this)}
+								/>
+							<Button
+								onClick={this.loginSocket.bind(this)}>
+								LOGINSOCKET
+							</Button>
 						</div>
 					</Bandeau>
 					{/*<Bandeau style={{ color: "white" }}>
@@ -688,6 +673,7 @@ class Paque extends Component {
 					</Bandeau>
 				</div>
 			</section>
+
 		);
 	}
 }
@@ -698,6 +684,7 @@ function mapStateToProps(state) {
 		papi: state.paque.controle.papi,
 		input: state.paque.controle.input,
 		free_list: state.paque.free_list,
+		username: state.paque.controle.username,
 	};
 }
 
@@ -708,6 +695,8 @@ function mapDispatchToProps(dispatch) {
 			addStatePaque: ACTIONS.Paque.add_state,
 			rmStatePaque: ACTIONS.Paque.rm_state,
 			getStatePaque: ACTIONS.Paque.get_state,
+
+			logInSocket: ACTIONS.Socket.logInSocket
 		},
 		dispatch
 	);
