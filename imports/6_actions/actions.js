@@ -5,6 +5,7 @@ import { CONSTANT_Users, ACTION_Users } from '../user/2_action/user_action';
 import { CONSTANT_Menu, ACTION_Menu } from './menu_action';
 import { CONSTANT_Controle, ACTION_Controle } from './controle_action';
 import { CONSTANT_Titre, ACTION_Titre } from './titre_action';
+import { CONSTANT_Socket, ACTION_Socket } from './socket_action';
 
 //Initialisation of Objects
 const CONSTANT = {Error:{ERROR_ARGUMENT : 'ERROR_ARGUMENT'}};
@@ -69,7 +70,6 @@ COLLECTIONS.forEach((COLLECTION)=>{
 				}else{
 					//console.log(res)
 					cbk( res );
-					
 					resolve( { val:res, state:null} );
 				}
 			});
@@ -522,11 +522,13 @@ export const CONSTANTS = { ...CONSTANT,
 	Menu:{...CONSTANT_Menu},
 	Controle:{...CONSTANT_Controle},
 	Titre:{...CONSTANT_Titre},
+	Socket:{...CONSTANT_Socket}
 };
 export const ACTIONS = { ...ACTION,
 	Users:{ ...ACTION.Users, ...ACTION_Users },
 	Menu:{...ACTION_Menu},
 	Controle:{...ACTION_Controle},
 	Titre:{...ACTION_Titre},
+	Socket:{...ACTION_Socket}
 };
 

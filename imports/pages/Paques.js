@@ -1,10 +1,16 @@
+// Todo mettre en base
+// todo bloquer pass
+// todo bloquer empty user  &  empty mssg
+const TEST = true;
+
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { ACTIONS } from "../6_actions/actions";
+import { thisSocket } from "../6_actions/socket_action";
 
-import { Img, Input, Button, Popup } from "gat-ui-react";
+import { Img, Input, Button, Popup, Segment, TextArea } from "gat-ui-react";
 
 import Titre1 from "../components/Titre1.js";
 import Titre2 from "../components/Titre2.js";
@@ -13,20 +19,77 @@ import MyName from "../components/MyName.js";
 import A from "../components/A.js";
 import Bandeau from "../components/Bandeau.js";
 
+const dateToString = (mdate) => {
+	const date = new Date(mdate);
+	return (
+		date.getDate() +
+		"/" +
+		(date.getMonth() + 1) +
+		"/" +
+		date.getFullYear() +
+		" " +
+		date.getHours() +
+		"h" +
+		date.getMinutes()
+	);
+};
 class Paque extends Component {
 	constructor() {
 		super();
 		this.state = {
+			admin: false,
+			connectes: true,
 			fl: false,
 			hover: false,
 			hoverp: false,
 			hoverMechoui: false,
 			open: false,
+			defiler: true,
 		};
 	}
 	componentDidMount() {
-		let { getStatePaque } = this.props;
-		getStatePaque({}, "free_list");
+		let {
+			getSSLPaque,
+			logged,
+			usersLogged,
+			receiveNewMessage,
+			user_logged,
+			logInSocket,
+			unLog,
+		} = this.props;
+
+		const thisMyRef = this.myRef;
+		getSSLPaque({}, { sort: { date: -1 } });
+		thisSocket.on("logged", function (user) {
+			logged(user);
+		});
+		thisSocket.on("users", function (users) {
+			usersLogged(users);
+		});
+		thisSocket.on("message", function (message) {
+			receiveNewMessage(message);
+		});
+		thisSocket.on("connect", function () {
+			logInSocket(user_logged);
+		
+		});
+		thisSocket.on("disconnect", function () {
+			console.log('DISCONNECT')
+		});
+	}
+	componentDidUpdate(prevProps) {
+		if (
+			this.state.defiler ||
+			this.props.messages[this.props.messages.length - 1]?.user?.username ===
+				this.props.username
+		) {
+			if (this.props.messages !== prevProps.messages) {
+				const el = document.getElementById("chat1");
+				if (el) {
+					el.scrollTop = el.scrollHeight;
+				}
+			}
+		}
 	}
 	change(e, { value, name, rating }) {
 		let { controlePaque } = this.props;
@@ -45,153 +108,74 @@ class Paque extends Component {
 			"free_list"
 		);
 	}
-	loginSocket(){
-				let { username, logInSocket } = this.props;
-				logInSocket({username})
+	loginSocket() {
+		let { username, logInSocket } = this.props;
+		logInSocket({ username });
 	}
-	jour(j) {
-		switch (j) {
-			case 0:
-				return "dimanche";
-			case 1:
-				return "lundi";
-			case 2:
-				return "mardi";
-			case 3:
-				return "mercredi";
-			case 4:
-				return "jeudi";
-			case 5:
-				return "vendredi";
-			case 6:
-				return "samedi";
-			default:
-				return "erreur jour";
+	messageChat1() {
+		let {
+			message_tchat1,
+			emitMessage,
+			addStatePaques,
+			user_logged,
+			controlePaque,
+		} = this.props;
+		if (user_logged?.username) {
+			const message = { message: message_tchat1,user:user_logged, tchat: 1 };
+			emitMessage(message);
+			controlePaque({ message_tchat1: "" });
 		}
 	}
-	mois(m) {
-		switch (m) {
-			case 1:
-				return "janvier";
-			case 2:
-				return "février";
-			case 3:
-				return "mars";
-			case 4:
-				return "avril";
-			case 5:
-				return "mai";
-			case 6:
-				return "juin";
-			case 7:
-				return "juillet";
-			case 8:
-				return "août";
-			case 9:
-				return "septembre";
-			case 10:
-				return "octobre";
-			case 11:
-				return "novembre";
-			case 12:
-				return "décembre";
-			default:
-				return "erreur jour";
-		}
+	removeMessage(_id) {
+		console.log(_id);
+		const { rmPaque } = this.props;
+		rmPaque({ _id });
 	}
-	hourmin(hm) {
-		return hm < 10 ? "0" + hm : hm;
-	}
-	contentPopup(fl) {
-		let date = new Date(fl.date);
-		let date_string =
-			this.jour(date.getDay()) +
-			" " +
-			date.getDate() +
-			" " +
-			this.mois(date.getMonth() + 1) +
-			" " +
-			date.getFullYear() +
-			" à " +
-			date.getHours() +
-			"h" +
-			this.hourmin(date.getMinutes());
-
-		return (
-			<div
-				style={{
-					textAlign: "justify",
-					display: "flex",
-					alignItems: "center",
-					flexDirection: "column",
-				}}
-			>
-				<span style={{ margin: 10, textAlign: "justify", maxWidth: 380 }}>
-					Attention, vous avez cliqué sur le boutton pour supprimer une ligne de
-					la liste des cadeaux offerts.
-				</span>
-				<span style={{ margin: 10, textAlign: "justify", maxWidth: 380 }}>
-					Voulez-vous vraiment supprimer cette ligne :
-				</span>
-				<span style={{ margin: 10, textAlign: "justify", maxWidth: 380 }}>
-					{fl && fl.titre ? fl.titre : "non"}
-				</span>
-				<span style={{ margin: 10, textAlign: "justify", maxWidth: 380 }}>
-					{" "}
-					enregistrée le{" "}
-				</span>
-				<span style={{ margin: 10, textAlign: "justify", maxWidth: 380 }}>
-					{date_string}
-				</span>
-				<div
-					style={{
-						width: "100%",
-						display: "flex",
-						justifyContent: "space-around",
-					}}
-				>
-					<div
-						onMouseEnter={this.mouseEnterp.bind(this, 1)}
-						onMouseLeave={this.mouseLeavep.bind(this)}
-					>
-						<Button
-							style={{
-								backgroundColor:
-									this.state.hoverp === 1
-										? "rgba(250,0,0,0.6)"
-										: "rgba(250,0,0,0.4)",
-							}}
-							onClick={this.onSuppr.bind(this, fl._id)}
-						>
-							Oui, oui, merci !
-						</Button>
-					</div>
-
-					<div
-						onMouseEnter={this.mouseEnterp.bind(this, 2)}
-						onMouseLeave={this.mouseLeavep.bind(this)}
-					>
-						<Button
-							style={{
-								backgroundColor:
-									this.state.hoverp === 2
-										? "rgba(0,250,0,0.6)"
-										: "rgba(0,250,0,0.4)",
-							}}
-							onClick={this.annule.bind(this)}
-						>
-							Ah non, non !
-						</Button>
-					</div>
-				</div>
-			</div>
-		);
-	}
-
 	render() {
-		let { mamie, papi, input, free_list, username } = this.props;
-		let { open, fl, hoverMechoui } = this.state;
-		return mamie == "Simone" || papi == "Maurice" ? (
+		let {
+			active_user,
+			all_paques,
+			mamie,
+			papi,
+			input,
+			free_list,
+			test_tchat,
+			username,
+			user_logged,
+			users_logged,
+			message_tchat1,
+			messages,
+		} = this.props;
+		let { admin, open, fl, hoverMechoui } = this.state;
+		// console.log(messages, all_paques);
+		console.log(user_logged);
+
+		let pmessage = {};
+		const allMessages = [...all_paques, ...messages];
+		let formattedMessages = !admin
+			? allMessages.reduce((total, mes, i) => {
+					const pdate = Date.parse(new Date(pmessage.lastDate));
+					const mdate = Date.parse(new Date(mes.date));
+					if (
+						pmessage.user?.username === mes.user?.username &&
+						mdate - pdate < 1000 * 60 * 15
+					) {
+						pmessage.message += "\n" + mes.message;
+						pmessage.lastDate = mes.date;
+					} else {
+						if (Object.keys(pmessage).length) {
+							total.push(pmessage);
+						}
+						pmessage = { ...mes, lastDate: mes.date };
+					}
+					if (i === allMessages.length - 1) {
+						total.push(pmessage);
+					}
+					return total;
+			  }, [])
+			: allMessages;
+
+		return !TEST && (mamie !== "Simone" || papi !== "Maurice") ? (
 			<section
 				style={{
 					height: "100%",
@@ -225,23 +209,6 @@ class Paque extends Component {
 					{fl ? this.contentPopup(fl) : ""}
 				</Popup>
 
-				{/*<Img 
-            alt ='image' src='/images/paques2.jpg' 
-            im_style={{minWidth:50}}
-          >
-          </Img>*/}
-				{/*{<div style={{
-        	backgroundImage:"url(/images/paques2.jpg)",
-        	backgroundRepeat: "no-repeat", 
-        	backgroundPosition:"center",	
-        	backgroundSize: "cover", 
-        	minHeight:850, 
-        	display:"flex",
-        	alignItems:"flex-start", 
-        	flexDirection:"column", 
-        	justifyContent:"flex-end"}}>
-				
-        </div>}*/}
 				<img alt="image" src="/images/paques2.jpg"></img>
 
 				<div
@@ -311,10 +278,22 @@ class Paque extends Component {
 							}}
 						>
 							<Titre3 style={{ color: "black" }}>Actu </Titre3>
-							On pourra mettre ici toutes informations à relayer ( dates
-							butoires, choses urgentes, infos contexte sanitaire ). N'hésitez
-							pas à me transmettre les infos qui vous semblent intéressantes de
-							mettre dans cet encart.
+							<span style={{ fontSize: 14, color: "gray" }}>
+								On pourra mettre ici toutes informations à relayer ( dates
+								butoires, choses urgentes, infos contexte sanitaire ). N'hésitez
+								pas à me transmettre les infos qui vous semblent intéressantes
+								de mettre dans cet encart.
+							</span>
+							<br />
+							<br />
+							<span style={{ color: "red", fontWeight: "bold" }}>
+								NE CHERCHEZ PAS LES OUTILS DE COMMUNICATION ET D'ORGANISAGTION
+								POUR LE MOMENT : Comme expliqué ci-dessous, le tchat n'est pas
+								encore pret, il arrivera BIENTÔT promis ! Il est actuellement en
+								cours de test. Ensuite si la plus part d'entre nous donne un
+								avis favorable à la démarche dans le tchat, les outils
+								d'organisation suiveront.
+							</span>
 						</div>
 					</Bandeau>
 					<Bandeau
@@ -428,225 +407,190 @@ class Paque extends Component {
 						></img>
 					</Bandeau>
 					<Bandeau style={{ color: "white" }}>
-						<div style={{ textAlign: "justify", padding: 30 }}>
+						<span style={{ textAlign: "justify", padding: 10 }}>
 							A très bientôt ici où vous trouverez le tchat pour{" "}
-							<b>donner votre avis</b>. C'est en cours de construction.
+							<b>donner votre avis</b>. C'EST EN COURS DE CONSTRUCTION.
+						</span>
+						{test_tchat === "Testchat" || TEST ? (
+							""
+						) : (
 							<Input
-									style={{ flex: 1 }}
-									label=""
-									name="username"
-									placeholder=""
-									value={username || ""}
-									onChange={this.change.bind(this)}
-								/>
-							<Button
-								onClick={this.loginSocket.bind(this)}>
-								LOGINSOCKET
-							</Button>
-						</div>
-					</Bandeau>
-					{/*<Bandeau style={{ color: "white" }}>
-						<div
-							style={{
-								display: "flex",
-								textAlign: "justify",
-								padding: 10,
-								width: "100%",
-							}}
-						>
-							<div
-								style={{
-									textAlign: "justify",
-									flex: 1,
-									padding: 10,
-								}}
-							>
-								<ul>
-									<li>Preparer la salle</li>
-									<li>Entrées</li>
-									<li>Trouver le mouton</li>
-									<li>Légumes</li>
-									<li>Salade</li>
-									<li>Fromage</li>
-									<li>Dessert</li>
-									<li>Blanc ( Klevner ? )</li>
-									<li>Rouge</li>
-								</ul>
-							</div>
-							<div
-								style={{
-									textAlign: "justify",
-									flex: 1,
-									padding: 10,
-								}}
-							>
-								<ul>
-									<li>Preparer le tourne broche</li>
-									<li>découpe</li>
-									<li>Vaisselle</li>
-									<li>Nettoyer à la fin</li>
-								</ul>
-							</div>
-						</div>
-					</Bandeau>
-
-					<Bandeau
-						style={{
-							backgroundColor: "white",
-							paddingTop: 20,
-							paddingBottom: 20,
-						}}
-					>
-						<div>
-							<Titre3 style={{ color: "black" }}>
-								Allez Hop Qui Fait Quoi ?
-							</Titre3>
-							<div style={{ textAlign: "justify", padding: 10 }}>
-								Une liste dans laquelle vous pouvez indiquer ce que vous voulez
-								preparer/apporter. Une liste dans laquelle vous pouvez indiquer
-								ce que vous comptez faire le jour J pour aider
-							</div>
-						</div>
-					</Bandeau>
-					<Bandeau style={{ color: "white" }}>
-						<div
-							style={{
-								display: "flex",
-								flexDirection: "column",
-								textAlign: "justify",
-								padding: 10,
-								flex: 1,
-							}}
-						>
-							<div
-								style={{
-									display: "flex",
-									flex: 1,
-									marginBottom: 5,
-									marginTop: 15,
-									alignItems: "center",
-									flexDirection: "row",
-								}}
-							>
-								<Input
-									style={{ flex: 1 }}
-									label=""
-									name="input"
-									placeholder="En construction"
-									value={input || ""}
-									onChange={this.change.bind(this)}
-								/>
-								<div
-									onMouseEnter={this.mouseEnter.bind(this, "A")}
-									onMouseLeave={this.mouseLeave.bind(this)}
+								style={{ flex: 1 }}
+								label=""
+								name="test_tchat"
+								placeholder=""
+								value={test_tchat || ""}
+								onChange={this.change.bind(this)}
+							/>
+						)}
+						{test_tchat === "Testchat" || TEST ? (
+							<div style={{ width: "100%", marginLeft: 40, marginRight: 5 }}>
+								{user_logged?.username ? (
+									<div style={{ marginLeft: 30, marginBottom: 10 }}>
+										Salut {user_logged?.username}, tu peux maintenant participer à la
+										conversation{" "}
+									</div>
+								) : (
+									<div
+										style={{
+											display: "flex",
+											marginBottom: 10,
+											flexDirection: "column",
+										}}
+									>
+										<span>
+											Met ton nom ici pour participer à la conversation :
+										</span>
+										<div style={{ display: "flex", flexDirection: "row" }}>
+											<Input
+												style={{ flex: 1 }}
+												label=""
+												name="username"
+												placeholder=""
+												value={username || ""}
+												onChange={this.change.bind(this)}
+											/>
+											<Button onClick={this.loginSocket.bind(this)}>
+												Participer
+											</Button>
+										</div>
+									</div>
+								)}
+								{active_user?.username === "gat55@live.fr" ? (
+									<Button onClick={() => this.setState({ admin: !admin })}>
+										Admin
+									</Button>
+								) : (
+									""
+								)}
+								<Button
+									style={{ marginBottom: 20 }}
+									onClick={() =>
+										this.setState({ connectes: !this.state.connectes })
+									}
 								>
-									<Button
-			          onClick = { this.onClick.bind(this) }
-			          style = {{backgroundColor:this.state.hover==="A"?"rgba(237, 220, 82,1)":"rgba(237, 220, 82,0.8)"}}
-			      >
-			        Ajouter
-			      </Button>
-								</div>
-							</div>
-							<ul
-								style={{
-									paddingInlineStart: 0,
-									display: "flex",
-									flexDirection: "column",
-								}}
-							>
-								{typeof free_list === "object" &&
-								free_list instanceof Array &&
-								free_list.length > 0
-									? free_list.map((fl, i) => {
-											let date = new Date(fl.date);
-											let date_string =
-												date.getDate() +
-												"/" +
-												(date.getMonth() + 1) +
-												"/" +
-												date.getFullYear();
-											let hour_string =
-												this.hourmin(date.getHours()) +
-												"h" +
-												this.hourmin(date.getMinutes());
+									{this.state.connectes
+										? "Ne pas voir qui participe"
+										: "Voir qui participe"}
+								</Button>
+								{this.state.connectes ? (
+									<Segment
+										style={{
+											flex: 1,
+											color: "black",
+											padding: 10,
+											overflow: "auto",
+											flexDirection: "row",
+											backgroundColor: "white",
+										}}
+									>
+										<span style={{ marginRight: 5, fontWeight: "Bold" }}>
+											Participants :
+										</span>
+										{Object.values(users_logged).map((user_l, i) => (
+											<span style={{ marginRight: 5 }} key={i}>
+												{user_l.username},
+											</span>
+										))}
+									</Segment>
+								) : (
+									""
+								)}
+								<Button
+									style={{ marginTop: 10 }}
+									onClick={() =>
+										this.setState({ defiler: !this.state.defiler })
+									}
+								>
+									{this.state.defiler
+										? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
+										: "Defiler automatiquement lorsqu'arrive un nouveau message"}
+								</Button>
+								<Segment
+									style={{
+										marginTop: 10,
+										backgroundColor: "white",
+										height: 450,
+									}}
+								>
+									<Segment style={{ flex: 1 }}>
+										<div style={{ flex: 1, overflow: "auto" }} id="chat1">
+											{formattedMessages.map((message, i) => {
+												const me = message?.user?.username === username;
 
-											return (
-												<li
-													key={i}
-													style={{
-														display: "flex",
-														flex: 1,
-														marginBottom: 20,
-														alignItems: "center",
-														flexDirection: "row",
-														listStyle: "none",
-													}}
-												>
+												return (
 													<div
+														key={i}
 														style={{
-															height: 6,
-															width: 6,
-															marginRight: 10,
-															borderRadius: "50%",
-															backgroundColor: "white",
-														}}
-													></div>
-													<div
-														style={{
+															width: "100%",
 															display: "flex",
-															flexDirection: "column",
-															alignItems: "center",
-															backgroundColor: "rgb(237, 220, 82)",
-															padding: 3,
-															marginRight: 5,
+															flexDirection: "row",
+															justifyContent: me ? "flex-end" : "flex-start",
 														}}
 													>
-														<span
+														<Segment
 															style={{
-																color: "rgba(0, 173, 193,1)",
-																fontSize: 10,
-																fontWeight: "bold",
+																width: "90%",
+																padding: 10,
+																margin: 5,
+																marginBottom: 0,
+																backgroundColor: me
+																	? "LimeGreen"
+																	: "DeepSkyBlue",
+																flexDirection: "column",
 															}}
 														>
-															{date_string}
-														</span>
-														<span
-															style={{
-																color: "rgba(0, 173, 193,1)",
-																fontSize: 10,
-																fontWeight: "bold",
-															}}
-														>
-															{hour_string}
-														</span>
+															<div style={{ fontWeight: "bold" }}>
+																-- {message?.user?.username} --{" "}
+																{dateToString(message.date)}
+															</div>
+															{message?.message?.split("\n").map((mes, j) => (
+																<span key={j}>{mes}</span>
+															))}
+														</Segment>
+														{admin && message._id ? (
+															<Button
+																style={{
+																	backgroundColor: "rgba(198, 0, 57,1)",
+																}}
+																onClick={this.removeMessage.bind(
+																	this,
+																	message._id
+																)}
+															>
+																X
+															</Button>
+														) : (
+															""
+														)}
 													</div>
-													<span style={{ flex: 1, paddingRight: 15 }}>
-														{fl.titre}
-													</span>
-													<div
-														onMouseEnter={this.mouseEnter.bind(this, i)}
-														onMouseLeave={this.mouseLeave.bind(this)}
-													>
-														<Button
-															onClick={this.openPoppup.bind(this, fl)}
-															style={{
-																backgroundColor:
-																	this.state.hover === i
-																		? "rgba(198, 0, 57,1)"
-																		: "rgba(198, 0, 57,0.8)",
-															}}
-														>
-															X
-														</Button>
-													</div>
-												</li>
-											);
-									  })
-									: ""}
-							</ul>
-						</div>
-					</Bandeau>*/}
+												);
+											})}
+										</div>
+									</Segment>
+									{user_logged ? (
+										<Segment style={{ flexDirection: "row" }}>
+											<TextArea
+												style={{ flex: 1 }}
+												label=""
+												name="message_tchat1"
+												placeholder=""
+												value={message_tchat1 || ""}
+												onChange={this.change.bind(this)}
+											/>
+											<Button onClick={this.messageChat1.bind(this)}>
+												Envoyer
+											</Button>
+										</Segment>
+									) : (
+										""
+									)}
+								</Segment>
+							</div>
+						) : (
+							""
+						)}
+					</Bandeau>
 					<Bandeau
 						style={{
 							backgroundColor: "white",
@@ -673,18 +617,24 @@ class Paque extends Component {
 					</Bandeau>
 				</div>
 			</section>
-
 		);
 	}
 }
 
 function mapStateToProps(state) {
 	return {
+		all_paques: state.paque.all,
 		mamie: state.paque.controle.mamie,
 		papi: state.paque.controle.papi,
 		input: state.paque.controle.input,
+		test_tchat: state.paque.controle.test_tchat,
 		free_list: state.paque.free_list,
 		username: state.paque.controle.username,
+		message_tchat1: state.paque.controle.message_tchat1,
+		user_logged: state.socket.user_logged,
+		users_logged: state.socket.users_logged,
+		messages: state.socket.messages,
+		active_user: state.users.active_user,
 	};
 }
 
@@ -693,10 +643,15 @@ function mapDispatchToProps(dispatch) {
 		{
 			controlePaque: ACTIONS.Paque.controle,
 			addStatePaque: ACTIONS.Paque.add_state,
-			rmStatePaque: ACTIONS.Paque.rm_state,
-			getStatePaque: ACTIONS.Paque.get_state,
+			rmPaque: ACTIONS.Paque.rm,
+			getSSLPaque: ACTIONS.Paque.get_SSL,
 
-			logInSocket: ACTIONS.Socket.logInSocket
+			logInSocket: ACTIONS.Socket.logInSocket,
+			logged: ACTIONS.Socket.logged,
+			unLog: ACTIONS.Socket.unLog,
+			usersLogged: ACTIONS.Socket.usersLogged,
+			emitMessage: ACTIONS.Socket.emitMessage,
+			receiveNewMessage: ACTIONS.Socket.receiveNewMessage,
 		},
 		dispatch
 	);
