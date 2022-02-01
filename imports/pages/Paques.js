@@ -138,7 +138,7 @@ class Paque extends Component {
 	}
 	loginSocket() {
 		let { username, logInSocket } = this.props;
-		if(username.length>4)
+		if(username.length>=4)
 		logInSocket({ username });
 	}
 	messageChat1() {
