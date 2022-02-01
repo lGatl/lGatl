@@ -1,7 +1,7 @@
-// Todo mettre en base
+// sauvegarder la base
 // todo bloquer pass
 // todo bloquer empty user  &  empty mssg
-const TEST = true;
+const TEST = false;
 
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
@@ -21,6 +21,9 @@ import Bandeau from "../components/Bandeau.js";
 
 const dateToString = (mdate) => {
 	const date = new Date(mdate);
+	let minutes = date.getMinutes() + "";
+	minutes = minutes.length < 2 ? "0" + minutes : minutes;
+
 	return (
 		date.getDate() +
 		"/" +
@@ -30,12 +33,13 @@ const dateToString = (mdate) => {
 		" " +
 		date.getHours() +
 		"h" +
-		date.getMinutes()
+		minutes
 	);
 };
 class Paque extends Component {
 	constructor() {
 		super();
+		const thisMyRef = this.myRef;
 		this.state = {
 			admin: false,
 			connectes: true,
@@ -44,6 +48,7 @@ class Paque extends Component {
 			hoverp: false,
 			hoverMechoui: false,
 			open: false,
+			user_logged: null,
 			defiler: true,
 		};
 	}
@@ -53,12 +58,12 @@ class Paque extends Component {
 			logged,
 			usersLogged,
 			receiveNewMessage,
-			user_logged,
 			logInSocket,
-			unLog,
+			controlePaque,
+			cleanMessages,
+			relog,
 		} = this.props;
 
-		const thisMyRef = this.myRef;
 		getSSLPaque({}, { sort: { date: -1 } });
 		thisSocket.on("logged", function (user) {
 			logged(user);
@@ -69,15 +74,19 @@ class Paque extends Component {
 		thisSocket.on("message", function (message) {
 			receiveNewMessage(message);
 		});
-		thisSocket.on("connect", function () {
+		/*thisSocket.on("connect", function () {
 			logInSocket(user_logged);
 		
-		});
+		});*/
 		thisSocket.on("disconnect", function () {
-			console.log('DISCONNECT')
+			//thisSocket.reconnect();
+			getSSLPaque({}, { sort: { date: -1 } });
+			cleanMessages();
+			relog(true);
 		});
 	}
 	componentDidUpdate(prevProps) {
+		//  Defilement auto
 		if (
 			this.state.defiler ||
 			this.props.messages[this.props.messages.length - 1]?.user?.username ===
@@ -89,6 +98,19 @@ class Paque extends Component {
 					el.scrollTop = el.scrollHeight;
 				}
 			}
+		}
+
+		if (this.props.relog_socket) {
+			this.props.relog(false);
+			if (this.props.user_logged) {
+				this.props.logInSocket(this.props.user_logged);
+			}
+		}
+	}
+	bas() {
+		const el = document.getElementById("chat1");
+		if (el) {
+			el.scrollTop = el.scrollHeight;
 		}
 	}
 	change(e, { value, name, rating }) {
@@ -108,8 +130,15 @@ class Paque extends Component {
 			"free_list"
 		);
 	}
+	haut() {
+		const el = document.getElementById("chat1");
+		if (el) {
+			el.scrollTop = 0;
+		}
+	}
 	loginSocket() {
 		let { username, logInSocket } = this.props;
+		if(username.length>4)
 		logInSocket({ username });
 	}
 	messageChat1() {
@@ -120,14 +149,14 @@ class Paque extends Component {
 			user_logged,
 			controlePaque,
 		} = this.props;
-		if (user_logged?.username) {
-			const message = { message: message_tchat1,user:user_logged, tchat: 1 };
+		if (user_logged?.username&& message_tchat1.length>0) {
+			const message = { message: message_tchat1, user: user_logged, tchat: 1 };
 			emitMessage(message);
 			controlePaque({ message_tchat1: "" });
 		}
 	}
 	removeMessage(_id) {
-		console.log(_id);
+		//console.log(_id);
 		const { rmPaque } = this.props;
 		rmPaque({ _id });
 	}
@@ -148,7 +177,7 @@ class Paque extends Component {
 		} = this.props;
 		let { admin, open, fl, hoverMechoui } = this.state;
 		// console.log(messages, all_paques);
-		console.log(user_logged);
+		//console.log(user_logged);
 
 		let pmessage = {};
 		const allMessages = [...all_paques, ...messages];
@@ -160,7 +189,7 @@ class Paque extends Component {
 						pmessage.user?.username === mes.user?.username &&
 						mdate - pdate < 1000 * 60 * 15
 					) {
-						pmessage.message += "\n" + mes.message;
+						pmessage.message +="\n-\n" + mes.message;
 						pmessage.lastDate = mes.date;
 					} else {
 						if (Object.keys(pmessage).length) {
@@ -427,8 +456,8 @@ class Paque extends Component {
 							<div style={{ width: "100%", marginLeft: 40, marginRight: 5 }}>
 								{user_logged?.username ? (
 									<div style={{ marginLeft: 30, marginBottom: 10 }}>
-										Salut {user_logged?.username}, tu peux maintenant participer à la
-										conversation{" "}
+										Salut {user_logged?.username}, tu peux maintenant participer
+										à la conversation{" "}
 									</div>
 								) : (
 									<div
@@ -439,7 +468,7 @@ class Paque extends Component {
 										}}
 									>
 										<span>
-											Met ton nom ici pour participer à la conversation :
+											Mets ton prénom ici pour participer à la conversation (au moins 4 caractères):
 										</span>
 										<div style={{ display: "flex", flexDirection: "row" }}>
 											<Input
@@ -506,6 +535,15 @@ class Paque extends Component {
 										? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
 										: "Defiler automatiquement lorsqu'arrive un nouveau message"}
 								</Button>
+								<Button
+									style={{ marginTop: 10 }}
+									onClick={this.haut.bind(this)}
+								>
+									Remonter tout en haut
+								</Button>
+								<Button style={{ marginTop: 10 }} onClick={this.bas.bind(this)}>
+									Descendre tout en bas
+								</Button>
 								<Segment
 									style={{
 										marginTop: 10,
@@ -541,7 +579,11 @@ class Paque extends Component {
 															}}
 														>
 															<div style={{ fontWeight: "bold" }}>
-																-- {message?.user?.username} --{" "}
+																<span
+																	style={{ color: "black", marginRight: 5 }}
+																>
+																	-- {message?.user?.username} --
+																</span>
 																{dateToString(message.date)}
 															</div>
 															{message?.message?.split("\n").map((mes, j) => (
@@ -634,6 +676,7 @@ function mapStateToProps(state) {
 		user_logged: state.socket.user_logged,
 		users_logged: state.socket.users_logged,
 		messages: state.socket.messages,
+		relog_socket: state.socket.relog,
 		active_user: state.users.active_user,
 	};
 }
@@ -647,11 +690,13 @@ function mapDispatchToProps(dispatch) {
 			getSSLPaque: ACTIONS.Paque.get_SSL,
 
 			logInSocket: ACTIONS.Socket.logInSocket,
+			relog: ACTIONS.Socket.relog,
 			logged: ACTIONS.Socket.logged,
 			unLog: ACTIONS.Socket.unLog,
 			usersLogged: ACTIONS.Socket.usersLogged,
 			emitMessage: ACTIONS.Socket.emitMessage,
 			receiveNewMessage: ACTIONS.Socket.receiveNewMessage,
+			cleanMessages: ACTIONS.Socket.cleanMessages,
 		},
 		dispatch
 	);

@@ -1,4 +1,4 @@
-const LOCAL = true
+const LOCAL = false
 let io = require("socket.io-client");
 let socket = io.connect(LOCAL?"http://192.168.1.15:3000":'https://lgatl.fr');
 Meteor.startup(() => {
@@ -16,12 +16,28 @@ export const CONSTANT_Socket = {
 	USERS_LOGGED_SOCKET: "Socket_USERS_LOGGED_SOCKET",
 	NEW_USER_SOCKET: "Socket_NEW_USER_SOCKET",
 	EMIT_MESSAGE_SOCKET:"Socket_EMIT_MESSAGE_SOCKET",
-	RECEIVE_NEW_MESSAGE_SOCKET:"Socket_RECEIVE_NEW_MESSAGE_SOCKET"
+	RECEIVE_NEW_MESSAGE_SOCKET:"Socket_RECEIVE_NEW_MESSAGE_SOCKET",
+	CLEAN_MESSAGES_SOCKET:"Socket_CLEAN_MESSAGES_SOCKET",
+	RELOG_SOCKET:"Socket_RELOG_SOCKET"
 };
 function logInSocket(val) {
 	socket.emit("login", val);
+	console.log(val)
 	return {
 		type: CONSTANT_Socket.LOG_IN_SOCKET,
+		payload: val,
+	};
+}
+
+function cleanMessages(){
+	return {
+		type: CONSTANT_Socket.CLEAN_MESSAGES_SOCKET,
+		payload: true,
+	};
+}
+function relog(val){
+	return {
+		type: CONSTANT_Socket.RELOG_SOCKET,
 		payload: val,
 	};
 }
@@ -65,9 +81,11 @@ function newUser(obj, cbk = () => {}) {
 }
 
 export const ACTION_Socket = {
+	cleanMessages,
 	emitMessage,
 	logged,
 	logInSocket,
 	usersLogged,
-	receiveNewMessage
+	receiveNewMessage,
+	relog,
 };

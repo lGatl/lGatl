@@ -20,7 +20,7 @@ Meteor.startup(() => {
   io.on("connection", function (socket) {
     let me = null;
     // socket.room = socket.id;
-    //connections.push(socket);
+    connections.push(socket);
     console.log("connected: %s sockets connected", connections.length);
     io.emit("users", users);
 
@@ -28,14 +28,7 @@ Meteor.startup(() => {
     socket.on("message", function (message) {
       date = new Date();
       message.date = date;
-      if(!me){
-        console.log('RECO')
-        me=message.user
-        users[me.username] = me;
-        io.emit("users", users);
-      }else{
         message.user = me;
-      }
 
       io.emit("message", message);
       save(message);

@@ -4,16 +4,21 @@ const DEFAULTS = {
 	new_user: {},
 	users_logged:{},
 	user_logged:null,
-	messages:[]
+	messages:[],
+	relog:false
 };
 export default function (state = DEFAULTS, action) {
 	switch (action.type) {
+		case CONSTANT_Socket.RELOG_SOCKET:
+		return {...state, relog:action.payload}
 		case CONSTANT_Socket.LOGGED_SOCKET:
 			return { ...state, user_logged:action.payload };
 		case CONSTANT_Socket.NEW_USER_SOCKET:
 			return { ...state, new_user: action.payload };
 		case CONSTANT_Socket.USERS_LOGGED_SOCKET:
 			return { ...state, users_logged: action.payload };
+		case CONSTANT_Socket.CLEAN_MESSAGES_SOCKET:
+		return {...state,messages:[]}
 		case CONSTANT_Socket.RECEIVE_NEW_MESSAGE_SOCKET:
 		const messages = [...state.messages]
 		 messages.push(action.payload)
