@@ -1,6 +1,7 @@
-const LOCAL = false
+export const LOCAL = false
 let io = require("socket.io-client");
-let socket = io.connect(LOCAL?"http://192.168.1.15:3000":'https://lgatl.fr');
+//"http://192.168.1.15:3000"
+let socket = io.connect(LOCAL?"http://localhost:3000":'https://lgatl.fr');
 Meteor.startup(() => {
 	/*socket.on("connect", function () {
 		console.log("Client connected");
@@ -18,7 +19,8 @@ export const CONSTANT_Socket = {
 	EMIT_MESSAGE_SOCKET:"Socket_EMIT_MESSAGE_SOCKET",
 	RECEIVE_NEW_MESSAGE_SOCKET:"Socket_RECEIVE_NEW_MESSAGE_SOCKET",
 	CLEAN_MESSAGES_SOCKET:"Socket_CLEAN_MESSAGES_SOCKET",
-	RELOG_SOCKET:"Socket_RELOG_SOCKET"
+	RELOG_SOCKET:"Socket_RELOG_SOCKET",
+	RELOAD_SOCKET:"Socket_RELOAD_SOCKET"
 };
 function logInSocket(val) {
 	socket.emit("login", val);
@@ -26,6 +28,14 @@ function logInSocket(val) {
 	return {
 		type: CONSTANT_Socket.LOG_IN_SOCKET,
 		payload: val,
+	};
+}
+function reload() {
+	console.log('Reload')
+	socket.emit("reload");
+	return {
+		type: CONSTANT_Socket.RELOAD_SOCKET,
+		payload: true,
 	};
 }
 
@@ -88,4 +98,5 @@ export const ACTION_Socket = {
 	usersLogged,
 	receiveNewMessage,
 	relog,
+	reload,
 };

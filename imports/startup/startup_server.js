@@ -44,6 +44,11 @@ Meteor.startup(() => {
       }
       
     });
+    
+    socket.on("reload", function (message) {
+      console.log('RELOAD')
+      io.emit("reload");
+    });
 
     // Disconnect
     socket.on("disconnect", (data) => {

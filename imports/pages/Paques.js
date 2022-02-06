@@ -1,41 +1,51 @@
 // sauvegarder la base
 // todo bloquer pass
 // todo bloquer empty user  &  empty mssg
-const TEST = false;
 
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { ACTIONS } from "../6_actions/actions";
-import { thisSocket } from "../6_actions/socket_action";
+import { thisSocket, LOCAL } from "../6_actions/socket_action";
 
 import { Img, Input, Button, Popup, Segment, TextArea } from "gat-ui-react";
 
 import Titre1 from "../components/Titre1.js";
 import Titre2 from "../components/Titre2.js";
 import Titre3 from "../components/Titre3.js";
+import TextAreaV2 from "../components/TextAreaV2.js";
 import MyName from "../components/MyName.js";
 import A from "../components/A.js";
 import Bandeau from "../components/Bandeau.js";
 
-const dateToString = (mdate) => {
+const TEST = LOCAL;
+
+const dateToString = (mdate, noDate) => {
 	const date = new Date(mdate);
 	let minutes = date.getMinutes() + "";
 	minutes = minutes.length < 2 ? "0" + minutes : minutes;
-
-	return (
-		date.getDate() +
-		"/" +
-		(date.getMonth() + 1) +
-		"/" +
-		date.getFullYear() +
-		" " +
-		date.getHours() +
-		"h" +
-		minutes
-	);
+	let day = date.getDate() + "";
+	day = day.length < 2 ? "0" + day : day;
+	let month = date.getMonth() + 1 + "";
+	month = month.length < 2 ? "0" + month : month;
+	return `${
+		!noDate ? `${day}/${month}/${date.getFullYear()} ` : ""
+	} ${date.getHours()}h${minutes}`;
 };
+function cap(word) {
+	if (typeof word === "string") {
+		return word
+			.split(" ")
+			.map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+			.join(" ")
+			.split("-")
+			.map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+			.join("-");
+	} else {
+		return word;
+	}
+}
 class Paque extends Component {
 	constructor() {
 		super();
@@ -48,12 +58,13 @@ class Paque extends Component {
 			hoverp: false,
 			hoverMechoui: false,
 			open: false,
+			users: {},
 			user_logged: null,
 			defiler: true,
 		};
 	}
 	componentDidMount() {
-		let {
+		const {
 			getSSLPaque,
 			logged,
 			usersLogged,
@@ -74,10 +85,10 @@ class Paque extends Component {
 		thisSocket.on("message", function (message) {
 			receiveNewMessage(message);
 		});
-		/*thisSocket.on("connect", function () {
-			logInSocket(user_logged);
-		
-		});*/
+		thisSocket.on("reload", function () {
+			getSSLPaque({}, { sort: { date: -1 } });
+			cleanMessages();
+		});
 		thisSocket.on("disconnect", function () {
 			//thisSocket.reconnect();
 			getSSLPaque({}, { sort: { date: -1 } });
@@ -85,7 +96,7 @@ class Paque extends Component {
 			relog(true);
 		});
 	}
-	componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps, prevState) {
 		//  Defilement auto
 		if (
 			this.state.defiler ||
@@ -106,6 +117,51 @@ class Paque extends Component {
 				this.props.logInSocket(this.props.user_logged);
 			}
 		}
+		if (
+			prevProps.all_paques.length !== this.props.all_paques.length ||
+			prevProps.messages.length !== this.props.messages.length
+		) {
+			const allMessages = [...this.props.all_paques, ...this.props.messages];
+			const users = allMessages.reduce((total, am) => {
+				const username = am.user?.username;
+				if (
+					username &&
+					!this.state?.users?.hasOwnProperty(username) &&
+					!total.hasOwnProperty(username)
+				) {
+					total[username] = {};
+				}
+				return total;
+			}, {});
+			if (Object.keys(users).length >= 0) {
+				this.giveBg(users);
+			}
+		}
+	}
+	contact() {
+		FlowRouter.go("/Contact");
+	}
+	giveBg(users) {
+		const total = [];
+		Object.keys(users).forEach((key) => {
+			let ok = true;
+			let test = 0;
+			let val = 0;
+			while (ok) {
+				test++;
+				val = Math.floor(Math.random() * 45) + 130;
+				ok = !(
+					(total.indexOf(val) < 0 &&
+						Object.keys(this.state.users).findIndex(
+							(key) => this.state.users[key].bgcolor === val
+						) < 0) ||
+					test > 1000
+				);
+			}
+			total.push(val);
+			users[key] = { bgColor: val };
+		});
+		this.setState({ users: { ...this.state.users, ...users } });
 	}
 	bas() {
 		const el = document.getElementById("chat1");
@@ -114,7 +170,7 @@ class Paque extends Component {
 		}
 	}
 	change(e, { value, name, rating }) {
-		let { controlePaque } = this.props;
+		const { controlePaque } = this.props;
 		controlePaque({ [name]: value || rating });
 	}
 	hoverMechoui() {
@@ -124,7 +180,7 @@ class Paque extends Component {
 		this.setState({ hoverMechoui: false });
 	}
 	_addStatePaque() {
-		let { input, addStatePaque } = this.props;
+		const { input, addStatePaque } = this.props;
 		addStatePaque(
 			{ titre: input, date: Date.now(), suggestion: false },
 			"free_list"
@@ -137,23 +193,32 @@ class Paque extends Component {
 		}
 	}
 	loginSocket() {
-		let { username, logInSocket } = this.props;
-		if(username.length>=4)
-		logInSocket({ username });
+		const { username, logInSocket } = this.props;
+		if (username.trim().length >= 4) {
+			logInSocket({ username: username.trim().toLowerCase() });
+		}
 	}
 	messageChat1() {
-		let {
+		const {
 			message_tchat1,
 			emitMessage,
 			addStatePaques,
 			user_logged,
 			controlePaque,
 		} = this.props;
-		if (user_logged?.username&& message_tchat1.length>0) {
-			const message = { message: message_tchat1, user: user_logged, tchat: 1 };
+		if (user_logged?.username && message_tchat1?.trim().length > 0) {
+			const message = {
+				message: message_tchat1.trim(),
+				user: user_logged,
+				tchat: 1,
+			};
 			emitMessage(message);
 			controlePaque({ message_tchat1: "" });
 		}
+	}
+	reload() {
+		const { reload } = this.props;
+		reload();
 	}
 	removeMessage(_id) {
 		//console.log(_id);
@@ -161,7 +226,7 @@ class Paque extends Component {
 		rmPaque({ _id });
 	}
 	render() {
-		let {
+		const {
 			active_user,
 			all_paques,
 			mamie,
@@ -175,9 +240,10 @@ class Paque extends Component {
 			message_tchat1,
 			messages,
 		} = this.props;
-		let { admin, open, fl, hoverMechoui } = this.state;
+		const { admin, open, fl, hoverMechoui } = this.state;
 		// console.log(messages, all_paques);
 		//console.log(user_logged);
+		// console.log(this.state.users, Object.keys(this.state.users).length);
 
 		let pmessage = {};
 		const allMessages = [...all_paques, ...messages];
@@ -189,7 +255,9 @@ class Paque extends Component {
 						pmessage.user?.username === mes.user?.username &&
 						mdate - pdate < 1000 * 60 * 15
 					) {
-						pmessage.message +="\n-\n" + mes.message;
+						pmessage.message +=
+							`\n------- ${dateToString(mes.date, true)} -------\n` +
+							mes.message;
 						pmessage.lastDate = mes.date;
 					} else {
 						if (Object.keys(pmessage).length) {
@@ -204,7 +272,8 @@ class Paque extends Component {
 			  }, [])
 			: allMessages;
 
-		return !TEST && (mamie !== "Simone" || papi !== "Maurice") ? (
+		return !TEST &&
+			(mamie?.trim() !== "Simone" || papi?.trim() !== "Maurice") ? (
 			<section
 				style={{
 					height: "100%",
@@ -306,22 +375,26 @@ class Paque extends Component {
 								minWidth: 300,
 							}}
 						>
-							<Titre3 style={{ color: "black" }}>Actu </Titre3>
-							<span style={{ fontSize: 14, color: "gray" }}>
-								On pourra mettre ici toutes informations à relayer ( dates
-								butoires, choses urgentes, infos contexte sanitaire ). N'hésitez
-								pas à me transmettre les infos qui vous semblent intéressantes
-								de mettre dans cet encart.
-							</span>
-							<br />
-							<br />
+							<div
+								style={{
+									display: "flex",
+									flexDirection: "row",
+									alignItems: "center",
+								}}
+							>
+								<Titre3 style={{ color: "black" }}>Actu </Titre3>
+								<span style={{ marginLeft: 20, fontSize: 14, color: "gray" }}>
+									Des choses à mettre ici ?{" "}
+									<A onClick={this.contact.bind(this)}>Me contacter</A>
+								</span>
+							</div>
 							<span style={{ color: "red", fontWeight: "bold" }}>
-								NE CHERCHEZ PAS LES OUTILS DE COMMUNICATION ET D'ORGANISAGTION
-								POUR LE MOMENT : Comme expliqué ci-dessous, le tchat n'est pas
-								encore pret, il arrivera BIENTÔT promis ! Il est actuellement en
-								cours de test. Ensuite si la plus part d'entre nous donne un
-								avis favorable à la démarche dans le tchat, les outils
-								d'organisation suiveront.
+								LE TCHAT EST PRÊT ! Cousin(e)s, petit(e)s cousin(e)s, oncle et
+								tantes vous êtes tous invités à donner votre avis sur l'idée de
+								prendre le relais et sur l'idée de l'outil ! Ensuite si la plus
+								part d'entre nous donne un avis favorable, les outils
+								d'organisation suiveront rapidement, promis! Merci de lire les
+								suggestions d'utilisation.
 							</span>
 						</div>
 					</Bandeau>
@@ -354,9 +427,9 @@ class Paque extends Component {
 							<Titre3 style={{ color: "black" }}>Ce site </Titre3>
 							<div style={{ textAlign: "justify", padding: 10 }}>
 								Cette page internet va évoluer prochainement, elle a pour le
-								moment vocation à informer, expliquer. Puis un <b>tchat</b> va
-								bientôt arriver pour pouvoir s'exprimer, communiquer,{" "}
-								<b>donner son avis</b>. L'idée étant de :
+								moment vocation à informer, expliquer et maintenant le tchat
+								nous permet de s'exprimer, communiquer, <b>donner son avis</b>.
+								L'idée étant de :
 								<ul>
 									<li> Centraliser l'information </li>
 									<li>
@@ -399,7 +472,8 @@ class Paque extends Component {
 					<Bandeau style={{ color: "white" }}>
 						<div style={{ textAlign: "justify", padding: 30 }}>
 							Ceci est un outil et certainement pas une contrainte, je suis
-							ouvert à toutes propositions de contenu (infos à relayer) ou de
+							ouvert à toutes propositions de contenu, d'infos à relayer (
+							<A onClick={this.contact.bind(this)}>Me contacter</A>) ou de
 							fonctionnalité. Il doit nous être utile, n'hésitez pas à être
 							imaginatif.
 						</div>
@@ -437,125 +511,165 @@ class Paque extends Component {
 					</Bandeau>
 					<Bandeau style={{ color: "white" }}>
 						<span style={{ textAlign: "justify", padding: 10 }}>
-							A très bientôt ici où vous trouverez le tchat pour{" "}
-							<b>donner votre avis</b>. C'EST EN COURS DE CONSTRUCTION.
+							Vous êtes tous invités à donner votre avis sur l'idée de reprendre
+							le flambeau et sur l'idée de l'outil. L'objectif étant d'être
+							clair, que chacun s'exprime et de rester lisible pour tous,
+							essayons de :
+							<ul>
+								<li>
+									ne pas (ou pas trop) nous renvoyer la balle afin de ne pas
+									noyer les premiers avis dans un fil de discussion trop long,
+									(l'idée de créer un second tchat pour les bavardages est
+									imaginable, mais ce n'est pas l'objectif ici)
+								</li>
+								<li>
+									bien mettre votre prénom en évitant les abréviations (les surnoms) afin que
+									tous le monde vous reconnaisse
+								</li>
+								<li>
+									utiliser toujours le meme prenom (l'écrire de la même
+									manière..., mêmes accents..., je me charge des majuscules pour
+									vous... )
+								</li>
+							</ul>
 						</span>
-						{test_tchat === "Testchat" || TEST ? (
-							""
-						) : (
-							<Input
-								style={{ flex: 1 }}
-								label=""
-								name="test_tchat"
-								placeholder=""
-								value={test_tchat || ""}
-								onChange={this.change.bind(this)}
-							/>
-						)}
-						{test_tchat === "Testchat" || TEST ? (
-							<div style={{ width: "100%", marginLeft: 40, marginRight: 5 }}>
-								{user_logged?.username ? (
-									<div style={{ marginLeft: 30, marginBottom: 10 }}>
-										Salut {user_logged?.username}, tu peux maintenant participer
-										à la conversation{" "}
-									</div>
-								) : (
-									<div
-										style={{
-											display: "flex",
-											marginBottom: 10,
-											flexDirection: "column",
-										}}
-									>
-										<span>
-											Mets ton prénom ici pour participer à la conversation (au moins 4 caractères):
-										</span>
-										<div style={{ display: "flex", flexDirection: "row" }}>
-											<Input
-												style={{ flex: 1 }}
-												label=""
-												name="username"
-												placeholder=""
-												value={username || ""}
-												onChange={this.change.bind(this)}
-											/>
-											<Button onClick={this.loginSocket.bind(this)}>
-												Participer
-											</Button>
-										</div>
-									</div>
-								)}
-								{active_user?.username === "gat55@live.fr" ? (
-									<Button onClick={() => this.setState({ admin: !admin })}>
-										Admin
-									</Button>
-								) : (
-									""
-								)}
-								<Button
-									style={{ marginBottom: 20 }}
-									onClick={() =>
-										this.setState({ connectes: !this.state.connectes })
-									}
+						{
+							//test_tchat === "Testchat" || TEST
+							true ? (
+								""
+							) : (
+								<Input
+									style={{ flex: 1 }}
+									label=""
+									name="test_tchat"
+									placeholder=""
+									value={test_tchat || ""}
+									onChange={this.change.bind(this)}
+								/>
+							)
+						}
+						{
+							//test_tchat === "Testchat" || TEST
+							true ? (
+								<div
+									style={{
+										width: "100%",
+										marginLeft: 40,
+										marginRight: 5,
+										marginBottom: 20,
+									}}
 								>
-									{this.state.connectes
-										? "Ne pas voir qui participe"
-										: "Voir qui participe"}
-								</Button>
-								{this.state.connectes ? (
+									{user_logged?.username ? (
+										<div style={{ marginLeft: 30, marginBottom: 10 }}>
+											Salut {cap(user_logged?.username)}, tu peux maintenant
+											participer à la conversation{" "}
+										</div>
+									) : (
+										<div
+											style={{
+												display: "flex",
+												marginBottom: 10,
+												flexDirection: "column",
+											}}
+										>
+											<span></span>
+											<div style={{ display: "flex", flexDirection: "row" }}>
+												<Input
+													style={{ flex: 1 }}
+													label='Mets ton prénom ici (au moins 4 caractères) et clique sur "participer à la conversation" pour participer à la conversation'
+													name="username"
+													placeholder=""
+													value={cap(username) || ""}
+													onChange={this.change.bind(this)}
+												/>
+												<Button onClick={this.loginSocket.bind(this)}>
+													Participer <br /> à la conversation
+												</Button>
+											</div>
+										</div>
+									)}
+									{active_user?.username === "gat55@live.fr" ? (
+										<Button onClick={() => this.setState({ admin: !admin })}>
+											Admin
+										</Button>
+									) : (
+										""
+									)}
+									{this.state.admin ? (
+										<Button
+											style={{ marginBottom: 20 }}
+											onClick={this.reload.bind(this)}
+										>
+											Reload
+										</Button>
+									) : (
+										""
+									)}
+									<Button
+										style={{ marginBottom: 20 }}
+										onClick={() =>
+											this.setState({ connectes: !this.state.connectes })
+										}
+									>
+										{this.state.connectes
+											? "Ne pas voir qui participe"
+											: "Voir qui participe"}
+									</Button>
+									{this.state.connectes ? (
+										<Segment
+											style={{
+												flex: 1,
+												color: "black",
+												padding: 10,
+												overflow: "auto",
+												flexDirection: "row",
+												backgroundColor: "white",
+											}}
+										>
+											<span style={{ marginRight: 5, fontWeight: "Bold" }}>
+												Connectés :
+											</span>
+											{Object.values(users_logged).map((user_l, i) => (
+												<span style={{ marginRight: 5 }} key={i}>
+													{cap(user_l?.username)},
+												</span>
+											))}
+										</Segment>
+									) : (
+										""
+									)}
+									<Button
+										style={{ marginTop: 10 }}
+										onClick={() =>
+											this.setState({ defiler: !this.state.defiler })
+										}
+									>
+										{this.state.defiler
+											? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
+											: "Defiler automatiquement lorsqu'arrive un nouveau message"}
+									</Button>
+									<Button
+										style={{ marginTop: 10 }}
+										onClick={this.haut.bind(this)}
+									>
+										Remonter tout en haut
+									</Button>
+									<Button
+										style={{ marginTop: 10 }}
+										onClick={this.bas.bind(this)}
+									>
+										Descendre tout en bas
+									</Button>
 									<Segment
 										style={{
-											flex: 1,
-											color: "black",
-											padding: 10,
-											overflow: "auto",
-											flexDirection: "row",
+											marginTop: 10,
 											backgroundColor: "white",
 										}}
 									>
-										<span style={{ marginRight: 5, fontWeight: "Bold" }}>
-											Participants :
-										</span>
-										{Object.values(users_logged).map((user_l, i) => (
-											<span style={{ marginRight: 5 }} key={i}>
-												{user_l.username},
-											</span>
-										))}
-									</Segment>
-								) : (
-									""
-								)}
-								<Button
-									style={{ marginTop: 10 }}
-									onClick={() =>
-										this.setState({ defiler: !this.state.defiler })
-									}
-								>
-									{this.state.defiler
-										? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
-										: "Defiler automatiquement lorsqu'arrive un nouveau message"}
-								</Button>
-								<Button
-									style={{ marginTop: 10 }}
-									onClick={this.haut.bind(this)}
-								>
-									Remonter tout en haut
-								</Button>
-								<Button style={{ marginTop: 10 }} onClick={this.bas.bind(this)}>
-									Descendre tout en bas
-								</Button>
-								<Segment
-									style={{
-										marginTop: 10,
-										backgroundColor: "white",
-										height: 450,
-									}}
-								>
-									<Segment style={{ flex: 1 }}>
-										<div style={{ flex: 1, overflow: "auto" }} id="chat1">
+										<div style={{ overflow: "auto", height: 470 }} id="chat1">
 											{formattedMessages.map((message, i) => {
-												const me = message?.user?.username === username;
-
+												const messageUsername = message?.user?.username;
+												const me = cap(messageUsername) === cap(username);
 												return (
 													<div
 														key={i}
@@ -574,21 +688,35 @@ class Paque extends Component {
 																marginBottom: 0,
 																backgroundColor: me
 																	? "LimeGreen"
-																	: "DeepSkyBlue",
+																	: "rgb(" +
+																	  this.state.users[messageUsername]?.bgColor +
+																	  "," +
+																	  this.state.users[messageUsername]?.bgColor +
+																	  ",255)",
 																flexDirection: "column",
 															}}
 														>
-															<div style={{ fontWeight: "bold" }}>
+															<div style={{}}>
 																<span
-																	style={{ color: "black", marginRight: 5 }}
+																	style={{
+																		color: "black",
+																		marginRight: 5,
+																		fontWeight: "bold",
+																	}}
 																>
-																	-- {message?.user?.username} --
+																	-- {cap(messageUsername)} --
 																</span>
 																{dateToString(message.date)}
 															</div>
-															{message?.message?.split("\n").map((mes, j) => (
-																<span key={j}>{mes}</span>
-															))}
+															{message?.message
+																?.split("\n")
+																.map((mes, j) =>
+																	mes.length > 0 ? (
+																		<span key={j}>{mes}</span>
+																	) : (
+																		<br key={j} />
+																	)
+																)}
 														</Segment>
 														{admin && message._id ? (
 															<Button
@@ -609,29 +737,30 @@ class Paque extends Component {
 												);
 											})}
 										</div>
+
+										{user_logged ? (
+											<Segment style={{ flexDirection: "row" }}>
+												<TextAreaV2
+													s_textarea={{ flex: 1, minHeight: 50 }}
+													name="message_tchat1"
+													placeholder=""
+													value={message_tchat1 || ""}
+													onChange={this.change.bind(this)}
+												/>
+
+												<Button onClick={this.messageChat1.bind(this)}>
+													Envoyer
+												</Button>
+											</Segment>
+										) : (
+											""
+										)}
 									</Segment>
-									{user_logged ? (
-										<Segment style={{ flexDirection: "row" }}>
-											<TextArea
-												style={{ flex: 1 }}
-												label=""
-												name="message_tchat1"
-												placeholder=""
-												value={message_tchat1 || ""}
-												onChange={this.change.bind(this)}
-											/>
-											<Button onClick={this.messageChat1.bind(this)}>
-												Envoyer
-											</Button>
-										</Segment>
-									) : (
-										""
-									)}
-								</Segment>
-							</div>
-						) : (
-							""
-						)}
+								</div>
+							) : (
+								""
+							)
+						}
 					</Bandeau>
 					<Bandeau
 						style={{
@@ -672,6 +801,7 @@ function mapStateToProps(state) {
 		test_tchat: state.paque.controle.test_tchat,
 		free_list: state.paque.free_list,
 		username: state.paque.controle.username,
+		users: state.paque.controle.users,
 		message_tchat1: state.paque.controle.message_tchat1,
 		user_logged: state.socket.user_logged,
 		users_logged: state.socket.users_logged,
@@ -690,6 +820,7 @@ function mapDispatchToProps(dispatch) {
 			getSSLPaque: ACTIONS.Paque.get_SSL,
 
 			logInSocket: ACTIONS.Socket.logInSocket,
+			reload: ACTIONS.Socket.reload,
 			relog: ACTIONS.Socket.relog,
 			logged: ACTIONS.Socket.logged,
 			unLog: ACTIONS.Socket.unLog,

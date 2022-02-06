@@ -49,7 +49,7 @@ class Contact extends Component {
 			Meteor.call(
 				'sendEmail',
 				'gat55@live.fr',
-				'monsite@admin.lgatl.com',
+				'monsite@admin.lgatl.fr',
 				this.state.sujet,
 				message,(err,res)=>{
 					if(err){
