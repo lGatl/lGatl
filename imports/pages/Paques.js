@@ -1,6 +1,4 @@
-// sauvegarder la base
-// todo bloquer pass
-// todo bloquer empty user  &  empty mssg
+// todo passer this.state.users en this.props.users
 
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
@@ -389,7 +387,7 @@ class Paque extends Component {
 								</span>
 							</div>
 							<span style={{ color: "red", fontWeight: "bold" }}>
-								LE TCHAT EST PRÊT ! Cousin(e)s, petit(e)s cousin(e)s, oncle et
+								LE TCHAT EST PRÊT ! Cousin(e)s, petit(e)s cousin(e)s, oncles et
 								tantes vous êtes tous invités à donner votre avis sur l'idée de
 								prendre le relais et sur l'idée de l'outil ! Ensuite si la plus
 								part d'entre nous donne un avis favorable, les outils
@@ -689,19 +687,19 @@ class Paque extends Component {
 																backgroundColor: me
 																	? "LimeGreen"
 																	: "rgb(" +
-																	  this.state.users[messageUsername]?.bgColor +
+																	  (this.state.users[messageUsername]?.bgColor?this.state.users[messageUsername].bgColor:130) +
 																	  "," +
-																	  this.state.users[messageUsername]?.bgColor +
+																	  (this.state.users[messageUsername]?.bgColor?this.state.users[messageUsername].bgColor:130) +
 																	  ",255)",
 																flexDirection: "column",
 															}}
 														>
-															<div style={{}}>
+															<div style={{marginBottom: 10}}>
 																<span
 																	style={{
 																		color: "black",
 																		marginRight: 5,
-																		fontWeight: "bold",
+																fontWeight: "bold",
 																	}}
 																>
 																	-- {cap(messageUsername)} --
