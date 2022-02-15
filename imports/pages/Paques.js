@@ -52,6 +52,7 @@ class Paque extends Component {
 			admin: false,
 			connectes: true,
 			fl: false,
+			first: true,
 			hover: false,
 			hoverp: false,
 			hoverMechoui: false,
@@ -108,13 +109,14 @@ class Paque extends Component {
 				}
 			}
 		}
-
+		// Bug Portable
 		if (this.props.relog_socket) {
 			this.props.relog(false);
 			if (this.props.user_logged) {
 				this.props.logInSocket(this.props.user_logged);
 			}
 		}
+		// Color message
 		if (
 			prevProps.all_paques.length !== this.props.all_paques.length ||
 			prevProps.messages.length !== this.props.messages.length
@@ -135,6 +137,34 @@ class Paque extends Component {
 				this.giveBg(users);
 			}
 		}
+		//Get Users Paques
+		if (this.state.open && prevState.open === false) {
+			this.props.getUsersPaque();
+		}
+		//debut en bas
+		if (
+				
+			!(prevProps.mamie?.trim() === "Simone" && prevProps.papi?.trim() === "Maurice")&&
+			(this.props.mamie?.trim() === "Simone" && this.props.papi?.trim() === "Maurice")
+		) {
+			this.setState({ first: false });
+			this.bas();
+		}
+	}
+	addUsersPaque() {
+		const { addUsersPaque,controleUsersPaque, mail, all_users_paque } = this.props;
+		if (
+			mail.trim().length &&
+			mail.indexOf("@") > 0 &&
+			all_users_paque.findIndex((aup) => aup.mail === mail.trim()) < 0
+		) {
+			addUsersPaque({ mail: mail.trim() });
+			controleUsersPaque({ mail: "" });
+		}
+	}
+	rmUsersPaque(_id) {
+		const { rmUsersPaque, mail } = this.props;
+		rmUsersPaque({ _id });
 	}
 	contact() {
 		FlowRouter.go("/Contact");
@@ -170,6 +200,10 @@ class Paque extends Component {
 	change(e, { value, name, rating }) {
 		const { controlePaque } = this.props;
 		controlePaque({ [name]: value || rating });
+	}
+	changeUP(e, { value, name, rating }) {
+		const { controleUsersPaque } = this.props;
+		controleUsersPaque({ [name]: value.toLowerCase() || rating });
 	}
 	hoverMechoui() {
 		this.setState({ hoverMechoui: true });
@@ -227,6 +261,8 @@ class Paque extends Component {
 		const {
 			active_user,
 			all_paques,
+			all_users_paque,
+			mail,
 			mamie,
 			papi,
 			input,
@@ -301,8 +337,40 @@ class Paque extends Component {
 			</section>
 		) : (
 			<section style={{ display: "flex", flexDirection: "column" }}>
-				<Popup style={{ flexDirection: "column" }} open={open}>
-					{fl ? this.contentPopup(fl) : ""}
+				<Popup style={{ flexDirection: "column",padding:5 }} open={open}>
+				<div>Ajoutez votre adresse mail à cette liste si vous souhaitez <br/> recevoir un mail lorsque quelqu'un poste un nouveau message :  
+				</div>
+					<Input
+						style={{}}
+						label=""
+						name="mail"
+						placeholder=""
+						value={mail || ""}
+						onChange={this.changeUP.bind(this)}
+					/>
+					<Button onClick={this.addUsersPaque.bind(this)}>
+						Ajouter mon adresse
+					</Button>
+					<div style={{ flex: 1, overflow: "auto" }}>
+						{all_users_paque.map((aup, i) => (
+							<div key={i}>
+								{aup.mail}
+								{admin ? (
+									<Button
+										style={{
+											backgroundColor: "rgba(198, 0, 57,1)",
+										}}
+										onClick={this.rmUsersPaque.bind(this, aup._id)}
+									>
+										X
+									</Button>
+								) : (
+									""
+								)}
+							</div>
+						))}
+					</div>
+					<Button onClick={() => this.setState({ open: false })}>Close</Button>
 				</Popup>
 
 				<img alt="image" src="/images/paques2.jpg"></img>
@@ -443,7 +511,7 @@ class Paque extends Component {
 									</li>
 									<li>Permettre à tous de s'exprimer</li>
 								</ul>
-								Puis si tous le monde est partant, différentes listes vont voir
+								Puis si tout le monde est partant, différentes listes vont voir
 								le jour, chacun pourra alors :
 								<ul>
 									<li>
@@ -521,11 +589,11 @@ class Paque extends Component {
 									imaginable, mais ce n'est pas l'objectif ici)
 								</li>
 								<li>
-									bien mettre votre prénom en évitant les abréviations (les surnoms) afin que
-									tous le monde vous reconnaisse
+									bien mettre votre prénom en évitant les abréviations (les
+									surnoms) afin que tous le monde vous reconnaisse
 								</li>
 								<li>
-									utiliser toujours le meme prenom (l'écrire de la même
+									utiliser toujours le même prénom (l'écrire de la même
 									manière..., mêmes accents..., je me charge des majuscules pour
 									vous... )
 								</li>
@@ -547,217 +615,219 @@ class Paque extends Component {
 							)
 						}
 						{
-							//test_tchat === "Testchat" || TEST
-							true ? (
-								<div
-									style={{
-										width: "100%",
-										marginLeft: 40,
-										marginRight: 5,
-										marginBottom: 20,
-									}}
-								>
-									{user_logged?.username ? (
-										<div style={{ marginLeft: 30, marginBottom: 10 }}>
-											Salut {cap(user_logged?.username)}, tu peux maintenant
-											participer à la conversation{" "}
+							<div
+								style={{
+									width: "100%",
+									marginLeft: 40,
+									marginRight: 5,
+									marginBottom: 20,
+								}}
+							>
+								{user_logged?.username ? (
+									<div style={{ marginLeft: 30, marginBottom: 10 }}>
+										Salut {cap(user_logged?.username)}, tu peux maintenant
+										participer à la conversation{" "}
+									</div>
+								) : (
+									<div
+										style={{
+											display: "flex",
+											marginBottom: 10,
+											flexDirection: "column",
+										}}
+									>
+										<span></span>
+										<div style={{ display: "flex", flexDirection: "row" }}>
+											<Input
+												style={{ flex: 1 }}
+												label='Mets ton prénom ici (au moins 4 caractères) et clique sur "participer à la conversation" pour participer à la conversation'
+												name="username"
+												placeholder=""
+												value={cap(username) || ""}
+												onChange={this.change.bind(this)}
+											/>
+											<Button onClick={this.loginSocket.bind(this)}>
+												Participer <br /> à la conversation
+											</Button>
 										</div>
-									) : (
-										<div
-											style={{
-												display: "flex",
-												marginBottom: 10,
-												flexDirection: "column",
-											}}
-										>
-											<span></span>
-											<div style={{ display: "flex", flexDirection: "row" }}>
-												<Input
-													style={{ flex: 1 }}
-													label='Mets ton prénom ici (au moins 4 caractères) et clique sur "participer à la conversation" pour participer à la conversation'
-													name="username"
-													placeholder=""
-													value={cap(username) || ""}
-													onChange={this.change.bind(this)}
-												/>
-												<Button onClick={this.loginSocket.bind(this)}>
-													Participer <br /> à la conversation
-												</Button>
-											</div>
-										</div>
-									)}
-									{active_user?.username === "gat55@live.fr" ? (
-										<Button onClick={() => this.setState({ admin: !admin })}>
-											Admin
-										</Button>
-									) : (
-										""
-									)}
-									{this.state.admin ? (
-										<Button
-											style={{ marginBottom: 20 }}
-											onClick={this.reload.bind(this)}
-										>
-											Reload
-										</Button>
-									) : (
-										""
-									)}
+									</div>
+								)}
+								{active_user?.username === "gat55@live.fr" ? (
+									<Button onClick={() => this.setState({ admin: !admin })}>
+										Admin
+									</Button>
+								) : (
+									""
+								)}
+								{this.state.admin ? (
 									<Button
 										style={{ marginBottom: 20 }}
-										onClick={() =>
-											this.setState({ connectes: !this.state.connectes })
-										}
+										onClick={this.reload.bind(this)}
 									>
-										{this.state.connectes
-											? "Ne pas voir qui participe"
-											: "Voir qui participe"}
+										Reload
 									</Button>
-									{this.state.connectes ? (
-										<Segment
-											style={{
-												flex: 1,
-												color: "black",
-												padding: 10,
-												overflow: "auto",
-												flexDirection: "row",
-												backgroundColor: "white",
-											}}
-										>
-											<span style={{ marginRight: 5, fontWeight: "Bold" }}>
-												Connectés :
+								) : (
+									""
+								)}
+								<Button
+									style={{ marginBottom: 20 }}
+									onClick={() =>
+										this.setState({ connectes: !this.state.connectes })
+									}
+								>
+									{this.state.connectes
+										? "Ne pas voir qui participe"
+										: "Voir qui participe"}
+								</Button>
+								{this.state.connectes ? (
+									<Segment
+										style={{
+											flex: 1,
+											color: "black",
+											padding: 10,
+											overflow: "auto",
+											flexDirection: "row",
+											backgroundColor: "white",
+										}}
+									>
+										<span style={{ marginRight: 5, fontWeight: "Bold" }}>
+											Connectés :
+										</span>
+										{Object.values(users_logged).map((user_l, i) => (
+											<span style={{ marginRight: 5 }} key={i}>
+												{cap(user_l?.username)},
 											</span>
-											{Object.values(users_logged).map((user_l, i) => (
-												<span style={{ marginRight: 5 }} key={i}>
-													{cap(user_l?.username)},
-												</span>
-											))}
+										))}
+									</Segment>
+								) : (
+									""
+								)}
+								<Button
+									style={{ marginTop: 10 }}
+									onClick={() =>
+										this.setState({ defiler: !this.state.defiler })
+									}
+								>
+									{this.state.defiler
+										? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
+										: "Defiler automatiquement lorsqu'arrive un nouveau message"}
+								</Button>
+								<Button
+									style={{ marginTop: 10 }}
+									onClick={this.haut.bind(this)}
+								>
+									Remonter tout en haut
+								</Button>
+								<Button style={{ marginTop: 10 }} onClick={this.bas.bind(this)}>
+									Descendre tout en bas
+								</Button>
+								<Button
+									style={{ marginTop: 10 }}
+									onClick={() => this.setState({ open: true })}
+								>
+									Recevoir un mail si un message est posté
+								</Button>
+								<Segment
+									style={{
+										marginTop: 10,
+										backgroundColor: "white",
+									}}
+								>
+									<div style={{ overflow: "auto", height: 470 }} id="chat1">
+										{formattedMessages.map((message, i) => {
+											const messageUsername = message?.user?.username;
+											const me = cap(messageUsername) === cap(username);
+											return (
+												<div
+													key={i}
+													style={{
+														width: "100%",
+														display: "flex",
+														flexDirection: "row",
+														justifyContent: me ? "flex-end" : "flex-start",
+													}}
+												>
+													<Segment
+														style={{
+															width: "90%",
+															padding: 10,
+															margin: 5,
+															marginBottom: 0,
+															backgroundColor: me
+																? "LimeGreen"
+																: "rgb(" +
+																  (this.state.users[messageUsername]?.bgColor
+																		? this.state.users[messageUsername].bgColor
+																		: 130) +
+																  "," +
+																  (this.state.users[messageUsername]?.bgColor
+																		? this.state.users[messageUsername].bgColor
+																		: 130) +
+																  ",255)",
+															flexDirection: "column",
+														}}
+													>
+														<div style={{ marginBottom: 10 }}>
+															<span
+																style={{
+																	color: "black",
+																	marginRight: 5,
+																	fontWeight: "bold",
+																}}
+															>
+																-- {cap(messageUsername)} --
+															</span>
+															{dateToString(message.date)}
+														</div>
+														{message?.message
+															?.split("\n")
+															.map((mes, j) =>
+																mes.length > 0 ? (
+																	<span key={j}>{mes}</span>
+																) : (
+																	<br key={j} />
+																)
+															)}
+													</Segment>
+													{admin && message._id ? (
+														<Button
+															style={{
+																backgroundColor: "rgba(198, 0, 57,1)",
+															}}
+															onClick={this.removeMessage.bind(
+																this,
+																message._id
+															)}
+														>
+															X
+														</Button>
+													) : (
+														""
+													)}
+												</div>
+											);
+										})}
+									</div>
+
+									{user_logged ? (
+										<Segment style={{ flexDirection: "row" }}>
+											<TextAreaV2
+												s_textarea={{ flex: 1, minHeight: 50 }}
+												name="message_tchat1"
+												placeholder=""
+												value={message_tchat1 || ""}
+												onChange={this.change.bind(this)}
+											/>
+
+											<Button onClick={this.messageChat1.bind(this)}>
+												Envoyer
+											</Button>
 										</Segment>
 									) : (
 										""
 									)}
-									<Button
-										style={{ marginTop: 10 }}
-										onClick={() =>
-											this.setState({ defiler: !this.state.defiler })
-										}
-									>
-										{this.state.defiler
-											? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
-											: "Defiler automatiquement lorsqu'arrive un nouveau message"}
-									</Button>
-									<Button
-										style={{ marginTop: 10 }}
-										onClick={this.haut.bind(this)}
-									>
-										Remonter tout en haut
-									</Button>
-									<Button
-										style={{ marginTop: 10 }}
-										onClick={this.bas.bind(this)}
-									>
-										Descendre tout en bas
-									</Button>
-									<Segment
-										style={{
-											marginTop: 10,
-											backgroundColor: "white",
-										}}
-									>
-										<div style={{ overflow: "auto", height: 470 }} id="chat1">
-											{formattedMessages.map((message, i) => {
-												const messageUsername = message?.user?.username;
-												const me = cap(messageUsername) === cap(username);
-												return (
-													<div
-														key={i}
-														style={{
-															width: "100%",
-															display: "flex",
-															flexDirection: "row",
-															justifyContent: me ? "flex-end" : "flex-start",
-														}}
-													>
-														<Segment
-															style={{
-																width: "90%",
-																padding: 10,
-																margin: 5,
-																marginBottom: 0,
-																backgroundColor: me
-																	? "LimeGreen"
-																	: "rgb(" +
-																	  (this.state.users[messageUsername]?.bgColor?this.state.users[messageUsername].bgColor:130) +
-																	  "," +
-																	  (this.state.users[messageUsername]?.bgColor?this.state.users[messageUsername].bgColor:130) +
-																	  ",255)",
-																flexDirection: "column",
-															}}
-														>
-															<div style={{marginBottom: 10}}>
-																<span
-																	style={{
-																		color: "black",
-																		marginRight: 5,
-																fontWeight: "bold",
-																	}}
-																>
-																	-- {cap(messageUsername)} --
-																</span>
-																{dateToString(message.date)}
-															</div>
-															{message?.message
-																?.split("\n")
-																.map((mes, j) =>
-																	mes.length > 0 ? (
-																		<span key={j}>{mes}</span>
-																	) : (
-																		<br key={j} />
-																	)
-																)}
-														</Segment>
-														{admin && message._id ? (
-															<Button
-																style={{
-																	backgroundColor: "rgba(198, 0, 57,1)",
-																}}
-																onClick={this.removeMessage.bind(
-																	this,
-																	message._id
-																)}
-															>
-																X
-															</Button>
-														) : (
-															""
-														)}
-													</div>
-												);
-											})}
-										</div>
-
-										{user_logged ? (
-											<Segment style={{ flexDirection: "row" }}>
-												<TextAreaV2
-													s_textarea={{ flex: 1, minHeight: 50 }}
-													name="message_tchat1"
-													placeholder=""
-													value={message_tchat1 || ""}
-													onChange={this.change.bind(this)}
-												/>
-
-												<Button onClick={this.messageChat1.bind(this)}>
-													Envoyer
-												</Button>
-											</Segment>
-										) : (
-											""
-										)}
-									</Segment>
-								</div>
-							) : (
-								""
-							)
+								</Segment>
+							</div>
 						}
 					</Bandeau>
 					<Bandeau
@@ -806,6 +876,9 @@ function mapStateToProps(state) {
 		messages: state.socket.messages,
 		relog_socket: state.socket.relog,
 		active_user: state.users.active_user,
+		// UsersPaques
+		mail: state.userspaque.controle.mail,
+		all_users_paque: state.userspaque.all,
 	};
 }
 
@@ -826,6 +899,11 @@ function mapDispatchToProps(dispatch) {
 			emitMessage: ACTIONS.Socket.emitMessage,
 			receiveNewMessage: ACTIONS.Socket.receiveNewMessage,
 			cleanMessages: ACTIONS.Socket.cleanMessages,
+			//usersMail
+			controleUsersPaque: ACTIONS.UsersPaque.controle,
+			addUsersPaque: ACTIONS.UsersPaque.add_state,
+			rmUsersPaque: ACTIONS.UsersPaque.rm_state,
+			getUsersPaque: ACTIONS.UsersPaque.get_state,
 		},
 		dispatch
 	);

@@ -1,7 +1,7 @@
-export const LOCAL = false
+export const LOCAL = false;
 let io = require("socket.io-client");
 //"http://192.168.1.15:3000"
-let socket = io.connect(LOCAL?"http://localhost:3000":'https://lgatl.fr');
+let socket = io.connect(LOCAL ? "http://localhost:3000" : "https://lgatl.fr");
 Meteor.startup(() => {
 	/*socket.on("connect", function () {
 		console.log("Client connected");
@@ -16,22 +16,22 @@ export const CONSTANT_Socket = {
 	LOGGED_SOCKET: "Socket_LOGGED_SOCKET",
 	USERS_LOGGED_SOCKET: "Socket_USERS_LOGGED_SOCKET",
 	NEW_USER_SOCKET: "Socket_NEW_USER_SOCKET",
-	EMIT_MESSAGE_SOCKET:"Socket_EMIT_MESSAGE_SOCKET",
-	RECEIVE_NEW_MESSAGE_SOCKET:"Socket_RECEIVE_NEW_MESSAGE_SOCKET",
-	CLEAN_MESSAGES_SOCKET:"Socket_CLEAN_MESSAGES_SOCKET",
-	RELOG_SOCKET:"Socket_RELOG_SOCKET",
-	RELOAD_SOCKET:"Socket_RELOAD_SOCKET"
+	EMIT_MESSAGE_SOCKET: "Socket_EMIT_MESSAGE_SOCKET",
+	RECEIVE_NEW_MESSAGE_SOCKET: "Socket_RECEIVE_NEW_MESSAGE_SOCKET",
+	CLEAN_MESSAGES_SOCKET: "Socket_CLEAN_MESSAGES_SOCKET",
+	RELOG_SOCKET: "Socket_RELOG_SOCKET",
+	RELOAD_SOCKET: "Socket_RELOAD_SOCKET",
 };
 function logInSocket(val) {
 	socket.emit("login", val);
-	console.log(val)
+	console.log(val);
 	return {
 		type: CONSTANT_Socket.LOG_IN_SOCKET,
 		payload: val,
 	};
 }
 function reload() {
-	console.log('Reload')
+	console.log("Reload");
 	socket.emit("reload");
 	return {
 		type: CONSTANT_Socket.RELOAD_SOCKET,
@@ -39,13 +39,13 @@ function reload() {
 	};
 }
 
-function cleanMessages(){
+function cleanMessages() {
 	return {
 		type: CONSTANT_Socket.CLEAN_MESSAGES_SOCKET,
 		payload: true,
 	};
 }
-function relog(val){
+function relog(val) {
 	return {
 		type: CONSTANT_Socket.RELOG_SOCKET,
 		payload: val,
@@ -77,7 +77,7 @@ function usersLogged(val, cbk = () => {}) {
 	};
 }
 function receiveNewMessage(val, cbk = () => {}) {
-	console.log(val)
+	console.log(val);
 	return {
 		type: CONSTANT_Socket.RECEIVE_NEW_MESSAGE_SOCKET,
 		payload: val,

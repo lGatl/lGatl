@@ -1,5 +1,5 @@
 import SimpleSchema from "simpl-schema";
-export const COLLECTIONS = ["Users","Article","Test","Bebe","Paque"];
+export const COLLECTIONS = ["Users","Article","Test","Bebe","Paque","UsersPaque"];
 
 const SCHEMA ={
 	// Test : new SimpleSchema({
@@ -17,7 +17,6 @@ COLLECTIONS.forEach((COLLECTION) =>{
 			return BD[COLLECTION].insert(obj); // retourne l'id du nouvel objet
 		},
 		[ "get" + COLLECTION ]:(obj={},ssl)=>{
-
 			ssl = typeof (ssl) == 'object' && ssl !=null && Object.keys(ssl).length > 0 ?ssl:false
 			if(ssl){
 				return BD[COLLECTION].find(obj, ssl).fetch();

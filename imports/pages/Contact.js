@@ -48,16 +48,16 @@ class Contact extends Component {
 			})
 			Meteor.call(
 				'sendEmail',
-				'gat55@live.fr',
-				'monsite@admin.lgatl.fr',
+				'adrien.gatinois@live.fr',
+				"admin@lgatl.fr",
 				this.state.sujet,
 				message,(err,res)=>{
 					if(err){
-
+							console.log(err)
 					}else{
 						Bert.alert({
 							title:"courriel Envoyé",
-							message:"Votre courriel"+this.state.sujet+" à été envoyé." ,
+							message:"Votre courriel "+this.state.sujet+" à été envoyé." ,
 							type:'success'
 						})
 					}
