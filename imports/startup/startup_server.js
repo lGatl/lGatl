@@ -36,17 +36,15 @@ let THEMESSAGE = (messgs) => {
 <body>
 <section>
   <h1> Bonjour ! Du nouveau sur le tchat pour Paques </h1>
-  ${messgs.reduce(
-    (total,messg) =>{ 
-      total+=`<p> Un nouveau message viens d'être posté par ${
-          messg && messg.user && messg.user.username
-            ? cap(messg.user.username)
-            : "???"
-        } : </p>
-        <p>${messg && messg.message ? messg.message : "???"}</p>`
-        return total
-      }
-  ,"")}
+  ${messgs.reduce((total, messg) => {
+    total += `<p> Un nouveau message viens d'être posté par ${
+      messg && messg.user && messg.user.username
+        ? cap(messg.user.username)
+        : "???"
+    } : </p>
+        <p>${messg && messg.message ? messg.message : "???"}</p>`;
+    return total;
+  }, "")}
   </section>
 </body>
 </html>`;
@@ -55,8 +53,20 @@ let THEMESSAGE = (messgs) => {
 Meteor.startup(() => {
   const io = socket_io(WebApp.httpServer);
 
-  const save = Meteor.bindEnvironment((message) => {
-    Meteor.call("addPaque", message);
+  const save = Meteor.bindEnvironment((message, cbk) => {
+    Meteor.call("addPaque", message, (err, res) => {
+      cbk(res);
+    });
+  });
+  const get1 = Meteor.bindEnvironment((reco, cbk) => {
+    Meteor.call("get1Paque", reco, (err, res) => {
+      cbk(res);
+    });
+  });
+  const update = Meteor.bindEnvironment((reco, up, cbk) => {
+    Meteor.call("upPaque", reco, up, (err, res) => {
+      cbk(res);
+    });
   });
   const addMail = Meteor.bindEnvironment((message) => {
     messagesToSend.push(message);
@@ -65,18 +75,17 @@ Meteor.startup(() => {
     }
     timer = Meteor.setTimeout(() => {
       sendMail();
-    }, 1000*60*15);
+    }, 1000 * 60 * 15);
   });
   const sendMail = Meteor.bindEnvironment(() => {
     Meteor.call("getUsersPaque", {}, null, (err, res) => {
       const to = res.reduce((total, aup) => {
         if (aup.mail) {
-          total += aup.mail +"; "
+          total += aup.mail + "; ";
         }
         return total;
       }, "");
-      if (to.length && messagesToSend.length 
-        ) {
+      if (to.length && messagesToSend.length) {
         Meteor.call(
           "sendEmail",
           to,
@@ -111,18 +120,66 @@ Meteor.startup(() => {
       message.date = date;
       message.user = me;
 
-      io.emit("message", message);
-      save(message);
-      addMail(message);
+      save(message, (_id) => {
+        message._id = _id;
+        io.emit("message", message);
+      });
+      if (message && message.tchat === 1) {
+        addMail(message);
+      }
+    });
+    socket.on("updateMessage", function (up, opt) {
+      if (up._id) {
+        const _id = up._id;
+        delete up._id;
+        if (opt && opt.only_one && up[Object.keys(up)[0]]===true) {
+          get1({ _id }, (res) => {
+            if (res.doner) {
+              const stop = Object.keys(res.doner).reduce(
+                (total, don) => {
+                  total = total || res.doner[don] === true
+                  return total
+                },
+                false
+              );
+              if (!stop) {
+                update({ _id }, up, (this_id) => {
+                  if (this_id) {
+                    io.emit("updatedMessage", { _id, ...up });
+                  }
+                });
+              }
+            } else {
+              update({ _id }, up, (this_id) => {
+                if (this_id) {
+                  io.emit("updatedMessage", { _id, ...up });
+                }
+              });
+            }
+          });
+        } else {
+          update({ _id }, up, (this_id) => {
+            if (this_id) {
+              io.emit("updatedMessage", { _id, ...up });
+            }
+          });
+        }
+      }
     });
 
     socket.on("login", function (user) {
-      // console.log("=============+>", user);
       me = user;
       if (me && me.username) {
         users[me.username] = me;
         io.emit("users", users);
         socket.emit("logged", me);
+      }
+    });
+    socket.on("logOut", function (user) {
+      if (me) {
+        delete users[me.username];
+        io.emit("users", users);
+        socket.emit("loggedOut");
       }
     });
 
@@ -136,7 +193,6 @@ Meteor.startup(() => {
       if (me) {
         delete users[me.username];
         io.emit("users", users);
-        //socket.emit("logged", null);
       }
 
       connections.splice(connections.indexOf(data), 1);

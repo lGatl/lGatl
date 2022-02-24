@@ -48,7 +48,7 @@ class Contact extends Component {
 			})
 			Meteor.call(
 				'sendEmail',
-				'adrien.gatinois@live.fr',
+				'adrien.gatinois@lgatl.fr',
 				"admin@lgatl.fr",
 				this.state.sujet,
 				message,(err,res)=>{

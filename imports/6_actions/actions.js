@@ -2,6 +2,7 @@ import { COLLECTIONS } from '../5_methodes/methodes';
 
 //Import additionals Constant and actions 
 import { CONSTANT_Users, ACTION_Users } from '../user/2_action/user_action';
+import { CONSTANT_Paque, ACTION_Paque } from './paque_action';
 import { CONSTANT_Menu, ACTION_Menu } from './menu_action';
 import { CONSTANT_Controle, ACTION_Controle } from './controle_action';
 import { CONSTANT_Titre, ACTION_Titre } from './titre_action';
@@ -518,6 +519,7 @@ COLLECTIONS.forEach((COLLECTION)=>{
 
 
 export const CONSTANTS = { ...CONSTANT, 
+	Paque:{ ...CONSTANT.Paque, ...CONSTANT_Paque },
 	Users:{ ...CONSTANT.Users, ...CONSTANT_Users },
 	Menu:{...CONSTANT_Menu},
 	Controle:{...CONSTANT_Controle},
@@ -525,6 +527,7 @@ export const CONSTANTS = { ...CONSTANT,
 	Socket:{...CONSTANT_Socket}
 };
 export const ACTIONS = { ...ACTION,
+	Paque:{ ...ACTION.Paque, ...ACTION_Paque },
 	Users:{ ...ACTION.Users, ...ACTION_Users },
 	Menu:{...ACTION_Menu},
 	Controle:{...ACTION_Controle},

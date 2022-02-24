@@ -1,62 +1,76 @@
 // todo passer this.state.users en this.props.users
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import { ACTIONS } from "../6_actions/actions";
 import { thisSocket, LOCAL } from "../6_actions/socket_action";
 
-import { Img, Input, Button, Popup, Segment, TextArea } from "gat-ui-react";
+import {
+	Img,
+	Input,
+	Button,
+	Checkbox,
+	Dropdown,
+	Popup,
+	Segment,
+} from "gat-ui-react";
 
+import CardList from "../components/CardList.js";
+import PopupMail from "../containers/PopupMail.js";
+import PopupInscription from "../components/PopupInscription.js";
+import { InputV2 } from "../components/InputV2.js";
+import Tchat from "../components/Tchat.js";
+import LogSocket from "../components/LogSocket.js";
+import IntroPaques from "../components/IntroPaques.js";
 import Titre1 from "../components/Titre1.js";
 import Titre2 from "../components/Titre2.js";
 import Titre3 from "../components/Titre3.js";
-import TextAreaV2 from "../components/TextAreaV2.js";
+
 import MyName from "../components/MyName.js";
 import A from "../components/A.js";
 import Bandeau from "../components/Bandeau.js";
+import PrincipesListes from "../components/PrincipesListes.js";
+import { dateToString } from "../8_libs/date";
+import { cap } from "../8_libs/string";
 
 const TEST = LOCAL;
 
-const dateToString = (mdate, noDate) => {
-	const date = new Date(mdate);
-	let minutes = date.getMinutes() + "";
-	minutes = minutes.length < 2 ? "0" + minutes : minutes;
-	let day = date.getDate() + "";
-	day = day.length < 2 ? "0" + day : day;
-	let month = date.getMonth() + 1 + "";
-	month = month.length < 2 ? "0" + month : month;
-	return `${
-		!noDate ? `${day}/${month}/${date.getFullYear()} ` : ""
-	} ${date.getHours()}h${minutes}`;
-};
-function cap(word) {
-	if (typeof word === "string") {
-		return word
-			.split(" ")
-			.map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-			.join(" ")
-			.split("-")
-			.map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-			.join("-");
-	} else {
-		return word;
-	}
-}
+const option_taton = [
+	{ value: "", text: "-" },
+	{ value: "bernadette", text: "Bernadette" },
+	{ value: "chantal", text: "Chantal" },
+	{ value: "christine", text: "Christine" },
+	{ value: "florance", text: "Florance" },
+	{ value: "françois", text: "François" },
+	{ value: "joel", text: "Joel" },
+	{ value: "josette", text: "Josette" },
+	{ value: "lydie", text: "Lydie" },
+	{ value: "marie-france", text: "Marie-France" },
+];
+const option_unite = [
+	{ value: "kg", text: "Kg" },
+	{ value: "nb", text: "Nbr" },
+];
+
 class Paque extends Component {
 	constructor() {
 		super();
 		const thisMyRef = this.myRef;
 		this.state = {
 			admin: false,
-			connectes: true,
 			fl: false,
 			first: true,
 			hover: false,
 			hoverp: false,
-			hoverMechoui: false,
+			//Poppuup
 			open: false,
+			open_inscription: false,
+			open_liste_preparer: false,
+			open_liste_faire: false,
+			open_info: "",
+
 			users: {},
 			user_logged: null,
 			defiler: true,
@@ -66,23 +80,40 @@ class Paque extends Component {
 		const {
 			getSSLPaque,
 			logged,
+			loggedOut,
 			usersLogged,
 			receiveNewMessage,
+			updatedMessage,
+			updatedMessagePaque,
 			logInSocket,
 			controlePaque,
 			cleanMessages,
 			relog,
 		} = this.props;
 
+		window.addEventListener("focus", () => {
+			getSSLPaque({}, { sort: { date: -1 } });
+			cleanMessages();
+			relog(true);
+		});
+
 		getSSLPaque({}, { sort: { date: -1 } });
 		thisSocket.on("logged", function (user) {
 			logged(user);
+		});
+		thisSocket.on("loggedOut", function (user) {
+			loggedOut(user);
+			localStorage.removeItem("prenom");
 		});
 		thisSocket.on("users", function (users) {
 			usersLogged(users);
 		});
 		thisSocket.on("message", function (message) {
 			receiveNewMessage(message);
+		});
+		thisSocket.on("updatedMessage", function (up) {
+			updatedMessage(up);
+			updatedMessagePaque(up);
 		});
 		thisSocket.on("reload", function () {
 			getSSLPaque({}, { sort: { date: -1 } });
@@ -94,6 +125,10 @@ class Paque extends Component {
 			cleanMessages();
 			relog(true);
 		});
+		const username = localStorage.getItem("prenom");
+		if (username?.trim()?.length >= 4) {
+			logInSocket({ username: username.trim().toLowerCase() });
+		}
 	}
 	componentDidUpdate(prevProps, prevState) {
 		//  Defilement auto
@@ -137,34 +172,19 @@ class Paque extends Component {
 				this.giveBg(users);
 			}
 		}
-		//Get Users Paques
-		if (this.state.open && prevState.open === false) {
-			this.props.getUsersPaque();
-		}
+
 		//debut en bas
 		if (
-				
-			!(prevProps.mamie?.trim() === "Simone" && prevProps.papi?.trim() === "Maurice")&&
-			(this.props.mamie?.trim() === "Simone" && this.props.papi?.trim() === "Maurice")
+			!(
+				prevProps.mamie?.trim() === "Simone" &&
+				prevProps.papi?.trim() === "Maurice"
+			) &&
+			this.props.mamie?.trim() === "Simone" &&
+			this.props.papi?.trim() === "Maurice"
 		) {
 			this.setState({ first: false });
 			this.bas();
 		}
-	}
-	addUsersPaque() {
-		const { addUsersPaque,controleUsersPaque, mail, all_users_paque } = this.props;
-		if (
-			mail.trim().length &&
-			mail.indexOf("@") > 0 &&
-			all_users_paque.findIndex((aup) => aup.mail === mail.trim()) < 0
-		) {
-			addUsersPaque({ mail: mail.trim() });
-			controleUsersPaque({ mail: "" });
-		}
-	}
-	rmUsersPaque(_id) {
-		const { rmUsersPaque, mail } = this.props;
-		rmUsersPaque({ _id });
 	}
 	contact() {
 		FlowRouter.go("/Contact");
@@ -197,26 +217,9 @@ class Paque extends Component {
 			el.scrollTop = el.scrollHeight;
 		}
 	}
-	change(e, { value, name, rating }) {
+	change(e, { checked, value, name, rating }) {
 		const { controlePaque } = this.props;
-		controlePaque({ [name]: value || rating });
-	}
-	changeUP(e, { value, name, rating }) {
-		const { controleUsersPaque } = this.props;
-		controleUsersPaque({ [name]: value.toLowerCase() || rating });
-	}
-	hoverMechoui() {
-		this.setState({ hoverMechoui: true });
-	}
-	unhoverMechoui() {
-		this.setState({ hoverMechoui: false });
-	}
-	_addStatePaque() {
-		const { input, addStatePaque } = this.props;
-		addStatePaque(
-			{ titre: input, date: Date.now(), suggestion: false },
-			"free_list"
-		);
+		controlePaque({ [name]: value ?? rating ?? checked });
 	}
 	haut() {
 		const el = document.getElementById("chat1");
@@ -227,17 +230,29 @@ class Paque extends Component {
 	loginSocket() {
 		const { username, logInSocket } = this.props;
 		if (username.trim().length >= 4) {
+			localStorage.setItem("prenom", username.trim().toLowerCase());
 			logInSocket({ username: username.trim().toLowerCase() });
 		}
 	}
+	logOut() {
+		const { logOut } = this.props;
+		logOut();
+	}
+	etreFaiseur(up) {
+		const { updateMessage } = this.props;
+		updateMessage(up);
+	}
+	etrePreparateur(up) {
+		const { updateMessage } = this.props;
+		updateMessage(up, { only_one: true });
+	}
+	updateMessage(up) {
+		const { updateMessage } = this.props;
+		updateMessage(up);
+	}
 	messageChat1() {
-		const {
-			message_tchat1,
-			emitMessage,
-			addStatePaques,
-			user_logged,
-			controlePaque,
-		} = this.props;
+		const { message_tchat1, emitMessage, user_logged, controlePaque } =
+			this.props;
 		if (user_logged?.username && message_tchat1?.trim().length > 0) {
 			const message = {
 				message: message_tchat1.trim(),
@@ -247,6 +262,63 @@ class Paque extends Component {
 			emitMessage(message);
 			controlePaque({ message_tchat1: "" });
 		}
+	}
+	inscription() {
+		const {
+			personne,
+			present,
+			taton,
+			emitMessage,
+			user_logged,
+			controlePaque,
+		} = this.props;
+		if (
+			user_logged?.username &&
+			personne?.trim().length > 0 &&
+			taton?.length > 0
+		) {
+			const message = {
+				personne: personne.trim().toLowerCase(),
+				present: present ? present : false,
+				taton,
+				user: user_logged,
+				liste: "inscription",
+			};
+			emitMessage(message);
+			controlePaque({ personne: "", present: false });
+		}
+	}
+	listePreparer() {
+		const { qtt, unite, preparation, emitMessage, user_logged, controlePaque } =
+			this.props;
+		if (user_logged?.username && preparation?.trim().length > 0) {
+			const message = {
+				qtt: qtt ? qtt : 0,
+				preparation: preparation.trim().toLowerCase(),
+				unite: unite ? unite : "nb",
+				user: user_logged,
+				liste: "preparer",
+			};
+			emitMessage(message);
+			controlePaque({ qtt: 1, preparation: "" });
+		}
+	}
+	listeFaire() {
+		const { nb_personne, chose, emitMessage, user_logged, controlePaque } =
+			this.props;
+		if (user_logged?.username && chose?.trim().length > 0) {
+			const message = {
+				nb_personne: nb_personne ? nb_personne : 0,
+				chose: chose.trim(),
+				user: user_logged,
+				liste: "faire",
+			};
+			emitMessage(message);
+			controlePaque({ nb_personne: 1, chose });
+		}
+	}
+	openInfo(_id) {
+		this.setState({ open_info: _id });
 	}
 	reload() {
 		const { reload } = this.props;
@@ -261,51 +333,43 @@ class Paque extends Component {
 		const {
 			active_user,
 			all_paques,
-			all_users_paque,
-			mail,
-			mamie,
-			papi,
-			input,
 			free_list,
-			test_tchat,
+			input,
+			mamie,
+			message_tchat1,
+			messages,
+			papi,
 			username,
 			user_logged,
 			users_logged,
-			message_tchat1,
-			messages,
+			//Inscriptions
+			personne,
+			present,
+			taton,
+			//Liste Preparation
+			qtt,
+			unite,
+			preparation,
+			//liste faire
+			nb_personne,
+			chose,
 		} = this.props;
-		const { admin, open, fl, hoverMechoui } = this.state;
-		// console.log(messages, all_paques);
-		//console.log(user_logged);
-		// console.log(this.state.users, Object.keys(this.state.users).length);
-
-		let pmessage = {};
-		const allMessages = [...all_paques, ...messages];
-		let formattedMessages = !admin
-			? allMessages.reduce((total, mes, i) => {
-					const pdate = Date.parse(new Date(pmessage.lastDate));
-					const mdate = Date.parse(new Date(mes.date));
-					if (
-						pmessage.user?.username === mes.user?.username &&
-						mdate - pdate < 1000 * 60 * 15
-					) {
-						pmessage.message +=
-							`\n------- ${dateToString(mes.date, true)} -------\n` +
-							mes.message;
-						pmessage.lastDate = mes.date;
-					} else {
-						if (Object.keys(pmessage).length) {
-							total.push(pmessage);
-						}
-						pmessage = { ...mes, lastDate: mes.date };
-					}
-					if (i === allMessages.length - 1) {
-						total.push(pmessage);
+		const { admin, open, fl } = this.state;
+		const all_messages = [...all_paques, ...messages];
+		const info_fund = all_messages.find(
+			(am) => am._id === this.state.open_info
+		);
+		const the_doners = info_fund?.hasOwnProperty("doner")
+			? Object.keys(info_fund.doner).reduce((total, elt) => {
+					if (info_fund.doner[elt] === true) {
+						total.push(cap(elt));
 					}
 					return total;
 			  }, [])
-			: allMessages;
-
+			: [];
+		// console.log(messages, all_paques);
+		//console.log(user_logged);
+		// console.log(this.state.users, Object.keys(this.state.users).length);
 		return !TEST &&
 			(mamie?.trim() !== "Simone" || papi?.trim() !== "Maurice") ? (
 			<section
@@ -336,350 +400,291 @@ class Paque extends Component {
 				/>
 			</section>
 		) : (
-			<section style={{ display: "flex", flexDirection: "column" }}>
-				<Popup style={{ flexDirection: "column",padding:5 }} open={open}>
-				<div>Ajoutez votre adresse mail à cette liste si vous souhaitez <br/> recevoir un mail lorsque quelqu'un poste un nouveau message :  
-				</div>
-					<Input
-						style={{}}
-						label=""
-						name="mail"
-						placeholder=""
-						value={mail || ""}
-						onChange={this.changeUP.bind(this)}
+			<section
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					backgroundColor: "rgba(0, 173, 193,1)",
+				}}
+			>
+				{this.state.open ? (
+					<PopupMail
+						admin={admin}
+						close={() => this.setState({ open: false })}
 					/>
-					<Button onClick={this.addUsersPaque.bind(this)}>
-						Ajouter mon adresse
-					</Button>
-					<div style={{ flex: 1, overflow: "auto" }}>
-						{all_users_paque.map((aup, i) => (
-							<div key={i}>
-								{aup.mail}
-								{admin ? (
-									<Button
-										style={{
-											backgroundColor: "rgba(198, 0, 57,1)",
-										}}
-										onClick={this.rmUsersPaque.bind(this, aup._id)}
-									>
-										X
-									</Button>
-								) : (
-									""
-								)}
-							</div>
-						))}
-					</div>
-					<Button onClick={() => this.setState({ open: false })}>Close</Button>
-				</Popup>
+				) : (
+					""
+				)}
+				{this.state.open_inscription ? (
+					<PopupInscription
+						admin={admin}
+						username={user_logged?.username}
+						titre="Qui sera là ?"
+						//Control
+						control={[
+							{
+								elt: "dropdown",
+								options: option_taton,
+								name: "taton",
+								value: taton || "",
+								label: "Selectionnez",
+								placeholder: "Selectionnez qq",
+							},
+							{
+								elt: "input",
+								style: {
+									visibility: taton?.length ? "visible" : "hidden",
+								},
+								label: "Prenom de la personne à inscrire",
+								name: "personne",
+								value: cap(personne) || "",
+							},
+							{
+								elt: "checkbox",
+								style: { visibility: taton?.length ? "visible" : "hidden" },
+								label: "Présent ?",
+								name: "present",
+								checked: present ?? false,
+							},
+							{
+								elt: "button",
+								style: {
+									visibility:
+										taton?.length && personne?.length ? "visible" : "hidden",
+								},
+								onClick: user_logged?.username
+									? this.inscription.bind(this)
+									: () => {
+											this.setState({ open_inscription: false });
+											document.getElementById("prenom").focus();
+									  },
+								children: user_logged?.username
+									? present
+										? "Sera Présent"
+										: "Sera Absent"
+									: "Donne ton prénom pour participer à l'organisation",
+							},
+						]}
+						//data
+						data={
+							taton
+								? all_messages.filter((msg) => msg.liste === "inscription")
+								: Object.values(
+										all_messages.reduce((total, mess) => {
+											if (mess.liste === "inscription") {
+												if (!total.hasOwnProperty(mess.taton)) {
+													total[mess.taton] = {
+														taton: mess.taton,
+														present: 0,
+														inscrit: 0,
+													};
+												}
+												total[mess.taton].inscrit += 1;
+												if (mess.present) {
+													total[mess.taton].present += 1;
+												}
+											}
+											return total;
+										}, {})
+								  )
+						}
+						filterData={taton ? (dat) => dat.taton === taton : null}
+						order={
+							taton
+								? [
+										{
+											name: "taton",
+											label: "Famille",
+											style: { marginLeft: 5, flex: 1 },
+										},
+										{ name: "personne", style: { marginLeft: 5, flex: 1 } },
+										"present",
+								  ]
+								: [
+										{
+											name: "taton",
+											label: "famille",
+											style: { marginLeft: 5, flex: 1 },
+										},
+										"inscrit",
+										"present",
+								  ]
+						}
+						//Fnt
+						removeMessage={this.removeMessage.bind(this)}
+						updateMessage={this.updateMessage.bind(this)}
+						change={this.change.bind(this)}
+						close={() => this.setState({ open_inscription: false })}
+					/>
+				) : (
+					""
+				)}
+				{this.state.open_liste_preparer ? (
+					<PopupInscription
+						admin={admin}
+						titre="Que devons nous apporter ?"
+						//Control
+						control={[
+							{
+								elt: "input",
+								type: "number",
+								label: "Quantité",
+								name: "qtt",
+								step: 0.01,
+								value: qtt || "",
+							},
+							{
+								elt: "dropdown",
+								options: option_unite,
+								label: "Unité",
+								name: "unite",
+								value: unite ?? false,
+							},
+							{
+								elt: "input",
+								label: "Préparation",
+								name: "preparation",
+								value: preparation || "",
+							},
+							{
+								elt: "button",
+								onClick: user_logged?.username
+									? this.listePreparer.bind(this)
+									: () => {
+											this.setState({ open_liste_preparer: false });
+											document.getElementById("prenom").focus();
+									  },
+								children: user_logged?.username
+									? "Ajouter"
+									: "Donne ton prenom pour participer à l'organisation",
+							},
+						]}
+						//data
+						data={all_messages.filter((msg) => msg.liste === "preparer")}
+						order={[
+							"qtt",
+							"unite",
+							{ name: "preparation", style: { marginLeft: 5, flex: 1 } },
+						]}
+						//Fnt
+						removeMessage={this.removeMessage.bind(this)}
+						change={this.change.bind(this)}
+						close={() => this.setState({ open_liste_preparer: false })}
+					/>
+				) : (
+					""
+				)}
+				{this.state.open_liste_faire ? (
+					<PopupInscription
+						admin={admin}
+						username={user_logged?.username}
+						titre="Que devons nous faire ?"
+						//Control
+						control={[
+							{
+								elt: "input",
+								label: "Chose a faire",
+								name: "chose",
+								value: chose || "",
+							},
+							{
+								elt: "button",
+								onClick: user_logged?.username
+									? this.listeFaire.bind(this)
+									: () => {
+											this.setState({ open_liste_faire: false });
+											document.getElementById("prenom").focus();
+									  },
+								children: user_logged?.username
+									? "Ajouter"
+									: "Donne ton prenom pour participer à l'organisation",
+							},
+						]}
+						//data
+						data={all_messages.filter((msg) => msg.liste === "faire")}
+						order={[{ name: "chose", style: { flex: 1, textAlign: "center" } }]}
+						//Fnt
+						removeMessage={this.removeMessage.bind(this)}
+						change={this.change.bind(this)}
+						close={() => this.setState({ open_liste_faire: false })}
+					/>
+				) : (
+					""
+				)}
+				{this.state.open_info ? (
+					<Popup style={{ flexDirection: "column" }} open={true}>
+						<div style={{ flex: 1 }}>
+							{`${the_doners} ${the_doners.length > 1 ? "vont" : "va"} ${
+								info_fund?.liste === "preparer" ? "apporter" : "faire"
+							} ${info_fund?.qtt ? info_fund.qtt + " " : ""}${
+								info_fund?.unite === "kg" ? info_fund.unite + " " : ""
+							}${info_fund?.preparation || info_fund?.chose}`}
+						</div>
+						<Button onClick={() => this.setState({ open_info: "" })}>
+							Fermer
+						</Button>
+					</Popup>
+				) : (
+					""
+				)}
 
-				<img alt="image" src="/images/paques2.jpg"></img>
+				<IntroPaques contact={this.contact.bind(this)} />
+				<Bandeau style={{ color: "white" }}>
+					<span style={{ textAlign: "justify", padding: 10 }}>
+						Vous êtes tous invités à donner votre avis sur l'idée de reprendre
+						le flambeau et sur l'idée de l'outil. L'objectif étant d'être clair,
+						que chacun s'exprime et de rester lisible pour tous, essayons de :
+						<ul>
+							<li>
+								ne pas (ou pas trop) nous renvoyer la balle afin de ne pas noyer
+								les premiers avis dans un fil de discussion trop long, (l'idée
+								de créer un second tchat pour les bavardages est imaginable,
+								mais ce n'est pas l'objectif ici)
+							</li>
+							<li>
+								bien mettre votre prénom en évitant les abréviations (les
+								surnoms) afin que tous le monde vous reconnaisse
+							</li>
+							<li>
+								utiliser toujours le même prénom (l'écrire de la même
+								manière..., mêmes accents..., je me charge des majuscules pour
+								vous... )
+							</li>
+						</ul>
+					</span>
 
-				<div
-					style={{
-						color: "white",
-						fontSize: 22,
-						fontWeight: "Bold",
-						display: "flex",
-						backgroundColor: "rgba(0, 173, 193,1)",
-						padding: 20,
-					}}
-				>
-					<div style={{ textAlign: "justify", padding: 10 }}>
-						<Titre1
-							style={{
-								backgroundColor: "none",
-								fontSize: 35,
-								color: "white",
-								flex: "none",
-								height: "auto",
-							}}
-						>
-							<div>
-								Pâques <br></br>
-								<span style={{ fontSize: 30 }}>
-									Cette année le 17 avril 2022
-								</span>
-							</div>
-						</Titre1>
-						On a la bénédiction de la Josette ! Salut tous le monde ! On est
-						quelques uns à en avoir parlé et il nous semble que c'est le moment
-						! Nos parents oncles et tantes ont tellement de fois organisé le
-						traditionnel repas de Pâques, leur nombre est resté le même alors
-						que la famille ne cesse de s'agrandir... Ne pensez vous pas que
-						c'est à notre tour de perpétuer la volontée de papi Maurice et de
-						mamie Simone, de continuer à nous rassembler ? Et nous, on est
-						tellement plus nombreux ! Ca va être FACILE ! Qu'en pensez vous ?
-						Partants ? On rend les choses possibles ?
-					</div>
-				</div>
-				<div
-					style={{
-						display: "flex",
-						flex: 1,
-						justifyContent: "center",
-						flexDirection: "column",
-						backgroundColor: "rgba(0, 173, 193,1)",
-					}}
-				>
-					<Bandeau
-						style={{
-							backgroundColor: "white",
-						}}
-					>
-						<img alt="image" src="/images/jonquillesSmall.png"></img>
+					{
 						<div
 							style={{
-								backgroundColor: "rgba(250,0,0,0.1)",
-								flex: 1,
-								//boxShadow: "1px 2px 5px",
-								border: "solid 5px black",
-								boxSizing: "content-box",
-								paddingBottom: 20,
-								paddingLeft: 20,
-								paddingRight: 20,
-								minWidth: 300,
+								width: "100%",
+								marginLeft: 40,
+								marginRight: 5,
+								marginBottom: 20,
 							}}
 						>
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "row",
-									alignItems: "center",
-								}}
-							>
-								<Titre3 style={{ color: "black" }}>Actu </Titre3>
-								<span style={{ marginLeft: 20, fontSize: 14, color: "gray" }}>
-									Des choses à mettre ici ?{" "}
-									<A onClick={this.contact.bind(this)}>Me contacter</A>
-								</span>
-							</div>
-							<span style={{ color: "red", fontWeight: "bold" }}>
-								LE TCHAT EST PRÊT ! Cousin(e)s, petit(e)s cousin(e)s, oncles et
-								tantes vous êtes tous invités à donner votre avis sur l'idée de
-								prendre le relais et sur l'idée de l'outil ! Ensuite si la plus
-								part d'entre nous donne un avis favorable, les outils
-								d'organisation suiveront rapidement, promis! Merci de lire les
-								suggestions d'utilisation.
-							</span>
-						</div>
-					</Bandeau>
-					<Bandeau
-						style={{
-							color: "white",
-							padding: 30,
-						}}
-					>
-						<div>
-							Bien conscient du contexte sanitaire, nous serons peut-être forcés
-							de nous adapter selon l'évolution de la situation. Au{" "}
-							<strong>PIRE</strong> des cas tout serait prêt pour l'an prochain
-							!
-						</div>
-					</Bandeau>
-					<Bandeau
-						style={{
-							backgroundColor: "white",
-							backgroundImage: "url(/images/oeufs2.jpg)",
-							backgroundRepeat: "no-repeat",
-							backgroundPosition: "left bottom",
-							backgroundSize: "cover",
-							//backgroundAttachment: 'fixed',
-							paddingTop: 20,
-							paddingBottom: 20,
-						}}
-					>
-						<div>
-							<Titre3 style={{ color: "black" }}>Ce site </Titre3>
-							<div style={{ textAlign: "justify", padding: 10 }}>
-								Cette page internet va évoluer prochainement, elle a pour le
-								moment vocation à informer, expliquer et maintenant le tchat
-								nous permet de s'exprimer, communiquer, <b>donner son avis</b>.
-								L'idée étant de :
-								<ul>
-									<li> Centraliser l'information </li>
-									<li>
-										éviter de noyer l'information dans un fil de discussion
-									</li>
-									<li>éviter le téléphone arabe</li>
-									<li>
-										effacer les innégalités technologiques
-										<span style={{ fontSize: 15 }}>
-											( personne n'aura à se mettre à facebook messenger ni
-											whatsapp )
-										</span>
-									</li>
-									<li>Permettre à tous de s'exprimer</li>
-								</ul>
-								Puis si tout le monde est partant, différentes listes vont voir
-								le jour, chacun pourra alors :
-								<ul>
-									<li>
-										indiquer sa présence ( pour compter le nombre de couverts )
-									</li>
-									<li>
-										agrémenter les listes de choses à penser, à faire ou à
-										préparer
-									</li>
-									<li>
-										s'assigner sur les choses qu'on a envie de faire en
-										préparation ou pour aider le jour j
-									</li>
-								</ul>
-								Tout le monde verra qui vient ou encore ce qui est déjà prévu
-								par certains évitant ainsi les doublons.
-								<span style={{ fontSize: 15 }}>
-									( Par exemple si vous voyez qu'il y a déjà 7 personnes qui ont
-									prévu de venir avec une entrée, ... )
-								</span>
-							</div>
-						</div>
-					</Bandeau>
-					<Bandeau style={{ color: "white" }}>
-						<div style={{ textAlign: "justify", padding: 30 }}>
-							Ceci est un outil et certainement pas une contrainte, je suis
-							ouvert à toutes propositions de contenu, d'infos à relayer (
-							<A onClick={this.contact.bind(this)}>Me contacter</A>) ou de
-							fonctionnalité. Il doit nous être utile, n'hésitez pas à être
-							imaginatif.
-						</div>
-					</Bandeau>
-
-					<Bandeau
-						style={{
-							backgroundColor: "white",
-							paddingTop: 20,
-							paddingBottom: 20,
-						}}
-					>
-						<div>
-							<Titre3 style={{ color: "black" }}>Suggestions</Titre3>
-							<div style={{ textAlign: "justify", padding: 10 }}>
-								Arthur, notre petit génie du bricolage a fabriqué un tourne
-								broche qualité avion de chasse. Etant donné que le méchoui est
-								un bon moyen de préparer une grande quantité de viande sans
-								avoir à cuisiner pendant une ou deux semaines ( on est nombreux
-								mais pas à la retraite, ... il faut bien l'dire ^^ ), on s'est
-								dit que ça pourrait être vraiment bien pour notre réunion
-								familliale tout en conservant la tradition ovine de Pâques.
-							</div>
-						</div>
-						<img
-							alt="image"
-							src={
-								hoverMechoui ? "/images/mechouiB.png" : "/images/mechouiC.png"
-							}
-							onMouseOver={this.hoverMechoui.bind(this)}
-							onMouseOut={this.unhoverMechoui.bind(this)}
-							onTouchStart={this.hoverMechoui.bind(this)}
-							onTouchEnd={this.unhoverMechoui.bind(this)}
-						></img>
-					</Bandeau>
-					<Bandeau style={{ color: "white" }}>
-						<span style={{ textAlign: "justify", padding: 10 }}>
-							Vous êtes tous invités à donner votre avis sur l'idée de reprendre
-							le flambeau et sur l'idée de l'outil. L'objectif étant d'être
-							clair, que chacun s'exprime et de rester lisible pour tous,
-							essayons de :
-							<ul>
-								<li>
-									ne pas (ou pas trop) nous renvoyer la balle afin de ne pas
-									noyer les premiers avis dans un fil de discussion trop long,
-									(l'idée de créer un second tchat pour les bavardages est
-									imaginable, mais ce n'est pas l'objectif ici)
-								</li>
-								<li>
-									bien mettre votre prénom en évitant les abréviations (les
-									surnoms) afin que tous le monde vous reconnaisse
-								</li>
-								<li>
-									utiliser toujours le même prénom (l'écrire de la même
-									manière..., mêmes accents..., je me charge des majuscules pour
-									vous... )
-								</li>
-							</ul>
-						</span>
-						{
-							//test_tchat === "Testchat" || TEST
-							true ? (
-								""
+							<LogSocket
+								user_logged={user_logged}
+								username={username}
+								word="la conversation"
+								change={this.change.bind(this)}
+								loginSocket={this.loginSocket.bind(this)}
+								logOut={this.logOut.bind(this)}
+							/>
+							{active_user?.username === "gat55@live.fr" ? (
+								<Button onClick={() => this.setState({ admin: !admin })}>
+									Admin
+								</Button>
 							) : (
-								<Input
-									style={{ flex: 1 }}
-									label=""
-									name="test_tchat"
-									placeholder=""
-									value={test_tchat || ""}
-									onChange={this.change.bind(this)}
-								/>
-							)
-						}
-						{
-							<div
-								style={{
-									width: "100%",
-									marginLeft: 40,
-									marginRight: 5,
-									marginBottom: 20,
-								}}
-							>
-								{user_logged?.username ? (
-									<div style={{ marginLeft: 30, marginBottom: 10 }}>
-										Salut {cap(user_logged?.username)}, tu peux maintenant
-										participer à la conversation{" "}
-									</div>
-								) : (
-									<div
-										style={{
-											display: "flex",
-											marginBottom: 10,
-											flexDirection: "column",
-										}}
-									>
-										<span></span>
-										<div style={{ display: "flex", flexDirection: "row" }}>
-											<Input
-												style={{ flex: 1 }}
-												label='Mets ton prénom ici (au moins 4 caractères) et clique sur "participer à la conversation" pour participer à la conversation'
-												name="username"
-												placeholder=""
-												value={cap(username) || ""}
-												onChange={this.change.bind(this)}
-											/>
-											<Button onClick={this.loginSocket.bind(this)}>
-												Participer <br /> à la conversation
-											</Button>
-										</div>
-									</div>
-								)}
-								{active_user?.username === "gat55@live.fr" ? (
-									<Button onClick={() => this.setState({ admin: !admin })}>
-										Admin
-									</Button>
-								) : (
-									""
-								)}
-								{this.state.admin ? (
+								""
+							)}
+							{this.state.admin ? (
+								<div>
 									<Button
 										style={{ marginBottom: 20 }}
 										onClick={this.reload.bind(this)}
 									>
 										Reload
 									</Button>
-								) : (
-									""
-								)}
-								<Button
-									style={{ marginBottom: 20 }}
-									onClick={() =>
-										this.setState({ connectes: !this.state.connectes })
-									}
-								>
-									{this.state.connectes
-										? "Ne pas voir qui participe"
-										: "Voir qui participe"}
-								</Button>
-								{this.state.connectes ? (
 									<Segment
 										style={{
 											flex: 1,
@@ -699,162 +704,200 @@ class Paque extends Component {
 											</span>
 										))}
 									</Segment>
-								) : (
-									""
-								)}
-								<Button
-									style={{ marginTop: 10 }}
-									onClick={() =>
-										this.setState({ defiler: !this.state.defiler })
-									}
-								>
-									{this.state.defiler
-										? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
-										: "Defiler automatiquement lorsqu'arrive un nouveau message"}
-								</Button>
-								<Button
-									style={{ marginTop: 10 }}
-									onClick={this.haut.bind(this)}
-								>
-									Remonter tout en haut
-								</Button>
-								<Button style={{ marginTop: 10 }} onClick={this.bas.bind(this)}>
-									Descendre tout en bas
-								</Button>
-								<Button
-									style={{ marginTop: 10 }}
-									onClick={() => this.setState({ open: true })}
-								>
-									Recevoir un mail si un message est posté
-								</Button>
-								<Segment
-									style={{
-										marginTop: 10,
-										backgroundColor: "white",
-									}}
-								>
-									<div style={{ overflow: "auto", height: 470 }} id="chat1">
-										{formattedMessages.map((message, i) => {
-											const messageUsername = message?.user?.username;
-											const me = cap(messageUsername) === cap(username);
-											return (
-												<div
-													key={i}
-													style={{
-														width: "100%",
-														display: "flex",
-														flexDirection: "row",
-														justifyContent: me ? "flex-end" : "flex-start",
-													}}
-												>
-													<Segment
-														style={{
-															width: "90%",
-															padding: 10,
-															margin: 5,
-															marginBottom: 0,
-															backgroundColor: me
-																? "LimeGreen"
-																: "rgb(" +
-																  (this.state.users[messageUsername]?.bgColor
-																		? this.state.users[messageUsername].bgColor
-																		: 130) +
-																  "," +
-																  (this.state.users[messageUsername]?.bgColor
-																		? this.state.users[messageUsername].bgColor
-																		: 130) +
-																  ",255)",
-															flexDirection: "column",
-														}}
-													>
-														<div style={{ marginBottom: 10 }}>
-															<span
-																style={{
-																	color: "black",
-																	marginRight: 5,
-																	fontWeight: "bold",
-																}}
-															>
-																-- {cap(messageUsername)} --
-															</span>
-															{dateToString(message.date)}
-														</div>
-														{message?.message
-															?.split("\n")
-															.map((mes, j) =>
-																mes.length > 0 ? (
-																	<span key={j}>{mes}</span>
-																) : (
-																	<br key={j} />
-																)
-															)}
-													</Segment>
-													{admin && message._id ? (
-														<Button
-															style={{
-																backgroundColor: "rgba(198, 0, 57,1)",
-															}}
-															onClick={this.removeMessage.bind(
-																this,
-																message._id
-															)}
-														>
-															X
-														</Button>
-													) : (
-														""
-													)}
-												</div>
-											);
-										})}
-									</div>
+								</div>
+							) : (
+								""
+							)}
+							<br />
+							<Button
+								style={{ marginTop: 10 }}
+								onClick={() => this.setState({ open: true })}
+							>
+								Recevoir un mail si un message est posté
+							</Button>
+							<br />
+							<Tchat
+								admin={admin}
+								defiler={this.state.defiler}
+								all_messages={all_messages.filter((mes) => mes.tchat === 1)}
+								message_tchat1={message_tchat1}
+								username={username || user_logged?.username}
+								user_logged={user_logged}
+								users={this.state.users}
+								//fnt
+								bas={this.bas.bind(this)}
+								change={this.change.bind(this)}
+								haut={this.haut.bind(this)}
+								removeMessage={this.removeMessage.bind(this)}
+								messageChat1={this.messageChat1.bind(this)}
+							/>
+						</div>
+					}
+				</Bandeau>
+				<Bandeau
+					style={{
+						backgroundColor: "white",
+						padding: 20,
+					}}
+					stylein={{ maxWidth: "100%", flexDirection: "column" }}
+				>
+					<LogSocket
+						id="prenom"
+						user_logged={user_logged}
+						username={username}
+						word="l'organisation"
+						change={this.change.bind(this)}
+						loginSocket={this.loginSocket.bind(this)}
+						logOut={this.logOut.bind(this)}
+					/>
 
-									{user_logged ? (
-										<Segment style={{ flexDirection: "row" }}>
-											<TextAreaV2
-												s_textarea={{ flex: 1, minHeight: 50 }}
-												name="message_tchat1"
-												placeholder=""
-												value={message_tchat1 || ""}
-												onChange={this.change.bind(this)}
-											/>
-
-											<Button onClick={this.messageChat1.bind(this)}>
-												Envoyer
-											</Button>
-										</Segment>
-									) : (
-										""
-									)}
-								</Segment>
-							</div>
-						}
-					</Bandeau>
-					<Bandeau
+					<div
 						style={{
-							backgroundColor: "white",
-							backgroundImage: "url(/images/piedDePage.png)",
-							backgroundRepeat: "no-repeat",
-							backgroundPosition: "left bottom",
-							backgroundSize: "cover",
-							paddingTop: 20,
-							paddingBottom: 20,
+							flex: 1,
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+							flexWrap: "wrap",
 						}}
 					>
-						<div style={{ flex: 1 }}></div>
-						<div
-							style={{
-								color: "White",
-								fontWeight: "bold",
-								textShadow: "1px 1px 2px black",
+						<CardList
+							open={() => {
+								this.setState({ open_inscription: true });
 							}}
+							button_label="Inscrire des personnes"
 						>
-							<span style={{ fontSize: 40 }}>Merci !</span>
-							<br />
-							<span style={{ fontSize: 30, marginRight: 5 }}>Nous Tous !</span>
-						</div>
-					</Bandeau>
-				</div>
+							<div
+								style={{
+									flex: 1,
+									display: "flex",
+									flexDirection: "column",
+									justifyContent: "center",
+									alignItems: "center",
+								}}
+							>
+								<span
+									style={{
+										fontWeight: "bold",
+										fontSize: 20,
+										color: "black",
+									}}
+								>
+									{" "}
+									Total de participants :
+								</span>
+								<span
+									style={{
+										fontWeight: "bold",
+										fontSize: 40,
+										color: "rgba(0, 173, 193,1)",
+										textShadow: "1px 1px 2px black",
+									}}
+								>{`${
+									all_messages
+										.filter((msg) => msg.liste === "inscription")
+										.filter((dat) => dat.present === true).length
+								} couverts`}</span>
+								<span
+									style={{
+										fontWeight: "bold",
+										fontSize: 14,
+										color: "grey",
+										textAlign: "center",
+									}}
+								>
+									{" "}
+									{`( La présence ou l'absence de ${
+										all_messages.filter((msg) => msg.liste === "inscription")
+											?.length
+									} personnes a été indiquée )`}
+								</span>
+							</div>
+						</CardList>
+						<CardList
+							title="Choses à apporter"
+							button_label="Ajouter des choses à apporter"
+							data={all_messages}
+							beDoner={this.etrePreparateur.bind(this)}
+							control={[{ name: "unite", options: option_unite }]}
+							filterData={(msg) => msg.liste === "preparer"}
+							only_one={true}
+							order={[
+								{
+									name: "qtt",
+									/*calcul: (val) =>
+										val *
+										all_messages
+											.filter((msg) => msg.liste === "inscription")
+											.filter((dat) => dat.present === true).length,*/
+								},
+								"unite",
+								{ name: "preparation", style: { flex: 1, marginLeft: 5 } },
+							]}
+							open={() => {
+								this.setState({ open_liste_preparer: true });
+							}}
+							openInfo={this.openInfo.bind(this)}
+							user_logged={user_logged}
+						/>
+						<CardList
+							title="Choses à faire le jour j"
+							button_label="Ajouter des choses à faire"
+							data={all_messages.map((am) => ({
+								...am,
+								personnes: am.doner
+									? Object.keys(am.doner).reduce((total, don) => {
+											if (am?.doner[don] === true) {
+												total += 1;
+											}
+											return total;
+									  }, 0)
+									: 0,
+							}))}
+							beDoner={this.etreFaiseur.bind(this)}
+							filterData={(msg) => msg.liste === "faire"}
+							order={[
+								{
+									name: "personnes",
+									label: "faiseurs",
+									style: { marginLeft: 5, textAlign: "center", width: 100 },
+								},
+								{ name: "chose", style: { flex: 1 } },
+							]}
+							open={() => {
+								this.setState({ open_liste_faire: true });
+							}}
+							openInfo={this.openInfo.bind(this)}
+							user_logged={user_logged}
+						/>
+					</div>
+				</Bandeau>
+				<Bandeau style={{ color: "white", paddingBottom: 20 }}>
+					<PrincipesListes contact={this.contact.bind(this)}/>
+				</Bandeau>
+				<Bandeau
+					style={{
+						backgroundColor: "white",
+						backgroundImage: "url(/images/piedDePage.png)",
+						backgroundRepeat: "no-repeat",
+						backgroundPosition: "left bottom",
+						backgroundSize: "cover",
+						paddingTop: 20,
+						paddingBottom: 20,
+					}}
+				>
+					<div style={{ flex: 1 }}></div>
+					<div
+						style={{
+							color: "White",
+							fontWeight: "bold",
+							textShadow: "1px 1px 2px black",
+						}}
+					>
+						<span style={{ fontSize: 40 }}>Merci !</span>
+						<br />
+						<span style={{ fontSize: 30, marginRight: 5 }}>Nous Tous !</span>
+					</div>
+				</Bandeau>
 			</section>
 		);
 	}
@@ -862,23 +905,31 @@ class Paque extends Component {
 
 function mapStateToProps(state) {
 	return {
-		all_paques: state.paque.all,
 		mamie: state.paque.controle.mamie,
 		papi: state.paque.controle.papi,
 		input: state.paque.controle.input,
-		test_tchat: state.paque.controle.test_tchat,
-		free_list: state.paque.free_list,
 		username: state.paque.controle.username,
 		users: state.paque.controle.users,
 		message_tchat1: state.paque.controle.message_tchat1,
+		// Inscription
+		personne: state.paque.controle.personne,
+		taton: state.paque.controle.taton,
+		present: state.paque.controle.present,
+		//liste  preparation
+		qtt: state.paque.controle.qtt,
+		unite: state.paque.controle.unite,
+		preparation: state.paque.controle.preparation,
+		//liste faire
+		nb_personne: state.paque.controle.nb_personne,
+		chose: state.paque.controle.chose,
+
+		all_paques: state.paque.all,
+
 		user_logged: state.socket.user_logged,
 		users_logged: state.socket.users_logged,
 		messages: state.socket.messages,
 		relog_socket: state.socket.relog,
 		active_user: state.users.active_user,
-		// UsersPaques
-		mail: state.userspaque.controle.mail,
-		all_users_paque: state.userspaque.all,
 	};
 }
 
@@ -886,24 +937,22 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators(
 		{
 			controlePaque: ACTIONS.Paque.controle,
-			addStatePaque: ACTIONS.Paque.add_state,
 			rmPaque: ACTIONS.Paque.rm,
 			getSSLPaque: ACTIONS.Paque.get_SSL,
+			updatedMessagePaque: ACTIONS.Paque.updatedMessage,
 
 			logInSocket: ACTIONS.Socket.logInSocket,
+			logOut: ACTIONS.Socket.logOut,
 			reload: ACTIONS.Socket.reload,
 			relog: ACTIONS.Socket.relog,
 			logged: ACTIONS.Socket.logged,
-			unLog: ACTIONS.Socket.unLog,
+			loggedOut: ACTIONS.Socket.loggedOut,
 			usersLogged: ACTIONS.Socket.usersLogged,
 			emitMessage: ACTIONS.Socket.emitMessage,
 			receiveNewMessage: ACTIONS.Socket.receiveNewMessage,
 			cleanMessages: ACTIONS.Socket.cleanMessages,
-			//usersMail
-			controleUsersPaque: ACTIONS.UsersPaque.controle,
-			addUsersPaque: ACTIONS.UsersPaque.add_state,
-			rmUsersPaque: ACTIONS.UsersPaque.rm_state,
-			getUsersPaque: ACTIONS.UsersPaque.get_state,
+			updateMessage: ACTIONS.Socket.updateMessage,
+			updatedMessage: ACTIONS.Socket.updatedMessage,
 		},
 		dispatch
 	);

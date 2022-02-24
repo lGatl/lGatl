@@ -8,3 +8,16 @@ export const dateToFormat = date => {
 		return "";
 }
 };
+
+export const dateToString = (mdate, noDate) => {
+	const date = new Date(mdate);
+	let minutes = date.getMinutes() + "";
+	minutes = minutes.length < 2 ? "0" + minutes : minutes;
+	let day = date.getDate() + "";
+	day = day.length < 2 ? "0" + day : day;
+	let month = date.getMonth() + 1 + "";
+	month = month.length < 2 ? "0" + month : month;
+	return `${
+		!noDate ? `${day}/${month}/${date.getFullYear()} ` : ""
+	} ${date.getHours()}h${minutes}`;
+};

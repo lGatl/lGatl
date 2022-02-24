@@ -1,0 +1,230 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { cap } from "../8_libs/string";
+
+import { Img, Button, Checkbox, Dropdown, Popup, Segment } from "gat-ui-react";
+import { InputV2 } from "./InputV2.js";
+
+import { ACTIONS } from "../6_actions/actions";
+
+const default_style = { marginLeft: 5, width: 50, textAlign:"center" }
+
+class PopupInscription extends Component {
+	render() {
+		const {
+			admin,
+			username,
+			titre,
+			//Control
+			control,
+			//Data
+			data,
+			filterData,
+			order,
+			//Fnt
+			change,
+			close,
+			removeMessage,
+			updateMessage,
+		} = this.props;
+		// todo limit height
+		const DATA = filterData ? data.filter(filterData) : data;
+		return (
+			<Popup
+				style={{
+					flexDirection: "column",
+					justifyContent: "center",
+					padding: 5,
+					paddingTop: 0,
+					overflow: "hidden",
+					borderRadius: 10,
+				}}
+				open={true}
+			>
+				<span
+					style={{
+						fontWeight: "bold",
+						backgroundColor: "rgba(0, 173, 193,1)",
+						color: "white",
+						width: "100%",
+						textAlign: "center",
+						padding: 5,
+					}}
+				>
+					{titre}
+				</span>
+				<div
+					style={{
+						flex: 1,
+						display: "flex",
+						flexDirection: "row",
+						flexWrap: "wrap",
+					}}
+				>
+					<div
+						style={{
+							flex: 1,
+							display: "flex",
+							flexDirection: "column",
+						}}
+					>
+						{control.map((ctrl, i) => {
+							switch (ctrl.elt) {
+								case "dropdown":
+									return (
+										<Dropdown key={i} {...ctrl} onChange={change.bind(this)} />
+									);
+
+								case "input":
+									return (
+										<InputV2 key={i} {...ctrl} onChange={change.bind(this)} />
+									);
+								case "checkbox":
+									return (
+										<Checkbox key={i} {...ctrl} onChange={change.bind(this)} />
+									);
+								case "button":
+									return <Button key={i} {...ctrl}></Button>;
+								default:
+									return <div key={i}>mauvais type</div>;
+							}
+						})}
+					</div>
+					<div style={{ flex: 2 }}>
+						<div style={{ margin: 5, minWidth: 200, display:"flex" }}>
+							{order.map((ord, i) => (
+								<span
+									style={ord.style ? ord.style : default_style}
+									key={i}
+								>
+									{cap(ord.label||ord.name || ord)}
+								</span>
+							))}
+						</div>
+					  <div style={{
+								position:"relative"
+							}}>
+					  	<div style={{boxShadow: "inset 1px 1px 5px 1px grey", position:'absolute',top:0,left:0,height:'100%',width:'100%', pointerEvents:'none'}}></div>
+					  
+						<div
+							style={{
+								overflow: "auto",
+								height: 300,
+								margin: 5,
+								minWidth: 200,
+								position:"relative"
+							}}
+						>
+							{DATA.map((dat, i) => (
+								<div key={i} style={{ display: "flex", alignItems: "center" }}>
+									{order.map((ord, j) => {
+										let val = dat[ord];
+										const fund = control.find((ctr) => ctr.name === ord);
+										if (fund?.options) {
+											const fundOpt = fund.options.find(
+												(fo) => fo.value === dat[ord]
+											);
+											if (fundOpt) {
+												val = fundOpt.text;
+											}
+										}
+										if (typeof ord === "string") {
+											switch (typeof val) {
+												case "boolean":
+													return (
+														<Checkbox
+															key={j}
+															name={ord}
+															checked={val ?? false}
+															onChange={
+																updateMessage
+																	? updateMessage.bind(this, {
+																			_id: dat._id,
+																			[ord]: !val,
+																	  })
+																	: () => {}
+															}
+														/>
+													);
+												case "number":
+													return (
+														<span key={j} style={default_style}>
+															{val}
+														</span>
+													);
+												case "string":
+													return (
+														<span key={j} style={default_style}>
+															{cap(val)}
+														</span>
+													);
+												default:
+													return <span key={j}>mauvais type</span>;
+											}
+										} else {
+											let val = dat[ord.name];
+											const fund = control.find((ctr) => ctr.name === ord.name);
+											if (fund?.options) {
+												const fundOpt = fund.options.find(
+													(fo) => fo.value === dat[ord.name]
+												);
+												if (fundOpt) {
+													val = fundOpt.text;
+												}
+											}
+											return (
+												<span key={j} style={ord.style?ord.style:default_style}>
+													{cap(val)}
+												</span>
+											);
+										}
+									})}
+									{admin && dat._id ? (
+										<Button
+											style={{
+												backgroundColor: "rgba(198, 0, 57,1)",
+											}}
+											onClick={removeMessage.bind(this, dat._id)}
+										>
+											X
+										</Button>
+									) : (
+										""
+									)}
+								</div>
+							))}
+						</div>
+						</div>
+					</div>
+				</div>
+				<div style={{ flexDirection: "column", display: "flex" }}></div>
+
+				<Button onClick={close.bind(this)}>Fermer</Button>
+			</Popup>
+		);
+	}
+}
+
+function mapStateToProps(state) {
+	return {
+		// UsersPaques
+		mail: state.userspaque.controle.mail,
+		all_users_paque: state.userspaque.all,
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(
+		{
+			//usersMail
+			controleUsersPaque: ACTIONS.UsersPaque.controle,
+			addUsersPaque: ACTIONS.UsersPaque.add_state,
+			rmUsersPaque: ACTIONS.UsersPaque.rm_state,
+			getUsersPaque: ACTIONS.UsersPaque.get_state,
+		},
+		dispatch
+	);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PopupInscription);
