@@ -1,6 +1,7 @@
-export const LOCAL = false;
+export const LOCAL = true;
 let io = require("socket.io-client");
 //"http://192.168.1.15:3000"
+// "http://192.168.0.30/:3000"
 let socket = io.connect(LOCAL ? "http://192.168.1.15:3000" : "https://lgatl.fr");
 Meteor.startup(() => {
 	/*socket.on("connect", function () {

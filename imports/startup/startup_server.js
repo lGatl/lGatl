@@ -129,6 +129,7 @@ Meteor.startup(() => {
       }
     });
     socket.on("updateMessage", function (up, opt) {
+      console.log(up,opt)
       if (up._id) {
         const _id = up._id;
         delete up._id;

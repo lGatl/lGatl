@@ -34,6 +34,7 @@ import Bandeau from "../components/Bandeau.js";
 import PrincipesListes from "../components/PrincipesListes.js";
 import { dateToString } from "../8_libs/date";
 import { cap } from "../8_libs/string";
+import { genForm } from "../8_libs/genForm";
 
 const TEST = LOCAL;
 
@@ -42,7 +43,7 @@ const option_taton = [
 	{ value: "bernadette", text: "Bernadette" },
 	{ value: "chantal", text: "Chantal" },
 	{ value: "christine", text: "Christine" },
-	{ value: "florance", text: "Florance" },
+	{ value: "florence", text: "Florence" },
 	{ value: "françois", text: "François" },
 	{ value: "joel", text: "Joel" },
 	{ value: "josette", text: "Josette" },
@@ -52,6 +53,7 @@ const option_taton = [
 const option_unite = [
 	{ value: "kg", text: "Kg" },
 	{ value: "nb", text: "Nbr" },
+	{ value: "l", text: "L" },
 ];
 
 class Paque extends Component {
@@ -64,7 +66,8 @@ class Paque extends Component {
 			first: true,
 			hover: false,
 			hoverp: false,
-			//Poppuup
+			//Poppup
+			modifier_preparer: false,
 			open: false,
 			open_inscription: false,
 			open_liste_preparer: false,
@@ -90,6 +93,7 @@ class Paque extends Component {
 			cleanMessages,
 			relog,
 		} = this.props;
+
 
 		window.addEventListener("focus", () => {
 			getSSLPaque({}, { sort: { date: -1 } });
@@ -134,10 +138,10 @@ class Paque extends Component {
 		//  Defilement auto
 		if (
 			this.state.defiler ||
-			this.props.messages[this.props.messages.length - 1]?.user?.username ===
+			this.props.messages.filter(m=>m.tchat=== 1),[this.props.messages.filter(m=>m.tchat=== 1).length - 1]?.user?.username ===
 				this.props.username
 		) {
-			if (this.props.messages !== prevProps.messages) {
+			if (this.props.messages.filter(m=>m.tchat=== 1).length !== prevProps.messages.filter(m=>m.tchat=== 1).length) {
 				const el = document.getElementById("chat1");
 				if (el) {
 					el.scrollTop = el.scrollHeight;
@@ -184,6 +188,25 @@ class Paque extends Component {
 		) {
 			this.setState({ first: false });
 			this.bas();
+		}
+		// Poppup
+		if(this.state.modifier_preparer||
+					this.state.open||
+					this.state.open_inscription||
+					this.state.open_liste_preparer||
+					this.state.open_liste_faire||
+					this.state.open_info){
+			const elt = document.getElementById("react-root");
+			elt.style.overflowY='hidden'
+		}
+		if(!this.state.modifier_preparer&&
+					!this.state.open&&
+					!this.state.open_inscription&&
+					!this.state.open_liste_preparer&&
+					!this.state.open_liste_faire&&
+					!this.state.open_info){
+			const elt = document.getElementById("react-root");
+			elt.style.overflowY='auto'
 		}
 	}
 	contact() {
@@ -248,6 +271,7 @@ class Paque extends Component {
 	}
 	updateMessage(up) {
 		const { updateMessage } = this.props;
+		console.log(up)
 		updateMessage(up);
 	}
 	messageChat1() {
@@ -289,13 +313,21 @@ class Paque extends Component {
 		}
 	}
 	listePreparer() {
-		const { qtt, unite, preparation, emitMessage, user_logged, controlePaque } =
-			this.props;
+		const {
+			qtt,
+			unite,
+			preparation,
+			prix,
+			emitMessage,
+			user_logged,
+			controlePaque,
+		} = this.props;
 		if (user_logged?.username && preparation?.trim().length > 0) {
 			const message = {
-				qtt: qtt ? qtt : 0,
+				qtt: qtt ? qtt * 1 : 0,
 				preparation: preparation.trim().toLowerCase(),
 				unite: unite ? unite : "nb",
+				prix: prix ? prix * 1 : 0,
 				user: user_logged,
 				liste: "preparer",
 			};
@@ -350,6 +382,7 @@ class Paque extends Component {
 			qtt,
 			unite,
 			preparation,
+			prix,
 			//liste faire
 			nb_personne,
 			chose,
@@ -367,6 +400,16 @@ class Paque extends Component {
 					return total;
 			  }, [])
 			: [];
+		const depences_totales = all_messages
+			.filter((msg) => msg.liste === "preparer")
+			.reduce((total, { prix }) => {
+				total += isNaN(prix * 1) ? 0 : prix * 1;
+				return total;
+			}, 0);
+		const couverts = all_messages
+			.filter((msg) => msg.liste === "inscription")
+			.filter((dat) => dat.present === true).length;
+		admin && console.log(all_paques);
 		// console.log(messages, all_paques);
 		//console.log(user_logged);
 		// console.log(this.state.users, Object.keys(this.state.users).length);
@@ -417,6 +460,7 @@ class Paque extends Component {
 				)}
 				{this.state.open_inscription ? (
 					<PopupInscription
+						resize={this.props.resize}
 						admin={admin}
 						username={user_logged?.username}
 						titre="Qui sera là ?"
@@ -521,30 +565,43 @@ class Paque extends Component {
 				)}
 				{this.state.open_liste_preparer ? (
 					<PopupInscription
+					resize={this.props.resize}
 						admin={admin}
 						titre="Que devons nous apporter ?"
 						//Control
 						control={[
-							{
+							[{
 								elt: "input",
 								type: "number",
 								label: "Quantité",
 								name: "qtt",
-								step: 0.01,
+								step: 0.1,
+								min: 0,
 								value: qtt || "",
+								flex:1
 							},
 							{
 								elt: "dropdown",
 								options: option_unite,
 								label: "Unité",
 								name: "unite",
-								value: unite ?? false,
-							},
+								value: unite ?? '',
+								flex:1
+							},],
 							{
 								elt: "input",
 								label: "Préparation",
 								name: "preparation",
 								value: preparation || "",
+							},
+							{
+								elt: "input",
+								type: "number",
+								label: "Prix €",
+								name: "prix",
+								step: 0.01,
+								min: 0,
+								value: prix || "",
 							},
 							{
 								elt: "button",
@@ -565,6 +622,7 @@ class Paque extends Component {
 							"qtt",
 							"unite",
 							{ name: "preparation", style: { marginLeft: 5, flex: 1 } },
+							{ name: "prix", label: "Prix €" },
 						]}
 						//Fnt
 						removeMessage={this.removeMessage.bind(this)}
@@ -576,6 +634,7 @@ class Paque extends Component {
 				)}
 				{this.state.open_liste_faire ? (
 					<PopupInscription
+					resize={this.props.resize}
 						admin={admin}
 						username={user_logged?.username}
 						titre="Que devons nous faire ?"
@@ -585,7 +644,7 @@ class Paque extends Component {
 								elt: "input",
 								label: "Chose a faire",
 								name: "chose",
-								value: chose || "",
+								value: chose ?? "",
 							},
 							{
 								elt: "button",
@@ -612,15 +671,96 @@ class Paque extends Component {
 					""
 				)}
 				{this.state.open_info ? (
-					<Popup style={{ flexDirection: "column" }} open={true}>
-						<div style={{ flex: 1 }}>
-							{`${the_doners} ${the_doners.length > 1 ? "vont" : "va"} ${
-								info_fund?.liste === "preparer" ? "apporter" : "faire"
-							} ${info_fund?.qtt ? info_fund.qtt + " " : ""}${
-								info_fund?.unite === "kg" ? info_fund.unite + " " : ""
-							}${info_fund?.preparation || info_fund?.chose}`}
-						</div>
-						<Button onClick={() => this.setState({ open_info: "" })}>
+					<Popup style={{ flexDirection: "column", padding: 5 }} open={true}>
+						{!this.state.modifier_preparer ? (
+							<div style={{ flex: 1 }}>
+								{`${the_doners} ${the_doners.length > 1 ? "vont" : "va"} ${
+									info_fund?.liste === "preparer" ? "apporter" : "faire"
+								} ${info_fund?.qtt ? info_fund.qtt + " " : ""}${
+									info_fund?.unite ? cap(info_fund.unite) + " " : ""
+								}${info_fund?.preparation || info_fund?.chose}${info_fund?.liste==="preparer"&&info_fund?.prix?` cout: ${
+									info_fund?.prix||""
+								} €`:""}`}
+							</div>
+						) : (
+							genForm(
+								info_fund?.liste==="preparer"?[
+									{
+										elt: "input",
+										type: "number",
+										label: "Quantité",
+										name: "qtt",
+										step: 0.1,
+										min: 0,
+										value: qtt || "",
+									},
+									{
+										elt: "dropdown",
+										options: option_unite,
+										label: "Unité",
+										name: "unite",
+										value: unite ?? "",
+									},
+									{
+										elt: "input",
+										label: "Préparation",
+										name: "preparation",
+										value: preparation || "",
+									},
+									{
+										elt: "input",
+										type: "number",
+										label: "Prix €",
+										name: "prix",
+										step: 0.01,
+										min: 0,
+										value: prix || "",
+									},
+								]:[
+							{
+								elt: "input",
+								label: "Chose a faire",
+								name: "chose",
+								value: chose || "",
+							}],
+								this.change.bind(this)
+							)
+						)}
+
+						<Button
+							onClick={() => {
+								this.setState({ modifier_preparer: !this.state.modifier_preparer });
+								this.props.controlePaque({
+									qtt: info_fund?.qtt || "",
+									unite: info_fund?.unite || "",
+									preparation: info_fund?.preparation || "",
+									prix: info_fund?.prix || "",
+									chose: info_fund?.chose || "",
+								});
+							}}
+						>
+							{this.state.modifier_preparer? "Ne pas modifier":"Modifier"}
+						</Button>
+						{this.state.modifier_preparer?<Button
+														style={{ marginTop: 10 }}
+														onClick={() => {															
+															if(info_fund.liste === "preparer"){
+															if(preparation.trim().toLowerCase().length > 0){
+																this.updateMessage({_id:info_fund._id, qtt:qtt ? qtt * 1 : 0,prix:prix ? prix * 1 : 0,preparation:preparation.trim().toLowerCase(),unite:unite?unite:''})
+															}
+															}else{
+																if(chose.trim().toLowerCase())
+																this.updateMessage({_id:info_fund._id, chose: chose.trim().toLowerCase()})
+															}
+															this.setState({ modifier_preparer: false });
+														}}
+													>
+														Sauvegarder
+													</Button>:""}
+						<Button onClick={() => {
+							this.setState({ open_info: "" })
+							this.setState({ modifier_preparer: false });
+						}}>
 							Fermer
 						</Button>
 					</Popup>
@@ -670,7 +810,7 @@ class Paque extends Component {
 								loginSocket={this.loginSocket.bind(this)}
 								logOut={this.logOut.bind(this)}
 							/>
-							{active_user?.username === "gat55@live.fr" ? (
+							{["gat55@live.fr","trevillot.arthur@gmail.com"].indexOf(active_user?.username)>=0 ? (
 								<Button onClick={() => this.setState({ admin: !admin })}>
 									Admin
 								</Button>
@@ -719,6 +859,7 @@ class Paque extends Component {
 							<Tchat
 								admin={admin}
 								defiler={this.state.defiler}
+								clickDefiler  = {()=>this.setState({ defiler: !this.state.defiler })}
 								all_messages={all_messages.filter((mes) => mes.tchat === 1)}
 								message_tchat1={message_tchat1}
 								username={username || user_logged?.username}
@@ -738,6 +879,7 @@ class Paque extends Component {
 					style={{
 						backgroundColor: "white",
 						padding: 20,
+						paddingRight:5,
 					}}
 					stylein={{ maxWidth: "100%", flexDirection: "column" }}
 				>
@@ -792,11 +934,7 @@ class Paque extends Component {
 										color: "rgba(0, 173, 193,1)",
 										textShadow: "1px 1px 2px black",
 									}}
-								>{`${
-									all_messages
-										.filter((msg) => msg.liste === "inscription")
-										.filter((dat) => dat.present === true).length
-								} couverts`}</span>
+								>{`${couverts} couverts`}</span>
 								<span
 									style={{
 										fontWeight: "bold",
@@ -811,6 +949,9 @@ class Paque extends Component {
 											?.length
 									} personnes a été indiquée )`}
 								</span>
+								<span>{`Cout par personne : ${(
+									depences_totales / couverts
+								).toFixed(2)} €`}</span>
 							</div>
 						</CardList>
 						<CardList
@@ -832,12 +973,14 @@ class Paque extends Component {
 								},
 								"unite",
 								{ name: "preparation", style: { flex: 1, marginLeft: 5 } },
+								{ name: "prix", label: "Prix €" },
 							]}
 							open={() => {
 								this.setState({ open_liste_preparer: true });
 							}}
 							openInfo={this.openInfo.bind(this)}
 							user_logged={user_logged}
+							total={depences_totales}
 						/>
 						<CardList
 							title="Choses à faire le jour j"
@@ -859,7 +1002,7 @@ class Paque extends Component {
 								{
 									name: "personnes",
 									label: "faiseurs",
-									style: { marginLeft: 5, textAlign: "center", width: 100 },
+									style: { marginLeft: 5, textAlign: "center", width: 85 },
 								},
 								{ name: "chose", style: { flex: 1 } },
 							]}
@@ -872,7 +1015,7 @@ class Paque extends Component {
 					</div>
 				</Bandeau>
 				<Bandeau style={{ color: "white", paddingBottom: 20 }}>
-					<PrincipesListes contact={this.contact.bind(this)}/>
+					<PrincipesListes contact={this.contact.bind(this)} />
 				</Bandeau>
 				<Bandeau
 					style={{
@@ -919,6 +1062,7 @@ function mapStateToProps(state) {
 		qtt: state.paque.controle.qtt,
 		unite: state.paque.controle.unite,
 		preparation: state.paque.controle.preparation,
+		prix: state.paque.controle.prix,
 		//liste faire
 		nb_personne: state.paque.controle.nb_personne,
 		chose: state.paque.controle.chose,
@@ -930,6 +1074,8 @@ function mapStateToProps(state) {
 		messages: state.socket.messages,
 		relog_socket: state.socket.relog,
 		active_user: state.users.active_user,
+
+		resize:state.controle.resize,
 	};
 }
 

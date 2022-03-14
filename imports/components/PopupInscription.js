@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { cap } from "../8_libs/string";
+import { genForm } from "../8_libs/genForm";
 
-import { Img, Button, Checkbox, Dropdown, Popup, Segment } from "gat-ui-react";
-import { InputV2 } from "./InputV2.js";
+import { Img, Button, Checkbox, Dropdown, Segment } from "gat-ui-react";
+import { InputV2 } from "./InputV2";
+import PopupV2 from "./PopupV2";
 
 import { ACTIONS } from "../6_actions/actions";
 
@@ -13,6 +15,7 @@ const default_style = { marginLeft: 5, width: 50, textAlign:"center" }
 class PopupInscription extends Component {
 	render() {
 		const {
+			resize,
 			admin,
 			username,
 			titre,
@@ -30,26 +33,26 @@ class PopupInscription extends Component {
 		} = this.props;
 		// todo limit height
 		const DATA = filterData ? data.filter(filterData) : data;
+		console.log(resize)
 		return (
-			<Popup
+			<PopupV2
 				style={{
-					flexDirection: "column",
-					justifyContent: "center",
-					padding: 5,
-					paddingTop: 0,
-					overflow: "hidden",
-					borderRadius: 10,
+						overflowY:resize.windowwidth<580?'scroll':'visible'
 				}}
+				stylecont={{}}
 				open={true}
 			>
-				<span
+			<div style={{display:"flex", flexDirection:"column"}}>
+					<span
 					style={{
+						boxSizing:"border-box",
 						fontWeight: "bold",
 						backgroundColor: "rgba(0, 173, 193,1)",
 						color: "white",
 						width: "100%",
 						textAlign: "center",
-						padding: 5,
+						borderRadius: "10px 10px 0px 0px",
+						padding: 10,
 					}}
 				>
 					{titre}
@@ -57,6 +60,8 @@ class PopupInscription extends Component {
 				<div
 					style={{
 						flex: 1,
+						padding: 5,
+						paddingLeft:15,
 						display: "flex",
 						flexDirection: "row",
 						flexWrap: "wrap",
@@ -67,29 +72,13 @@ class PopupInscription extends Component {
 							flex: 1,
 							display: "flex",
 							flexDirection: "column",
+							flexWrap:"wrap",
+							alignItem:"center",
+							justiifyContent:"center"
+
 						}}
 					>
-						{control.map((ctrl, i) => {
-							switch (ctrl.elt) {
-								case "dropdown":
-									return (
-										<Dropdown key={i} {...ctrl} onChange={change.bind(this)} />
-									);
-
-								case "input":
-									return (
-										<InputV2 key={i} {...ctrl} onChange={change.bind(this)} />
-									);
-								case "checkbox":
-									return (
-										<Checkbox key={i} {...ctrl} onChange={change.bind(this)} />
-									);
-								case "button":
-									return <Button key={i} {...ctrl}></Button>;
-								default:
-									return <div key={i}>mauvais type</div>;
-							}
-						})}
+						{genForm(control,change)}
 					</div>
 					<div style={{ flex: 2 }}>
 						<div style={{ margin: 5, minWidth: 200, display:"flex" }}>
@@ -109,8 +98,9 @@ class PopupInscription extends Component {
 					  
 						<div
 							style={{
-								overflow: "auto",
-								height: 300,
+								overflow: "scroll",
+								minHeight: 100,
+								maxHeight:300,
 								margin: 5,
 								minWidth: 200,
 								position:"relative"
@@ -160,7 +150,7 @@ class PopupInscription extends Component {
 														</span>
 													);
 												default:
-													return <span key={j}>mauvais type</span>;
+													return <span key={j}>{val?val:""}</span>;
 											}
 										} else {
 											let val = dat[ord.name];
@@ -201,7 +191,9 @@ class PopupInscription extends Component {
 				<div style={{ flexDirection: "column", display: "flex" }}></div>
 
 				<Button onClick={close.bind(this)}>Fermer</Button>
-			</Popup>
+			</div>
+			
+			</PopupV2>
 		);
 	}
 }

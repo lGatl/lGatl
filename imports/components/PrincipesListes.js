@@ -11,13 +11,13 @@ export default class PrincipesListes extends Component {
 						<b>Inscriptions :</b>
 						<ul>
 							<li>
-								<b>But :</b> Compter le nombre de couverts{" "}
+								<b>But :</b> Compter le nombre de couverts  ( de bouches à nourrir )
 							</li>
 							<li>
 								On indique ici la présence ou l'absence de nos plus proches
 							</li>
 							<li>
-								Il est utile d'indiquer les absence afin de ne pas avoir à
+								Il est utile d'indiquer les absences afin de ne pas avoir à
 								attendre leur réponse !
 							</li>
 						</ul>
@@ -67,7 +67,7 @@ export default class PrincipesListes extends Component {
 				ou dans le tchat de supprimer ce que vous souhaitez supprimer.
 				<br />
 				N'hesitez pas à poser des questions dans le tchat, la réponse peut
-				certainement servir à d'autre. Sinon vous pouvez m'envoyer un{" "}
+				certainement servir à d'autres. Sinon vous pouvez m'envoyer un{" "}
 				<A onClick={contact.bind(this)}>mail</A>.<br />
 				Encore une fois, je suis à l'écoute de toute remarque, idée, ...
 			</div>

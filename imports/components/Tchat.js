@@ -16,6 +16,7 @@ export default class Tchat extends Component {
 			user_logged,
 			users,
 			//fnt
+			clickDefiler,
 			bas,
 			haut,
 			removeMessage,
@@ -50,7 +51,7 @@ export default class Tchat extends Component {
 			<div>
 				<Button
 					style={{ marginTop: 10 }}
-					onClick={() => this.setState({ defiler: !defiler })}
+					onClick={clickDefiler.bind(this)}
 				>
 					{defiler
 						? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"

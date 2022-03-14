@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Img, Button, Checkbox, Dropdown, Popup, Segment } from "gat-ui-react";
 import { cap } from "../8_libs/string";
 
-const default_style = { marginLeft: 5, width: 50, textAlign: "center" };
+const default_style = { marginLeft: 5, minWidth: 40, textAlign: "center" };
 
 export default class CardList extends Component {
     render() {
@@ -19,6 +19,7 @@ export default class CardList extends Component {
             open,
             order,
             title,
+            total,
             user_logged,
         } = this.props;
         const DATA = filterData ? data.filter(filterData) : data;
@@ -29,7 +30,7 @@ export default class CardList extends Component {
                     display: "flex",
                     flexDirection: "column",
                     minWidth: 350,
-                    minHeight: 400,
+                    minHeight: 500,
                     margin: 5,
                     alignItems: "center",
                     boxShadow: "1px 1px 5px 1px grey",
@@ -62,11 +63,12 @@ export default class CardList extends Component {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            paddingLeft: 10,
-                            paddingRight: 10,
+                            paddingLeft: 2,
+                            paddingRight: 82,
                             paddingTop: 5,
                             paddingBottom: 5,
                             boxSizing: "border-box",
+
                         }}
                     >
                         {order.map((ord, i) => (
@@ -98,9 +100,9 @@ export default class CardList extends Component {
                         ></div>
                         <div
                             style={{
-                                overflow: "scroll",
+                                overflow: "auto",
                                 position: "relative",
-                                height: 310,
+                                height: !isNaN(total)?390:410,
                                 width: "100%",
                             }}
                         >
@@ -113,21 +115,30 @@ export default class CardList extends Component {
                                 },""):""
                                 return (
                                     <div
-                                        onClick = {openInfo.bind(this,dat._id)}
+                                    
                                         key={i}
                                         style={{
-                                           cursor:'pointer',
                                             width: "100%",
                                             display: "flex",
                                             alignItems: "center",
-                                            justifyContent: "space-between",
-                                            paddingLeft: 10,
-                                            paddingRight: 10,
+                                            paddingLeft: 2,
+                                            paddingRight: 5,
                                             paddingTop: 5,
                                             paddingBottom: 5,
                                             boxSizing: "border-box",
                                         }}
-                                    >
+                                    >   
+                                    <div
+                                        onClick = {openInfo.bind(this,dat._id)}
+                                        key={i}
+                                        style={{
+                                            cursor:'pointer',
+                                            flex:1,
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                        }}
+                                    >   
                                         {order.map((ord, j) => {
                                             if (typeof ord === "string") {
                                                 let val = dat[ord];
@@ -171,7 +182,7 @@ export default class CardList extends Component {
                                                     default:
                                                         return (
                                                             <span key={j}>
-                                                                mauvais type
+                                                                {val?val:""}
                                                             </span>
                                                         );
                                                 }
@@ -209,9 +220,10 @@ export default class CardList extends Component {
                                                 );
                                             }
                                         })}
+                                        </div>
                                         {user_logged?.username ? 
-                                            the_doner &&the_doner !==user_logged?.username?<span>{cap(the_doner)}</span>:<Button
-                                                style={{ marginLeft: 5 }}
+                                            the_doner &&the_doner !==user_logged?.username?<span style={{ marginLeft: 5, width:82 }}>{cap(the_doner)}</span>:<Button
+                                                style={{ marginLeft: 5, width:82 }}
                                                 onClick={beDoner.bind(this, {
                                                     _id: dat._id,
                                                     [`doner.${user_logged.username}`]:
@@ -230,18 +242,20 @@ export default class CardList extends Component {
                                                       dat.doner[
                                                           user_logged.username
                                                       ] === true
-                                                    ? "Ne plus s'y coller"
+                                                    ? "Se retirer"
                                                     : "J'm'y colle"}
                                            </Button>
                                      : (
-                                           the_doner?<span>{cap(the_doner)}</span>:""
+                                           the_doner?<span style={{marginLeft: 5,width:82, textAlign:'end'}}>{cap(the_doner)}</span>:<span style={{marginLeft: 5,width:82 }}></span>
                                         )}
                                     </div>
+
                                 );
                             })}
                         </div>
                     </div>
                 )}
+                {!isNaN(total)?`Dépenses totales: ${total.toFixed(2)} €`:""}
                 <Button style={{ width: "100%" }} onClick={open.bind(this)}>
                     {button_label}
                 </Button>
