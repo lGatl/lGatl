@@ -33,7 +33,6 @@ class PopupInscription extends Component {
 		} = this.props;
 		// todo limit height
 		const DATA = filterData ? data.filter(filterData) : data;
-		console.log(resize)
 		return (
 			<PopupV2
 				style={{

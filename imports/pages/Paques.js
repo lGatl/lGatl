@@ -984,7 +984,7 @@ class Paque extends Component {
 							data={all_messages}
 							beDoner={this.etrePreparateur.bind(this)}
 							control={[{ name: "unite", options: option_unite }]}
-							filterData={(msg) => msg.liste === "preparer"&&(this.state.sans_faiseur? msg.doner&&!Object.keys(msg.doner).filter(don=>msg.doner[don]).length:true)}
+							filterData={(msg) => msg.liste === "preparer"&&(this.state.sans_faiseur? !msg.doner||!Object.keys(msg.doner).filter(don=>msg.doner[don]).length:true)}
 							only_one={true}
 							order={[
 								{
@@ -1021,7 +1021,7 @@ class Paque extends Component {
 									: 0,
 							}))}
 							beDoner={this.etreFaiseur.bind(this)}
-							filterData={(msg) => msg.liste === "faire"&&(this.state.sans_faiseur? msg.doner&&!Object.keys(msg.doner).filter(don=>msg.doner[don]).length:true)}
+							filterData={(msg) => msg.liste === "faire"&&(this.state.sans_faiseur? !msg.doner||!Object.keys(msg.doner).filter(don=>msg.doner[don]).length:true)}
 							order={[
 								{
 									name: "personnes",
