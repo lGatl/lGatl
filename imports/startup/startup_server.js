@@ -35,7 +35,8 @@ let THEMESSAGE = (messgs) => {
 </head>
 <body>
 <section>
-  <h1> Bonjour ! Du nouveau sur le tchat pour Paques </h1>
+  <h1> Bonjour ! Du nouveau sur le tchat pour Paques : </h1>
+  Allez vite voir sur <a href="https://lgatl.fr/paques">lgatl.fr/paques</a>
   ${messgs.reduce((total, messg) => {
     total += `<p> Un nouveau message viens d'être posté par ${
       messg && messg.user && messg.user.username
@@ -75,7 +76,7 @@ Meteor.startup(() => {
     }
     timer = Meteor.setTimeout(() => {
       sendMail();
-    }, 1000 * 60 * 15);
+    }, 1000 *60*15);
   });
   const sendMail = Meteor.bindEnvironment(() => {
     Meteor.call("getUsersPaque", {}, null, (err, res) => {

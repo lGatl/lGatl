@@ -97,6 +97,7 @@ class PopupInscription extends Component {
 					  	<div style={{boxShadow: "inset 1px 1px 5px 1px grey", position:'absolute',top:0,left:0,height:'100%',width:'100%', pointerEvents:'none'}}></div>
 					  
 						<div
+						id={this.props.id_liste}
 							style={{
 								overflow: "scroll",
 								minHeight: 100,

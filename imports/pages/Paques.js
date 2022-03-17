@@ -66,6 +66,7 @@ class Paque extends Component {
 			first: true,
 			hover: false,
 			hoverp: false,
+			sans_faiseur:false,
 			//Poppup
 			modifier_preparer: false,
 			open: false,
@@ -148,6 +149,20 @@ class Paque extends Component {
 				}
 			}
 		}
+		['preparer','faire'].forEach(liste=>{
+			if (
+			this.state.defiler ||
+			this.props.messages.filter(m=>m.liste=== liste)
+		) {
+			if (this.props.messages.filter(m=>m.liste=== liste).length !== prevProps.messages.filter(m=>m.liste=== liste).length) {
+				const el = document.getElementById(liste);
+				if (el) {
+					el.scrollTop = el.scrollHeight;
+				}
+			}
+		}
+		})
+
 		// Bug Portable
 		if (this.props.relog_socket) {
 			this.props.relog(false);
@@ -565,6 +580,7 @@ class Paque extends Component {
 				)}
 				{this.state.open_liste_preparer ? (
 					<PopupInscription
+					id_liste ="preparer"
 					resize={this.props.resize}
 						admin={admin}
 						titre="Que devons nous apporter ?"
@@ -634,6 +650,7 @@ class Paque extends Component {
 				)}
 				{this.state.open_liste_faire ? (
 					<PopupInscription
+					id_liste ="faire"
 					resize={this.props.resize}
 						admin={admin}
 						username={user_logged?.username}
@@ -892,7 +909,14 @@ class Paque extends Component {
 						loginSocket={this.loginSocket.bind(this)}
 						logOut={this.logOut.bind(this)}
 					/>
-
+					<Button
+					style={{margin:20}}
+									
+											onClick={()=>this.setState({sans_faiseur:!this.state.sans_faiseur})}
+										>
+											{!this.state.sans_faiseur?"Ne montrer que les lignes dont personne ne s'y colle":"Montrer toutes les lignes"}
+										</Button>
+					
 					<div
 						style={{
 							flex: 1,
@@ -960,7 +984,7 @@ class Paque extends Component {
 							data={all_messages}
 							beDoner={this.etrePreparateur.bind(this)}
 							control={[{ name: "unite", options: option_unite }]}
-							filterData={(msg) => msg.liste === "preparer"}
+							filterData={(msg) => msg.liste === "preparer"&&(this.state.sans_faiseur? msg.doner&&!Object.keys(msg.doner).filter(don=>msg.doner[don]).length:true)}
 							only_one={true}
 							order={[
 								{
@@ -997,7 +1021,7 @@ class Paque extends Component {
 									: 0,
 							}))}
 							beDoner={this.etreFaiseur.bind(this)}
-							filterData={(msg) => msg.liste === "faire"}
+							filterData={(msg) => msg.liste === "faire"&&(this.state.sans_faiseur? msg.doner&&!Object.keys(msg.doner).filter(don=>msg.doner[don]).length:true)}
 							order={[
 								{
 									name: "personnes",

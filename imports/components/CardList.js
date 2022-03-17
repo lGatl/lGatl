@@ -126,6 +126,7 @@ export default class CardList extends Component {
                                             paddingTop: 5,
                                             paddingBottom: 5,
                                             boxSizing: "border-box",
+                                            color:( dat.doner&&Object.keys(dat.doner).filter(don=>dat.doner[don]).length)?"black":'rgba(150,0,0,1)'
                                         }}
                                     >   
                                     <div

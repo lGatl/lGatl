@@ -117,22 +117,11 @@ export default class TextPaque extends Component {
 									<A onClick={contact.bind(this)}>Me contacter</A>
 								</span>
 							</div>
-							<span style={{ color: "red", fontWeight: "bold" }}>
-								Venez vite indiquer si vous serez présent à pâques.
-								<ol>
-									<li>
-										Si il n'est pas renseigné, mettre son prénom puis cliquer
-										sur "Participer à l'organisation"
-									</li>
-									<li>Cliquer sur "Inscrire des personnes"</li>
-									<li>Choisir la famille</li>
-									<li>Renseigner le prénom de la personne à inscrire</li>
-									<li>Cocher ou non "Présent"</li>
-									<li>Cliquer sur "Sera Présent" ou "Sera absent"</li>
-								</ol>
-								Et pour ceux qui ne l'ont pas fait, vous êtes toujours invité à
-								donner votre avis dans le tchat.
-							</span>
+							<div style={{ color: "red", fontWeight: "bold" }}>
+								Noubliez pas à venir indiquer votre présence pour ceux qui ne le savent que depuis peu de temps.
+								<br/>
+								Les listes commencent à être bien remplies, hey les cousin(e)s, nos tatas se chargent de beaucoup de choses vous ne trouvez pas ? 
+							</div>
 						</div>
 					</Bandeau>
 					<Bandeau
