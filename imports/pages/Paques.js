@@ -38,7 +38,7 @@ import { genForm } from "../8_libs/genForm";
 
 const TEST = LOCAL;
 const current_year = (new Date()).getFullYear()
-selector = {$or:[{annee:current_year},{liste: "inscription"}]}
+selector = {annee:current_year}
 
 const option_taton = [
 	{ value: "", text: "-" },
