@@ -46,13 +46,13 @@ export default class PrincipesListes extends Component {
 						</ul>
 					</li>
 					<li>
-						<b>Choses à faire le jour J : </b>
+						<b>Taches à faire le jour J : </b>
 						<ul>
 							<li>
 								<b>But :</b> S'assurer qu'il y ai quelqu'un de prévu pour chaque
-								chose à faire le jour J
+								tache à faire le jour J
 							</li>
-							<li>Exemple: (vaiselle)</li>
+							<li>Exemple: (faire la vaiselle)</li>
 							<li>
 								Et on peut cliquer sur "J'm'y colle" pour indiquer que quelqu'un
 								s'en charge

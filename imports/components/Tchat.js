@@ -54,8 +54,8 @@ export default class Tchat extends Component {
 					onClick={clickDefiler.bind(this)}
 				>
 					{defiler
-						? "Ne Pas Defiler automatiquement lorsqu'arrive un nouveau message"
-						: "Defiler automatiquement lorsqu'arrive un nouveau message"}
+						? "Bloquer le défilement automatique"
+						: "Activer le défilement automatique"}
 				</Button>
 				<Button
 					style={{ marginTop: 10, marginLeft: 5 }}

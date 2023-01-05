@@ -31,7 +31,7 @@ let THEMESSAGE = (messgs) => {
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Nouveauu message</title>
+  <title>Nouveau message</title>
 </head>
 <body>
 <section>

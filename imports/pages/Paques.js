@@ -37,6 +37,8 @@ import { cap } from "../8_libs/string";
 import { genForm } from "../8_libs/genForm";
 
 const TEST = LOCAL;
+const current_year = (new Date()).getFullYear()
+selector = {$or:[{annee:current_year},{liste: "inscription"}]}
 
 const option_taton = [
 	{ value: "", text: "-" },
@@ -97,12 +99,12 @@ class Paque extends Component {
 
 
 		window.addEventListener("focus", () => {
-			getSSLPaque({}, { sort: { date: -1 } });
+			getSSLPaque(selector, { sort: { date: -1 } });
 			cleanMessages();
 			relog(true);
 		});
 
-		getSSLPaque({}, { sort: { date: -1 } });
+		getSSLPaque(selector, { sort: { date: -1 } });
 		thisSocket.on("logged", function (user) {
 			logged(user);
 		});
@@ -121,12 +123,12 @@ class Paque extends Component {
 			updatedMessagePaque(up);
 		});
 		thisSocket.on("reload", function () {
-			getSSLPaque({}, { sort: { date: -1 } });
+			getSSLPaque(selector, { sort: { date: -1 } });
 			cleanMessages();
 		});
 		thisSocket.on("disconnect", function () {
 			//thisSocket.reconnect();
-			getSSLPaque({}, { sort: { date: -1 } });
+			getSSLPaque(selector, { sort: { date: -1 } });
 			cleanMessages();
 			relog(true);
 		});
@@ -297,6 +299,7 @@ class Paque extends Component {
 				message: message_tchat1.trim(),
 				user: user_logged,
 				tchat: 1,
+				annee: current_year
 			};
 			emitMessage(message);
 			controlePaque({ message_tchat1: "" });
@@ -322,6 +325,7 @@ class Paque extends Component {
 				taton,
 				user: user_logged,
 				liste: "inscription",
+				annee: current_year
 			};
 			emitMessage(message);
 			controlePaque({ personne: "", present: false });
@@ -345,6 +349,7 @@ class Paque extends Component {
 				prix: prix ? prix * 1 : 0,
 				user: user_logged,
 				liste: "preparer",
+				annee: current_year
 			};
 			emitMessage(message);
 			controlePaque({ qtt: 1, preparation: "" });
@@ -359,6 +364,7 @@ class Paque extends Component {
 				chose: chose.trim(),
 				user: user_logged,
 				liste: "faire",
+				annee: current_year
 			};
 			emitMessage(message);
 			controlePaque({ nb_personne: 1, chose });
@@ -402,6 +408,7 @@ class Paque extends Component {
 			nb_personne,
 			chose,
 		} = this.props;
+
 		const { admin, open, fl } = this.state;
 		const all_messages = [...all_paques, ...messages];
 		const info_fund = all_messages.find(
@@ -425,6 +432,7 @@ class Paque extends Component {
 			.filter((msg) => msg.liste === "inscription")
 			.filter((dat) => dat.present === true).length;
 		admin && console.log(all_paques);
+		const coutParPersonne = depences_totales / couverts 
 		// console.log(messages, all_paques);
 		//console.log(user_logged);
 		// console.log(this.state.users, Object.keys(this.state.users).length);
@@ -788,26 +796,7 @@ class Paque extends Component {
 				<IntroPaques contact={this.contact.bind(this)} />
 				<Bandeau style={{ color: "white" }}>
 					<span style={{ textAlign: "justify", padding: 10 }}>
-						Vous êtes tous invités à donner votre avis sur l'idée de reprendre
-						le flambeau et sur l'idée de l'outil. L'objectif étant d'être clair,
-						que chacun s'exprime et de rester lisible pour tous, essayons de :
-						<ul>
-							<li>
-								ne pas (ou pas trop) nous renvoyer la balle afin de ne pas noyer
-								les premiers avis dans un fil de discussion trop long, (l'idée
-								de créer un second tchat pour les bavardages est imaginable,
-								mais ce n'est pas l'objectif ici)
-							</li>
-							<li>
-								bien mettre votre prénom en évitant les abréviations (les
-								surnoms) afin que tous le monde vous reconnaisse
-							</li>
-							<li>
-								utiliser toujours le même prénom (l'écrire de la même
-								manière..., mêmes accents..., je me charge des majuscules pour
-								vous... )
-							</li>
-						</ul>
+						Tchat, n'oubliez pas de mettre votre prenom écrit correctement que tout le monde comprenne qui vous etes ;)
 					</span>
 
 					{
@@ -973,9 +962,9 @@ class Paque extends Component {
 											?.length
 									} personnes a été indiquée )`}
 								</span>
-								<span>{`Cout par personne : ${(
-									depences_totales / couverts
-								).toFixed(2)} €`}</span>
+								<span>{`Cout par personne : ${coutParPersonne && coutParPersonne!==Infinity && !isNaN(coutParPersonne)?(
+									coutParPersonne
+								).toFixed(2):0} €`}</span>
 							</div>
 						</CardList>
 						<CardList
@@ -1007,8 +996,8 @@ class Paque extends Component {
 							total={depences_totales}
 						/>
 						<CardList
-							title="Choses à faire le jour j"
-							button_label="Ajouter des choses à faire"
+							title="Taches à faire LE JOUR J"
+							button_label="Ajouter des taches"
 							data={all_messages.map((am) => ({
 								...am,
 								personnes: am.doner
@@ -1028,7 +1017,7 @@ class Paque extends Component {
 									label: "faiseurs",
 									style: { marginLeft: 5, textAlign: "center", width: 85 },
 								},
-								{ name: "chose", style: { flex: 1 } },
+								{ name: "tache", style: { flex: 1 } },
 							]}
 							open={() => {
 								this.setState({ open_liste_faire: true });

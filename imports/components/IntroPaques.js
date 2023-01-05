@@ -62,19 +62,12 @@ export default class TextPaque extends Component {
 							<div>
 								Pâques <br></br>
 								<span style={{ fontSize: 30 }}>
-									Cette année le 17 avril 2022
+									Cette année le 9 avril 2023
 								</span>
 							</div>
 						</Titre1>
-						On a la bénédiction de la Josette ! Salut tous le monde ! On est
-						quelques uns à en avoir parlé et il nous semble que c'est le moment
-						! Nos parents oncles et tantes ont tellement de fois organisé le
-						traditionnel repas de Pâques, leur nombre est resté le même alors
-						que la famille ne cesse de s'agrandir... Ne pensez vous pas que
-						c'est à notre tour de perpétuer la volontée de papi Maurice et de
-						mamie Simone, de continuer à nous rassembler ? Et nous, on est
-						tellement plus nombreux ! Ca va être FACILE ! Qu'en pensez vous ?
-						Partants ? On rend les choses possibles ?
+						Bonne année ! Bonne santée !
+						Ca vous dit, on reprend part à l'organisation de paques ?
 					</div>
 				</div>
 				<div
@@ -118,61 +111,7 @@ export default class TextPaque extends Component {
 								</span>
 							</div>
 							<div style={{ color: "red", fontWeight: "bold" }}>
-								Noubliez pas à venir indiquer votre présence pour ceux qui ne le savent que depuis peu de temps.
-								<br/>
-								Les listes commencent à être bien remplies, hey les cousin(e)s, nos tatas se chargent de beaucoup de choses vous ne trouvez pas ? 
-							</div>
-						</div>
-					</Bandeau>
-					<Bandeau
-						style={{
-							color: "white",
-							padding: 30,
-						}}
-					>
-						<div>
-							Bien conscient du contexte sanitaire, nous serons peut-être forcés
-							de nous adapter selon l'évolution de la situation. Au{" "}
-							<strong>PIRE</strong> des cas tout serait prêt pour l'an prochain
-							!
-						</div>
-					</Bandeau>
-					<Bandeau
-						style={{
-							backgroundColor: "white",
-							backgroundImage: "url(/images/oeufs2.jpg)",
-							backgroundRepeat: "no-repeat",
-							backgroundPosition: "left bottom",
-							backgroundSize: "cover",
-							//backgroundAttachment: 'fixed',
-							paddingTop: 20,
-							paddingBottom: 20,
-						}}
-					>
-						<div>
-							<Titre3 style={{ color: "black" }}>Ce site </Titre3>
-							<div style={{ textAlign: "justify", padding: 10 }}>
-								Cette page internet est en constante évolution, elle a vocation
-								à informer, expliquer. Le tchat nous permet de nous exprimer,
-								communiquer, <b>donner notre avis</b>. L'idée étant de :
-								<ul>
-									<li> Centraliser l'information </li>
-									<li>
-										éviter de noyer l'information dans un fil de discussion
-									</li>
-									<li>éviter le téléphone arabe</li>
-									<li>
-										effacer les innégalités technologiques
-										<span style={{ fontSize: 15, marginLeft: 5 }}>
-											( personne n'aura à se mettre à facebook messenger ni
-											whatsapp )
-										</span>
-									</li>
-									<li>Permettre à tous de s'exprimer</li>
-								</ul>
-								3 listes sont a votre disposition, pour nous permettre de nous
-								organiser. Leur principe d'utilisation est expliqué en dessous
-								de celles-ci.
+								Noubliez pas à venir indiquer votre présence.
 							</div>
 						</div>
 					</Bandeau>
@@ -195,13 +134,7 @@ export default class TextPaque extends Component {
 						<div>
 							<Titre3 style={{ color: "black" }}>Suggestions</Titre3>
 							<div style={{ textAlign: "justify", padding: 10 }}>
-								Arthur, notre petit génie du bricolage a fabriqué un tourne
-								broche qualité avion de chasse. Etant donné que le méchoui est
-								un bon moyen de préparer une grande quantité de viande sans
-								avoir à cuisiner pendant une ou deux semaines ( on est nombreux
-								mais pas à la retraite, ... il faut bien l'dire ^^ ), on s'est
-								dit que ça pourrait être vraiment bien pour notre réunion
-								familliale tout en conservant la tradition ovine de Pâques.
+								On refait un méchoui ?
 							</div>
 						</div>
 						<img
