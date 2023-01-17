@@ -38,7 +38,7 @@ export default class TextPaque extends Component {
 		const { contact } = this.props;
 		return (
 			<div style={{ display: "flex", flexDirection: "column" }}>
-				<img alt="image" src="/images/paques2.jpg"></img>
+				<img alt="image" src="/images/paques2022.JPG"></img>
 
 				<div
 					style={{

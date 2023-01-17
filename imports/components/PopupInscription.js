@@ -119,11 +119,8 @@ class PopupInscription extends Component {
 												val = fundOpt.text;
 											}
 										}
-										if (typeof ord === "string") {
-											switch (typeof val) {
-												case "boolean":
-													return (
-														<Checkbox
+										if(fund?.elt==="checkbox"){
+											return <Checkbox
 															key={j}
 															name={ord}
 															checked={val ?? false}
@@ -136,7 +133,10 @@ class PopupInscription extends Component {
 																	: () => {}
 															}
 														/>
-													);
+										}
+										if (typeof ord === "string") {
+											switch (typeof val) {
+												
 												case "number":
 													return (
 														<span key={j} style={default_style}>

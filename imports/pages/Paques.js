@@ -288,7 +288,6 @@ class Paque extends Component {
 	}
 	updateMessage(up) {
 		const { updateMessage } = this.props;
-		console.log(up)
 		updateMessage(up);
 	}
 	messageChat1() {
@@ -309,6 +308,7 @@ class Paque extends Component {
 		const {
 			personne,
 			present,
+			enfant,
 			taton,
 			emitMessage,
 			user_logged,
@@ -320,6 +320,7 @@ class Paque extends Component {
 			taton?.length > 0
 		) {
 			const message = {
+				enfant: enfant ? enfant : false,
 				personne: personne.trim().toLowerCase(),
 				present: present ? present : false,
 				taton,
@@ -328,7 +329,7 @@ class Paque extends Component {
 				annee: current_year
 			};
 			emitMessage(message);
-			controlePaque({ personne: "", present: false });
+			controlePaque({ personne: "", present: false,enfant: false });
 		}
 	}
 	listePreparer() {
@@ -398,6 +399,7 @@ class Paque extends Component {
 			//Inscriptions
 			personne,
 			present,
+			enfant,
 			taton,
 			//Liste Preparation
 			qtt,
@@ -514,6 +516,13 @@ class Paque extends Component {
 								checked: present ?? false,
 							},
 							{
+								elt: "checkbox",
+								style: { visibility: taton?.length ? "visible" : "hidden" },
+								label: "Enfant",
+								name: "enfant",
+								checked: enfant ?? false,
+							},
+							{
 								elt: "button",
 								style: {
 									visibility:
@@ -566,6 +575,7 @@ class Paque extends Component {
 										},
 										{ name: "personne", style: { marginLeft: 5, flex: 1 } },
 										"present",
+										"enfant"
 								  ]
 								: [
 										{
@@ -1071,6 +1081,7 @@ function mapStateToProps(state) {
 		personne: state.paque.controle.personne,
 		taton: state.paque.controle.taton,
 		present: state.paque.controle.present,
+		enfant: state.paque.controle.enfant,
 		//liste  preparation
 		qtt: state.paque.controle.qtt,
 		unite: state.paque.controle.unite,
