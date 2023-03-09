@@ -1027,7 +1027,7 @@ class Paque extends Component {
 									label: "faiseurs",
 									style: { marginLeft: 5, textAlign: "center", width: 85 },
 								},
-								{ name: "tache", style: { flex: 1 } },
+								{ name: "chose", label: "Tache", style: { flex: 1 } },
 							]}
 							open={() => {
 								this.setState({ open_liste_faire: true });

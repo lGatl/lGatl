@@ -1,4 +1,4 @@
-export const LOCAL =false;
+export const LOCAL = false;
 let io = require("socket.io-client");
 //"http://192.168.1.15:3000"
 // "http://192.168.0.30/:3000"
